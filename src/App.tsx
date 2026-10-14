@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { NavPage, Course, MarketProduct } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -46,6 +48,52 @@ export default function App() {
   const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
   const [volunteerType, setVolunteerType] = useState<'teach' | 'sponsor'>('teach');
 
+  // Inicialização do Smooth Scrolling (Lenis) para sensação ultra-suave e fluida
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+    });
+
+    (window as any).__lenis = lenis;
+
+    let rafId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      delete (window as any).__lenis;
+    };
+  }, []);
+
+  // Pausa rolagem de fundo quando modais estão abertos
+  useEffect(() => {
+    const isAnyModalOpen = Boolean(
+      donationModalOpen ||
+      selectedCourseForEnroll ||
+      selectedProductForPurchase ||
+      producerModalOpen ||
+      volunteerModalOpen
+    );
+    if ((window as any).__lenis) {
+      if (isAnyModalOpen) {
+        (window as any).__lenis.stop();
+      } else {
+        (window as any).__lenis.start();
+      }
+    }
+  }, [donationModalOpen, selectedCourseForEnroll, selectedProductForPurchase, producerModalOpen, volunteerModalOpen]);
+
   // Sincroniza histórico do navegador com as páginas do site
   useEffect(() => {
     const handlePopState = () => {
@@ -64,7 +112,13 @@ export default function App() {
       }
       setTimeout(() => {
         const el = document.getElementById('contato-secao');
-        el?.scrollIntoView({ behavior: 'smooth' });
+        if (el) {
+          if ((window as any).__lenis) {
+            (window as any).__lenis.scrollTo(el, { offset: -70, duration: 1.2 });
+          } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
       }, 120);
       return;
     }
@@ -74,7 +128,11 @@ export default function App() {
     if (window.location.pathname !== targetUrl) {
       window.history.pushState({}, '', targetUrl);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if ((window as any).__lenis) {
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   const handleOpenDonation = (projectName?: string) => {

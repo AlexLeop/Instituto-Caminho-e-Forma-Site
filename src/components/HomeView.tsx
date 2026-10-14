@@ -42,27 +42,28 @@ export const HomeView: React.FC<HomeViewProps> = ({
     return () => clearInterval(timer);
   }, []);
 
-  // Parallax & Transições de Scroll entre Hero e a Próxima Seção
+  // Parallax & Transições de Scroll entre Hero e a Próxima Seção (Curtain Overlap)
   const heroRef = useRef<HTMLDivElement>(null);
-  const nextSectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start']
   });
 
-  const heroBgY = useTransform(scrollYProgress, [0, 1], ['0%', '28%']);
-  const heroTextY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0.15]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.94]);
+  const heroBgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
+  const heroTextY = useTransform(scrollYProgress, [0, 1], ['0%', '14%']);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 0.45, 0.1]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.93]);
+  const heroBlur = useTransform(scrollYProgress, [0, 0.7], ['blur(0px)', 'blur(4px)']);
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
-  // Transição de scroll da próxima seção (efeito de elevação e subida)
-  const { scrollYProgress: nextSectionScroll } = useScroll({
-    target: nextSectionRef,
-    offset: ['start end', 'start 70%']
-  });
-  const nextSectionY = useTransform(nextSectionScroll, [0, 1], [40, 0]);
+  const scrollToSection = (id: string) => {
+    if ((window as any).__lenis) {
+      (window as any).__lenis.scrollTo(`#${id}`, { offset: -20, duration: 1.2 });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,208 +77,205 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   return (
-    <div className="flex flex-col w-full overflow-hidden bg-[#fbf9f5] text-[#1c1917]">
-      {/* HERO SECTION CINEMATOGRÁFICA E AUTÊNTICA - OCUPA A TELA TODA (100vh) */}
-      <section 
+    <div className="flex flex-col w-full bg-[#fbf9f5] text-[#1c1917]">
+      {/* HERO SECTION STICKY COM TRANSIÇÃO EM CORTINA SOBREPOSTA */}
+      <motion.section 
         ref={heroRef}
-        className="relative w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden bg-[#1c1917] pt-20 sm:pt-24 pb-6 sm:pb-8"
+        style={{ 
+          scale: heroScale,
+          opacity: heroOpacity,
+          filter: heroBlur
+        }}
+        className="sticky top-0 w-full h-screen min-h-screen flex flex-col justify-between overflow-hidden bg-[#1c1917] pt-20 sm:pt-24 pb-6 sm:pb-8 will-change-transform origin-center z-10"
       >
-        {/* Camada Parallax & Dissolve Loop do Background com Efeito Ken Burns */}
-        <motion.div 
-          style={{ y: heroBgY, scale: heroScale }}
-          className="absolute inset-0 -top-24 -bottom-24 z-0 pointer-events-none will-change-transform overflow-hidden"
-        >
-          {HERO_SLIDES.map((slide, idx) => {
-            const isActive = idx === currentSlideIndex;
-            return (
-              <div 
-                key={slide.id}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                }`}
-              >
-                <div 
-                  className={`w-full h-full bg-cover bg-center filter brightness-[0.42] contrast-[1.08] transition-transform duration-[6500ms] ease-out ${
-                    isActive ? 'scale-105' : 'scale-100'
-                  }`} 
-                  style={{ backgroundImage: `url('${slide.url}')` }}
-                />
-              </div>
-            );
-          })}
-
-          {/* Gradientes e Vinhetas Cinematográficas */}
-          <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#1c1917] via-black/40 to-black/75 pointer-events-none" />
-          <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/55 via-transparent to-black/40 pointer-events-none" />
-          <div className="absolute inset-0 z-20 bg-[#b45309]/10 mix-blend-color pointer-events-none" />
-        </motion.div>
-
-        {/* Conteúdo Central da Hero */}
-        <motion.div 
-          style={{ y: heroTextY, opacity: heroOpacity }}
-          className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-6 sm:py-8"
-        >
-          <div className="max-w-[720px] flex flex-col gap-4 sm:gap-5">
-            {/* Display Headline Editorial com Literata */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-2xl sm:text-4xl lg:text-[2.65rem] text-white font-serif tracking-tight drop-shadow-md font-bold leading-[1.18]"
-            >
-              Dignidade, autonomia e futuro para quem constrói o nosso chão.
-            </motion.h1>
-
-            {/* Subtitle Humanista com Manrope */}
-            <motion.p 
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-sans text-sm sm:text-base text-stone-200/90 max-w-[580px] drop-shadow-sm leading-relaxed font-normal"
-            >
-              No Instituto Caminho e Forma, atuamos diariamente ao lado de mais de 450 famílias com segurança alimentar, capacitação profissional emancipatória e fortalecimento comunitário permanente.
-            </motion.p>
-
-            {/* CTAs Diretos, Elegantes e Responsivos */}
-            <motion.div 
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2"
-            >
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => onOpenDonation()}
-                className="inline-flex items-center justify-center gap-2 bg-[#b45309] hover:bg-[#92400e] text-white font-sans text-sm sm:text-base font-bold px-6 py-3 rounded-xl shadow-md transition-all cursor-pointer"
-              >
-                <span className="material-symbols-outlined text-[18px]">favorite</span>
-                <span>Apoiar Nossas Famílias</span>
-              </motion.button>
-
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  const el = document.getElementById('projetos-destaque');
-                  el?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-sans text-sm sm:text-base font-semibold px-6 py-3 rounded-xl transition-all cursor-pointer border border-white/20"
-              >
-                <span>Conhecer Projetos em Campo</span>
-                <span className="material-symbols-outlined text-[18px]">arrow_downward</span>
-              </motion.button>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* FAIXA INTEGRADA DE IMPACTO E TRANSPARÊNCIA */}
-        <div className="relative z-20 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-auto pb-4 sm:pb-6">
-          {/* Barra Superior do Impacto: Contexto da Foto em Loop + Indicador de Scroll Suave */}
-          <div className="flex items-center justify-between gap-4 mb-3">
-            {/* Tag e Navegação do Loop de Fotos Autênticas */}
-            <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-white/95 text-xs shadow-md">
-              <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse" />
-              <span className="font-sans font-medium text-[11px] sm:text-xs tracking-wide">
-                {HERO_SLIDES[currentSlideIndex].contextTag}
-              </span>
-              <div className="flex items-center gap-1.5 ml-2 border-l border-white/20 pl-2">
-                {HERO_SLIDES.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlideIndex(i)}
-                    aria-label={`Ver foto ${i + 1}: ${HERO_SLIDES[i].contextTag}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 pointer-events-auto cursor-pointer ${
-                      i === currentSlideIndex 
-                        ? 'w-5 bg-[#f59e0b]' 
-                        : 'w-1.5 bg-white/40 hover:bg-white/80'
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Convite de Scroll Animado com Efeito de Transição */}
-            <motion.button
-              style={{ opacity: scrollIndicatorOpacity }}
-              onClick={() => {
-                const el = document.getElementById('secao-parceiros');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hidden sm:inline-flex items-center gap-2 text-stone-200 hover:text-white text-xs font-semibold px-3.5 py-1.5 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md border border-white/15 cursor-pointer transition-all pointer-events-auto group shadow-md"
-            >
-              <span>Conheça os parceiros</span>
-              <motion.span 
-                animate={{ y: [0, 3, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-                className="material-symbols-outlined text-[16px] text-[#f59e0b] group-hover:translate-y-0.5 transition-transform"
-              >
-                south
-              </motion.span>
-            </motion.button>
-          </div>
-
+          {/* Camada Parallax & Dissolve Loop do Background com Efeito Ken Burns */}
           <motion.div 
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-[#1c1917]/85 backdrop-blur-md border border-white/10 text-white"
+            style={{ y: heroBgY }}
+            className="absolute inset-0 -top-24 -bottom-24 z-0 pointer-events-none will-change-transform overflow-hidden"
           >
-            <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                +15<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1">mil</span>
-              </div>
-              <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
-                Pessoas Atendidas
-              </span>
-              <p className="font-sans text-[11px] sm:text-xs text-stone-400">Nutrição, acolhimento e formação contínua</p>
-            </div>
+            {HERO_SLIDES.map((slide, idx) => {
+              const isActive = idx === currentSlideIndex;
+              return (
+                <div 
+                  key={slide.id}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                >
+                  <div 
+                    className={`w-full h-full bg-cover bg-center filter brightness-[0.42] contrast-[1.08] transition-transform duration-[6500ms] ease-out ${
+                      isActive ? 'scale-105' : 'scale-100'
+                    }`} 
+                    style={{ backgroundImage: `url('${slide.url}')` }}
+                  />
+                </div>
+              );
+            })}
 
-            <div className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5">
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                8<span className="text-base sm:text-lg text-[#166534] font-sans ml-1">núcleos</span>
-              </div>
-              <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
-                Núcleos Comunitários
-              </span>
-              <p className="font-sans text-[11px] sm:text-xs text-stone-400">Polos de atendimento em Itaguaí e região</p>
-            </div>
+            {/* Gradientes e Vinhetas Cinematográficas */}
+            <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#1c1917] via-black/40 to-black/75 pointer-events-none" />
+            <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/55 via-transparent to-black/40 pointer-events-none" />
+            <div className="absolute inset-0 z-20 bg-[#b45309]/10 mix-blend-color pointer-events-none" />
+          </motion.div>
 
-            <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
-                120<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1">ton</span>
-              </div>
-              <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
-                Alimentos Distribuídos
-              </span>
-              <p className="font-sans text-[11px] sm:text-xs text-stone-400">Segurança alimentar e combate à fome</p>
-            </div>
+          {/* Conteúdo Central da Hero */}
+          <motion.div 
+            style={{ y: heroTextY }}
+            className="relative z-10 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-6 sm:py-8"
+          >
+            <div className="max-w-[720px] flex flex-col gap-4 sm:gap-5">
+              {/* Display Headline Editorial com Literata */}
+              <motion.h1 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-2xl sm:text-4xl lg:text-[2.65rem] text-white font-serif tracking-tight drop-shadow-md font-bold leading-[1.18]"
+              >
+                Dignidade, autonomia e futuro para quem constrói o nosso chão.
+              </motion.h1>
 
-            <div 
-              onClick={onOpenTransparency}
-              className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5 cursor-pointer group"
-              title="Acessar Portal da Transparência"
-            >
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight group-hover:text-[#4ade80] transition-colors flex items-baseline gap-1">
-                100<span className="text-base sm:text-lg font-sans">%</span>
-              </div>
-              <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200 flex items-center gap-1 group-hover:text-white transition-colors">
-                <span>Auditoria Aberta</span>
-                <span className="material-symbols-outlined text-[14px] text-[#4ade80]">open_in_new</span>
-              </span>
-              <p className="font-sans text-[11px] sm:text-xs text-stone-400">Balanços e notas fiscais auditados por BDO</p>
+              {/* Subtitle Humanista com Manrope */}
+              <motion.p 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="font-sans text-sm sm:text-base text-stone-200/90 max-w-[580px] drop-shadow-sm leading-relaxed font-normal"
+              >
+                No Instituto Caminho e Forma, atuamos diariamente ao lado de mais de 450 famílias com segurança alimentar, capacitação profissional emancipatória e fortalecimento comunitário permanente.
+              </motion.p>
+
+              {/* CTAs Diretos, Elegantes e Responsivos */}
+              <motion.div 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2"
+              >
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => onOpenDonation()}
+                  className="inline-flex items-center justify-center gap-2 bg-[#b45309] hover:bg-[#92400e] text-white font-sans text-sm sm:text-base font-bold px-6 py-3 rounded-xl shadow-md transition-all cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-[18px]">favorite</span>
+                  <span>Apoiar Nossas Famílias</span>
+                </motion.button>
+
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => scrollToSection('projetos-destaque')}
+                  className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-sans text-sm sm:text-base font-semibold px-6 py-3 rounded-xl transition-all cursor-pointer border border-white/20"
+                >
+                  <span>Conhecer Projetos em Campo</span>
+                  <span className="material-symbols-outlined text-[18px]">arrow_downward</span>
+                </motion.button>
+              </motion.div>
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* EMPRESAS QUE CONFIAM NA GENTE / PARCERIAS INSTITUCIONAIS COM TRANSIÇÃO DE SCROLL ELEVADA */}
-      <motion.section 
+          {/* FAIXA INTEGRADA DE IMPACTO E TRANSPARÊNCIA */}
+          <div className="relative z-20 max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 mt-auto pb-4 sm:pb-6">
+            {/* Barra Superior do Impacto: Contexto da Foto em Loop + Indicador de Scroll Suave */}
+            <div className="flex items-center justify-between gap-4 mb-3">
+              {/* Tag e Navegação do Loop de Fotos Autênticas */}
+              <div className="inline-flex items-center gap-2 bg-black/50 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-white/95 text-xs shadow-md">
+                <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse" />
+                <span className="font-sans font-medium text-[11px] sm:text-xs tracking-wide">
+                  {HERO_SLIDES[currentSlideIndex].contextTag}
+                </span>
+                <div className="flex items-center gap-1.5 ml-2 border-l border-white/20 pl-2">
+                  {HERO_SLIDES.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentSlideIndex(i)}
+                      aria-label={`Ver foto ${i + 1}: ${HERO_SLIDES[i].contextTag}`}
+                      className={`h-1.5 rounded-full transition-all duration-300 pointer-events-auto cursor-pointer ${
+                        i === currentSlideIndex 
+                          ? 'w-5 bg-[#f59e0b]' 
+                          : 'w-1.5 bg-white/40 hover:bg-white/80'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Convite de Scroll Animado com Efeito de Transição */}
+              <motion.button
+                style={{ opacity: scrollIndicatorOpacity }}
+                onClick={() => scrollToSection('secao-parceiros')}
+                className="hidden sm:inline-flex items-center gap-2 text-stone-200 hover:text-white text-xs font-semibold px-3.5 py-1.5 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md border border-white/15 cursor-pointer transition-all pointer-events-auto group shadow-md"
+              >
+                <span>Conheça os parceiros</span>
+                <motion.span 
+                  animate={{ y: [0, 3, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+                  className="material-symbols-outlined text-[16px] text-[#f59e0b] group-hover:translate-y-0.5 transition-transform"
+                >
+                  south
+                </motion.span>
+              </motion.button>
+            </div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 rounded-2xl bg-[#1c1917]/85 backdrop-blur-md border border-white/10 text-white"
+            >
+              <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
+                <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  +15<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1">mil</span>
+                </div>
+                <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
+                  Pessoas Atendidas
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-stone-400">Nutrição, acolhimento e formação contínua</p>
+              </div>
+
+              <div className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5">
+                <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  8<span className="text-base sm:text-lg text-[#166534] font-sans ml-1">núcleos</span>
+                </div>
+                <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
+                  Núcleos Comunitários
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-stone-400">Polos de atendimento em Itaguaí e região</p>
+              </div>
+
+              <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
+                <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  120<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1">ton</span>
+                </div>
+                <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200">
+                  Alimentos Distribuídos
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-stone-400">Segurança alimentar e combate à fome</p>
+              </div>
+
+              <div 
+                onClick={onOpenTransparency}
+                className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5 cursor-pointer group"
+                title="Acessar Portal da Transparência"
+              >
+                <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight group-hover:text-[#4ade80] transition-colors flex items-baseline gap-1">
+                  100<span className="text-base sm:text-lg font-sans">%</span>
+                </div>
+                <span className="font-sans text-xs sm:text-sm font-semibold text-stone-200 flex items-center gap-1 group-hover:text-white transition-colors">
+                  <span>Auditoria Aberta</span>
+                  <span className="material-symbols-outlined text-[14px] text-[#4ade80]">open_in_new</span>
+                </span>
+                <p className="font-sans text-[11px] sm:text-xs text-stone-400">Balanços e notas fiscais auditados por BDO</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+      {/* EMPRESAS QUE CONFIAM NA GENTE / PRÓXIMA SEÇÃO ELEVADA QUE COBRE A HERO COM TRANSIÇÃO SUAVE */}
+      <section 
         id="secao-parceiros"
-        ref={nextSectionRef}
-        style={{ y: nextSectionY }}
-        className="w-full relative z-30 -mt-8 sm:-mt-12 rounded-t-[32px] sm:rounded-t-[48px] bg-[#f5f1ea] border-t border-white/60 shadow-[0_-25px_50px_-12px_rgba(0,0,0,0.45)] pt-7 pb-12 overflow-hidden transition-all"
+        className="w-full relative z-20 -mt-10 sm:-mt-14 rounded-t-[36px] sm:rounded-t-[48px] bg-[#f5f1ea] border-t border-white/80 shadow-[0_-30px_60px_-15px_rgba(0,0,0,0.55)] pt-8 pb-12 overflow-hidden"
       >
         {/* Barra decorativa sutil de elevação (sheet pill handle) */}
         <div className="w-12 sm:w-16 h-1 sm:h-1.5 bg-[#d6cec2] rounded-full mx-auto mb-5 opacity-70" />
@@ -288,7 +286,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </p>
           <PartnerLogosCarousel />
         </div>
-      </motion.section>
+      </section>
 
       {/* SEÇÃO SOBRE NÓS & PILARES DE ATUAÇÃO COM DESIGN EDITORIAL */}
       <section className="w-full py-18 sm:py-24 bg-[#f5f1ea] border-b border-[#e7e2da]">
