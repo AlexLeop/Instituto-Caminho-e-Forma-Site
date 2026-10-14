@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="230 80 560 800" width="560" height="800">
+  <defs>
+    <!-- Gradients for Figures -->
+    <radialGradient id="orangeHead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFE082" />
+      <stop offset="25%" stop-color="#FFA000" />
+      <stop offset="70%" stop-color="#FF6D00" />
+      <stop offset="100%" stop-color="#D84315" />
+    </radialGradient>
+
+    <linearGradient id="orangeBody" x1="0%" y1="100%" x2="80%" y2="10%">
+      <stop offset="0%" stop-color="#E91E63" />
+      <stop offset="15%" stop-color="#FF3D00" />
+      <stop offset="50%" stop-color="#FF9100" />
+      <stop offset="85%" stop-color="#FFD54F" />
+      <stop offset="100%" stop-color="#FFF9C4" />
+    </linearGradient>
+
+    <radialGradient id="greenHead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#EEFF41" />
+      <stop offset="30%" stop-color="#76FF03" />
+      <stop offset="75%" stop-color="#388E3C" />
+      <stop offset="100%" stop-color="#1B5E20" />
+    </radialGradient>
+
+    <linearGradient id="greenBody" x1="10%" y1="70%" x2="90%" y2="20%">
+      <stop offset="0%" stop-color="#1B5E20" />
+      <stop offset="25%" stop-color="#2E7D32" />
+      <stop offset="50%" stop-color="#4CAF50" />
+      <stop offset="75%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#00B0FF" />
+    </linearGradient>
+
+    <radialGradient id="magentaHead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FF80AB" />
+      <stop offset="40%" stop-color="#E91E63" />
+      <stop offset="80%" stop-color="#C2185B" />
+      <stop offset="100%" stop-color="#880E4F" />
+    </radialGradient>
+
+    <linearGradient id="blueBody" x1="20%" y1="100%" x2="60%" y2="0%">
+      <stop offset="0%" stop-color="#7B1FA2" />
+      <stop offset="20%" stop-color="#1565C0" />
+      <stop offset="60%" stop-color="#0091EA" />
+      <stop offset="100%" stop-color="#00E5FF" />
+    </linearGradient>
+
+    <linearGradient id="pathGrad" x1="10%" y1="85%" x2="85%" y2="25%">
+      <stop offset="0%" stop-color="#880E4F" />
+      <stop offset="20%" stop-color="#AD1457" />
+      <stop offset="55%" stop-color="#E91E63" />
+      <stop offset="80%" stop-color="#FF4081" />
+      <stop offset="100%" stop-color="#F06292" />
+    </linearGradient>
+
+    <linearGradient id="pathHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#FF80AB" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#AD1457" stop-opacity="0" />
+    </linearGradient>
+
+    <radialGradient id="cyanDot" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#E0F7FA" />
+      <stop offset="40%" stop-color="#00E5FF" />
+      <stop offset="100%" stop-color="#0091EA" />
+    </radialGradient>
+
+    <radialGradient id="limeDot" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#F1F8E9" />
+      <stop offset="40%" stop-color="#76FF03" />
+      <stop offset="100%" stop-color="#33691E" />
+    </radialGradient>
+
+    <radialGradient id="magentaDot" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FCE4EC" />
+      <stop offset="40%" stop-color="#FF4081" />
+      <stop offset="100%" stop-color="#C2185B" />
+    </radialGradient>
+
+    <radialGradient id="orangeDot" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFF3E0" />
+      <stop offset="40%" stop-color="#FF9800" />
+      <stop offset="100%" stop-color="#E65100" />
+    </radialGradient>
+  </defs>
+
+  <!-- 1. Celebratory Splash Swooshes -->
+  <path d="M565 240 C570 200, 595 155, 650 125 C640 145, 615 190, 585 242 Z" fill="url(#blueBody)" />
+  <path d="M580 310 C610 270, 660 230, 730 195 C710 220, 665 265, 615 315 Z" fill="url(#greenBody)" />
+
+  <!-- 2. Small Droplets Bursting in the Air -->
+  <circle cx="542" cy="146" r="14" fill="url(#cyanDot)" />
+  <circle cx="587" cy="102" r="11" fill="url(#cyanDot)" />
+  <circle cx="723" cy="131" r="9" fill="url(#limeDot)" />
+  <circle cx="772" cy="198" r="16" fill="url(#magentaDot)" />
+  <circle cx="539" cy="248" r="12" fill="url(#orangeDot)" />
+  <circle cx="619" cy="271" r="7" fill="url(#magentaDot)" />
+  <circle cx="729" cy="266" r="8" fill="url(#limeDot)" />
+  <circle cx="682" cy="332" r="7" fill="url(#magentaDot)" />
+
+  <!-- 3. Orange Dynamic Figure (Top-Left) -->
+  <path d="M 250 625 C 245 540, 260 440, 310 360 C 350 295, 415 220, 510 170 C 490 215, 440 280, 385 345 C 335 410, 310 490, 325 630 Z" fill="url(#orangeBody)" />
+  <circle cx="402" cy="245" r="42" fill="url(#orangeHead)" />
+
+  <!-- 4. Violet/Blue Figure (Bottom-Left) -->
+  <path d="M 345 590 C 340 520, 335 480, 325 450 C 345 465, 365 485, 375 515 C 385 480, 410 450, 448 418 C 430 460, 410 500, 400 550 C 390 580, 385 615, 385 630 Z" fill="url(#blueBody)" />
+  <circle cx="387" cy="435" r="24" fill="url(#magentaHead)" />
+
+  <!-- 5. Green Figure (Center-Right) -->
+  <path d="M 515 515 C 490 470, 455 425, 422 370 C 455 390, 490 415, 515 440 C 540 415, 595 370, 660 325 C 635 375, 580 435, 545 475 C 535 490, 525 505, 515 515 Z" fill="url(#greenBody)" />
+  <circle cx="516" cy="346" r="32" fill="url(#greenHead)" />
+
+  <!-- 6. Ribbon Path (Caminho) -->
+  <path d="M 672 612 C 672 645, 630 670, 565 678 C 475 688, 385 688, 330 685 C 380 675, 435 655, 465 625 C 495 595, 485 540, 440 515 C 430 505, 450 495, 475 485 C 505 520, 520 560, 515 590 C 510 620, 545 635, 600 625 C 640 618, 665 600, 672 612 Z" fill="url(#pathGrad)" />
+  <path d="M 672 612 C 640 635, 580 655, 515 650 C 435 645, 365 675, 330 685 C 380 670, 440 640, 480 610 C 530 575, 540 540, 520 515 C 540 525, 560 555, 580 580 C 610 605, 650 605, 672 612 Z" fill="url(#pathHighlight)" opacity="0.7" />
+
+  <!-- 7. Typography (INSTITUTO CAMINHO E FORMA) -->
+  <text x="510" y="768" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-weight="600" letter-spacing="12" fill="#FFFFFF">INSTITUTO</text>
+  <text x="510" y="858" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="74" font-weight="bold" letter-spacing="4" fill="#FFFFFF">CAMINHO E FORMA</text>
+</svg>

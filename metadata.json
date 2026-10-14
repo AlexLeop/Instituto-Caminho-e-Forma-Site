@@ -1,0 +1,6 @@
+{
+  "name": "Instituto Caminho e Forma - Ação Comunitária e Cidadania",
+  "description": "Plataforma de impacto social do Instituto Caminho e Forma: apoio continuado a famílias vulneráveis, formação técnica emancipatória, feira solidária e prestação de contas com auditoria externa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
