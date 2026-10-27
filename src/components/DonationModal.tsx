@@ -19,13 +19,15 @@ export const DonationModal: React.FC<DonationModalProps> = ({isOpen, onClose, in
     if (event.shiftKey && document.activeElement === first) {event.preventDefault(); last?.focus();}
     else if (!event.shiftKey && document.activeElement === last) {event.preventDefault(); first?.focus();}
   };
-  return <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-900/60 p-3 backdrop-blur-sm sm:p-4">
-    <div role="dialog" aria-modal="true" aria-labelledby="donation-title" onKeyDown={handleKeys} className="my-auto w-full max-w-lg rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl sm:p-8">
-      <div className="flex items-center justify-between gap-3 border-b border-slate-200 pb-4">
+  return <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-slate-900/60 p-3 backdrop-blur-sm sm:p-4">
+    <div role="dialog" aria-modal="true" aria-labelledby="donation-title" onKeyDown={handleKeys} className="flex max-h-[calc(100dvh-1.5rem)] w-full max-w-lg flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 shadow-2xl sm:max-h-[calc(100dvh-2rem)] sm:p-8">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-slate-200 pb-4">
         <h2 id="donation-title" className="font-serif text-2xl font-bold">Apoie o Instituto</h2>
         <button ref={closeRef} type="button" onClick={onClose} aria-label="Fechar doação" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-800 hover:bg-slate-200"><span className="material-symbols-outlined" aria-hidden="true">close</span></button>
       </div>
-      <DonationCheckout key={initialProject || 'geral'} initialProject={initialProject} allowProjectSelection />
+      <div data-lenis-prevent className="min-h-0 overflow-y-auto overscroll-contain touch-pan-y">
+        <DonationCheckout key={initialProject || 'geral'} initialProject={initialProject} allowProjectSelection />
+      </div>
     </div>
   </div>;
 };

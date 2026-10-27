@@ -51,9 +51,9 @@ export function DonationCheckout({projectId, initialProject, allowProjectSelecti
         {payment.pixCode && <div className="space-y-3">
           <h4 className="text-sm font-bold text-slate-900">Pagar com Pix</h4>
           {payment.qrCodeDataUrl && <img src={payment.qrCodeDataUrl} alt="QR Code Pix desta doação" width={240} height={240} className="mx-auto h-60 w-60 max-w-full rounded-xl border border-slate-200 bg-white" />}
+          <button type="button" onClick={() => copy(payment.pixCode!, 'pix')} className="min-h-11 w-full rounded-xl bg-[#b45309] px-4 py-3 text-sm font-bold text-white hover:bg-[#92400e]">{copied === 'pix' ? 'Código Pix copiado' : 'Copiar código Pix'}</button>
           <label htmlFor={label('pix')} className="block text-xs font-semibold text-slate-700">Pix Copia e Cola</label>
           <textarea id={label('pix')} readOnly value={payment.pixCode} rows={3} className={`${fieldClass} break-all font-mono text-xs`} onFocus={e => e.target.select()} />
-          <button type="button" onClick={() => copy(payment.pixCode!, 'pix')} className="min-h-11 w-full rounded-xl bg-[#b45309] px-4 py-3 text-sm font-bold text-white hover:bg-[#92400e]">{copied === 'pix' ? 'Código Pix copiado' : 'Copiar código Pix'}</button>
         </div>}
         {payment.method === 'pix' && !payment.pixCode && <p className="rounded-xl bg-amber-50 p-3 text-sm text-amber-950">A cobrança foi criada e o banco ainda não disponibilizou o Pix. Use “Verificar pagamento” para consultar novamente. Se continuar indisponível, fale com o Instituto.</p>}
         {payment.method === 'boleto' && <div className="space-y-3">
