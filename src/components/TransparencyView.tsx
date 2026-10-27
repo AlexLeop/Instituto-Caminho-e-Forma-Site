@@ -316,12 +316,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-slate-200 hover:shadow-md transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs text-[#166534] font-bold uppercase tracking-wider">Eficiência Direta</span>
+                <span className="text-xs text-[#166534] font-bold uppercase tracking-wider">Aplicação de Doações</span>
                 <span className="material-symbols-outlined text-[#166534] text-[24px] group-hover:scale-110 transition-transform">trending_up</span>
               </div>
-              <div className="font-serif text-3xl sm:text-4xl text-slate-900 font-bold tracking-tight">98,2%</div>
+              <div className="font-serif text-3xl sm:text-4xl text-slate-900 font-bold tracking-tight">0%</div>
               <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Dos recursos direcionados imediatamente para oficinas e famílias assistidas.
+                Nenhuma doação recebida ou aplicada até o momento.
               </p>
             </motion.div>
 
@@ -350,12 +350,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               className="bg-white rounded-2xl p-6 sm:p-7 shadow-xs border border-[#e6e8ea] hover:shadow-md transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-label-sm text-xs text-[#006c49] font-bold uppercase tracking-wider">Volume Fiscal</span>
+                <span className="font-label-sm text-xs text-[#006c49] font-bold uppercase tracking-wider">Doações Recebidas</span>
                 <span className="material-symbols-outlined text-[#006c49] text-[24px] group-hover:scale-110 transition-transform">payments</span>
               </div>
-              <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">R$ 4,8M</div>
+              <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">R$ 0,00</div>
               <p className="font-body-sm text-xs sm:text-sm text-[#534434] mt-2 leading-relaxed">
-                Investidos em desenvolvimento comunitário e capacitação no exercício fiscal.
+                O Instituto ainda não recebeu doações. Total arrecadado: R$ 0,00.
               </p>
             </motion.div>
 
@@ -398,7 +398,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </h2>
             </div>
             <p className="font-body-sm text-sm sm:text-base text-[#534434] max-w-md leading-relaxed">
-              Acompanhe como os donativos chegam à instituição e com qual precisão cirúrgica são canalizados para as nossas frentes prioritárias.
+              O Instituto ainda não recebeu doações. Os valores de entrada e aplicação de donativos estão zerados.
             </p>
           </motion.div>
 
@@ -417,7 +417,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                     <span className="w-3.5 h-3.5 rounded-full bg-[#006c49]" />
                     <h3 className="font-headline-sm text-xl text-[#191c1e] font-bold">De onde vem o recurso</h3>
                   </div>
-                  <span className="font-label-md text-sm text-[#534434] font-bold">Total: R$ 4.820.000</span>
+                  <span className="font-label-md text-sm text-[#534434] font-bold">Total: R$ 0,00</span>
                 </div>
 
                 <div className="flex flex-col gap-5 mt-6">
@@ -425,12 +425,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Empresas &amp; Fundos ESG</span>
-                      <span className="font-bold text-[#191c1e]">41% <span className="font-normal text-[#534434]">(R$ 1.976.200)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '41%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.1 }}
                         className="h-full bg-[#006c49] rounded-full" 
@@ -441,13 +441,13 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   {/* Item 2 */}
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
-                      <span className="font-semibold text-[#191c1e]">Doações Pessoa Física (Recorrência)</span>
-                      <span className="font-bold text-[#191c1e]">32% <span className="font-normal text-[#534434]">(R$ 1.542.400)</span></span>
+                      <span className="font-semibold text-[#191c1e]">Doações de Pessoas Físicas</span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '32%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.2 }}
                         className="h-full bg-[#f59e0b] rounded-full" 
@@ -459,12 +459,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Editais Públicos, FIA &amp; Pronac</span>
-                      <span className="font-bold text-[#191c1e]">18% <span className="font-normal text-[#534434]">(R$ 867.600)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '18%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.3 }}
                         className="h-full bg-[#545f73] rounded-full" 
@@ -476,12 +476,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Eventos Beneficentes &amp; Feira Solidária</span>
-                      <span className="font-bold text-[#191c1e]">9% <span className="font-normal text-[#534434]">(R$ 433.800)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '9%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.4 }}
                         className="h-full bg-[#ffb95f] rounded-full" 
@@ -494,7 +494,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <div className="mt-8 pt-4 bg-white p-4 rounded-xl border border-[#e0e3e5] flex items-center gap-3 text-[#534434]">
                 <span className="material-symbols-outlined text-[#006c49] text-[22px]">info</span>
                 <p className="font-body-sm text-xs sm:text-sm">
-                  Mais de 1.400 mantenedores individuais sustentam a autonomia operacional diária da fundação.
+                  Nenhuma doação recebida até o momento.
                 </p>
               </div>
             </motion.div>
@@ -513,7 +513,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                     <span className="w-3.5 h-3.5 rounded-full bg-[#855300]" />
                     <h3 className="font-headline-sm text-xl text-[#191c1e] font-bold">Onde aplicamos cada real</h3>
                   </div>
-                  <span className="font-label-md text-sm text-[#006c49] font-bold">Eficiência: 98,2% ponta</span>
+                  <span className="font-label-md text-sm text-[#006c49] font-bold">Aplicado: R$ 0,00</span>
                 </div>
 
                 <div className="flex flex-col gap-5 mt-6">
@@ -521,12 +521,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Projetos Sociais &amp; Oficinas Comunitárias</span>
-                      <span className="font-bold text-[#191c1e]">78% <span className="font-normal text-[#534434]">(R$ 3.759.600)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '78%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.1 }}
                         className="h-full bg-[#006c49] rounded-full" 
@@ -538,12 +538,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Formação Técnica, Mentoria &amp; Didáticos</span>
-                      <span className="font-bold text-[#191c1e]">14% <span className="font-normal text-[#534434]">(R$ 674.800)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '14%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.2 }}
                         className="h-full bg-[#f59e0b] rounded-full" 
@@ -555,12 +555,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Infraestrutura, Manutenção &amp; Espaços</span>
-                      <span className="font-bold text-[#191c1e]">5% <span className="font-normal text-[#534434]">(R$ 241.000)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '5%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.3 }}
                         className="h-full bg-[#545f73] rounded-full" 
@@ -572,12 +572,12 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div>
                     <div className="flex justify-between items-center mb-1.5 text-sm">
                       <span className="font-semibold text-[#191c1e]">Governança, Contabilidade &amp; Captação</span>
-                      <span className="font-bold text-[#191c1e]">3% <span className="font-normal text-[#534434]">(R$ 144.600)</span></span>
+                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
                     </div>
                     <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
                       <motion.div 
                         initial={{ width: 0 }}
-                        whileInView={{ width: '3%' }}
+                        whileInView={{ width: '0%' }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.1, ease: 'easeOut', delay: 0.4 }}
                         className="h-full bg-[#855300] rounded-full" 
@@ -590,7 +590,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <div className="mt-8 pt-4 bg-white p-4 rounded-xl border border-[#e0e3e5] flex items-center gap-3 text-[#534434]">
                 <span className="material-symbols-outlined text-[#855300] text-[22px]">thumb_up</span>
                 <p className="font-body-sm text-xs sm:text-sm">
-                  Custos administrativos estritamente restritos a 3%, assegurando foco integral no beneficiário.
+                  Não há despesas realizadas com doações, pois nenhum donativo foi recebido.
                 </p>
               </div>
             </motion.div>
@@ -782,15 +782,15 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   {/* Progress bar */}
                   <div className="mt-5">
                     <div className="flex justify-between items-center text-xs mb-1 font-bold">
-                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 29.800</strong></span>
+                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 0,00</strong></span>
                       <span className="text-[#534434]">Meta: <strong className="text-[#191c1e]">R$ 35.000</strong></span>
                     </div>
                     <div className="w-full h-2.5 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#006c49] rounded-full" style={{ width: '85%' }} />
+                      <div className="h-full bg-[#006c49] rounded-full" style={{ width: '0%' }} />
                     </div>
                     <div className="flex justify-between items-center mt-1 text-xs font-bold text-[#006c49]">
-                      <span>85% alcançado</span>
-                      <span>R$ 5.200 restantes</span>
+                      <span>0% alcançado</span>
+                      <span>R$ 35.000 restantes</span>
                     </div>
                   </div>
 
@@ -798,11 +798,11 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div className="mt-6 flex flex-col gap-2 pt-4 border-t border-[#e0e3e5]">
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">receipt_long</span>
-                      <span>100% de notas fiscais atestadas e arquivadas</span>
+                      <span>Nenhuma despesa realizada com doações</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">verified</span>
-                      <span>Compras auditadas com 3 orçamentos prévios</span>
+                      <span>Aguardando as primeiras doações</span>
                     </div>
                   </div>
                 </div>
@@ -839,15 +839,15 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   {/* Progress bar */}
                   <div className="mt-5">
                     <div className="flex justify-between items-center text-xs mb-1 font-bold">
-                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 39.200</strong></span>
+                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 0,00</strong></span>
                       <span className="text-[#534434]">Meta: <strong className="text-[#191c1e]">R$ 50.000</strong></span>
                     </div>
                     <div className="w-full h-2.5 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#f59e0b] rounded-full" style={{ width: '78%' }} />
+                      <div className="h-full bg-[#f59e0b] rounded-full" style={{ width: '0%' }} />
                     </div>
                     <div className="flex justify-between items-center mt-1 text-xs font-bold text-[#855300]">
-                      <span>78% alcançado</span>
-                      <span>R$ 10.800 restantes</span>
+                      <span>0% alcançado</span>
+                      <span>R$ 50.000 restantes</span>
                     </div>
                   </div>
 
@@ -855,11 +855,11 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div className="mt-6 flex flex-col gap-2 pt-4 border-t border-[#e0e3e5]">
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">storefront</span>
-                      <span>Fornecedores locais contratados preferencialmente</span>
+                      <span>Nenhuma compra realizada com doações</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">laptop</span>
-                      <span>40 computadores recondicionados catalogados</span>
+                      <span>Aguardando as primeiras doações</span>
                     </div>
                   </div>
                 </div>
@@ -896,15 +896,15 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   {/* Progress bar */}
                   <div className="mt-5">
                     <div className="flex justify-between items-center text-xs mb-1 font-bold">
-                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 18.000</strong></span>
+                      <span className="text-[#534434]">Arrecadado: <strong className="text-[#191c1e]">R$ 0,00</strong></span>
                       <span className="text-[#534434]">Meta: <strong className="text-[#191c1e]">R$ 28.000</strong></span>
                     </div>
                     <div className="w-full h-2.5 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <div className="h-full bg-[#006c49] rounded-full" style={{ width: '64%' }} />
+                      <div className="h-full bg-[#006c49] rounded-full" style={{ width: '0%' }} />
                     </div>
                     <div className="flex justify-between items-center mt-1 text-xs font-bold text-[#006c49]">
-                      <span>64% alcançado</span>
-                      <span>R$ 10.000 restantes</span>
+                      <span>0% alcançado</span>
+                      <span>R$ 28.000 restantes</span>
                     </div>
                   </div>
 
@@ -912,11 +912,11 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <div className="mt-6 flex flex-col gap-2 pt-4 border-t border-[#e0e3e5]">
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">precision_manufacturing</span>
-                      <span>Aquisição de 8 máquinas industriais já comprovada</span>
+                      <span>Nenhuma aquisição realizada com doações</span>
                     </div>
                     <div className="flex items-center gap-2 text-[#534434] text-xs font-semibold">
                       <span className="material-symbols-outlined text-[#006c49] text-[18px]">verified_user</span>
-                      <span>Bolsa-auxílio depositada diretamente via conta bancária</span>
+                      <span>Nenhum repasse de doações realizado</span>
                     </div>
                   </div>
                 </div>
@@ -1378,23 +1378,9 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
             <span className="text-xs font-bold text-[#006c49] uppercase">Extrato Orçamentário Detalhado</span>
             <h3 className="font-headline-sm text-xl text-[#191c1e] font-bold mt-1 mb-4">{selectedProjectExtract}</h3>
 
-            <div className="space-y-3 bg-[#f2f4f6] p-4 rounded-2xl text-xs mb-6">
-              <div className="flex justify-between py-1 border-b border-[#e0e3e5]">
-                <span className="text-[#534434]">Conta Bancária Vinculada:</span>
-                <span className="font-bold text-[#191c1e]">Banco do Brasil • Ag 1250-X CC 44.920-1</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-[#e0e3e5]">
-                <span className="text-[#534434]">Auditoria Prévia:</span>
-                <span className="font-bold text-[#006c49]">Aprovado sem ressalvas (PwC)</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-[#e0e3e5]">
-                <span className="text-[#534434]">Rubrica Material &amp; Alimentos:</span>
-                <span className="font-bold text-[#191c1e]">72% do orçamento</span>
-              </div>
-              <div className="flex justify-between py-1">
-                <span className="text-[#534434]">Rubrica Equipe Pedagógica:</span>
-                <span className="font-bold text-[#191c1e]">28% do orçamento</span>
-              </div>
+            <div className="space-y-3 bg-[#f2f4f6] p-4 rounded-2xl text-sm mb-6">
+              <p className="font-bold text-[#191c1e]">Doações recebidas: R$ 0,00</p>
+              <p className="text-[#534434]">Nenhuma doação recebida ou movimentação de donativos registrada para este projeto.</p>
             </div>
 
             <button

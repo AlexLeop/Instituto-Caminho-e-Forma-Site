@@ -53,11 +53,11 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Auditoria Externa</span>
             </div>
             <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
-              <span className="font-serif text-2xl font-bold text-[#b45309] block">87,4%</span>
+              <span className="font-serif text-2xl font-bold text-[#b45309] block">0%</span>
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Atividade Fim</span>
             </div>
             <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
-              <span className="font-serif text-2xl font-bold text-slate-600 block">12,6%</span>
+              <span className="font-serif text-2xl font-bold text-slate-600 block">0%</span>
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Administrativo</span>
             </div>
             <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">

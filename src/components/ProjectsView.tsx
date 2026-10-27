@@ -168,7 +168,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
                         </div>
                         <div className="flex justify-between items-center font-sans text-xs sm:text-sm">
                           <span className="text-slate-900 font-bold">
-                            Arrecadado: R$ {proj.raisedAmount.toLocaleString('pt-BR')}
+                            Arrecadado: R$ {proj.raisedAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </span>
                           <span className="text-slate-500">
                             Meta: R$ {proj.goalAmount.toLocaleString('pt-BR')}

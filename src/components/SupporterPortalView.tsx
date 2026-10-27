@@ -211,7 +211,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 </div>
               </div>
               <div>
-                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">R$ 1.840,00</div>
+                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">R$ 0,00</div>
                 <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-[#166534] font-medium">
                   <span className="material-symbols-outlined text-[15px]">verified</span>
                   <span>100% auditado externamente</span>
@@ -471,103 +471,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                     <th className="py-3 px-4 text-right rounded-r-xl">Comprovante</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {/* Item 1 */}
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">10/05/2026</td>
-                    <td className="py-4 px-4 text-slate-900">
-                      <div className="font-semibold">Doação Mensal Recorrente</div>
-                      <div className="text-xs text-slate-600">Projeto Mesa Farta &amp; Hortas Urbanas</div>
-                    </td>
-                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
-                      <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-slate-500">credit_card</span> Cartão •••• 4092
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 150,00</td>
-                    <td className="py-4 px-4 text-right whitespace-nowrap">
-                      <button
-                        onClick={() => handleDownloadReceipt('Maio/2026', 'R$ 150,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
-                        type="button"
-                      >
-                        <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Item 2 */}
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">22/04/2026</td>
-                    <td className="py-4 px-4 text-slate-900">
-                      <div className="font-semibold">Aquisição Solidária: Curso Panificação</div>
-                      <div className="text-xs text-slate-600">Financiou 1 Bolsa Integral para Mariana R.</div>
-                    </td>
-                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
-                      <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-[#166534]">qr_code_2</span> PIX Apoiador
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 120,00</td>
-                    <td className="py-4 px-4 text-right whitespace-nowrap">
-                      <button
-                        onClick={() => handleDownloadReceipt('Abril/2026 (Curso)', 'R$ 120,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
-                        type="button"
-                      >
-                        <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Item 3 */}
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">10/04/2026</td>
-                    <td className="py-4 px-4 text-slate-900">
-                      <div className="font-semibold">Doação Mensal Recorrente</div>
-                      <div className="text-xs text-slate-600">Manutenção do Polo de Capacitação de Itaguaí</div>
-                    </td>
-                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
-                      <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-slate-500">credit_card</span> Cartão •••• 4092
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 150,00</td>
-                    <td className="py-4 px-4 text-right whitespace-nowrap">
-                      <button
-                        onClick={() => handleDownloadReceipt('Abril/2026 (Mensal)', 'R$ 150,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
-                        type="button"
-                      >
-                        <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
-                      </button>
-                    </td>
-                  </tr>
-
-                  {/* Item 4 */}
-                  <tr className="hover:bg-white transition-colors">
-                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">15/03/2026</td>
-                    <td className="py-4 px-4 text-slate-900">
-                      <div className="font-semibold">Aporte Especial: Campanha Inverno Solidário</div>
-                      <div className="text-xs text-slate-600">Kits térmicos e cobertores pesados para Itaguaí</div>
-                    </td>
-                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
-                      <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-[#166534]">qr_code_2</span> PIX Apoiador
-                      </span>
-                    </td>
-                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 300,00</td>
-                    <td className="py-4 px-4 text-right whitespace-nowrap">
-                      <button
-                        onClick={() => handleDownloadReceipt('Março/2026 (Campanha)', 'R$ 300,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
-                        type="button"
-                      >
-                        <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
+                <tbody><tr><td colSpan={5} className="py-8 px-4 text-center text-sm text-slate-600">Nenhuma doação recebida até o momento.</td></tr></tbody>
               </table>
             </div>
           </motion.div>
@@ -586,7 +490,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 <span>Rastreabilidade em Tempo Real</span>
               </div>
               <h3 className="font-serif text-xl text-slate-900 font-bold">
-                Onde seus R$ 150 deste mês trabalharam
+                Aplicação das doações
               </h3>
               <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 No Instituto Caminho e Forma, cada centavo do apoiador tem destino pré-determinado e prestação contábil aberta.
@@ -600,7 +504,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </div>
                   <div>
                     <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
-                      R$ 67,50 • Cestas Agroecológicas
+                      R$ 0,00 • Cestas Agroecológicas
                     </span>
                     <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Alimentos orgânicos adquiridos de pequenos agricultores e hortas comunitárias locais de Itaguaí.
@@ -615,7 +519,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </div>
                   <div>
                     <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
-                      R$ 52,50 • Insumos de Oficina Técnica
+                      R$ 0,00 • Insumos de Oficina Técnica
                     </span>
                     <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Farinhas e manutenção da batedeira industrial da turma de Panificação Solidária.
@@ -630,7 +534,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </div>
                   <div>
                     <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
-                      R$ 30,00 • Auditoria &amp; Infraestrutura
+                      R$ 0,00 • Auditoria &amp; Infraestrutura
                     </span>
                     <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Garantia de conformidade, conexão banda larga e espaço seguro aos educandos.
@@ -644,10 +548,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             <div className="mt-8 pt-4 border-t border-slate-200">
               <div className="flex justify-between font-sans text-xs mb-1.5 text-slate-600">
                 <span>Eficiência Programática</span>
-                <span className="font-bold text-[#166534]">92% direta na ponta</span>
+                <span className="font-bold text-[#166534]">0% aplicado</span>
               </div>
               <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                <div className="bg-[#166534] h-full rounded-full transition-all" style={{ width: '92%' }} />
+                <div className="bg-[#166534] h-full rounded-full transition-all" style={{ width: '0%' }} />
               </div>
             </div>
           </motion.div>

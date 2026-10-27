@@ -639,7 +639,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 Projetos comunitários em campo
               </h2>
               <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-                Acompanhe a aplicação direta das doações em ações concretas de acolhimento infantil, segurança alimentar e capacitação profissional no território.
+                Conheça os projetos e suas metas de arrecadação para apoiar ações de acolhimento infantil, segurança alimentar e capacitação profissional no território.
               </p>
             </div>
             <button
@@ -686,7 +686,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       {proj.category}
                     </div>
                     <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md font-sans text-xs font-bold text-slate-900 shadow-xs border border-slate-200">
-                      {proj.progressPercent}% Concluído
+                      {proj.progressPercent}% da meta de arrecadação
                     </div>
                   </div>
 
@@ -715,7 +715,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       </div>
                       <div className="flex justify-between items-center font-sans text-xs sm:text-sm">
                         <span className="text-slate-900 font-bold">
-                          R$ {proj.raisedAmount.toLocaleString('pt-BR')} arrecadados
+                          R$ {proj.raisedAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} arrecadados
                         </span>
                         <span className="text-slate-500">
                           Meta: R$ {proj.goalAmount.toLocaleString('pt-BR')}

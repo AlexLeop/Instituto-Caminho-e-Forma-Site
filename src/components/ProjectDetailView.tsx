@@ -435,7 +435,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                   Transparência Ativa
                 </div>
                 <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mb-6">
-                  Como os Recursos São Aplicados
+                  Previsão de Aplicação dos Recursos
                 </h2>
 
                 <div className="space-y-4 mb-6">
@@ -457,7 +457,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Todas as compras e notas fiscais são auditadas e disponibilizadas para download no portal.
+                    Distribuição prevista para futuras doações. Nenhuma doação recebida ou aplicada até o momento.
                   </p>
                   <button
                     onClick={onOpenTransparency}
