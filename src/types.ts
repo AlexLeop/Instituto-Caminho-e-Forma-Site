@@ -61,7 +61,7 @@ export interface ProjectTeacher {
   id: string;
   name: string;
   role: string;
-  avatar: string;
+  avatar?: string;
   bio: string;
   badge?: string;
 }
@@ -86,6 +86,7 @@ export interface Project {
   image: string;
   progressPercent: number;
   showAuditBadge?: boolean;
+  enrollmentOpen?: boolean;
   imagePosition?: string;
   description: string;
   raisedAmount: number;

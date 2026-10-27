@@ -742,6 +742,7 @@ export const PROJECTS: Project[] = [
     goalAmount: 16000,
     impactBeneficiaries: '110 moradores participantes',
     status: 'Ativo',
+    enrollmentOpen: true,
     location: 'Pátio Esportivo da Sede - Itaguaí, RJ',
     startDate: 'Atividade contínua',
     fullStory: {
@@ -752,7 +753,7 @@ export const PROJECTS: Project[] = [
     milestones: [
       { number: '110', label: 'Praticantes Regulares', sublabel: 'Mulheres, jovens e idosos' },
       { number: '100%', label: 'Acesso Livre', sublabel: 'Totalmente gratuito' },
-      { number: '4x', label: 'Aulas Semanais', sublabel: 'Manhã e noite' }
+      { number: '2x', label: 'Aulas Semanais', sublabel: 'Segundas e quartas, das 19h às 20h' }
     ],
     gallery: [
       { url: '/projetos/funcional/capa-higgsfield.webp', caption: 'Agachamento com acompanhamento e orientação de postura.' },
@@ -761,32 +762,22 @@ export const PROJECTS: Project[] = [
     ],
     teachers: [
       {
-        id: 'prof-funcional',
-        name: 'Profª Mariana Alencar',
-        role: 'Professora de Educação Física (CREF Ativo)',
-        bio: 'Especialista em fisiologia do exercício e saúde preventiva da família em projetos sociais comunitários.',
-        avatar: '/projetos/funcional/capa-higgsfield.webp',
-        badge: 'Ed. Física'
+        id: 'prof-kadosh',
+        name: 'Kadosh',
+        role: 'Professor de Funcional',
+        bio: 'Professor responsável pelas aulas de Funcional do Instituto, às segundas e quartas, das 19h às 20h.',
+        badge: 'Funcional'
       }
     ],
     events: [
       {
-        id: 'funcional-manha',
-        title: 'Circuito Funcional & Saúde Ativa (Manhã)',
+        id: 'funcional-segunda-quarta',
+        title: 'Aulas de Funcional com Kadosh',
         date: 'Segundas e Quartas',
-        time: '07h30 - 08h45',
+        time: '19h00 - 20h00',
         location: 'Pátio da Sede',
-        description: 'Alongamento, agilidade, fortalecimento lombar e caminhada orientada.',
-        badge: 'Manhã'
-      },
-      {
-        id: 'funcional-noite',
-        title: 'Funcional Noturno & Queima Calórica',
-        date: 'Terças e Quintas',
-        time: '19h00 - 20h15',
-        location: 'Pátio da Sede',
-        description: 'Treino em circuito com cordas navais, halteres e exercícios calistênicos.',
-        badge: 'Noite'
+        description: 'Treinamento funcional com o professor Kadosh. Inscrições abertas.',
+        badge: 'Inscrições abertas'
       }
     ],
     beneficiaryStory: {
@@ -884,12 +875,14 @@ export const PROJECTS: Project[] = [
     category: 'Esportes & Lutas',
     categoryTagType: 'secondary',
     image: '/projetos/defesa-pessoal-feminina/capa.png',
+    galleryIsIllustrative: true,
     progressPercent: 0,
     description: 'Oficinas práticas de prevenção, postura assertiva, quebra de pegadas e técnicas de autodefesa física e psicológica para mulheres de todas as idades.',
     raisedAmount: 0,
     goalAmount: 18000,
     impactBeneficiaries: '130 mulheres capacitadas',
     status: 'Ativo',
+    enrollmentOpen: true,
     location: 'Salão de Lutas da Sede - Itaguaí, RJ',
     startDate: 'Atividade contínua',
     fullStory: {
@@ -903,29 +896,28 @@ export const PROJECTS: Project[] = [
       { number: '12', label: 'Ciclos de Oficinas', sublabel: 'Com acompanhamento psicológico' }
     ],
     gallery: [
-      { url: '/projetos/defesa-pessoal-feminina/capa.png', caption: 'Instrutora demonstrando técnica de desvencilhamento de pegada.' },
-      { url: '/projetos/defesa-pessoal-feminina/galeria-1.jpg', caption: 'Treino prático de esquiva e equilíbrio em situações de risco.' },
-      { url: '/projetos/defesa-pessoal-feminina/galeria-2.jpg', caption: 'Rede solidária entre mulheres fortalecendo a autonomia comunitária.' }
+      { url: '/projetos/defesa-pessoal-feminina/capa.png', caption: 'Demonstração de técnica de desvencilhamento de pegada entre participantes.' },
+      { url: '/projetos/defesa-pessoal-feminina/galeria-1-autodefesa-higgsfield.webp', caption: 'Simulação educativa de liberação de pegada no pulso entre participantes.' },
+      { url: '/projetos/defesa-pessoal-feminina/galeria-2-autodefesa-higgsfield.webp', caption: 'Prática de postura de proteção e manutenção de distância segura.' }
     ],
     teachers: [
       {
-        id: 'prof-defesa-feminina',
-        name: 'Profª Érika Vasconcellos',
-        role: 'Faixa Preta de Jiu-Jitsu & Instrutora de Defesa Pessoal',
-        bio: 'Especialista em segurança feminina, atuando há mais de 8 anos em cursos práticos para mulheres e combate à violência doméstica.',
-        avatar: '/projetos/defesa-pessoal-feminina/capa.png',
-        badge: 'Defesa Feminina'
+        id: 'prof-kadosh',
+        name: 'Kadosh',
+        role: 'Professor de Defesa Pessoal para Mulheres',
+        bio: 'Professor responsável pelas aulas de Defesa Pessoal para Mulheres do Instituto, às segundas e quartas, das 18h às 19h.',
+        badge: 'Defesa Pessoal'
       }
     ],
     events: [
       {
-        id: 'defesa-sabado',
-        title: 'Oficina de Defesa Pessoal & Postura de Segurança',
-        date: 'Sábados (Quinzenal)',
-        time: '14h00 - 16h30',
+        id: 'defesa-segunda-quarta',
+        title: 'Aulas de Defesa Pessoal para Mulheres com Kadosh',
+        date: 'Segundas e Quartas',
+        time: '18h00 - 19h00',
         location: 'Tatame da Sede',
-        description: 'Técnicas de escape de agarrão, postura verbal assertiva e roda de acolhimento.',
-        badge: 'Oficina'
+        description: 'Aulas de defesa pessoal com o professor Kadosh. Inscrições abertas.',
+        badge: 'Inscrições abertas'
       }
     ],
     beneficiaryStory: {
@@ -937,7 +929,7 @@ export const PROJECTS: Project[] = [
     },
     budgetAllocation: [
       { label: 'Equipamentos de Simulação e Tatames de Impacto', percent: 35, color: 'bg-[#b45309]' },
-      { label: 'Remuneração da Instrutora e Palestrantes em Direitos', percent: 40, color: 'bg-[#166534]' },
+      { label: 'Remuneração do Professor e Palestrantes em Direitos', percent: 40, color: 'bg-[#166534]' },
       { label: 'Cartilhas Educativas da Lei Maria da Penha', percent: 15, color: 'bg-slate-700' },
       { label: 'Coffee Break e Acolhimento das Alunas', percent: 10, color: 'bg-amber-600' }
     ]

@@ -138,6 +138,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
                       <div className={`absolute top-3 left-3 ${tagColor} font-sans text-xs px-3 py-1 rounded-lg font-bold shadow-xs`}>
                         {proj.category}
                       </div>
+                      {proj.enrollmentOpen && <span className="absolute bottom-3 left-3 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-900 shadow-xs">Inscrições abertas</span>}
                       <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg font-sans text-xs font-bold text-slate-900 shadow-xs border border-slate-200">
                         {proj.progressPercent}% da Meta
                       </div>

@@ -95,6 +95,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 <span className="material-symbols-outlined text-[15px]">category</span>
                 {project.category}
               </span>
+              {project.enrollmentOpen && <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-900">Inscrições abertas</span>}
 
               {project.showAuditBadge !== false && <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/85 text-[#14532d] font-sans text-xs font-bold border border-[#166534]/30 backdrop-blur-md shadow-2xs">
                 <span className="material-symbols-outlined text-[15px] text-[#166534]">verified</span>
@@ -308,11 +309,11 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                       key={teacher.id}
                       className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200"
                     >
-                      <img
+                      {teacher.avatar ? <img
                         src={teacher.avatar}
                         alt={teacher.name}
                         className="w-16 h-16 rounded-2xl object-cover shrink-0 border border-slate-200 shadow-xs"
-                      />
+                      /> : <div aria-hidden="true" className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-50 text-2xl font-bold text-emerald-900">{teacher.name.charAt(0)}</div>}
                       <div className="flex flex-col">
                         <div className="flex items-center gap-2">
                           <h4 className="font-serif text-base font-bold text-slate-900">
@@ -387,12 +388,12 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                       </div>
 
                       <a
-                        href={`https://wa.me/5511999999999?text=${encodeURIComponent(`Olá! Gostaria de saber mais sobre a atividade "${evt.title}" do projeto ${project.title}.`)}`}
+                        href={`https://wa.me/5521987428647?text=${encodeURIComponent(project.enrollmentOpen ? `Olá! Gostaria de me inscrever no projeto ${project.title}. Aulas: ${evt.date}, das ${evt.time}.` : `Olá! Gostaria de saber mais sobre a atividade "${evt.title}" do projeto ${project.title}.`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="self-start sm:self-center px-4 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-colors shrink-0"
                       >
-                        Participar
+                        {project.enrollmentOpen ? 'Inscrever-se pelo WhatsApp' : 'Participar'}
                       </a>
                     </div>
                   ))}
