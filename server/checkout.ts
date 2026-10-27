@@ -11,7 +11,7 @@ const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{1
 const invoiceId = /^[A-Za-z0-9_-]{8,100}$/;
 const statuses = new Set(['DRAFT', 'OPEN', 'IN_PAYMENT', 'PAID', 'LATE', 'CANCELLED']);
 interface Claims {id: string; code: string; amount: number; method: PaymentMethod; projectId: string; dueDate: string; exp: number; environment: string}
-interface Bank {createInvoice(payload: unknown, key: string): Promise<CoraInvoice>; getInvoice(id: string): Promise<CoraInvoice>}
+interface Bank {createInvoice(payload: unknown, key: string): Promise<CoraInvoice>; getInvoice(id: string): Promise<CoraInvoice>; checkConnection?(): Promise<{authenticated: boolean}>}
 
 function invalid(message: string): never { throw new CheckoutError(400, 'invalid_input', message); }
 
@@ -89,6 +89,10 @@ export function createCheckoutService(bank: Bank, secret: string, environment: s
     };
   }
   return {
+    async health() {
+      if (!bank.checkConnection || !(await bank.checkConnection()).authenticated) throw new CheckoutError(503, 'bank_unavailable', 'O pagamento está temporariamente indisponível.');
+      return {available: true};
+    },
     async create(value: unknown) {
       const input = validateCheckout(value, now());
       const payload = invoicePayload(input);

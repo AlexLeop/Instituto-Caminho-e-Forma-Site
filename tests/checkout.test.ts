@@ -16,6 +16,7 @@ function setup() {
   const keys: string[] = [];
   let reads = 0;
   const bank = {
+    async checkConnection() {return {authenticated: true};},
     async createInvoice(payload: any, key: string) {
       keys.push(key);
       if (!invoices.has(key)) invoices.set(key, {id: 'inv_' + key.replaceAll('-', ''), code: payload.code, status: 'OPEN', total_amount: payload.services[0].amount, total_paid: 0, payment_terms: payload.payment_terms, pix: {emv: '000201-test-only-pix-payload'}, payment_options: {bank_slip: {url: 'https://example.com/test-boleto.pdf', digitable: '00190000090000000000100000000000000000000005000'}}});
@@ -141,6 +142,10 @@ test('HTTP function enforces method, JSON, size and same-origin; status needs a 
     assert.equal((await fetch(base, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{bad'})).status, 400);
     assert.equal((await fetch(base, {method: 'POST', headers: {'Content-Type': 'application/json', Origin: 'https://evil.example'}, body: '{}'})).status, 403);
     assert.equal((await fetch(base, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({filler: 'x'.repeat(9000)})})).status, 413);
+    const health = await fetch(base, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({action: 'health'})});
+    assert.equal(health.status, 200);
+    assert.deepEqual(await health.json(), {available: true});
+    assert.equal(state.keys.length, 0);
     const created = await fetch(base, {method: 'POST', headers: {'Content-Type': 'application/json', Origin: base}, body: JSON.stringify({action: 'create', checkout: input()})});
     assert.equal(created.status, 201); assert.match(created.headers.get('cache-control')!, /no-store/);
     const {payment} = await created.json() as any;

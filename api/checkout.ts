@@ -54,17 +54,22 @@ export function createHandler(getService: () => Service = service) {
       }
       checkOrigin(request);
       const body = await readJson(request);
-      if (!body || typeof body !== 'object' || Array.isArray(body) || !['create', 'status'].includes(body.action)) throw new CheckoutError(400, 'invalid_action', 'Operação inválida.');
+      if (!body || typeof body !== 'object' || Array.isArray(body) || !['create', 'status', 'health'].includes(body.action)) throw new CheckoutError(400, 'invalid_action', 'Operação inválida.');
       const checkout = getService();
+      if (body.action === 'health') {
+        response.statusCode = 200;
+        response.end(JSON.stringify(await checkout.health()));
+        return;
+      }
       const payment = body.action === 'create' ? await checkout.create(body.checkout) : await checkout.status(body.checkoutToken);
       response.statusCode = body.action === 'create' ? 201 : 200;
       response.end(JSON.stringify({payment}));
     } catch (error) {
       const safe = error instanceof CheckoutError ? error : error instanceof SyntaxError ? new CheckoutError(400, 'invalid_json', 'Confira os dados enviados.') : new CheckoutError(500, 'checkout_error', 'Não foi possível concluir a operação. Tente novamente.');
       // Never log upstream response bodies, tokens, certificate material or donor details.
-      if (safe.status >= 500) console.error('checkout_failure', safe.code);
+      if (safe.status >= 500) console.error('checkout_failure', {code: safe.code, reference: safe.reference, field: safe.field});
       response.statusCode = safe.status;
-      response.end(JSON.stringify({error: {code: safe.code, message: safe.message}}));
+      response.end(JSON.stringify({error: {code: safe.code, message: safe.message, ...(safe.reference ? {reference: safe.reference} : {}), ...(safe.field ? {field: safe.field} : {})}}));
     }
   };
 }

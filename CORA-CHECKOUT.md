@@ -20,6 +20,7 @@ O fluxo não cobra cartão e não contrata débito recorrente. As antigas opçõ
 2. Execute `npm run vercel:env`. Ele prepara `.env.vercel` com **somente as cinco variáveis do checkout**, usando certificado/chave em base64 para facilitar a configuração em uma linha. O arquivo contém segredos e está excluído do Git e do pacote de deploy.
 3. No projeto da Vercel, abra **Settings → Environment Variables** e cadastre os cinco pares chave/valor de `.env.vercel`, no ambiente **Production**. Pode colar os pares em lote ou cadastrar cada variável individualmente. Não use prefixos `VITE_`.
 4. Publique o código e faça um novo deploy depois de salvar as variáveis. O `.env` local não configura automaticamente o ambiente da Vercel.
+   A função usa as variáveis existentes no momento em que o deploy é criado. Editar uma variável depois disso, mesmo durante o build, exige outro deploy.
 5. No primeiro uso real, abra uma página de projeto ou “Apoie o Instituto”, preencha dados reais autorizados e gere uma cobrança. Confira no aplicativo bancário o recebedor e o valor antes de pagar. Verifique que o status só muda depois da confirmação da Cora.
 
 | Variável | Conteúdo |
@@ -31,6 +32,14 @@ O fluxo não cobra cartão e não contrata débito recorrente. As antigas opçõ
 | `CHECKOUT_SIGNING_SECRET` | Segredo aleatório com pelo menos 32 caracteres; manter estável entre deploys |
 
 Os nomes alternativos `CORA_PRIVATE_KEY` e `CORA_CERTIFICATE_PEM` também são aceitos e têm prioridade, caso existam. Evite manter versões divergentes dos mesmos segredos.
+
+Aspas externas copiadas do arquivo `.env`, espaços ao redor dos valores e quebras de linha escapadas são normalizados pelo servidor. Valores ausentes, certificados inválidos ou pares de chave/certificado incompatíveis continuam sendo rejeitados.
+
+### Diagnosticar indisponibilidade
+
+A resposta de erro mantém a mensagem pública genérica e inclui uma referência técnica sem valores secretos, como `cora_client_id_missing`, `checkout_signing_secret_too_short` ou `cora_certificate_invalid`. Quando aplicável, `field` informa somente o nome da variável a conferir. Os logs da função registram esses mesmos códigos, sem certificado, chave, token ou documento do doador.
+
+Uma requisição `POST /api/checkout` com JSON `{"action":"health"}` verifica a configuração e a autenticação com a Cora e devolve `{"available":true}` quando estiver pronta. Essa operação não emite faturas, não movimenta dinheiro e não devolve o token bancário.
 
 O `vercel.json` instala as dependências com `npm ci` usando o `package-lock.json`, mantém as rotas `/api/` fora do fallback da aplicação e configura até 60 segundos para a função. A integração usa Node.js e o módulo HTTPS com mTLS; não deve ser convertida para Edge Runtime.
 

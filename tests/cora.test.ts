@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { generateKeyPairSync } from 'node:crypto';
+import { rootCertificates } from 'node:tls';
 import { CoraClient } from '../server/cora/client.ts';
-import { normalizePem, readCoraConfig } from '../server/cora/config.ts';
+import { normalizePem, normalizeEnvironmentValue, readCoraConfig } from '../server/cora/config.ts';
 import type { CoraConfig } from '../server/cora/config.ts';
 import type { CoraTransport, TransportRequest } from '../server/cora/client.ts';
 
@@ -21,6 +22,25 @@ test('missing or invalid config produces a safe error without credential content
   assert.throws(() => readCoraConfig({}), {status: 503, code: 'configuration_error'});
   try {readCoraConfig({CORA_ENVIRONMENT: 'production', CORA_CLIENT_ID: 'private-client-id', CHECKOUT_SIGNING_SECRET: 'very-private-test-secret'.repeat(3), PRIVATE_KEY: 'very-private-key', CERTIFICATE_PEM: 'very-private-cert'});}
   catch (err) {assert.equal(String(err).includes('very-private'), false); assert.equal(String(err).includes('private-client-id'), false);}
+});
+test('dashboard quoting is removed without changing the credential', () => {
+  assert.equal(normalizeEnvironmentValue('  "production"  '), 'production');
+  assert.equal(normalizeEnvironmentValue("'stage'"), 'stage');
+  const {privateKey} = generateKeyPairSync('rsa', {modulusLength: 2048});
+  const pem = privateKey.export({type: 'pkcs8', format: 'pem'}).toString();
+  for (const value of [JSON.stringify(pem), "'" + pem + "'", JSON.stringify(Buffer.from(pem).toString('base64')), pem.replace(/\n/g, '\\r\\n')]) {
+    assert.equal(normalizePem(value, 'key'), pem);
+  }
+  const certificate = rootCertificates[0];
+  assert.equal(normalizePem(JSON.stringify(certificate), 'certificate'), certificate + (certificate.endsWith('\n') ? '' : '\n'));
+});
+test('configuration diagnoses missing variables using names only', () => {
+  assert.throws(() => readCoraConfig({}), {reference: 'cora_environment_missing', field: 'CORA_ENVIRONMENT'});
+  assert.throws(() => readCoraConfig({CORA_ENVIRONMENT: ' Production '}), {reference: 'cora_client_id_missing', field: 'CORA_CLIENT_ID'});
+  assert.throws(() => readCoraConfig({CORA_ENVIRONMENT: '"production"', CORA_CLIENT_ID: 'test-client'}), {reference: 'checkout_signing_secret_missing', field: 'CHECKOUT_SIGNING_SECRET'});
+  assert.throws(() => readCoraConfig({CORA_ENVIRONMENT: 'production', CORA_CLIENT_ID: 'test-client', CHECKOUT_SIGNING_SECRET: 'short'}), {reference: 'checkout_signing_secret_too_short'});
+  assert.throws(() => readCoraConfig({CORA_ENVIRONMENT: 'production', CORA_CLIENT_ID: 'test-client', CHECKOUT_SIGNING_SECRET: 'local-test-only-secret-value-long-enough'}), {reference: 'cora_certificate_missing', field: 'CERTIFICATE_PEM'});
+  assert.throws(() => readCoraConfig({CORA_ENVIRONMENT: 'production', CORA_CLIENT_ID: 'test-client', CHECKOUT_SIGNING_SECRET: 'local-test-only-secret-value-long-enough', PRIVATE_KEY: 'not-a-real-key', CERTIFICATE_PEM: 'not-a-real-certificate'}), {reference: 'cora_certificate_invalid'});
 });
 test('token requests use client credentials; concurrent calls share one token request', async () => {
   const requests: TransportRequest[] = [];
