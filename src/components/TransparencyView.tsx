@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 import { OFFICIAL_SEALS, RealSealCard, SealVerificationModal, OfficialSeal } from './RealSeals';
 
 interface TransparencyViewProps {
@@ -321,7 +322,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </div>
               <div className="font-serif text-3xl sm:text-4xl text-slate-900 font-bold tracking-tight">0%</div>
               <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
-                Nenhuma doação recebida ou aplicada até o momento.
+                Ainda não há aplicação de doações registrada neste site.
               </p>
             </motion.div>
 
@@ -353,9 +354,9 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 <span className="font-label-sm text-xs text-[#006c49] font-bold uppercase tracking-wider">Doações Recebidas</span>
                 <span className="material-symbols-outlined text-[#006c49] text-[24px] group-hover:scale-110 transition-transform">payments</span>
               </div>
-              <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">R$ 0,00</div>
+              <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">{formatDonationAmount(DONATION_TOTALS.totalCents)}</div>
               <p className="font-body-sm text-xs sm:text-sm text-[#534434] mt-2 leading-relaxed">
-                O Instituto ainda não recebeu doações. Total arrecadado: R$ 0,00.
+                Recebidos no fundo geral do Instituto: {formatDonationAmount(DONATION_TOTALS.generalFundCents)}.
               </p>
             </motion.div>
 
@@ -394,11 +395,11 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 Matriz Orçamentária & Financeira 2026 • Instituto Caminho e Forma
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-4xl text-[#191c1e] font-extrabold">
-                Origem e Destinação dos Recursos
+                Recebimento e Aplicação das Doações
               </h2>
             </div>
             <p className="font-body-sm text-sm sm:text-base text-[#534434] max-w-md leading-relaxed">
-              O Instituto ainda não recebeu doações. Os valores de entrada e aplicação de donativos estão zerados.
+              As doações ao fundo geral apoiam o Instituto e são contabilizadas separadamente das doações destinadas a projetos específicos.
             </p>
           </motion.div>
 
@@ -415,86 +416,34 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 <div className="flex items-center justify-between pb-5 border-b border-[#e0e3e5]">
                   <div className="flex items-center gap-2.5">
                     <span className="w-3.5 h-3.5 rounded-full bg-[#006c49]" />
-                    <h3 className="font-headline-sm text-xl text-[#191c1e] font-bold">De onde vem o recurso</h3>
+                    <h3 className="font-headline-sm text-xl text-[#191c1e] font-bold">Doações por destinação</h3>
                   </div>
-                  <span className="font-label-md text-sm text-[#534434] font-bold">Total: R$ 0,00</span>
+                  <span className="font-label-md text-sm text-[#534434] font-bold">Total: {formatDonationAmount(DONATION_TOTALS.totalCents)}</span>
                 </div>
 
                 <div className="flex flex-col gap-5 mt-6">
-                  {/* Item 1 */}
-                  <div>
-                    <div className="flex justify-between items-center mb-1.5 text-sm">
-                      <span className="font-semibold text-[#191c1e]">Empresas &amp; Fundos ESG</span>
-                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
-                    </div>
-                    <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '0%' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, ease: 'easeOut', delay: 0.1 }}
-                        className="h-full bg-[#006c49] rounded-full" 
-                      />
-                    </div>
-                  </div>
-
-                  {/* Item 2 */}
-                  <div>
-                    <div className="flex justify-between items-center mb-1.5 text-sm">
-                      <span className="font-semibold text-[#191c1e]">Doações de Pessoas Físicas</span>
-                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
-                    </div>
-                    <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '0%' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, ease: 'easeOut', delay: 0.2 }}
-                        className="h-full bg-[#f59e0b] rounded-full" 
-                      />
-                    </div>
-                  </div>
-
-                  {/* Item 3 */}
-                  <div>
-                    <div className="flex justify-between items-center mb-1.5 text-sm">
-                      <span className="font-semibold text-[#191c1e]">Editais Públicos, FIA &amp; Pronac</span>
-                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
-                    </div>
-                    <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '0%' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, ease: 'easeOut', delay: 0.3 }}
-                        className="h-full bg-[#545f73] rounded-full" 
-                      />
-                    </div>
-                  </div>
-
-                  {/* Item 4 */}
-                  <div>
-                    <div className="flex justify-between items-center mb-1.5 text-sm">
-                      <span className="font-semibold text-[#191c1e]">Eventos Beneficentes &amp; Feira Solidária</span>
-                      <span className="font-bold text-[#191c1e]">0% <span className="font-normal text-[#534434]">(R$ 0,00)</span></span>
-                    </div>
-                    <div className="w-full h-3 bg-[#e6e8ea] rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        whileInView={{ width: '0%' }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.1, ease: 'easeOut', delay: 0.4 }}
-                        className="h-full bg-[#ffb95f] rounded-full" 
-                      />
-                    </div>
-                  </div>
+                  {[
+                    { label: 'Fundo geral do Instituto', amount: DONATION_TOTALS.generalFundCents },
+                    { label: 'Projetos específicos', amount: DONATION_TOTALS.projectsCents },
+                  ].map(item => {
+                    const percent = DONATION_TOTALS.totalCents > 0 ? Math.round(item.amount / DONATION_TOTALS.totalCents * 100) : 0;
+                    return <div key={item.label}>
+                      <div className="mb-1.5 flex flex-wrap justify-between gap-2 text-sm">
+                        <span className="font-semibold text-[#191c1e]">{item.label}</span>
+                        <span className="font-bold text-[#191c1e]">{formatDonationAmount(item.amount)} <span className="font-normal text-[#534434]">({percent}%)</span></span>
+                      </div>
+                      <div className="h-3 w-full overflow-hidden rounded-full bg-[#e6e8ea]">
+                        <div className="h-full rounded-full bg-[#006c49]" style={{ width: percent + '%' }} />
+                      </div>
+                    </div>;
+                  })}
                 </div>
               </div>
 
               <div className="mt-8 pt-4 bg-white p-4 rounded-xl border border-[#e0e3e5] flex items-center gap-3 text-[#534434]">
                 <span className="material-symbols-outlined text-[#006c49] text-[22px]">info</span>
                 <p className="font-body-sm text-xs sm:text-sm">
-                  Nenhuma doação recebida até o momento.
+                  O valor recebido foi destinado ao fundo geral do Instituto.
                 </p>
               </div>
             </motion.div>
@@ -590,7 +539,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <div className="mt-8 pt-4 bg-white p-4 rounded-xl border border-[#e0e3e5] flex items-center gap-3 text-[#534434]">
                 <span className="material-symbols-outlined text-[#855300] text-[22px]">thumb_up</span>
                 <p className="font-body-sm text-xs sm:text-sm">
-                  Não há despesas realizadas com doações, pois nenhum donativo foi recebido.
+                  Ainda não há despesas com doações registradas neste site.
                 </p>
               </div>
             </motion.div>
@@ -1128,7 +1077,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 Quer conferir os livros contábeis de perto?
               </h2>
               <p className="font-body-md text-sm sm:text-base text-[#534434] mt-2 leading-relaxed">
-                Seja você um doador individual de R$ 20, representante de fundação mantenedora ou cidadão da nossa comunidade: agende um café com nosso time financeiro, consulte qualquer documento físico e assista às aulas e oficinas em plena atividade.
+                Seja você um apoiador individual, representante de fundação mantenedora ou cidadão da nossa comunidade: agende um café com nosso time financeiro, consulte qualquer documento físico e assista às aulas e oficinas em plena atividade.
               </p>
               
               <div className="flex flex-wrap items-center gap-6 mt-6 text-[#191c1e] font-label-md text-xs sm:text-sm font-semibold">

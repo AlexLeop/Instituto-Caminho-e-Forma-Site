@@ -458,7 +458,7 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Distribuição prevista para futuras doações. Nenhuma doação recebida ou aplicada até o momento.
+                    Distribuição prevista para futuras doações. Nenhuma doação destinada a este projeto até o momento.
                   </p>
                   <button
                     onClick={onOpenTransparency}

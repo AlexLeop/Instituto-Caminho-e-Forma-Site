@@ -11,6 +11,7 @@ import {
 } from '../data/mockData';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { PartnerLogosCarousel } from './PartnerLogosCarousel';
+import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 
 interface HomeViewProps {
   onNavigate: (page: NavPage) => void;
@@ -649,6 +650,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span>Ver todos os {PROJECTS.length} projetos</span>
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </button>
+          </div>
+
+          <div className="mb-8 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-bold text-emerald-950">Fundo geral do Instituto: {formatDonationAmount(DONATION_TOTALS.generalFundCents)} recebidos</p>
+              <p className="mt-1 text-sm text-emerald-900">Doações ao fundo geral são contabilizadas separadamente dos projetos.</p>
+            </div>
+            <button type="button" onClick={() => onNavigate('transparencia')} className="min-h-11 shrink-0 self-start rounded-xl border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-emerald-100">Acompanhar doações</button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
