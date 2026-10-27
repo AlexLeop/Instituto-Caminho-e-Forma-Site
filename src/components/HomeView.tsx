@@ -512,10 +512,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           </div>
 
-          {/* LIDERANÇA EXECUTIVA & EQUIPE TÉCNICA: DIRETOR E ASSISTENTE SOCIAL (CONFORME DIAGRAMA) */}
+          {/* LIDERANÇA EXECUTIVA & EQUIPE TÉCNICA: PRESIDENTE E ASSISTENTE SOCIAL */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 pt-10 sm:pt-12 mt-12 sm:mt-16 border-t border-slate-200">
             
-            {/* 1. Diretor - Carlos Alexandre */}
+            {/* 1. Presidente - Carlos Alexandre */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -528,7 +528,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden shadow-sm bg-slate-100">
                   <img 
                     src="/equipe/carlos-alexandre-diretor.jpeg" 
-                    alt="Carlos Alexandre - Diretor do Instituto Caminho e Forma" 
+                    alt="Carlos Alexandre - Presidente do Instituto Caminho e Forma"
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
@@ -538,13 +538,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="flex-1 min-w-0 flex flex-col justify-between py-0.5">
                 <div>
                   <span className="font-sans text-[11px] uppercase font-bold tracking-wider text-[#b45309] block mb-1">
-                    Diretoria Executiva
+                    Presidência
                   </span>
                   <h4 className="font-serif text-xl sm:text-2xl font-bold text-slate-900 tracking-tight leading-tight">
                     Carlos Alexandre
                   </h4>
                   <p className="font-sans text-xs sm:text-sm text-slate-500 font-medium mt-0.5 mb-2.5">
-                    Diretor do Instituto Caminho e Forma
+                    Presidente do Instituto Caminho e Forma
                   </p>
                   <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
                     À frente da governança institucional e do planejamento estratégico, atua na articulação de alianças e na formulação de projetos voltados à proteção e ao desenvolvimento integral de crianças e jovens.
