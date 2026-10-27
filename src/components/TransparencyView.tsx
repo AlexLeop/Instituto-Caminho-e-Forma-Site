@@ -57,8 +57,8 @@ const DOCUMENTS_DATA: DocItem[] = [
     fileSize: 'PDF • 2.4 MB',
     year: '2026',
     icon: 'calculate',
-    iconBg: 'bg-blue-50',
-    iconColor: 'text-[#545f73]'
+    iconBg: 'bg-slate-100',
+    iconColor: 'text-slate-700'
   },
   {
     id: 'estatuto-2026',
@@ -122,8 +122,8 @@ const DOCUMENTS_DATA: DocItem[] = [
     fileSize: 'PDF • 2.2 MB',
     year: '2025',
     icon: 'calculate',
-    iconBg: 'bg-blue-50',
-    iconColor: 'text-[#545f73]'
+    iconBg: 'bg-slate-100',
+    iconColor: 'text-slate-700'
   },
   {
     id: 'pwc-2024',
@@ -264,10 +264,10 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-8 flex flex-col gap-3"
             >
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-[#1c1917] tracking-tight font-bold leading-[1.15]">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-slate-900 tracking-tight font-bold leading-[1.15]">
                 Cada centavo a serviço da <span className="text-[#b45309] underline decoration-[#b45309]/30 decoration-4 underline-offset-8">dignidade humana</span>.
               </h1>
-              <p className="font-sans text-base sm:text-lg lg:text-xl text-[#57534e] max-w-2xl mt-2 leading-relaxed">
+              <p className="font-sans text-base sm:text-lg lg:text-xl text-slate-600 max-w-2xl mt-2 leading-relaxed">
                 Acreditamos que a confiança pública é a pedra fundamental da transformação social. No <strong>Instituto Caminho e Forma</strong>, nossos livros contábeis, decisões colegiadas e notas fiscais são auditados por firmas globais independentes e disponibilizados integralmente à sociedade.
               </p>
             </motion.div>
@@ -280,27 +280,27 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
             >
               <motion.div 
                 whileHover={{ y: -4, scale: 1.01 }}
-                className="bg-white p-5 rounded-2xl shadow-xs border border-[#e7e2da] flex items-center gap-4 hover:shadow-md transition-all"
+                className="bg-white p-5 rounded-2xl shadow-xs border border-slate-200 flex items-center gap-4 hover:shadow-md transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-emerald-50 text-[#166534] flex items-center justify-center shrink-0">
                   <span className="material-symbols-outlined text-[28px]">policy</span>
                 </div>
                 <div className="min-w-0">
-                  <span className="block font-serif text-base text-[#1c1917] font-bold">Auditoria Sem Ressalvas</span>
-                  <span className="block font-sans text-xs text-[#78716c]">Parecer emitido pela BDO Brasil</span>
+                  <span className="block font-serif text-base text-slate-900 font-bold">Auditoria Sem Ressalvas</span>
+                  <span className="block font-sans text-xs text-slate-500">Parecer emitido pela BDO Brasil</span>
                 </div>
               </motion.div>
 
               <motion.div 
                 whileHover={{ y: -4, scale: 1.01 }}
-                className="bg-white p-5 rounded-2xl shadow-xs border border-[#e7e2da] flex items-center gap-4 hover:shadow-md transition-all"
+                className="bg-white p-5 rounded-2xl shadow-xs border border-slate-200 flex items-center gap-4 hover:shadow-md transition-all"
               >
                 <div className="w-12 h-12 rounded-xl bg-amber-50 text-[#b45309] flex items-center justify-center shrink-0">
                   <span className="material-symbols-outlined text-[28px]">account_balance</span>
                 </div>
                 <div className="min-w-0">
-                  <span className="block font-serif text-base text-[#1c1917] font-bold">Certificação OSCIP &amp; CEBAS</span>
-                  <span className="block font-sans text-xs text-[#78716c]">Conformidade integral ao Ministério da Justiça</span>
+                  <span className="block font-serif text-base text-slate-900 font-bold">Certificação OSCIP &amp; CEBAS</span>
+                  <span className="block font-sans text-xs text-slate-500">Conformidade integral ao Ministério da Justiça</span>
                 </div>
               </motion.div>
             </motion.div>
@@ -313,14 +313,14 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               whileHover={{ y: -6, scale: 1.02 }} 
-              className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-[#e7e2da] hover:shadow-md transition-all group"
+              className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-slate-200 hover:shadow-md transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs text-[#166534] font-bold uppercase tracking-wider">Eficiência Direta</span>
                 <span className="material-symbols-outlined text-[#166534] text-[24px] group-hover:scale-110 transition-transform">trending_up</span>
               </div>
-              <div className="font-serif text-3xl sm:text-4xl text-[#1c1917] font-bold tracking-tight">98,2%</div>
-              <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+              <div className="font-serif text-3xl sm:text-4xl text-slate-900 font-bold tracking-tight">98,2%</div>
+              <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 Dos recursos direcionados imediatamente para oficinas e famílias assistidas.
               </p>
             </motion.div>
@@ -330,14 +330,14 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.28 }}
               whileHover={{ y: -6, scale: 1.02 }} 
-              className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-[#e7e2da] hover:shadow-md transition-all group"
+              className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-slate-200 hover:shadow-md transition-all group"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs text-[#b45309] font-bold uppercase tracking-wider">Conformidade</span>
                 <span className="material-symbols-outlined text-[#b45309] text-[24px] group-hover:scale-110 transition-transform">verified</span>
               </div>
-              <div className="font-serif text-3xl sm:text-4xl text-[#1c1917] font-bold tracking-tight">100%</div>
-              <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+              <div className="font-serif text-3xl sm:text-4xl text-slate-900 font-bold tracking-tight">100%</div>
+              <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 Contas auditadas por auditores externos independentes credenciados pelo CFC.
               </p>
             </motion.div>

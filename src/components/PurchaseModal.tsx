@@ -34,18 +34,18 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-[#fbf9f5] text-[#1c1917] rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl my-auto animate-in fade-in zoom-in-95 duration-200 border border-[#e7e2da]">
-        <div className="flex items-center justify-between pb-4 border-b border-[#e7e2da]">
+    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white text-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl my-auto animate-in fade-in zoom-in-95 duration-200 border border-slate-200">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200">
           <div className="flex items-center gap-2.5 text-[#b45309]">
             <span className="material-symbols-outlined text-[26px]">shopping_cart_checkout</span>
-            <span className="font-serif text-2xl text-[#1c1917] font-bold tracking-tight">
+            <span className="font-serif text-2xl text-slate-900 font-bold tracking-tight">
               Finalizar Compra Solidária
             </span>
           </div>
           <button 
             onClick={handleClose}
-            className="w-8 h-8 rounded-full bg-[#f5f1ea] hover:bg-[#e7e2da] flex items-center justify-center text-[#1c1917] transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px]">close</span>
           </button>
@@ -57,13 +57,13 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
               <span className="material-symbols-outlined text-[36px]">check_circle</span>
             </div>
             <div>
-              <h3 className="font-serif text-2xl font-bold text-[#1c1917]">
+              <h3 className="font-serif text-2xl font-bold text-slate-900">
                 Pedido Preparado, {buyerName}!
               </h3>
-              <p className="font-sans text-sm text-[#57534e] mt-2">
+              <p className="font-sans text-sm text-slate-600 mt-2">
                 Você está apoiando diretamente a família de <strong>{product.producer}</strong> com <strong>{product.priceFormatted}</strong> (100% de repasse direto).
               </p>
-              <p className="font-sans text-xs text-[#78716c] mt-2">
+              <p className="font-sans text-xs text-slate-500 mt-2">
                 Conclua a confirmação diretamente pelo nosso canal no WhatsApp para receber a chave Pix do produtor e agendar sua entrega.
               </p>
             </div>
@@ -78,7 +78,7 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-4">
-            <div className="p-3 bg-[#f5f1ea] rounded-2xl flex items-center gap-3.5 border border-[#e7e2da]">
+            <div className="p-3 bg-slate-50 rounded-2xl flex items-center gap-3.5 border border-slate-200">
               <img
                 src={product.image}
                 alt={product.title}
@@ -88,11 +88,11 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
                 <span className="text-xs font-bold uppercase tracking-wider text-[#166534] block truncate">
                   {product.categoryTag}
                 </span>
-                <h4 className="font-serif text-base font-bold text-[#1c1917] line-clamp-2 leading-tight mt-0.5">
+                <h4 className="font-serif text-base font-bold text-slate-900 line-clamp-2 leading-tight mt-0.5">
                   {product.title}
                 </h4>
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-xs text-[#78716c]">
+                  <span className="text-xs text-slate-500">
                     {product.producer}
                   </span>
                   <strong className="text-[#b45309] font-bold text-base">
@@ -111,7 +111,7 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
 
             <div className="space-y-3">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#78716c] mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                   Seu Nome Completo
                 </label>
                 <input
@@ -120,12 +120,12 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
                   placeholder="Como deseja ser chamado?"
                   value={buyerName}
                   onChange={(e) => setBuyerName(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-[#1c1917] text-sm border border-[#e7e2da] focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-slate-900 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#78716c] mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                   Seu WhatsApp
                 </label>
                 <input
@@ -134,18 +134,18 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
                   placeholder="(21) 98742-8647"
                   value={buyerPhone}
                   onChange={(e) => setBuyerPhone(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-[#1c1917] text-sm border border-[#e7e2da] focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-slate-900 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#78716c] mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
                   Preferência de Entrega
                 </label>
                 <select
                   value={deliveryMethod}
                   onChange={(e) => setDeliveryMethod(e.target.value as 'pickup' | 'delivery')}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-[#1c1917] text-sm border border-[#e7e2da] focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-white text-slate-900 text-sm border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#b45309]/30"
                 >
                   <option value="pickup">Retirada grátis na sede (Rua Solidariedade, 120)</option>
                   <option value="delivery">Ciclo-entrega solidária em domicílio (valor repassado ao ciclista)</option>
@@ -157,7 +157,7 @@ export const PurchaseModal: React.FC<PurchaseModalProps> = ({ product, onClose }
               <button
                 type="button"
                 onClick={handleClose}
-                className="w-1/2 py-3 rounded-xl bg-[#f5f1ea] text-[#1c1917] hover:bg-[#e7e2da] transition-colors font-semibold text-sm cursor-pointer border border-[#e7e2da]"
+                className="w-1/2 py-3 rounded-xl bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors font-semibold text-sm cursor-pointer border border-slate-200"
               >
                 Cancelar
               </button>

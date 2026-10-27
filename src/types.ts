@@ -1,6 +1,7 @@
 export type NavPage = 
   | 'inicio' 
   | 'projetos' 
+  | 'detalhes-projeto'
   | 'cursos-e-capacitacao' 
   | 'feira-virtual' 
   | 'seja-parceiro' 
@@ -46,6 +47,37 @@ export interface MarketProduct {
   repassePercent: number;
 }
 
+export interface ProjectEvent {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  badge?: string;
+}
+
+export interface ProjectTeacher {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+  bio: string;
+  badge?: string;
+}
+
+export interface ProjectPhoto {
+  url: string;
+  caption: string;
+  objectPosition?: string;
+}
+
+export interface ProjectMilestone {
+  number: string;
+  label: string;
+  sublabel: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -53,11 +85,33 @@ export interface Project {
   categoryTagType: 'primary' | 'secondary' | 'tertiary';
   image: string;
   progressPercent: number;
+  imagePosition?: string;
   description: string;
   raisedAmount: number;
   goalAmount: number;
   impactBeneficiaries: string;
   status: 'Ativo' | 'Fase Final' | 'Planejamento';
+  // Rich page details
+  location?: string;
+  startDate?: string;
+  fullStory?: {
+    problem: string;
+    solution: string;
+    methodology: string;
+  };
+  gallery?: ProjectPhoto[];
+  galleryIsIllustrative?: boolean;
+  events?: ProjectEvent[];
+  teachers?: ProjectTeacher[];
+  beneficiaryStory?: {
+    name: string;
+    role?: string;
+    avatar: string;
+    quote: string;
+    story: string;
+  };
+  milestones?: ProjectMilestone[];
+  budgetAllocation?: { label: string; percent: number; color: string }[];
 }
 
 export interface Testimonial {

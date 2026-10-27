@@ -25,12 +25,12 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: 10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="pointer-events-auto hidden sm:flex items-center gap-2 bg-[#1c1917] text-white px-3.5 py-2 rounded-xl shadow-xl border border-white/10"
+            className="pointer-events-auto hidden sm:flex items-center gap-2 bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow-xl border border-slate-800"
           >
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
             <div className="flex flex-col text-left">
               <span className="font-sans text-xs font-bold leading-tight">Fale com o Instituto</span>
-              <span className="font-sans text-[11px] text-[#a8a29e] leading-tight">WhatsApp: (21) 98742-8647</span>
+              <span className="font-sans text-[11px] text-slate-400 leading-tight">WhatsApp: (21) 98742-8647</span>
             </div>
           </motion.div>
         )}

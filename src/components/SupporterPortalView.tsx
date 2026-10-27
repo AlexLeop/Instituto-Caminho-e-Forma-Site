@@ -73,7 +73,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
   );
 
   return (
-    <div className="w-full bg-[#fbf9f5] pt-24 sm:pt-28 pb-20">
+    <div className="w-full bg-white pt-24 sm:pt-28 pb-20">
       {/* Toast Notification */}
       <AnimatePresence>
         {toastMessage && (
@@ -81,7 +81,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-6 right-6 z-50 bg-[#1c1917] text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-[#3e3835] font-sans text-sm"
+            className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700 font-sans text-sm"
           >
             <span className="material-symbols-outlined text-[#22c55e] text-[20px]">check_circle</span>
             <span>{toastMessage}</span>
@@ -94,7 +94,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative w-full bg-[#f5f1ea] border-b border-[#e7e2da] overflow-hidden py-10 lg:py-14"
+        className="relative w-full bg-slate-50 border-b border-slate-200 overflow-hidden py-10 lg:py-14"
       >
         {/* Ambient Subtle Orbs */}
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#b45309]/10 rounded-full blur-3xl pointer-events-none" />
@@ -103,14 +103,14 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Breadcrumb & Member Badge Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div className="flex items-center gap-2 font-sans text-xs text-[#78716c]">
-              <button onClick={onNavigateHome} className="hover:text-[#1c1917] transition-colors cursor-pointer">
+            <div className="flex items-center gap-2 font-sans text-xs text-slate-500">
+              <button onClick={onNavigateHome} className="hover:text-slate-900 transition-colors cursor-pointer">
                 Início
               </button>
               <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-              <span className="text-[#57534e]">Portal do Apoiador</span>
+              <span className="text-slate-600">Portal do Apoiador</span>
               <span className="material-symbols-outlined text-[14px]">chevron_right</span>
-              <span className="text-[#1c1917] font-bold">Painel Geral de Membro</span>
+              <span className="text-slate-900 font-bold">Painel Geral de Membro</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -137,7 +137,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             >
               <div className="relative shrink-0">
                 <img
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-md border-2 border-white ring-2 ring-[#e7e2da]"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shadow-md border-2 border-white ring-2 ring-slate-200"
                   alt="Retrato de Marcelo Soares - Mantenedor"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW7qYKVxycbB6AbyazTYA4caA8tpT7e-_jMFlAD05hUYWhi_cAqB_Er8_KO0MJAMKESb18D5Atv6BWAOyNFx7EkPpMj9t1yh6pLzyfL5fgiRmIW0WDjI7j0UvRaG617NXl0cgS2Hk-qce18WsTD-haaXM7sH51k0vQCPSWb-ITdunbAWtjYRhgNo5PsD9rf32UJJt0OecJLNbS_UutMZA8mIMGw4SNkWW1RANbSB1cVwA1kdxkx97A"
                 />
@@ -152,12 +152,12 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               </div>
 
               <div className="flex flex-col">
-                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#1c1917] font-bold tracking-tight">
+                <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-slate-900 font-bold tracking-tight">
                   Olá, Marcelo Soares!
                 </h1>
-                <p className="font-sans text-sm sm:text-base text-[#57534e] mt-2 leading-relaxed max-w-2xl">
+                <p className="font-sans text-sm sm:text-base text-slate-600 mt-2 leading-relaxed max-w-2xl">
                   Bem-vindo ao seu ambiente exclusivo de acompanhamento e transformação social no{' '}
-                  <strong className="text-[#1c1917]">Instituto Caminho e Forma</strong>. Sua contribuição contínua sustenta sonhos, capacitações técnicas e autonomias reais para famílias de Itaguaí.
+                  <strong className="text-slate-900">Instituto Caminho e Forma</strong>. Sua contribuição contínua sustenta sonhos, capacitações técnicas e autonomias reais para famílias de Itaguaí.
                 </p>
               </div>
             </motion.div>
@@ -185,10 +185,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setShowRecurringModal(true)}
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-[#ede7dc] text-[#1c1917] font-sans text-sm font-semibold px-5 py-3 rounded-xl border border-[#e7e2da] transition-colors cursor-pointer shadow-2xs"
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-sans text-sm font-semibold px-5 py-3 rounded-xl border border-slate-200 transition-colors cursor-pointer shadow-2xs"
                 type="button"
               >
-                <span className="material-symbols-outlined text-[18px] text-[#57534e]">manage_accounts</span>
+                <span className="material-symbols-outlined text-[18px] text-slate-600">manage_accounts</span>
                 <span>Gerenciar Doações Recorrentes</span>
               </motion.button>
             </motion.div>
@@ -202,16 +202,16 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-5 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-sans text-xs text-[#78716c] uppercase tracking-wider font-bold">Total Contribuído</span>
+                <span className="font-sans text-xs text-slate-500 uppercase tracking-wider font-bold">Total Contribuído</span>
                 <div className="w-10 h-10 rounded-xl bg-[#b45309]/10 flex items-center justify-center text-[#b45309]">
                   <span className="material-symbols-outlined text-[22px]">payments</span>
                 </div>
               </div>
               <div>
-                <div className="font-serif text-2xl text-[#1c1917] font-bold tracking-tight">R$ 1.840,00</div>
+                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">R$ 1.840,00</div>
                 <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-[#166534] font-medium">
                   <span className="material-symbols-outlined text-[15px]">verified</span>
                   <span>100% auditado externamente</span>
@@ -225,17 +225,17 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.28 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-5 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-sans text-xs text-[#78716c] uppercase tracking-wider font-bold">Impacto Real</span>
+                <span className="font-sans text-xs text-slate-500 uppercase tracking-wider font-bold">Impacto Real</span>
                 <div className="w-10 h-10 rounded-xl bg-[#166534]/10 flex items-center justify-center text-[#166534]">
                   <span className="material-symbols-outlined text-[22px]">diversity_1</span>
                 </div>
               </div>
               <div>
-                <div className="font-serif text-2xl text-[#1c1917] font-bold tracking-tight">34 Famílias</div>
-                <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-[#57534e]">
+                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">34 Famílias</div>
+                <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-slate-600">
                   <span className="material-symbols-outlined text-[15px]">groups</span>
                   <span>Alimentação e capacitação digna</span>
                 </div>
@@ -248,16 +248,16 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.36 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-5 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-sans text-xs text-[#78716c] uppercase tracking-wider font-bold">Cursos &amp; Bolsa Social</span>
-                <div className="w-10 h-10 rounded-xl bg-[#ede7dc] flex items-center justify-center text-[#1c1917]">
+                <span className="font-sans text-xs text-slate-500 uppercase tracking-wider font-bold">Cursos &amp; Bolsa Social</span>
+                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-900">
                   <span className="material-symbols-outlined text-[22px]">school</span>
                 </div>
               </div>
               <div>
-                <div className="font-serif text-2xl text-[#1c1917] font-bold tracking-tight">2 Cursos</div>
+                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">2 Cursos</div>
                 <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-[#166534] font-medium">
                   <span className="material-symbols-outlined text-[15px]">trending_up</span>
                   <span>Em andamento (bolsas custeadas)</span>
@@ -271,17 +271,17 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.44 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-5 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-5 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="font-sans text-xs text-[#78716c] uppercase tracking-wider font-bold">Comunidade &amp; Rodas</span>
-                <div className="w-10 h-10 rounded-xl bg-[#ede7dc] flex items-center justify-center text-[#57534e]">
+                <span className="font-sans text-xs text-slate-500 uppercase tracking-wider font-bold">Comunidade &amp; Rodas</span>
+                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600">
                   <span className="material-symbols-outlined text-[22px]">event_available</span>
                 </div>
               </div>
               <div>
-                <div className="font-serif text-2xl text-[#1c1917] font-bold tracking-tight">4 Encontros</div>
-                <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-[#57534e]">
+                <div className="font-serif text-2xl text-slate-900 font-bold tracking-tight">4 Encontros</div>
+                <div className="flex items-center gap-1.5 mt-1.5 font-sans text-xs text-slate-600">
                   <span className="material-symbols-outlined text-[15px]">schedule</span>
                   <span>Próxima assembleia em 28 Jun</span>
                 </div>
@@ -299,7 +299,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         transition={{ duration: 0.6 }}
         className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full"
       >
-        <div className="relative bg-gradient-to-br from-white via-white to-[#f5f1ea] rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#e7e2da] shadow-sm overflow-hidden">
+        <div className="relative bg-gradient-to-br from-white via-white to-slate-50 rounded-3xl p-6 sm:p-8 lg:p-12 border border-slate-200 shadow-sm overflow-hidden">
           {/* Decorative Backdrop Graphic */}
           <div className="absolute right-0 top-0 w-80 h-full opacity-5 pointer-events-none flex items-center justify-center">
             <svg className="w-96 h-96 text-[#b45309] fill-current" viewBox="0 0 200 200">
@@ -314,34 +314,34 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="lg:col-span-5 flex flex-col items-center text-center p-6 sm:p-8 bg-white/90 backdrop-blur rounded-2xl border border-[#e7e2da] shadow-xs"
+              className="lg:col-span-5 flex flex-col items-center text-center p-6 sm:p-8 bg-white/90 backdrop-blur rounded-2xl border border-slate-200 shadow-xs"
             >
               <div className="relative w-44 h-44 mb-5 flex items-center justify-center">
                 {/* Ambient golden ring */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#b45309] via-[#f59e0b] to-[#166534] opacity-25 animate-pulse" />
-                <div className="relative w-36 h-36 rounded-full bg-white flex flex-col items-center justify-center p-3 text-center shadow-md border-4 border-[#fbf9f5]">
+                <div className="relative w-36 h-36 rounded-full bg-white flex flex-col items-center justify-center p-3 text-center shadow-md border-4 border-slate-100">
                   <span className="material-symbols-outlined text-[48px] text-[#b45309]" style={{ fontVariationSettings: "'FILL' 1" }}>
                     military_tech
                   </span>
-                  <span className="font-sans text-[10px] uppercase font-extrabold tracking-widest text-[#1c1917] mt-1">
+                  <span className="font-sans text-[10px] uppercase font-extrabold tracking-widest text-slate-900 mt-1">
                     Selo Oficial
                   </span>
-                  <span className="font-sans text-[9px] text-[#78716c] font-medium leading-tight">
+                  <span className="font-sans text-[9px] text-slate-500 font-medium leading-tight">
                     Instituto Caminho e Forma
                   </span>
                 </div>
               </div>
 
-              <span className="font-serif text-xl sm:text-2xl text-[#1c1917] font-bold">
+              <span className="font-serif text-xl sm:text-2xl text-slate-900 font-bold">
                 Certificação Ouro de Mantenedor
               </span>
-              <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 max-w-sm leading-relaxed">
-                Reconhecimento institucional concedido pelo <strong className="text-[#1c1917]">Instituto Caminho e Forma</strong> pelo compromisso ininterrupto com a equidade social e a cidadania ativa em Itaguaí e região.
+              <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 max-w-sm leading-relaxed">
+                Reconhecimento institucional concedido pelo <strong className="text-slate-900">Instituto Caminho e Forma</strong> pelo compromisso ininterrupto com a equidade social e a cidadania ativa em Itaguaí e região.
               </p>
-              <div className="mt-5 inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#f5f1ea] rounded-lg font-sans text-xs text-[#57534e] border border-[#e7e2da]">
+              <div className="mt-5 inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-50 rounded-lg font-sans text-xs text-slate-600 border border-slate-200">
                 <span className="material-symbols-outlined text-[16px] text-[#166534]">fingerprint</span>
                 <span>
-                  ID Autenticidade: <strong className="text-[#1c1917] font-mono">#AP-2024-88492</strong>
+                  ID Autenticidade: <strong className="text-slate-900 font-mono">#AP-2024-88492</strong>
                 </span>
               </div>
             </motion.div>
@@ -358,13 +358,13 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 <span className="px-3 py-1 rounded-full bg-[#166534] text-white font-sans text-xs font-bold uppercase tracking-wider">
                   Chancela Ética Verificada
                 </span>
-                <span className="text-[#78716c] font-sans text-xs">• Registro Auditado 2026</span>
+                <span className="text-slate-500 font-sans text-xs">• Registro Auditado 2026</span>
               </div>
 
-              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#1c1917] font-bold tracking-tight">
+              <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-slate-900 font-bold tracking-tight">
                 Seu legado é palpável, certificado e compartilhado.
               </h2>
-              <p className="font-sans text-sm sm:text-base text-[#57534e] leading-relaxed">
+              <p className="font-sans text-sm sm:text-base text-slate-600 leading-relaxed">
                 Como apoiador nível Ouro, Marcelo, você integra um grupo seleto de cidadãos que transformam vulnerabilidade em dignidade através de autonomia formativa e fomento ao microempreendedorismo local. Seu certificado possui assinatura digital válida e chancela pedagógica.
               </p>
 
@@ -385,10 +385,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleCopyBadgeCode}
-                  className="inline-flex items-center gap-2 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-sm font-semibold px-4 py-3 rounded-xl transition-colors cursor-pointer border border-[#d6cec2]"
+                  className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-sm font-semibold px-4 py-3 rounded-xl transition-colors cursor-pointer border border-slate-300"
                   type="button"
                 >
-                  <span className="material-symbols-outlined text-[18px] text-[#57534e]">code</span>
+                  <span className="material-symbols-outlined text-[18px] text-slate-600">code</span>
                   <span>Copiar Selo p/ LinkedIn / Site</span>
                 </motion.button>
 
@@ -422,7 +422,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">
               Transparência Ativa
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl text-[#1c1917] font-bold tracking-tight mt-1">
+            <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
               Histórico de Apoio &amp; Destinação Real
             </h2>
           </div>
@@ -431,7 +431,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => showToast('Gerando Informe de Rendimentos IR 2026 consolidado em PDF...')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-[#f5f1ea] text-[#1c1917] font-sans text-xs sm:text-sm font-semibold border border-[#e7e2da] shadow-2xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-900 font-sans text-xs sm:text-sm font-semibold border border-slate-200 shadow-2xs transition-colors cursor-pointer"
               type="button"
             >
               <span className="material-symbols-outlined text-[18px] text-[#b45309]">receipt_long</span>
@@ -448,13 +448,13 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-8 bg-white rounded-2xl p-6 sm:p-8 border border-[#e7e2da] shadow-2xs"
+            className="lg:col-span-8 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xs"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-              <h3 className="font-serif text-lg sm:text-xl text-[#1c1917] font-bold">
+              <h3 className="font-serif text-lg sm:text-xl text-slate-900 font-bold">
                 Últimos Lançamentos Registrados
               </h3>
-              <span className="font-sans text-xs text-[#78716c] flex items-center gap-1">
+              <span className="font-sans text-xs text-slate-500 flex items-center gap-1">
                 <span className="material-symbols-outlined text-[14px] text-[#166534]">verified</span>
                 Auditoria Contábil Independente
               </span>
@@ -463,7 +463,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             <div className="overflow-x-auto">
               <table className="w-full text-left font-sans text-sm">
                 <thead>
-                  <tr className="text-[#78716c] text-xs uppercase tracking-wider bg-[#f5f1ea] border-b border-[#e7e2da]">
+                  <tr className="text-slate-500 text-xs uppercase tracking-wider bg-slate-50 border-b border-slate-200">
                     <th className="py-3 px-4 rounded-l-xl">Data</th>
                     <th className="py-3 px-4">Finalidade / Projeto</th>
                     <th className="py-3 px-4">Método</th>
@@ -471,24 +471,24 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                     <th className="py-3 px-4 text-right rounded-r-xl">Comprovante</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#f5f1ea]">
+                <tbody className="divide-y divide-slate-100">
                   {/* Item 1 */}
-                  <tr className="hover:bg-[#fbf9f5] transition-colors">
-                    <td className="py-4 px-4 text-[#1c1917] font-medium whitespace-nowrap">10/05/2026</td>
-                    <td className="py-4 px-4 text-[#1c1917]">
+                  <tr className="hover:bg-white transition-colors">
+                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">10/05/2026</td>
+                    <td className="py-4 px-4 text-slate-900">
                       <div className="font-semibold">Doação Mensal Recorrente</div>
-                      <div className="text-xs text-[#57534e]">Projeto Mesa Farta &amp; Hortas Urbanas</div>
+                      <div className="text-xs text-slate-600">Projeto Mesa Farta &amp; Hortas Urbanas</div>
                     </td>
-                    <td className="py-4 px-4 text-[#57534e] whitespace-nowrap">
+                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
                       <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-[#78716c]">credit_card</span> Cartão •••• 4092
+                        <span className="material-symbols-outlined text-[16px] text-slate-500">credit_card</span> Cartão •••• 4092
                       </span>
                     </td>
-                    <td className="py-4 px-4 font-bold text-[#1c1917] whitespace-nowrap">R$ 150,00</td>
+                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 150,00</td>
                     <td className="py-4 px-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => handleDownloadReceipt('Maio/2026', 'R$ 150,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] text-xs font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
                         type="button"
                       >
                         <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
@@ -497,22 +497,22 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </tr>
 
                   {/* Item 2 */}
-                  <tr className="hover:bg-[#fbf9f5] transition-colors">
-                    <td className="py-4 px-4 text-[#1c1917] font-medium whitespace-nowrap">22/04/2026</td>
-                    <td className="py-4 px-4 text-[#1c1917]">
+                  <tr className="hover:bg-white transition-colors">
+                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">22/04/2026</td>
+                    <td className="py-4 px-4 text-slate-900">
                       <div className="font-semibold">Aquisição Solidária: Curso Panificação</div>
-                      <div className="text-xs text-[#57534e]">Financiou 1 Bolsa Integral para Mariana R.</div>
+                      <div className="text-xs text-slate-600">Financiou 1 Bolsa Integral para Mariana R.</div>
                     </td>
-                    <td className="py-4 px-4 text-[#57534e] whitespace-nowrap">
+                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
                       <span className="inline-flex items-center gap-1 text-xs">
                         <span className="material-symbols-outlined text-[16px] text-[#166534]">qr_code_2</span> PIX Apoiador
                       </span>
                     </td>
-                    <td className="py-4 px-4 font-bold text-[#1c1917] whitespace-nowrap">R$ 120,00</td>
+                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 120,00</td>
                     <td className="py-4 px-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => handleDownloadReceipt('Abril/2026 (Curso)', 'R$ 120,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] text-xs font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
                         type="button"
                       >
                         <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
@@ -521,22 +521,22 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </tr>
 
                   {/* Item 3 */}
-                  <tr className="hover:bg-[#fbf9f5] transition-colors">
-                    <td className="py-4 px-4 text-[#1c1917] font-medium whitespace-nowrap">10/04/2026</td>
-                    <td className="py-4 px-4 text-[#1c1917]">
+                  <tr className="hover:bg-white transition-colors">
+                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">10/04/2026</td>
+                    <td className="py-4 px-4 text-slate-900">
                       <div className="font-semibold">Doação Mensal Recorrente</div>
-                      <div className="text-xs text-[#57534e]">Manutenção do Polo de Capacitação de Itaguaí</div>
+                      <div className="text-xs text-slate-600">Manutenção do Polo de Capacitação de Itaguaí</div>
                     </td>
-                    <td className="py-4 px-4 text-[#57534e] whitespace-nowrap">
+                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
                       <span className="inline-flex items-center gap-1 text-xs">
-                        <span className="material-symbols-outlined text-[16px] text-[#78716c]">credit_card</span> Cartão •••• 4092
+                        <span className="material-symbols-outlined text-[16px] text-slate-500">credit_card</span> Cartão •••• 4092
                       </span>
                     </td>
-                    <td className="py-4 px-4 font-bold text-[#1c1917] whitespace-nowrap">R$ 150,00</td>
+                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 150,00</td>
                     <td className="py-4 px-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => handleDownloadReceipt('Abril/2026 (Mensal)', 'R$ 150,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] text-xs font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
                         type="button"
                       >
                         <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
@@ -545,22 +545,22 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </tr>
 
                   {/* Item 4 */}
-                  <tr className="hover:bg-[#fbf9f5] transition-colors">
-                    <td className="py-4 px-4 text-[#1c1917] font-medium whitespace-nowrap">15/03/2026</td>
-                    <td className="py-4 px-4 text-[#1c1917]">
+                  <tr className="hover:bg-white transition-colors">
+                    <td className="py-4 px-4 text-slate-900 font-medium whitespace-nowrap">15/03/2026</td>
+                    <td className="py-4 px-4 text-slate-900">
                       <div className="font-semibold">Aporte Especial: Campanha Inverno Solidário</div>
-                      <div className="text-xs text-[#57534e]">Kits térmicos e cobertores pesados para Itaguaí</div>
+                      <div className="text-xs text-slate-600">Kits térmicos e cobertores pesados para Itaguaí</div>
                     </td>
-                    <td className="py-4 px-4 text-[#57534e] whitespace-nowrap">
+                    <td className="py-4 px-4 text-slate-600 whitespace-nowrap">
                       <span className="inline-flex items-center gap-1 text-xs">
                         <span className="material-symbols-outlined text-[16px] text-[#166534]">qr_code_2</span> PIX Apoiador
                       </span>
                     </td>
-                    <td className="py-4 px-4 font-bold text-[#1c1917] whitespace-nowrap">R$ 300,00</td>
+                    <td className="py-4 px-4 font-bold text-slate-900 whitespace-nowrap">R$ 300,00</td>
                     <td className="py-4 px-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => handleDownloadReceipt('Março/2026 (Campanha)', 'R$ 300,00')}
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] text-xs font-semibold transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-900 text-xs font-semibold transition-colors cursor-pointer"
                         type="button"
                       >
                         <span className="material-symbols-outlined text-[15px] text-[#b45309]">download</span> Recibo IR
@@ -578,17 +578,17 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="lg:col-span-4 bg-[#f5f1ea] rounded-2xl p-6 sm:p-8 border border-[#e7e2da] flex flex-col justify-between"
+            className="lg:col-span-4 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200 flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center gap-1.5 text-[#166534] font-sans text-xs font-bold mb-2">
                 <span className="material-symbols-outlined text-[18px]">insights</span>
                 <span>Rastreabilidade em Tempo Real</span>
               </div>
-              <h3 className="font-serif text-xl text-[#1c1917] font-bold">
+              <h3 className="font-serif text-xl text-slate-900 font-bold">
                 Onde seus R$ 150 deste mês trabalharam
               </h3>
-              <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+              <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                 No Instituto Caminho e Forma, cada centavo do apoiador tem destino pré-determinado e prestação contábil aberta.
               </p>
 
@@ -599,10 +599,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                     <span className="material-symbols-outlined text-[18px]">nutrition</span>
                   </div>
                   <div>
-                    <span className="font-sans text-xs sm:text-sm text-[#1c1917] font-bold block">
+                    <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
                       R$ 67,50 • Cestas Agroecológicas
                     </span>
-                    <span className="font-sans text-xs text-[#57534e] leading-snug block mt-0.5">
+                    <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Alimentos orgânicos adquiridos de pequenos agricultores e hortas comunitárias locais de Itaguaí.
                     </span>
                   </div>
@@ -614,10 +614,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                     <span className="material-symbols-outlined text-[18px]">handyman</span>
                   </div>
                   <div>
-                    <span className="font-sans text-xs sm:text-sm text-[#1c1917] font-bold block">
+                    <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
                       R$ 52,50 • Insumos de Oficina Técnica
                     </span>
-                    <span className="font-sans text-xs text-[#57534e] leading-snug block mt-0.5">
+                    <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Farinhas e manutenção da batedeira industrial da turma de Panificação Solidária.
                     </span>
                   </div>
@@ -625,14 +625,14 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
 
                 {/* Impact Step 3 */}
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-[#ede7dc] text-[#57534e] flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 mt-0.5">
                     <span className="material-symbols-outlined text-[18px]">shield</span>
                   </div>
                   <div>
-                    <span className="font-sans text-xs sm:text-sm text-[#1c1917] font-bold block">
+                    <span className="font-sans text-xs sm:text-sm text-slate-900 font-bold block">
                       R$ 30,00 • Auditoria &amp; Infraestrutura
                     </span>
-                    <span className="font-sans text-xs text-[#57534e] leading-snug block mt-0.5">
+                    <span className="font-sans text-xs text-slate-600 leading-snug block mt-0.5">
                       Garantia de conformidade, conexão banda larga e espaço seguro aos educandos.
                     </span>
                   </div>
@@ -641,12 +641,12 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             </div>
 
             {/* Progress Mini-Bar */}
-            <div className="mt-8 pt-4 border-t border-[#e7e2da]">
-              <div className="flex justify-between font-sans text-xs mb-1.5 text-[#57534e]">
+            <div className="mt-8 pt-4 border-t border-slate-200">
+              <div className="flex justify-between font-sans text-xs mb-1.5 text-slate-600">
                 <span>Eficiência Programática</span>
                 <span className="font-bold text-[#166534]">92% direta na ponta</span>
               </div>
-              <div className="w-full bg-[#e7e2da] h-2.5 rounded-full overflow-hidden">
+              <div className="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
                 <div className="bg-[#166534] h-full rounded-full transition-all" style={{ width: '92%' }} />
               </div>
             </div>
@@ -666,10 +666,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
           <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">
             Educação Compartilhada
           </div>
-          <h2 className="font-serif text-2xl sm:text-3xl text-[#1c1917] font-bold tracking-tight mt-1">
+          <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
             Ambiente de Aprendizado Solidário
           </h2>
-          <p className="font-sans text-sm sm:text-base text-[#57534e] mt-1.5 max-w-3xl leading-relaxed">
+          <p className="font-sans text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl leading-relaxed">
             Aqui o conhecimento gera autonomia mútua: ao estudar, você adquire habilidades práticas e financia diretamente a formação de jovens e mães solo de Itaguaí.
           </p>
         </div>
@@ -678,7 +678,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-4">
             <span className="material-symbols-outlined text-[#166534] text-[24px]">play_circle</span>
-            <h3 className="font-serif text-xl text-[#1c1917] font-bold">Meus Cursos em Andamento</h3>
+            <h3 className="font-serif text-xl text-slate-900 font-bold">Meus Cursos em Andamento</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -688,35 +688,35 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 border border-[#e7e2da] shadow-2xs hover:shadow-md transition-all flex flex-col justify-between"
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-1 rounded-full bg-[#b45309]/10 text-[#92400e] font-sans text-xs font-bold">
                     Finanças Sociais
                   </span>
-                  <span className="font-sans text-xs text-[#78716c]">Módulo 4 de 6</span>
+                  <span className="font-sans text-xs text-slate-500">Módulo 4 de 6</span>
                 </div>
-                <h4 className="font-serif text-xl text-[#1c1917] font-bold">
+                <h4 className="font-serif text-xl text-slate-900 font-bold">
                   Gestão Financeira &amp; Investimentos de Impacto
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                   Princípios ESG, estruturação de microcrédito comunitário e finanças orientadas à sustentabilidade socioambiental.
                 </p>
 
                 {/* Progress Indicator */}
                 <div className="mt-5">
-                  <div className="flex justify-between font-sans text-xs mb-1.5 text-[#1c1917]">
+                  <div className="flex justify-between font-sans text-xs mb-1.5 text-slate-900">
                     <span>Progresso do Apoiador</span>
                     <span className="font-bold text-[#b45309]">65% concluído</span>
                   </div>
-                  <div className="w-full bg-[#f5f1ea] h-2.5 rounded-full overflow-hidden border border-[#e7e2da]">
+                  <div className="w-full bg-slate-50 h-2.5 rounded-full overflow-hidden border border-slate-200">
                     <div className="bg-[#b45309] h-full rounded-full transition-all" style={{ width: '65%' }} />
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#f5f1ea] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <span className="font-sans text-xs text-[#166534] font-medium flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[16px]">school</span>
                   <span>Bolsa financiada: <strong>Lucas Gabriel (Turma Itaguaí)</strong></span>
@@ -741,35 +741,35 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 border border-[#e7e2da] shadow-2xs hover:shadow-md transition-all flex flex-col justify-between"
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="px-3 py-1 rounded-full bg-[#166534]/10 text-[#14532d] font-sans text-xs font-bold">
                     Desenvolvimento Comunitário
                   </span>
-                  <span className="font-sans text-xs text-[#78716c]">Módulo 2 de 5</span>
+                  <span className="font-sans text-xs text-slate-500">Módulo 2 de 5</span>
                 </div>
-                <h4 className="font-serif text-xl text-[#1c1917] font-bold">
+                <h4 className="font-serif text-xl text-slate-900 font-bold">
                   Liderança Comunitária e Negócios Sociais
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                   Metodologias ativas de mobilização popular, desenho de projetos participativos e governança cooperativa.
                 </p>
 
                 {/* Progress Indicator */}
                 <div className="mt-5">
-                  <div className="flex justify-between font-sans text-xs mb-1.5 text-[#1c1917]">
+                  <div className="flex justify-between font-sans text-xs mb-1.5 text-slate-900">
                     <span>Progresso do Apoiador</span>
                     <span className="font-bold text-[#166534]">30% concluído</span>
                   </div>
-                  <div className="w-full bg-[#f5f1ea] h-2.5 rounded-full overflow-hidden border border-[#e7e2da]">
+                  <div className="w-full bg-slate-50 h-2.5 rounded-full overflow-hidden border border-slate-200">
                     <div className="bg-[#166534] h-full rounded-full transition-all" style={{ width: '30%' }} />
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-[#f5f1ea] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <span className="font-sans text-xs text-[#166534] font-medium flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[16px]">school</span>
                   <span>Bolsa financiada: <strong>Beatriz M. (Turma Leandro)</strong></span>
@@ -778,10 +778,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => showToast('Carregando grade curricular e materiais de apoio...')}
-                  className="inline-flex items-center justify-center gap-1.5 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl transition-colors cursor-pointer border border-[#d6cec2]"
+                  className="inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl transition-colors cursor-pointer border border-slate-300"
                   type="button"
                 >
-                  <span className="material-symbols-outlined text-[18px] text-[#57534e]">list_alt</span>
+                  <span className="material-symbols-outlined text-[18px] text-slate-600">list_alt</span>
                   <span>Acessar Módulos</span>
                 </motion.button>
               </div>
@@ -794,7 +794,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[#b45309] text-[24px]">storefront</span>
-              <h3 className="font-serif text-xl text-[#1c1917] font-bold">Vitrine Solidária: Adquira e Financie 1 Aluno</h3>
+              <h3 className="font-serif text-xl text-slate-900 font-bold">Vitrine Solidária: Adquira e Financie 1 Aluno</h3>
             </div>
             <span className="font-sans text-xs text-[#166534] font-bold bg-[#166534]/10 px-3 py-1 rounded-full">
               100% da receita convertida em bolsa integral
@@ -809,7 +809,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl overflow-hidden border border-[#e7e2da] shadow-2xs hover:shadow-md transition-all flex flex-col"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md transition-all flex flex-col"
             >
               <div className="relative h-44 w-full">
                 <img
@@ -817,22 +817,22 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   alt="Empreendedorismo Social e Captação de Recursos"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAScC5yP3hzsNLO9wTr_MRMKXDRG7eVk8KCh1-nWWp4I1Xv3rm0cXoskw2bugwtW28hptGqvDR0Ok7_XIWRxI7y7oWdK4E04dOLOr5iQobnkKNqNFmkEtzO_QrUmiyd34w8D7zm-04A4YAf7E_npRZM8CIOefLUEBk5Lrt8xQUREsX1zMMdfnM7xywYU5vvhvfF9YSsoXFApU3iDF6Li6vS4qSfrKzpyLNFgsjYXDW-mGJTYqL9nNJ8"
                 />
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-[#1c1917] font-sans text-xs font-bold shadow-xs border border-[#e7e2da]">
+                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-slate-900 font-sans text-xs font-bold shadow-xs border border-slate-200">
                   Certificado Incluso
                 </span>
               </div>
               <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
                 <div>
-                  <h4 className="font-serif text-lg text-[#1c1917] font-bold leading-snug">
+                  <h4 className="font-serif text-lg text-slate-900 font-bold leading-snug">
                     Empreendedorismo Social e Captação de Recursos
                   </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                     Aprenda a estruturar planos de sustentabilidade financeira, editais e campanhas de matchfunding comunitário.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#f5f1ea] flex flex-col gap-3">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-3">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-sans text-xs text-[#78716c]">Investimento com Propósito:</span>
+                    <span className="font-sans text-xs text-slate-500">Investimento com Propósito:</span>
                     <span className="font-serif text-xl text-[#b45309] font-bold">R$ 120,00</span>
                   </div>
                   <motion.button
@@ -856,7 +856,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl overflow-hidden border border-[#e7e2da] shadow-2xs hover:shadow-md transition-all flex flex-col"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md transition-all flex flex-col"
             >
               <div className="relative h-44 w-full">
                 <img
@@ -864,29 +864,29 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   alt="Comunicação Não-Violenta e Mediação de Conflitos"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7y7q952QGnGGo87XJ9480p6THN49MovKqCpQAEX1apSUjw4_ledtEOaw9oR5tZMyVBnswlS638ZC0Lfxd7L83jYhnl5ChBA0RrzHtn0YK3EhC7AWTSfxhvm4958EHcxl2HR5AMdEIOJBIMT1Z-7HQWVHAJh3Rgks2yZlv3ndXkVurIH0ozIb1WZILR43kums954NfnUnt8-bzFfskqHzkKbNmNpAgH-TPnYh9gEXNpWBHHfaM0Tmj"
                 />
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-[#1c1917] font-sans text-xs font-bold shadow-xs border border-[#e7e2da]">
+                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-slate-900 font-sans text-xs font-bold shadow-xs border border-slate-200">
                   Acesso Vitalício
                 </span>
               </div>
               <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
                 <div>
-                  <h4 className="font-serif text-lg text-[#1c1917] font-bold leading-snug">
+                  <h4 className="font-serif text-lg text-slate-900 font-bold leading-snug">
                     Comunicação Não-Violenta e Mediação de Conflitos
                   </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                     Ferramentas práticas de diálogo restaurativo para times, famílias e mediação de convivência em territórios urbanos.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#f5f1ea] flex flex-col gap-3">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-3">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-sans text-xs text-[#78716c]">Investimento com Propósito:</span>
+                    <span className="font-sans text-xs text-slate-500">Investimento com Propósito:</span>
                     <span className="font-serif text-xl text-[#166534] font-bold">R$ 95,00</span>
                   </div>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={onOpenDonation}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-xs sm:text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer border border-[#d6cec2]"
+                    className="w-full inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-xs sm:text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer border border-slate-300"
                     type="button"
                   >
                     <span className="material-symbols-outlined text-[18px]">volunteer_activism</span>
@@ -903,7 +903,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
               whileHover={{ y: -6 }}
-              className="bg-white rounded-2xl overflow-hidden border border-[#e7e2da] shadow-2xs hover:shadow-md transition-all flex flex-col"
+              className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs hover:shadow-md transition-all flex flex-col"
             >
               <div className="relative h-44 w-full">
                 <img
@@ -911,29 +911,29 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   alt="Sustentabilidade e Práticas ESG na Prática"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLx-XyQNkstwuibKeuWF9AcKTwdEVU7YvDLWubJwH8obBdkn1C198oxrnnQm3m2zIwnviPdSLU07JesSaVfewfEaTCKlP5pU8Sotww1nxZXoKmlRGevfr53HxVX6WDXswyFhL6Cz51ZSIQVUO_SuRErC6mueHlwynFZm1eC3OfEcRnkHcXRH6h_mSTPCja-t_p5_uMHTcItyqzKTTO21rAiOsooou3wzyiPeShYbT-vVyX3L1jFvNq"
                 />
-                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-[#1c1917] font-sans text-xs font-bold shadow-xs border border-[#e7e2da]">
+                <span className="absolute top-3 left-3 bg-white/95 backdrop-blur px-2.5 py-1 rounded-lg text-slate-900 font-sans text-xs font-bold shadow-xs border border-slate-200">
                   Mentoria Mensal
                 </span>
               </div>
               <div className="p-5 sm:p-6 flex flex-col flex-1 justify-between">
                 <div>
-                  <h4 className="font-serif text-lg text-[#1c1917] font-bold leading-snug">
+                  <h4 className="font-serif text-lg text-slate-900 font-bold leading-snug">
                     Sustentabilidade e Práticas ESG na Prática
                   </h4>
-                  <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2 leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed">
                     Como pequenas empresas e cidadãos podem implementar metas claras de descarbonização, inclusão e compras éticas.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#f5f1ea] flex flex-col gap-3">
+                <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col gap-3">
                   <div className="flex items-baseline justify-between">
-                    <span className="font-sans text-xs text-[#78716c]">Investimento com Propósito:</span>
+                    <span className="font-sans text-xs text-slate-500">Investimento com Propósito:</span>
                     <span className="font-serif text-xl text-[#b45309] font-bold">R$ 150,00</span>
                   </div>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={onOpenDonation}
-                    className="w-full inline-flex items-center justify-center gap-1.5 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-xs sm:text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer border border-[#d6cec2]"
+                    className="w-full inline-flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-xs sm:text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer border border-slate-300"
                     type="button"
                   >
                     <span className="material-symbols-outlined text-[18px]">volunteer_activism</span>
@@ -952,7 +952,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6 }}
-        className="w-full bg-[#f5f1ea] border-y border-[#e7e2da] py-12 lg:py-16"
+        className="w-full bg-slate-50 border-y border-slate-200 py-12 lg:py-16"
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -960,14 +960,14 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               <div className="font-sans text-xs uppercase tracking-wider text-[#166534] font-bold">
                 Comunhão e Presença
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1c1917] font-bold tracking-tight mt-1">
+              <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
                 Agenda de Encontros Exclusivos
               </h2>
-              <p className="font-sans text-sm sm:text-base text-[#57534e] mt-1.5 max-w-2xl leading-relaxed">
+              <p className="font-sans text-sm sm:text-base text-slate-600 mt-1.5 max-w-2xl leading-relaxed">
                 Espaços de diálogo, prestação de contas olho no olho e vivências afetivas no coração dos nossos polos em Itaguaí.
               </p>
             </div>
-            <span className="inline-flex items-center gap-1.5 font-sans text-xs text-[#78716c] bg-white px-3 py-1.5 rounded-lg border border-[#e7e2da] shadow-2xs">
+            <span className="inline-flex items-center gap-1.5 font-sans text-xs text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-2xs">
               <span className="material-symbols-outlined text-[16px] text-[#b45309]">pin_drop</span>
               <span>Sede Itaguaí / RJ &amp; Salas Virtuais</span>
             </span>
@@ -980,7 +980,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -989,17 +989,17 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </span>
                   <span className="font-sans text-xs text-[#b45309] font-bold">Vagas Limitadas</span>
                 </div>
-                <div className="text-[#78716c] font-sans text-xs font-semibold">
+                <div className="text-slate-500 font-sans text-xs font-semibold">
                   Sábado, 15 de Junho • 09:30 às 13:00
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold mt-1.5 leading-snug">
+                <h4 className="font-serif text-lg text-slate-900 font-bold mt-1.5 leading-snug">
                   Roda de Conversa com Formandos &amp; Visita Guiada ao Polo Comunitário
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2.5 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                   Venha conhecer de perto os alunos da turma de Panificação e Artesanato que você apoiou em Itaguaí. Café colonial comunitário incluso com produtos locais.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#f5f1ea]">
+              <div className="mt-6 pt-4 border-t border-slate-100">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -1026,34 +1026,34 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#ede7dc] text-[#1c1917] font-sans text-xs font-bold">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-slate-900 font-sans text-xs font-bold">
                     <span className="material-symbols-outlined text-[14px]">videocam</span> Online via Zoom
                   </span>
-                  <span className="font-sans text-xs text-[#78716c]">Transparência Anual</span>
+                  <span className="font-sans text-xs text-slate-500">Transparência Anual</span>
                 </div>
-                <div className="text-[#78716c] font-sans text-xs font-semibold">
+                <div className="text-slate-500 font-sans text-xs font-semibold">
                   Sexta, 28 de Junho • 19:30 às 21:00
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold mt-1.5 leading-snug">
+                <h4 className="font-serif text-lg text-slate-900 font-bold mt-1.5 leading-snug">
                   Assembleia Anual de Prestação de Contas &amp; Diálogo com a Diretoria
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2.5 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                   Apresentação detalhada dos balanços do 1º semestre de 2026, parecer da auditoria externa e votação consultiva sobre novas frentes territoriais.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#f5f1ea]">
+              <div className="mt-6 pt-4 border-t border-slate-100">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => toggleEventConfirm('event-2', 'Assembleia Anual de Prestação de Contas')}
                   className={`w-full inline-flex items-center justify-center gap-2 font-sans text-xs sm:text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer ${
                     confirmedEvents['event-2']
-                      ? 'bg-[#1c1917] text-white'
-                      : 'bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] border border-[#d6cec2]'
+                      ? 'bg-slate-900 text-white'
+                      : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-300'
                   }`}
                   type="button"
                 >
@@ -1072,26 +1072,26 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 border border-[#e7e2da] shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
+              className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs flex flex-col justify-between hover:shadow-md transition-all"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#b45309]/15 text-[#92400e] font-sans text-xs font-bold">
                     <span className="material-symbols-outlined text-[14px]">workspace_premium</span> Exclusivo Apoiadores Ouro
                   </span>
-                  <span className="font-sans text-xs text-[#78716c]">Gastronomia Afetiva</span>
+                  <span className="font-sans text-xs text-slate-500">Gastronomia Afetiva</span>
                 </div>
-                <div className="text-[#78716c] font-sans text-xs font-semibold">
+                <div className="text-slate-500 font-sans text-xs font-semibold">
                   Quarta, 10 de Julho • 18:30 às 21:30
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold mt-1.5 leading-snug">
+                <h4 className="font-serif text-lg text-slate-900 font-bold mt-1.5 leading-snug">
                   Workshop de Culinária Afetiva com os Chefs da Cooperativa
                 </h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] mt-2.5 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed">
                   Uma noite de aprendizado prático e troca de receitas tradicionais da culinária ancestral brasileira conduzida por cozinheiras formadas no instituto.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#f5f1ea]">
+              <div className="mt-6 pt-4 border-t border-slate-100">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -1122,17 +1122,17 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         transition={{ duration: 0.6 }}
         className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full"
       >
-        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#e7e2da] shadow-sm">
+        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 border border-slate-200 shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
             <div>
               <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">
                 Reconhecimento &amp; Reciprocidade
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-[#1c1917] font-bold tracking-tight mt-1">
+              <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
                 Seu Clube de Benefícios Solidários
               </h2>
             </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#f5f1ea] font-sans text-xs text-[#57534e] border border-[#e7e2da]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-50 font-sans text-xs text-slate-600 border border-slate-200">
               <span className="material-symbols-outlined text-[#166534] text-[18px]">stars</span>
               <span>Status: <strong>Benefícios Ativos &amp; Vitalícios</strong></span>
             </div>
@@ -1145,22 +1145,22 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
-              className="bg-[#f5f1ea] rounded-2xl p-5 border border-[#e7e2da] flex flex-col justify-between hover:bg-[#ede7dc] transition-all"
+              className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:bg-slate-100 transition-all"
             >
               <div className="flex flex-col gap-3">
                 <div className="w-12 h-12 rounded-xl bg-[#b45309]/15 text-[#b45309] flex items-center justify-center">
                   <span className="material-symbols-outlined text-[28px]">local_mall</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold">20% de Desconto na Feira</h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] leading-relaxed">
+                <h4 className="font-serif text-lg text-slate-900 font-bold">20% de Desconto na Feira</h4>
+                <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Economize em cerâmicas, pães artesanais e biojoias produzidas pelas famílias cooperadas do Caminho e Forma.
                 </p>
               </div>
-              <div className="mt-5 pt-3 border-t border-[#e7e2da] flex items-center justify-between">
+              <div className="mt-5 pt-3 border-t border-slate-200 flex items-center justify-between">
                 <span className="font-mono text-xs text-[#b45309] font-bold">APOIADOR-OURO-20</span>
                 <button
                   onClick={() => handleCopyCoupon('APOIADOR-OURO-20')}
-                  className="inline-flex items-center gap-1 text-xs text-[#1c1917] hover:text-[#b45309] font-semibold cursor-pointer"
+                  className="inline-flex items-center gap-1 text-xs text-slate-900 hover:text-[#b45309] font-semibold cursor-pointer"
                   title="Copiar cupom"
                 >
                   <span className="material-symbols-outlined text-[15px]">content_copy</span>
@@ -1176,18 +1176,18 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               whileHover={{ y: -4 }}
-              className="bg-[#f5f1ea] rounded-2xl p-5 border border-[#e7e2da] flex flex-col justify-between hover:bg-[#ede7dc] transition-all"
+              className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:bg-slate-100 transition-all"
             >
               <div className="flex flex-col gap-3">
                 <div className="w-12 h-12 rounded-xl bg-[#166534]/15 text-[#166534] flex items-center justify-center">
                   <span className="material-symbols-outlined text-[28px]">mail</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold">Cartas Afetivas Trimestrais</h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] leading-relaxed">
+                <h4 className="font-serif text-lg text-slate-900 font-bold">Cartas Afetivas Trimestrais</h4>
+                <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Relatório reservado contendo cartas digitalizadas escritas à mão pelos alunos beneficiados contando sua evolução.
                 </p>
               </div>
-              <div className="mt-5 pt-3 border-t border-[#e7e2da] font-sans text-xs text-[#166534] font-bold flex items-center gap-1.5">
+              <div className="mt-5 pt-3 border-t border-slate-200 font-sans text-xs text-[#166534] font-bold flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-[16px]">visibility</span>
                 <button
                   onClick={() => showToast('Abrindo caderno digital de cartas afetivas de Maio/2026...')}
@@ -1205,18 +1205,18 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               whileHover={{ y: -4 }}
-              className="bg-[#f5f1ea] rounded-2xl p-5 border border-[#e7e2da] flex flex-col justify-between hover:bg-[#ede7dc] transition-all"
+              className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:bg-slate-100 transition-all"
             >
               <div className="flex flex-col gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[#ede7dc] text-[#1c1917] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center">
                   <span className="material-symbols-outlined text-[28px]">notifications_active</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold">Acesso Antecipado a Oficinas</h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] leading-relaxed">
+                <h4 className="font-serif text-lg text-slate-900 font-bold">Acesso Antecipado a Oficinas</h4>
+                <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Inscrição prioritária com 48 horas de antecedência para workshops concorridos e para o bazar beneficente anual.
                 </p>
               </div>
-              <div className="mt-5 pt-3 border-t border-[#e7e2da] font-sans text-xs text-[#78716c] font-semibold flex items-center gap-1.5">
+              <div className="mt-5 pt-3 border-t border-slate-200 font-sans text-xs text-slate-500 font-semibold flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-[16px] text-[#166534]">check</span>
                 <span>Notificações VIP automáticas ativas</span>
               </div>
@@ -1229,18 +1229,18 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
               whileHover={{ y: -4 }}
-              className="bg-[#f5f1ea] rounded-2xl p-5 border border-[#e7e2da] flex flex-col justify-between hover:bg-[#ede7dc] transition-all"
+              className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:bg-slate-100 transition-all"
             >
               <div className="flex flex-col gap-3">
                 <div className="w-12 h-12 rounded-xl bg-[#25D366]/15 text-[#25D366] flex items-center justify-center">
                   <WhatsAppIcon className="w-7 h-7 text-[#25D366]" />
                 </div>
-                <h4 className="font-serif text-lg text-[#1c1917] font-bold">Canal Exclusivo de WhatsApp</h4>
-                <p className="font-sans text-xs sm:text-sm text-[#57534e] leading-relaxed">
+                <h4 className="font-serif text-lg text-slate-900 font-bold">Canal Exclusivo de WhatsApp</h4>
+                <p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
                   Contato direto com a coordenadora de relações comunitárias para tirar dúvidas sobre destinação e voluntariado.
                 </p>
               </div>
-              <div className="mt-5 pt-3 border-t border-[#e7e2da] font-sans text-xs">
+              <div className="mt-5 pt-3 border-t border-slate-200 font-sans text-xs">
                 <a
                   className="text-[#166534] hover:underline font-bold inline-flex items-center gap-1"
                   href="https://wa.me/5521987428647?text=Ol%C3%A1%2C%20sou%20o%20Marcelo%20Soares%20(Apoiador%20Ouro%20%23AP-2024-88492)%20e%20gostaria%20de%20conversar%20com%20a%20coordena%C3%A7%C3%A3o."
@@ -1264,12 +1264,12 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
         transition={{ duration: 0.6 }}
         className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full"
       >
-        <div className="bg-[#f5f1ea] rounded-3xl p-6 sm:p-8 lg:p-12 border border-[#e7e2da] flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 lg:p-12 border border-slate-200 flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="flex flex-col gap-2">
-            <h3 className="font-serif text-xl sm:text-2xl text-[#1c1917] font-bold">
+            <h3 className="font-serif text-xl sm:text-2xl text-slate-900 font-bold">
               Precisa de ajuda com sua doação ou certificado?
             </h3>
-            <p className="font-sans text-xs sm:text-sm text-[#57534e] max-w-2xl leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
               Nossa equipe de relacionamento com mantenedores está pronta para ajustar dados de cartão, alterar valor da contribuição mensal ou emitir certidões personalizadas de filantropia corporativa em Itaguaí.
             </p>
           </div>
@@ -1277,7 +1277,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             <motion.a
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 bg-white hover:bg-[#ede7dc] text-[#1c1917] font-sans text-xs sm:text-sm font-semibold px-5 py-3 rounded-xl border border-[#e7e2da] transition-colors cursor-pointer shadow-2xs"
+              className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-sans text-xs sm:text-sm font-semibold px-5 py-3 rounded-xl border border-slate-200 transition-colors cursor-pointer shadow-2xs"
               href="mailto:institutocaminhoeformaoficial@gmail.com"
             >
               <span className="material-symbols-outlined text-[18px]">mail</span>
@@ -1308,7 +1308,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
             >
               <button
                 onClick={() => setShowCertificateModal(false)}
-                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#f5f1ea] hover:bg-[#ede7dc] text-[#57534e] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
@@ -1322,23 +1322,23 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 <span className="font-sans text-xs tracking-widest uppercase font-bold text-[#b45309]">
                   República Federativa do Brasil • Estado do Rio de Janeiro
                 </span>
-                <h3 className="font-serif text-2xl sm:text-3xl text-[#1c1917] font-bold mt-1">
+                <h3 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold mt-1">
                   Certificado de Mantenedor Social
                 </h3>
-                <p className="font-sans text-xs text-[#78716c] mt-0.5">
+                <p className="font-sans text-xs text-slate-500 mt-0.5">
                   Instituto Caminho e Forma • CNPJ: 18.360.956/0001-60
                 </p>
 
-                <div className="my-6 p-6 bg-[#fbf9f5] rounded-2xl border border-[#e7e2da] text-left w-full font-serif text-base sm:text-lg text-[#1c1917] leading-relaxed">
+                <div className="my-6 p-6 bg-white rounded-2xl border border-slate-200 text-left w-full font-serif text-base sm:text-lg text-slate-900 leading-relaxed">
                   Certificamos com honra e reconhecimento institucional que <strong className="text-[#b45309]">Marcelo Soares</strong> é mantenedor ativo de <strong className="text-[#166534]">Nível Ouro</strong> do Instituto Caminho e Forma, contribuindo diretamente para o fomento de oficinas de capacitação profissional, acolhimento social e segurança alimentar comunitária em Itaguaí/RJ.
                 </div>
 
-                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-[#78716c] border-t border-[#e7e2da] pt-4">
+                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-slate-500 border-t border-slate-200 pt-4">
                   <div>
-                    <span>Código de Registro:</span> <strong className="font-mono text-[#1c1917]">#AP-2024-88492</strong>
+                    <span>Código de Registro:</span> <strong className="font-mono text-slate-900">#AP-2024-88492</strong>
                   </div>
                   <div>
-                    <span>Data de Emissão:</span> <strong className="text-[#1c1917]">10 de Maio de 2026</strong>
+                    <span>Data de Emissão:</span> <strong className="text-slate-900">10 de Maio de 2026</strong>
                   </div>
                 </div>
 
@@ -1354,7 +1354,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   </button>
                   <button
                     onClick={() => setShowCertificateModal(false)}
-                    className="inline-flex items-center gap-2 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-sm font-semibold px-5 py-3 rounded-xl transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-sm font-semibold px-5 py-3 rounded-xl transition-colors cursor-pointer"
                   >
                     Fechar
                   </button>
@@ -1373,11 +1373,11 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#e7e2da] shadow-2xl relative"
+              className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-slate-200 shadow-2xl relative"
             >
               <button
                 onClick={() => setShowRecurringModal(false)}
-                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#f5f1ea] hover:bg-[#ede7dc] text-[#57534e] flex items-center justify-center transition-colors cursor-pointer"
+                className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-50 hover:bg-slate-100 text-slate-600 flex items-center justify-center transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
               </button>
@@ -1387,7 +1387,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                   <span className="material-symbols-outlined text-[24px]">manage_accounts</span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl text-[#1c1917] font-bold">Assinatura Mensal Ativa</h3>
+                  <h3 className="font-serif text-xl text-slate-900 font-bold">Assinatura Mensal Ativa</h3>
                   <span className="font-sans text-xs text-[#166534] font-semibold flex items-center gap-1">
                     <span className="material-symbols-outlined text-[14px]">check_circle</span>
                     Cobrança automática ativa
@@ -1395,26 +1395,26 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                 </div>
               </div>
 
-              <div className="bg-[#f5f1ea] rounded-2xl p-4 border border-[#e7e2da] font-sans text-sm space-y-2 mb-6">
-                <div className="flex justify-between text-xs text-[#78716c]">
+              <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 font-sans text-sm space-y-2 mb-6">
+                <div className="flex justify-between text-xs text-slate-500">
                   <span>Plano Atual:</span>
-                  <strong className="text-[#1c1917]">Mantenedor Ouro</strong>
+                  <strong className="text-slate-900">Mantenedor Ouro</strong>
                 </div>
-                <div className="flex justify-between text-xs text-[#78716c]">
+                <div className="flex justify-between text-xs text-slate-500">
                   <span>Valor Mensal:</span>
-                  <strong className="text-[#1c1917] text-base font-bold">R$ 150,00 / mês</strong>
+                  <strong className="text-slate-900 text-base font-bold">R$ 150,00 / mês</strong>
                 </div>
-                <div className="flex justify-between text-xs text-[#78716c]">
+                <div className="flex justify-between text-xs text-slate-500">
                   <span>Forma de Cobrança:</span>
-                  <span className="text-[#1c1917]">Cartão Mastercard •••• 4092</span>
+                  <span className="text-slate-900">Cartão Mastercard •••• 4092</span>
                 </div>
-                <div className="flex justify-between text-xs text-[#78716c]">
+                <div className="flex justify-between text-xs text-slate-500">
                   <span>Próximo Lançamento:</span>
                   <span className="text-[#166534] font-bold">10 de Junho de 2026</span>
                 </div>
               </div>
 
-              <p className="font-sans text-xs text-[#57534e] leading-relaxed mb-6">
+              <p className="font-sans text-xs text-slate-600 leading-relaxed mb-6">
                 Você pode pausar, alterar o valor ou atualizar a forma de pagamento a qualquer instante diretamente com nossa controladora financeira ou pelo WhatsApp oficial.
               </p>
 
@@ -1433,7 +1433,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
                     setShowRecurringModal(false);
                     showToast('Link seguro para atualização de cartão enviado ao seu e-mail!');
                   }}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#ede7dc] hover:bg-[#e3dcd0] text-[#1c1917] font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-sans text-sm font-semibold py-2.5 rounded-xl transition-colors cursor-pointer"
                 >
                   Atualizar Cartão de Crédito
                 </button>

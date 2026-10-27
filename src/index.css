@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
-  --font-serif: 'Literata', Georgia, serif;
-  --font-body: 'Manrope', sans-serif;
-  --font-headline: 'Literata', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-headline: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
 
-  /* Natural, warm, dignified institutional palette */
-  --color-canvas: #fbf9f5;
+  /* Corporate Institutional Palette V2 */
+  --color-canvas: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-dim: #f5f1ea;
-  --color-surface-container: #ede7dc;
-  --color-surface-container-high: #e3dcd0;
-  --color-surface-container-highest: #d9d1c3;
+  --color-surface-dim: #f8fafc;
+  --color-surface-container: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-surface-container-highest: #cbd5e1;
 
-  --color-on-surface: #1c1917;
-  --color-on-surface-variant: #57534e;
-  --color-on-surface-subtle: #78716c;
-  --color-inverse-surface: #1c1917;
-  --color-inverse-on-surface: #faf9f5;
+  --color-on-surface: #0f172a;
+  --color-on-surface-variant: #334155;
+  --color-on-surface-subtle: #64748b;
+  --color-inverse-surface: #0f172a;
+  --color-inverse-on-surface: #ffffff;
 
-  --color-outline: #d6cec2;
-  --color-outline-variant: #e7e2da;
+  --color-outline: #cbd5e1;
+  --color-outline-variant: #e2e8f0;
 
   /* Brand Accents */
   --color-primary: #b45309;
@@ -82,17 +83,17 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Editorial & Display Typography: Literata */
+/* Headings & Display: Plus Jakarta Sans (Padrão V2) */
+h1, h2, h3, h4,
 .font-serif,
 .font-editorial,
 .font-headline-xl,
 .font-headline-lg,
 .font-headline-md {
-  font-family: 'Literata', Georgia, serif;
-  font-optical-sizing: auto;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* UI & Body Typography: Manrope */
+/* UI & Body Typography: Inter (Padrão V2) */
 .font-sans,
 .font-body,
 .font-headline-sm,
@@ -102,7 +103,20 @@ html, body {
 .font-label-lg,
 .font-label-md,
 .font-label-sm {
-  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Corporate Card & Shadows V2 */
+.corp-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.corp-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06);
+  transform: translateY(-2px);
 }
 
 /* Headline Scales - Proporcionais, elegantes e baseadas em rem */

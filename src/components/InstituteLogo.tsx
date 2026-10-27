@@ -26,11 +26,11 @@ export const InstituteLogo: React.FC<InstituteLogoProps> = ({
       mainText: 'text-[12px] sm:text-[14px] tracking-[0.06em]',
     },
     md: {
-      container: 'h-9 sm:h-11',
-      emblem: 'h-7.5 sm:h-9',
-      verticalSvg: 'h-11 sm:h-13',
-      subText: 'text-[8.5px] sm:text-[9.5px] tracking-[0.2em]',
-      mainText: 'text-[12px] sm:text-[14.5px] tracking-[0.06em]',
+      container: 'h-11 sm:h-13',
+      emblem: 'h-10 sm:h-12',
+      verticalSvg: 'h-12 sm:h-14',
+      subText: 'text-[9px] sm:text-[10.5px] tracking-[0.18em]',
+      mainText: 'text-[13px] sm:text-[15.5px] tracking-[0.05em]',
     },
     lg: {
       container: 'h-16 sm:h-20',
@@ -63,11 +63,9 @@ export const InstituteLogo: React.FC<InstituteLogoProps> = ({
         <img
           src="/logo-emblema.svg"
           onError={(e) => {
-            const target = e.currentTarget as HTMLImageElement;
-            if (target.src !== '/logo-instituto.svg') {
-              target.src = '/logo-instituto.svg';
-            } else if (target.src !== LOGO_IMAGE) {
-              target.src = LOGO_IMAGE;
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/logo-instituto.png')) {
+              target.src = '/logo-instituto.png';
             }
           }}
           alt="Emblema Instituto Caminho e Forma"
@@ -84,11 +82,9 @@ export const InstituteLogo: React.FC<InstituteLogoProps> = ({
         <img
           src={isLightOrWhite ? '/logo-instituto-white.svg' : '/logo-instituto.svg'}
           onError={(e) => {
-            const target = e.currentTarget as HTMLImageElement;
-            if (target.src !== '/logo-instituto.png') {
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/logo-instituto.png')) {
               target.src = '/logo-instituto.png';
-            } else if (target.src !== LOGO_IMAGE) {
-              target.src = LOGO_IMAGE;
             }
           }}
           alt="Instituto Caminho e Forma"
@@ -106,11 +102,9 @@ export const InstituteLogo: React.FC<InstituteLogoProps> = ({
       <img
         src="/logo-emblema.svg"
         onError={(e) => {
-          const target = e.currentTarget as HTMLImageElement;
-          if (target.src !== '/logo-instituto.svg') {
-            target.src = '/logo-instituto.svg';
-          } else if (target.src !== LOGO_IMAGE) {
-            target.src = LOGO_IMAGE;
+          const target = e.currentTarget;
+          if (!target.src.endsWith('/logo-instituto.png')) {
+            target.src = '/logo-instituto.png';
           }
         }}
         alt="Emblema Instituto Caminho e Forma"

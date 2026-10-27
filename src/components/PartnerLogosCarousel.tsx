@@ -136,7 +136,7 @@ const PARTNERS: PartnerLogo[] = [
       <svg viewBox="0 0 160 55" className="h-9 sm:h-11 w-auto" fill="currentColor">
         {/* Leaf icon */}
         <path d="M22 36C22 22 32 14 42 14C42 28 32 36 22 36Z" fill="currentColor" />
-        <path d="M22 36C29 32 35 24 38 18" stroke="#f5f1ea" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+        <path d="M22 36C29 32 35 24 38 18" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" fill="none" />
         {/* Text */}
         <text x="96" y="30" textAnchor="middle" fontSize="20" fontWeight="800" letterSpacing="0.08em" fontFamily="sans-serif">
           AgroFuturo
@@ -168,61 +168,52 @@ const PARTNERS: PartnerLogo[] = [
 ];
 
 export const PartnerLogosCarousel: React.FC = () => {
-  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = React.useState(false);
 
-  // Permite rolar horizontalmente com o scroll padrão do mouse (roda do mouse)
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    if (scrollRef.current) {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault();
-        scrollRef.current.scrollLeft += e.deltaY * 1.2;
-      }
-    }
-  };
-
-  const scrollBy = (offset: number) => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
-    }
-  };
+  // Triplicamos os logos para garantir efeito contínuo infinito e sem saltos visíveis
+  const duplicatedPartners = [...PARTNERS, ...PARTNERS, ...PARTNERS];
 
   return (
-    <div className="w-full relative group/carousel py-3 select-none">
-      {/* Botão anterior (surgimento suave no hover) */}
-      <button
-        type="button"
-        onClick={() => scrollBy(-260)}
-        className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-[#1c1917] shadow-md border border-[#e7e2da] flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
-        aria-label="Rolar para a esquerda"
-      >
-        <span className="material-symbols-outlined text-[20px]">chevron_left</span>
-      </button>
+    <div 
+      className="w-full relative group/carousel py-2 select-none overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
+      <style>{`
+        @keyframes marqueeScroll {
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(calc(-100% / 3), 0, 0);
+          }
+        }
+        .partner-marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marqueeScroll 34s linear infinite;
+          will-change: transform;
+        }
+        .partner-marquee-track.paused {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-      {/* Botão próximo (surgimento suave no hover) */}
-      <button
-        type="button"
-        onClick={() => scrollBy(260)}
-        className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white text-[#1c1917] shadow-md border border-[#e7e2da] flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-opacity cursor-pointer"
-        aria-label="Rolar para a direita"
-      >
-        <span className="material-symbols-outlined text-[20px]">chevron_right</span>
-      </button>
+      {/* Sombras suaves nas extremidades para indicar continuidade e transição suave */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-10 pointer-events-none" />
 
-      {/* Sombras suaves nas extremidades para indicar continuidade */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-[#f5f1ea] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-[#f5f1ea] to-transparent z-10 pointer-events-none" />
-
-      {/* Container com scroll pelo mouse wheel e touch drag - SEM CARDS RETANGULARES (exatamente como Imagem 1) */}
-      <div
-        ref={scrollRef}
-        onWheel={handleWheel}
-        className="flex items-center gap-10 sm:gap-14 lg:gap-18 overflow-x-auto scrollbar-none px-6 sm:px-12 py-3 scroll-smooth cursor-grab active:cursor-grabbing justify-start xl:justify-center"
+      {/* Track que rola automaticamente sem necessidade de clique */}
+      <div 
+        className={`partner-marquee-track items-center gap-10 sm:gap-14 lg:gap-18 py-3 ${isPaused ? 'paused' : ''}`}
       >
-        {PARTNERS.map((partner) => (
+        {duplicatedPartners.map((partner, index) => (
           <div
-            key={partner.id}
+            key={`${partner.id}-${index}`}
             title={partner.name}
-            className="shrink-0 flex items-center justify-center cursor-pointer transition-all duration-300 filter grayscale text-[#44403c] opacity-65 hover:opacity-100 hover:grayscale-0 hover:text-[#1c1917] hover:scale-105"
+            className="shrink-0 flex items-center justify-center cursor-pointer transition-all duration-300 filter grayscale text-slate-500 opacity-65 hover:opacity-100 hover:grayscale-0 hover:text-slate-900 hover:scale-105"
           >
             {partner.render()}
           </div>

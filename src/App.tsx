@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import { NavPage, Course, MarketProduct } from './types';
+import { NavPage, Course, MarketProduct, Project } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
 import { CoursesView } from './components/CoursesView';
 import { MarketView } from './components/MarketView';
 import { ProjectsView } from './components/ProjectsView';
+import { ProjectDetailView } from './components/ProjectDetailView';
 import { PartnersView } from './components/PartnersView';
 import { DonationModal } from './components/DonationModal';
 import { CourseEnrollModal } from './components/CourseEnrollModal';
@@ -18,12 +19,23 @@ import { VolunteerModal } from './components/VolunteerModal';
 import { TransparencyView } from './components/TransparencyView';
 import { SupporterPortalView } from './components/SupporterPortalView';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
+import { PROJECTS } from './data/mockData';
 
 const pathToPage = (pathname: string): NavPage => {
+  if (typeof window !== 'undefined') {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get('id')) {
+      return 'detalhes-projeto';
+    }
+  }
   const segment = pathname.replace(/^\/+/, '').split('/')[0].split('?')[0].split('#')[0];
+  if (segment === 'detalhes-projeto' || segment === 'projeto') {
+    return 'detalhes-projeto';
+  }
   const validPages: NavPage[] = [
     'inicio',
     'projetos',
+    'detalhes-projeto',
     'cursos-e-capacitacao',
     'feira-virtual',
     'seja-parceiro',
@@ -39,6 +51,17 @@ export default function App() {
       return pathToPage(window.location.pathname);
     }
     return 'inicio';
+  });
+  const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const id = searchParams.get('id');
+      if (id) {
+        const found = PROJECTS.find((p) => p.id === id);
+        if (found) return found;
+      }
+    }
+    return PROJECTS[0] || null;
   });
   const [donationModalOpen, setDonationModalOpen] = useState(false);
   const [selectedProjectForDonation, setSelectedProjectForDonation] = useState<string | undefined>(undefined);
@@ -97,11 +120,29 @@ export default function App() {
   // Sincroniza histórico do navegador com as páginas do site
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentPage(pathToPage(window.location.pathname));
+      const page = pathToPage(window.location.pathname);
+      setCurrentPage(page);
+      const searchParams = new URLSearchParams(window.location.search);
+      const id = searchParams.get('id');
+      if (id) {
+        const found = PROJECTS.find((p) => p.id === id);
+        if (found) setSelectedProject(found);
+      }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  const handleSelectProject = (project: Project) => {
+    setSelectedProject(project);
+    setCurrentPage('detalhes-projeto');
+    window.history.pushState({}, '', `/projetos?id=${project.id}`);
+    if ((window as any).__lenis) {
+      (window as any).__lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   // Handle page navigation
   const handleNavigate = (page: NavPage) => {
@@ -146,7 +187,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fbf9f5] text-[#1c1917] font-sans selection:bg-[#b45309] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-[#b45309] selection:text-white">
       {/* Persistent Navigation Header */}
       <Header
         currentPage={currentPage}
@@ -156,7 +197,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="w-full bg-[#fbf9f5] flex-1">
+      <main className="w-full bg-white flex-1">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}
@@ -172,6 +213,7 @@ export default function App() {
                 onOpenDonation={handleOpenDonation}
                 onOpenTransparency={() => handleNavigate('transparencia')}
                 onSelectProduct={(p) => setSelectedProductForPurchase(p)}
+                onSelectProject={handleSelectProject}
               />
             )}
 
@@ -192,6 +234,15 @@ export default function App() {
             {currentPage === 'projetos' && (
               <ProjectsView
                 onOpenDonation={handleOpenDonation}
+                onOpenTransparency={() => handleNavigate('transparencia')}
+                onSelectProject={handleSelectProject}
+              />
+            )}
+
+            {currentPage === 'detalhes-projeto' && (
+              <ProjectDetailView
+                project={selectedProject || PROJECTS[0]}
+                onBack={() => handleNavigate('projetos')}
                 onOpenTransparency={() => handleNavigate('transparencia')}
               />
             )}
@@ -258,7 +309,7 @@ export default function App() {
       />
 
       {/* Botão Flutuante Oficial do WhatsApp */}
-      <WhatsAppFloatingButton />
+      {!donationModalOpen && <WhatsAppFloatingButton />}
     </div>
   );
 }

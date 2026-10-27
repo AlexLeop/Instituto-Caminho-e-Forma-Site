@@ -1,11 +1,11 @@
-import { Course, MarketProduct, Project, Testimonial } from '../types';
+import type { Course, MarketProduct, Project, Testimonial } from '../types.ts';
 
-export const HERO_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAa2n_FxY0ig5u09e9VZroxsNn2nv0rm5DWbv9iwOgH5BYzQEKqQX0tuKNA5nC1wrVKqhWO8LT_ePDaQjWjjmzTmM0ifxMKpBnT2LSXs8wypLfeBaOvIVQgemoDT0JB4DVNDe-Pm_dTHnjY4fK3B4TozqGW0VzoZJY_djUz9OkcMVwtn1Rzd2YYeNL7nIL2iAOG89OvYG_wPVcVu51pXV-d_QnBTlGAah08jkY6tHc_pE5EBH0jQwtC';
-export const ABOUT_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAZE0EGrT_R9Jhhyp0ANRsDJUQIERUvMBoaOqKkkPg9tNF2BQsD7WCjU6Rvr6iNhjDCD9k9uw0O35J0G-zOtq3c6f_tGp_ObxvaljWgvCLtu3n7YseEWlM7fbCfRKP0ZLUJn0WpElbIJ9pNneVgIWtRr6nQvjhQ-dzGKJk8T_CrNeYSWf8WdlUw0lcSv-IDWKSt3W3jnJ26kuVQU5ynOeWTfwI58DLo1_958aiBB2zbszM2LzaI_D9L';
+export const HERO_IMAGE = '/hero/capa.jpeg';
+export const ABOUT_IMAGE = '/equipe/Pastor Jorge Antônio Ramos.jpg';
 export const LOGO_IMAGE = '/logo-instituto.png';
-export const TECH_COURSE_BANNER = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCDJI8uZnE4EB9s-R62CzunfL1582PkDuCgQOgDGJ5bJX4nmyqmyOX4ypJVP_01-vZG2Db5_beRU0ry8C_r9-NNG7Yk4rX8BvdK9aoHg4lnebFFNQ1sQfnHMe17R1MUh3zrOet4_RYk-JynROyVDZVd1Khsus-JRwQjIdDMAXO2nw9kMsE5HElh4cjeVE3BhkLxZJ7epTtaUWJCz9Ob98iQ0jBK8J3khOm5SXpINepmX103kZJOg_TJ';
-export const MARKET_HERO_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuD5bLaeTmocRjxrmJ8QVmbhS2RFNkN8TYB1V5UxquqjgDwGyHQ295ZnFXS79Hxvb1TCk2s49rI1BcF_kh7ys46O572iTvIsk0T9j_glopC6L3sE16jxVErkTVWa8UUXPZeLEBVPJDNdd2AcqibsXq0bKhIrXJ8lvEyDySS4fw1Z-Alo5SX2VIuzIab8YSijKkKqje-ofGSHE9LsU6l3EHszgn1uQ5MtUIhHlSPhCEDXOAw2hQJuB4Pt';
-export const CLEUSA_PORTRAIT = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCuIASta7njQWwCUpKtnAY0h_qEnMUZ0ov8vj0x3JwqD6mE5t9Qq3t2kB9MFFbBlJ-t0cjmINa0rAaWa_ru2OUvlQpWGxAp1RgTKAOfQFMamTo03hmJa47QJEAw7XjpcmnV4jm5yu02dABc9r9YJ3ywhuyxgx8Y9Y7aVui4NdY-_K5uqItk-s_cJm8d4RdjoyRnmC7Y2PDn1vFRtVXxgLL8alAYsRd38zz5wRQw79JbKEgjCSDUjFu6';
+export const TECH_COURSE_BANNER = '/cursos/informatica-para-todos/capa.png';
+export const MARKET_HERO_IMAGE = '/feira/hero.jpg';
+export const CLEUSA_PORTRAIT = '/feira/cleusa.jpg';
 
 export interface HeroSlide {
   id: string;
@@ -16,169 +16,176 @@ export interface HeroSlide {
 
 export const HERO_SLIDES: HeroSlide[] = [
   {
-    id: 'crianca-esperanca',
-    url: HERO_IMAGE,
-    alt: 'Criança sorridente acolhida com afeto e dignidade no Instituto Caminho e Forma',
-    contextTag: 'Acolhimento & Infância'
+    id: 'hero-ballet',
+    url: '/hero/capa.jpeg',
+    alt: 'Alunas do Ballet Infantil na sede do Instituto Caminho e Forma',
+    contextTag: 'Dança & Expressão Cultural'
   },
   {
-    id: 'equipe-instituto',
-    url: '/hero/hero-equipe.jpg',
-    alt: 'Equipe de educadores e voluntários do Instituto Caminho e Forma com uniforme oficial',
-    contextTag: 'Nossa Equipe em Campo'
+    id: 'hero-mostra-danca',
+    url: '/hero/WhatsApp Image 2026-10-25 at 13.30.08 (3).jpeg',
+    alt: 'Apresentação cultural e dança dos jovens do Instituto',
+    contextTag: 'Arte, Cultura & Movimento'
   },
   {
-    id: 'idosos-oficina',
-    url: '/hero/hero-idosos.jpg',
-    alt: 'Idosos participando de oficinas de convivência, artesanato e inclusão social',
-    contextTag: 'Cidadania 60+'
+    id: 'hero-dancas-urbanas',
+    url: '/hero/WhatsApp Image 2026-10-25 at 13.30.08 (4).jpeg',
+    alt: 'Oficinas de Danças Urbanas e ritmo promovendo protagonismo juvenil',
+    contextTag: 'Juventude & Protagonismo'
   },
   {
-    id: 'jovens-tecnologia',
-    url: '/hero/hero-jovens.jpg',
-    alt: 'Adolescentes e jovens da comunidade em capacitação tecnológica e profissional',
-    contextTag: 'Juventude & Futuro'
+    id: 'hero-sede-oficinas',
+    url: '/hero/WhatsApp Image 2026-10-25 at 13.34.04.jpeg',
+    alt: 'Práticas corporais e momentos de integração na sede do Instituto',
+    contextTag: 'Convivência Comunitária'
   },
   {
-    id: 'familias-horta',
-    url: '/hero/hero-familia.jpg',
-    alt: 'Famílias acolhidas na horta comunitária e cozinha escola do Instituto',
-    contextTag: 'Famílias & Soberania Alimentar'
+    id: 'hero-sede-solidaria',
+    url: '/hero/WhatsApp Image 2026-10-25 at 13.34.10 (1).jpeg',
+    alt: 'Solidariedade, acolhimento socioassistencial e apoio às famílias de Itaguaí',
+    contextTag: 'Solidariedade & Acolhimento'
   }
 ];
 
 export const COURSES: Course[] = [
   {
-    id: 'dev-web',
-    title: 'Iniciação ao Desenvolvimento Web & Tecnologia Básica',
-    category: 'tech',
-    categoryLabel: 'Tecnologia & Futuro',
-    mode: 'presencial',
-    modeLabel: 'Presencial na Sede',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-E6VOfLjgZoeS1adI38kGSRzJeD4c6gg054FJBTHaALpxrfFf_E3qpmC-nkSU3xop4T8Zhbn3aWmipmh2R3_BNDYPcwuNlVySNPfeGyGom5cfGkmw2kjjjxXrNqcL-I52Bpoz6KfEz0yokvCOlCNci2keiOtMZ8tOGXVuAF40U7WOxnI656aN1VnDK8z08rClZ7TMkMBMxY0q2jfL7JGhaIbjNeSRXG1NQ_B3CEsPFRAegIDXa-Mr',
-    badge: '6 vagas restantes',
-    badgeType: 'hot',
-    description: 'Aprenda lógica de programação, HTML, CSS e uso prático de ferramentas digitais para ingressar no mercado que mais contrata.',
-    hours: '80 Horas',
-    shift: 'Noturno (19h - 22h)',
-    requirementOrDetail: {
-      label: 'Pré-requisito',
-      value: 'Ens. Fundamental'
-    },
-    startDate: 'Maio / 2026',
-    investment: 'R$ 75/mês (Contribuição Social)'
-  },
-  {
-    id: 'panificacao',
-    title: 'Panificação Artesanal e Confeitaria Comunitária',
-    category: 'gastro',
-    categoryLabel: 'Gastronomia',
-    mode: 'presencial',
-    modeLabel: 'Presencial na Sede',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLoaTGRDzATwMWQGYQ5QUKD8TVUgwo36swWnq73-pVP4rSkC66PBsuNLJW-txijgRD42AZygUGQUztuCE_DiSFCFfZYOfzcz99D-EsY0LamU00T8JAv8uB3OwQJOiMgn8EkzH-4YaE4G9Otklh6TLQ9yp8ZeHH0yEJ5LC8yLU2UwXbqlSscBNI8ptzrV9NdC9vpXM1iq7ic2G4Yr3tSOobtseEL30qdAbVmd99_xR6sVS3iMZqJfgP',
-    badge: 'Apenas 3 vagas!',
-    badgeType: 'hot',
-    description: 'Técnicas de fermentação natural, produção de pães rústicos, bolos e doces para comercialização autônoma. Insumos inclusos.',
-    hours: '60 Horas',
-    shift: 'Matutino (08h - 12h)',
-    requirementOrDetail: {
-      label: 'Pré-requisito',
-      value: 'Nenhum'
-    },
-    startDate: 'Abril / 2026',
-    investment: 'R$ 60/mês (Contribuição Social)'
-  },
-  {
-    id: 'costura',
-    title: 'Costura Criativa & Upcycling Sustentável',
-    category: 'crafts',
-    categoryLabel: 'Moda Sustentável',
-    mode: 'presencial',
-    modeLabel: 'Presencial na Sede',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAKiXG0nbyB9jWUCphL8vHO9YFAj7-vLqsOOTxeKWFnMAjeFH9ieavyxftAech-EfPkDHE9v7Ew3LM1njCyE8_3VzBV5aXi55aHLjlUY7gWqKPHWVVL0U4JBkNTCqmzjv5NHchEjYGWknIOTUId4-WqVVFTRzboLOKQX-A3q6n6fi-kN77xU1P2ggYH08aCK-cs0-x_ChffgN8FxVSM2wO1iVsQKHYl9pdWBkAGBKvnAwpmdcP7qdNo',
-    badge: 'Turma em formação',
-    badgeType: 'forming',
-    description: 'Modelagem básica, corte e costura em maquinário industrial do instituto com foco em economia circular e ecodesign periférico.',
-    hours: '90 Horas',
-    shift: 'Vespertino (14h - 18h)',
-    requirementOrDetail: {
-      label: 'Recursos',
-      value: 'Máquinas inclusas'
-    },
-    startDate: 'Maio / 2026',
-    investment: 'R$ 65/mês (Contribuição Social)'
-  },
-  {
-    id: 'gestao-mei',
-    title: 'Gestão Financeira & MEI na Prática',
+    id: 'empreendedorismo',
+    title: 'Empreendedorismo & Gestão de Pequenos Negócios',
     category: 'business',
     categoryLabel: 'Empreendedorismo',
-    mode: 'semipresencial',
-    modeLabel: 'Semipresencial',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAf627poDi_Rpb-pM6mfnSGzoJxDuQkf5cLV4G4QdkjJibjALFQ5KG6U-y7dG0VcUyax7Y6Zk6s0hZSfx6BW-IGtyTfX8vtuUgHPw-CMtoL3k4F29aiiOqgA19ZqBeX0UIltH9QG_gTS3jBtO4IHX04mSUPBYFlPsSAjI-nd5l7xKeGwfXaGPxnkmdptmjbiVPatZV2-8LMjoMgTeoMs4p3KrgHtMormjIxqSlX5_qF9NL3iRJc8oUZ',
-    badge: 'Consultoria 1 a 1',
-    badgeType: 'open',
-    description: 'Regularização de CNPJ, precificação correta de produtos/serviços, fluxo de caixa simplificado e estratégias de vendas via WhatsApp.',
-    hours: '40 Horas',
-    shift: 'Sábados + Online',
-    requirementOrDetail: {
-      label: 'Mentoria',
-      value: '2 sessões inclusas'
-    },
-    startDate: 'Abril / 2026',
-    investment: 'R$ 50/mês (Contribuição Social)'
-  },
-  {
-    id: 'aux-adm',
-    title: 'Auxiliar Administrativo & Atendimento ao Cliente',
-    category: 'business',
-    categoryLabel: 'Carreira & Empregabilidade',
     mode: 'presencial',
     modeLabel: 'Presencial na Sede',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBlm6TEtnnJMgfsSY6G7K_pgi5zECyJqPaIScSLRiiO_MSYGNVkR82WOQU2U-Z2E7L26jRd5W5Ht1AYtAUjQHV_32G4ec-U5Bt4-4AnFTL6a3DKl1r0Zwrl4D0xImC_B0m3at2EzQbsE7hk0361ysbkx77lxB6fXk4iMQzm5LoX82ujWri51Ff4zd7jyDdWqbe6rHmIwq7-kO5aS7B7s13MFmtRahOqwsq2L6gqaAYchPwpNstLxb6Q',
-    badge: 'Parcerias CLT',
-    badgeType: 'open',
-    description: 'Redação corporativa, planilhas essenciais, rotinas de escritório e módulo prático de simulação de entrevistas de emprego.',
+    image: '/cursos/empreendedorismo/capa.png',
+    badge: 'Inscrições Abertas',
+    badgeType: 'hot',
+    description: 'Capacitação prática em criação de modelos de negócios, precificação, marketing digital para redes sociais e formalização MEI para empreendedores comunitários.',
     hours: '60 Horas',
-    shift: 'Vespertino (14h - 18h)',
+    shift: 'Noturno (19h - 22h)',
     requirementOrDetail: {
-      label: 'Extras',
-      value: 'Elaboração de Currículo'
+      label: 'Público',
+      value: 'Jovens e Adultos'
     },
-    startDate: 'Maio / 2026',
-    investment: 'R$ 55/mês (Contribuição Social)'
+    startDate: 'Próxima Turma',
+    investment: 'Gratuito / Contribuição Social Voluntária'
   },
   {
-    id: 'hortas-agro',
-    title: 'Hortas Urbanas e Agroecologia Periférica',
+    id: 'eletricista-predial',
+    title: 'Eletricista Predial e Residencial',
     category: 'crafts',
-    categoryLabel: 'Meio Ambiente & Renda',
+    categoryLabel: 'Elétrica & Infraestrutura',
     mode: 'presencial',
     modeLabel: 'Presencial na Sede',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCgzaPTPD0SFPZOfUPIDfhUKkfqqfwTcH49Jfshas5QZrLr5JIFPV4rraMFZFRW-kkQlhKtbXGi8ZKvUtnpK52Y_mv_i7tWzuOLb5hnON4G93jJlhiJ-vtXSfJQqxo6MZ7ck3UP0je-aA1fgZLskLv5hun3UZSIBAn4GVZgYdxz1a8aeAKoo-63xEfEJrDxvkpeFVhI8HXGppOnbz7-c6eIe3DbqRO2YPM9BjYDmywdkVUj7iUgOwN',
-    badge: 'Turma Aberta',
-    badgeType: 'open',
-    description: 'Práticas de compostagem, cultivo orgânico em pequenos espaços, plantas medicinais e soberania alimentar familiar.',
-    hours: '50 Horas',
+    image: '/cursos/eletricista-predial/capa.png',
+    badge: 'Alta Empregabilidade',
+    badgeType: 'hot',
+    description: 'Formação técnica completa em instalações elétricas monofásicas e bifásicas, circuitos residenciais, quadros de disjuntores e noções fundamentais de segurança NR-10.',
+    hours: '80 Horas',
     shift: 'Sábados (08h - 13h)',
     requirementOrDetail: {
       label: 'Prática',
-      value: 'Horta Comunitária'
+      value: 'Bancada com Ferramental'
     },
-    startDate: 'Abril / 2026',
-    investment: 'R$ 45/mês (Contribuição Social)'
+    startDate: 'Próxima Turma',
+    investment: 'Gratuito / Contribuição Social Voluntária'
+  },
+  {
+    id: 'informatica-para-todos',
+    title: 'Informática para Todos & Inclusão Digital',
+    category: 'tech',
+    categoryLabel: 'Tecnologia Básica',
+    mode: 'presencial',
+    modeLabel: 'Presencial na Sede',
+    image: '/cursos/informatica-para-todos/capa.png',
+    badge: 'Aberto à Comunidade',
+    badgeType: 'hot',
+    description: 'Curso introdutório e intermediário em sistemas operacionais, navegação segura na internet, digitação, pacote Office/Google Docs e serviços digitais de cidadania (Gov.br, Carteira de Trabalho Digital).',
+    hours: '40 Horas',
+    shift: 'Manhã ou Tarde',
+    requirementOrDetail: {
+      label: 'Estrutura',
+      value: 'Laboratório de PCs'
+    },
+    startDate: 'Turmas Contínuas',
+    investment: 'Gratuito / Contribuição Social Voluntária'
+  },
+  {
+    id: 'conserto-celular',
+    title: 'Conserto e Manutenção de Celulares e Smartphones',
+    category: 'tech',
+    categoryLabel: 'Tecnologia Aplicada',
+    mode: 'presencial',
+    modeLabel: 'Presencial na Sede',
+    image: '/cursos/conserto-celular/capa.png',
+    badge: 'Renda Rápida',
+    badgeType: 'hot',
+    description: 'Aprenda do zero a troca de telas touch, troca de conectores de carga, substituição de baterias, testes com multímetro, desoxidação e reinstalação de software Android/iOS.',
+    hours: '60 Horas',
+    shift: 'Terças e Quintas (19h - 21h30)',
+    requirementOrDetail: {
+      label: 'Metodologia',
+      value: 'Prática em Bancada'
+    },
+    startDate: 'Próxima Turma',
+    investment: 'Gratuito / Contribuição Social Voluntária'
+  },
+  {
+    id: 'conserto-computadores',
+    title: 'Manutenção e Conserto de Computadores e Notebooks',
+    category: 'tech',
+    categoryLabel: 'Hardware & TI',
+    mode: 'presencial',
+    modeLabel: 'Presencial na Sede',
+    image: '/cursos/conserto-computadores/capa.png',
+    badge: 'Formação Completa',
+    badgeType: 'hot',
+    description: 'Diagnóstico avançado de falhas em placas-mãe, montagem e desmontagem completa de desktops e notebooks, formatação de SSDs, configuração de BIOS/UEFI e limpeza preventiva.',
+    hours: '70 Horas',
+    shift: 'Segundas e Quartas (19h - 21h30)',
+    requirementOrDetail: {
+      label: 'Certificado',
+      value: 'Técnico de Suporte'
+    },
+    startDate: 'Próxima Turma',
+    investment: 'Gratuito / Contribuição Social Voluntária'
+  }
+];
+
+export const TEACHERS = [
+  {
+    id: 'mariana',
+    name: 'Mariana Vasconcelos',
+    role: 'Engenheira de Software & Mentora Tech',
+    avatar: '/professores/mariana.jpg',
+    quote: 'Ver um jovem periférico subindo seu primeiro site no ar e conquistando seu primeiro estágio é o que me move todos os fins de semana.',
+    badge: 'Voluntária há 3 anos'
+  },
+  {
+    id: 'carlos',
+    name: 'Chef Carlos Eduardo',
+    role: 'Mestre Padeiro & Consultor',
+    avatar: '/professores/carlos.jpg',
+    quote: 'Ensinar o ofício do trigo é devolver autonomia. Nossos alunos saem da sala vendendo para os vizinhos e abrindo seus próprios pontos.',
+    badge: 'Voluntário há 5 anos'
+  },
+  {
+    id: 'beatriz',
+    name: 'Beatriz Mendonça',
+    role: 'Estilista & Especialista em Upcycling',
+    avatar: '/professores/beatriz.jpg',
+    quote: 'A costura é ferramenta de libertação feminina e geração de renda imediata com baixo investimento inicial e alta criatividade.',
+    badge: 'Voluntária há 2 anos'
   }
 ];
 
 export const MARKET_PRODUCTS: MarketProduct[] = [
   {
-    id: 'cesta-agro',
+    id: 'cesta-agroecologica',
     title: 'Cesta Agroecológica da Horta Comunitária',
     category: 'hortifruti',
     categoryTag: 'Hortifruti & Cestas',
     categoryTagType: 'secondary',
     badge: 'Colheita Semanal',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB7eHWh1ApXomcCJcJKhCGKXgxkKKvGHPO5Kj2U3HtRjYZDXT-WFi3nxi2ImUKPs9ymCKpKKRDg_iwLHzN86z7AAgS8EqaANbd2isp5iNG71nmcZkQ-f-BT5YMLgFgzCLWuIMaB2iI6exe9HXb5h_VaWRZqAWHPvCuWJ7yxREO1ctn11218iV9azzjpw30czs-zWDJcDNyK0P1PupB9hBOy5792GxoOlPd_Ac_RHi06ZhdrAah2dGuI',
+    image: '/feira/cesta-agroecologica.jpg',
     producer: 'Coletivo Terra Viva',
     producerRole: 'Agricultores Familiares',
     producerIcon: 'eco',
@@ -194,7 +201,7 @@ export const MARKET_PRODUCTS: MarketProduct[] = [
     categoryTag: 'Moda & Acessórios',
     categoryTagType: 'primary',
     badge: 'Feito à Mão',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2HqsgaUCBcdjicZsDNpWx6ISZ6dNLKNLt864q50oBN1G1NJNAUxEann1fc0uW51vt1_y2pZEyEWkWERCKGRNDEPaVH2RNDYkE1SnbrcFGw-lUT5AGaW2g1nPRqzVFhPR97OY5s1zC7Eh5lAYBcrFZbRa10v_hlQmXd3bqNKgBW8ZLxNoT1Oej4Tz1lIiimjMZtu9vZyIEj_lAspGP_r4BfFpOYRU55q2g7dAUDrT6lHt1iOqFkazH',
+    image: '/feira/ecobag-bordada.jpg',
     producer: 'Dona Cleusa (Costura Criativa)',
     producerRole: 'Costureira do Núcleo Leste',
     producerIcon: 'person',
@@ -210,7 +217,7 @@ export const MARKET_PRODUCTS: MarketProduct[] = [
     categoryTag: 'Alimentos Artesanais',
     categoryTagType: 'secondary',
     badge: 'Sem Conservantes',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBjxXQ8pK5FSiFoGJNbeYLn0NvXFUahxVrCm_OxjzqaLfTD46pN4i_Xwr2RXQI3QGg6IU3MLGvCaEAu6ZRHrTCrgHa_K5cFeMzuzuhJDC2KE1qXKpMb6iisUEaJcMI_F8HCRZW7zzlWcaC6LcxH-GTR6FKph4nyqa1DuiptaUXpKg6gOLyanCiHcOhi5eklvFzN1Bn-vzmMoYr1geqUS9I9fLBCjPeIGBKQ6niosKgCKFIbbkOFm09g',
+    image: '/feira/geleias-artesanais.jpg',
     producer: 'Cozinha Comunitária Sabor da Terra',
     producerRole: 'Alunas de Confeitaria',
     producerIcon: 'soup_kitchen',
@@ -218,135 +225,953 @@ export const MARKET_PRODUCTS: MarketProduct[] = [
     priceFormatted: 'R$ 32,00',
     description: 'Receita artesanal sem aditivos químicos. Frutas de época preparadas com carinho na cozinha escola do instituto.',
     repassePercent: 100
-  },
-  {
-    id: 'tapete-tear',
-    title: 'Tapete Artesanal em Tear Sustentável',
-    category: 'decoracao',
-    categoryTag: 'Artesanato & Décor',
-    categoryTagType: 'primary',
-    badge: 'Fibras Recicladas',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmGhvOdEJKhYR6gYV999bCJjAhtwM7SGyP9-8Ai6j8WhC2ul1LfOdCKuS2s3o1S4mlG7hAgiE_6TUd_EEC8iBmmWIt0It44UpFXQCOQo57gWeZANl0BvuTmx_cb2z3PBa46DEBdcQpiuZsVgo5M6JhdfxYbFqv1t78T3FpVKy9f6-y3HavUbTJ8fAFDKT6__vjptghihfv4K8tuAFOft6_RJhhCg_zjsaY0LwIbAtyYlhKuaTRtu9j',
-    producer: 'Maria & Filhas Tecelãs',
-    producerRole: 'Mestres de Ofício',
-    producerIcon: 'groups',
-    price: 65.0,
-    priceFormatted: 'R$ 65,00',
-    description: 'Confeccionado em tear manual com resíduos têxteis reaproveitados. Maciez, durabilidade e consciência ambiental para sua casa.',
-    repassePercent: 100
-  },
-  {
-    id: 'caderno-reciclado',
-    title: 'Caderno Artesanal Reciclado & Costura Japonesa',
-    category: 'decoracao',
-    categoryTag: 'Papelaria & Arte',
-    categoryTagType: 'primary',
-    badge: 'Papel 100% Reciclado',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBEVaFgfOePagj1-AKURJZCZWTvxans6nyAbsGzcHT9eWnZH2c84gXevHNyI86r1cc8cxaMyPloP4Vk7owrRE3kIHtCFT3AhkqKjc1ju6RBNXpBd_I2-BpkbipfCctApfydOdQAHWLGqa_5k-xbDrP5-LuMzILP9Y5Juk1U3ZwJGR6y86mjzHZSI-zbIpx301P40QbDs9fc_nmEptRpVvg6Y6Yo7HNgP1rWyA9EYuuWuLmWfoptP4h6',
-    producer: 'Oficina Jovem Maker',
-    producerRole: 'Jovens Aprendizes',
-    producerIcon: 'school',
-    price: 28.0,
-    priceFormatted: 'R$ 28,00',
-    description: 'Papéis reciclados encadernados à mão por adolescentes da comunidade, unindo design tradicional oriental e consciência ecológica.',
-    repassePercent: 100
-  },
-  {
-    id: 'kit-panificacao',
-    title: 'Kit Panificação: Pães Artesanais & Biscoitos',
-    category: 'alimentos',
-    categoryTag: 'Panificação & Café',
-    categoryTagType: 'secondary',
-    badge: 'Fornada do Dia',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAcv63Hg87bmh4DLfaDih2XGkoA91PqBItGiH9ZdrhgP0bwrtY_oDc8Ea_5rW_5K25xi57UwoGH-1Y6NzNywxLoZ5T6hqw3KHhms7eph50oizUx9ltcUCSKx86roe7Ejgd6jGKDDJ2n7svHUDdri-igClO0g89xDeQfHxTHP8PfXIGQOX4heTB4sHSKADluNcUg4IdjUtR2OQ3euMk-xBNQaCwt74JIhwMR79HqvXWHeo7Efe_D5WKJ',
-    producer: 'Formandas de Confeitaria Social',
-    producerRole: 'Alunas Formadas',
-    producerIcon: 'bakery_dining',
-    price: 35.0,
-    priceFormatted: 'R$ 35,00',
-    description: 'Pão de fermentação natural e biscoitos amanteigados preparados artesanalmente pelas alunas do polo de capacitação em gastronomia.',
-    repassePercent: 100
   }
 ];
 
 export const PROJECTS: Project[] = [
+  // ==========================================
+  // 1. DANÇA & CULTURA (FOTOS REAIS LOCAIS)
+  // ==========================================
   {
-    id: 'educacao-amanha',
-    title: 'Educação do Amanhã',
-    category: 'Educação Infantil',
-    categoryTagType: 'secondary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAV39iLjpaBQ7Us-9eZMfubvMj_-w4x02rYGRvkt5RyEaLN0Jr63kiICGoYuvOoIVWxoLkBo55gvd3MTZULecaCborSOTSp7TVWwKPjx-BPwEqNwn7rtQWUZccEBAgj-p3wyHtKecyWXx-Zr8bepOjNpMcHyNdFZJNAjUEzJ_zB2EOO79EKfDiE79JXYpmdDR6SgWV3zNX13jI-paUpo2JXyktFmXIjLBgMX2Jjanx64MPyB_M7EaSZ',
-    progressPercent: 78,
-    description: 'Oficinas de reforço de letramento, raciocínio lógico e inclusão digital para 450 crianças da periferia em contraturno escolar.',
-    raisedAmount: 39200,
-    goalAmount: 50000,
-    impactBeneficiaries: '450 crianças e suas famílias',
-    status: 'Ativo'
-  },
-  {
-    id: 'mesa-farta',
-    title: 'Mesa Farta & Nutrição Solidária',
-    category: 'Segurança Alimentar',
+    id: 'ballet-infantil',
+    title: 'Ballet Clássico Infantil & Juvenil',
+    category: 'Dança & Cultura',
     categoryTagType: 'primary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBYL7j6g5ZztY7_vQZKCKwP_UIknd4uGBAZFozV2eEMB1S0mwj4jPWZLK_9chWnUj6eR_aMVgxz6zNbaawSgOpi2DtfJVcayyLLZssXtiWo9qv68porJ7e5bZlzZxHiOZGzfyQ18n9SLb0JIhxDAsWgy1luzAXfZS87ZvRHAriLmU5WNKEFHQY3PIthhwyqwF-7s515hyrR_aR5DW2FEpJ-87No5yVxdqKB8vgANus7DeeIPK_5WoCM',
-    progressPercent: 85,
-    description: 'Distribuição mensal de cestas de alimentos agroecológicos de produtores locais e oficinas práticas de aproveitamento integral de alimentos.',
-    raisedAmount: 29800,
-    goalAmount: 35000,
-    impactBeneficiaries: '320 famílias em risco nutricional',
-    status: 'Ativo'
-  },
-  {
-    id: 'costurando-autonomia',
-    title: 'Costurando Autonomia Feminina',
-    category: 'Empoderamento & Renda',
-    categoryTagType: 'tertiary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCgymjJJFiF-HbTnlexyPeaFwG6_n11ef5sXiSWtXO69kVbFXpQKI2OqxNATkENpRLeVJCYw4hOAlmRpxb0NNtWv39nUShQt5Ky_ZzCHK3_PV1PDFF31aduqj1vw3HQ9zIIOB5oxDvdGVNAeyI0DJr4inHlrlrNxPx-bg47VxbvFQCyLbH9IN-9Yz9YK4xw-iiKSWKkers-oP0BXDuvmpmpXLT4MzW-RpaTUgpEXc1oPfnxTgqmZHzR',
-    progressPercent: 64,
-    description: 'Capacitação completa em corte, modelagem e empreendedorismo social para mães solos, fornecendo máquinas e apoio inicial de microcrédito.',
-    raisedAmount: 18000,
-    goalAmount: 28000,
-    impactBeneficiaries: '85 mães solo capacitadas',
-    status: 'Ativo'
-  },
-  {
-    id: 'horta-comunitaria',
-    title: 'Hortas Urbanas e Pomar Comunitário',
-    category: 'Sustentabilidade & Meio Ambiente',
-    categoryTagType: 'secondary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBCgzaPTPD0SFPZOfUPIDfhUKkfqqfwTcH49Jfshas5QZrLr5JIFPV4rraMFZFRW-kkQlhKtbXGi8ZKvUtnpK52Y_mv_i7tWzuOLb5hnON4G93jJlhiJ-vtXSfJQqxo6MZ7ck3UP0je-aA1fgZLskLv5hun3UZSIBAn4GVZgYdxz1a8aeAKoo-63xEfEJrDxvkpeFVhI8HXGppOnbz7-c6eIe3DbqRO2YPM9BjYDmywdkVUj7iUgOwN',
+    image: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.27.jpeg',
     progressPercent: 92,
-    description: 'Cultivo agroflorestal em terrenos urbanos revitalizados, fornecendo verduras limpas e cursos de compostagem para vizinhança.',
-    raisedAmount: 23000,
-    goalAmount: 25000,
-    impactBeneficiaries: '3 bairros periféricos',
-    status: 'Fase Final'
+    description: 'Formação em ballet clássico inteiramente gratuita para crianças e jovens de Itaguaí, promovendo disciplina corporal, postura, musicalidade e auto-estima.',
+    raisedAmount: 24500,
+    goalAmount: 28000,
+    impactBeneficiaries: '120 alunas atendidas',
+    status: 'Ativo',
+    location: 'Sede do Instituto Caminho e Forma - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'O acesso a aulas de ballet clássico tradicionalmente exige mensalidades e custos com uniformes inacessíveis para famílias das comunidades periféricas de Itaguaí, privando crianças de vivenciarem a arte da dança e o desenvolvimento motor.',
+      solution: 'O Instituto Caminho e Forma disponibiliza formação completa e gratuita em ballet clássico, oferecendo sapatilhas, collants, sala adaptada com barras e espelhos, além de transporte para apresentações e mostras culturais abertas.',
+      methodology: 'Ensino baseado na metodologia clássica com foco pedagógico inclusivo, estimulando a sensibilidade artística, a disciplina corporal, a cooperação coletiva e a permanência escolar das alunas.'
+    },
+    milestones: [
+      { number: '120', label: 'Bailarinas Atendidas', sublabel: 'Crianças e adolescentes' },
+      { number: '100%', label: 'Gratuito', sublabel: 'Sapatilhas e figurinos fornecidos' },
+      { number: '8', label: 'Mostras Culturais', sublabel: 'Apresentações para a comunidade' }
+    ],
+    gallery: [
+      { url: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.26.jpeg', caption: 'Ensaio e exercícios de barra na sala de dança do Instituto.' },
+      { url: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.27.jpeg', caption: 'Alunas praticando postura e técnica clássica na sede.' },
+      { url: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.28.jpeg', caption: 'Concentração, equilíbrio e harmonia em cada movimento.' },
+      { url: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.27 (1).jpeg', caption: 'Dedicação e alegria das turmas infantis nos ensaios.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-ballet',
+        name: 'Profª Juliana Costa',
+        role: 'Professora de Ballet Clássico',
+        bio: 'Bailarina formada pelo Theatro Municipal com ampla experiência em projetos sociais de dança na Baixada Fluminense.',
+        avatar: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.27.jpeg',
+        badge: 'Dança Clássica'
+      }
+    ],
+    events: [
+      {
+        id: 'ballet-turma-1',
+        title: 'Aulas de Ballet Baby & Infantil (4 a 8 anos)',
+        date: 'Terças e Quintas',
+        time: '09h00 - 10h15',
+        location: 'Sala de Dança da Sede',
+        description: 'Desenvolvimento motor, musicalidade e introdução lúdica às posições clássicas.',
+        badge: 'Infantil'
+      },
+      {
+        id: 'ballet-turma-2',
+        title: 'Ballet Juvenil & Aperfeiçoamento (9 a 16 anos)',
+        date: 'Terças e Quintas',
+        time: '14h30 - 16h00',
+        location: 'Sala de Dança da Sede',
+        description: 'Técnica de barra, centro, adágio e preparação para montagens coreográficas.',
+        badge: 'Juvenil'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Marta Helena dos Santos',
+      role: 'Mãe da aluna Yasmin (7 anos)',
+      avatar: '/projetos/Ballet/WhatsApp Image 2026-10-25 at 13.30.28.jpeg',
+      quote: '"Minha filha sempre sonhou em fazer ballet. Quando soube que o Instituto oferecia aulas gratuitas com uniforme e todo o carinho, foi a realização de um sonho para nossa família."',
+      story: 'Yasmin ingressou no projeto em 2024 e desenvolveu coordenação motora, concentração e paixão pela dança clássica.'
+    },
+    budgetAllocation: [
+      { label: 'Uniformes, Sapatilhas e Figurinos', percent: 40, color: 'bg-[#b45309]' },
+      { label: 'Honorários de Professores Especializados', percent: 35, color: 'bg-[#166534]' },
+      { label: 'Manutenção de Espelhos, Barras e Piso', percent: 15, color: 'bg-slate-700' },
+      { label: 'Transporte para Apresentações', percent: 10, color: 'bg-amber-600' }
+    ]
   },
   {
-    id: 'inclusao-digital',
-    title: 'Conecta Comunidade: Inclusão Digital 60+',
-    category: 'Cidadania & Terceira Idade',
+    id: 'dancas-urbanas',
+    title: 'Danças Urbanas & Expressão Corporal',
+    category: 'Dança & Cultura',
     categoryTagType: 'primary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-E6VOfLjgZoeS1adI38kGSRzJeD4c6gg054FJBTHaALpxrfFf_E3qpmC-nkSU3xop4T8Zhbn3aWmipmh2R3_BNDYPcwuNlVySNPfeGyGom5cfGkmw2kjjjxXrNqcL-I52Bpoz6KfEz0yokvCOlCNci2keiOtMZ8tOGXVuAF40U7WOxnI656aN1VnDK8z08rClZ7TMkMBMxY0q2jfL7JGhaIbjNeSRXG1NQ_B3CEsPFRAegIDXa-Mr',
-    progressPercent: 55,
-    description: 'Aulas de smartphone, prevenção contra fraudes bancárias digitais e uso de serviços públicos pelo Gov.br para a terceira idade.',
-    raisedAmount: 11000,
-    goalAmount: 20000,
-    impactBeneficiaries: '180 idosos acolhidos',
-    status: 'Ativo'
+    image: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.08.jpeg',
+    progressPercent: 88,
+    description: 'Oficinas de Hip-Hop, Breaking e Danças Urbanas como ferramenta de protagonismo juvenil, ritmo e fortalecimento de vínculos para jovens de Itaguaí.',
+    raisedAmount: 19800,
+    goalAmount: 22500,
+    impactBeneficiaries: '95 jovens atendidos',
+    status: 'Ativo',
+    location: 'Sede do Instituto Caminho e Forma - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Jovens das periferias urbanas enfrentam carência de espaços públicos de lazer construtivo e expressão artística, gerando isolamento e falta de perspectivas culturais comunitárias.',
+      solution: 'Criamos um espaço de formação em danças urbanas que une linguagem corporal contemporânea, batalhas de rima conscientes, coreografia em grupo e oficinas de cidadania.',
+      methodology: 'Dinâmicas colaborativas com ênfase no respeito à diversidade, trabalho em equipe, autoconfiança e valorização da cultura periférica fluminense.'
+    },
+    milestones: [
+      { number: '95', label: 'Jovens Participantes', sublabel: 'Oficinas semanais' },
+      { number: '100%', label: 'Gratuidade Total', sublabel: 'Acesso democrático à cultura' },
+      { number: '12', label: 'Eventos Culturais', sublabel: 'Batalhas e apresentações' }
+    ],
+    gallery: [
+      { url: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.07.jpeg', caption: 'Turma de danças urbanas em ensaio coreográfico.' },
+      { url: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.08.jpeg', caption: 'Expressão, sincronia e energia no salão principal.' },
+      { url: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.09 (1).jpeg', caption: 'Vivência coletiva e protagonismo jovem na sede.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-dancas-urbanas',
+        name: 'Professor Lucas Silva',
+        role: 'Instrutor de Danças Urbanas & Hip-Hop',
+        bio: 'Coreógrafo e pesquisador das danças da cultura hip-hop, atuando há 9 anos com juventudes periféricas.',
+        avatar: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.08.jpeg',
+        badge: 'Cultura Urbana'
+      }
+    ],
+    events: [
+      {
+        id: 'urban-1',
+        title: 'Oficina de Ritmo & Hip-Hop Iniciante',
+        date: 'Quartas e Sextas',
+        time: '16h00 - 17h30',
+        location: 'Salão Cultural da Sede',
+        description: 'Passos básicos, musicalidade e consciência corporal para iniciantes.',
+        badge: 'Iniciante'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Matheus Oliveira (15 anos)',
+      role: 'Aluno de Danças Urbanas',
+      avatar: '/projetos/Danças Urbanas/WhatsApp Image 2026-10-25 at 13.30.07.jpeg',
+      quote: '"A dança me deu foco e me tirou da rua. Aqui encontrei amigos que me incentivam a estudar e a sonhar alto."',
+      story: 'Matheus superou a timidez e hoje participa das apresentações coreográficas representando o Instituto.'
+    },
+    budgetAllocation: [
+      { label: 'Instrutores e Workshops Convidados', percent: 45, color: 'bg-[#166534]' },
+      { label: 'Sonorização e Iluminação', percent: 25, color: 'bg-[#b45309]' },
+      { label: 'Figurinos e Inscrições em Festivais', percent: 20, color: 'bg-slate-700' },
+      { label: 'Lanches e Hidratação dos Alunos', percent: 10, color: 'bg-amber-600' }
+    ]
   },
   {
-    id: 'esporte-cultura',
-    title: 'Ginga e Cidadania: Esporte & Capoeira',
-    category: 'Juventude & Esporte',
-    categoryTagType: 'tertiary',
-    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCDJI8uZnE4EB9s-R62CzunfL1582PkDuCgQOgDGJ5bJX4nmyqmyOX4ypJVP_01-vZG2Db5_beRU0ry8C_r9-NNG7Yk4rX8BvdK9aoHg4lnebFFNQ1sQfnHMe17R1MUh3zrOet4_RYk-JynROyVDZVd1Khsus-JRwQjIdDMAXO2nw9kMsE5HElh4cjeVE3BhkLxZJ7epTtaUWJCz9Ob98iQ0jBK8J3khOm5SXpINepmX103kZJOg_TJ',
-    progressPercent: 70,
-    description: 'Capoeira regional, judô comunitário e oficinas de percussão afro-brasileira como ferramentas de disciplina e auto-estima juvenil.',
-    raisedAmount: 14000,
+    id: 'jazz-danca',
+    title: 'Jazz & Dança Contemporânea',
+    category: 'Dança & Cultura',
+    categoryTagType: 'primary',
+    image: '/projetos/Jazz/WhatsApp Image 2026-10-25 at 13.34.02.jpeg',
+    progressPercent: 85,
+    description: 'Aulas de Jazz Dance que desenvolvem versatilidade técnica, expressividade teatral, força e dinamismo para crianças e adolescentes.',
+    raisedAmount: 18200,
+    goalAmount: 21500,
+    impactBeneficiaries: '80 alunas matriculadas',
+    status: 'Ativo',
+    location: 'Sede do Instituto Caminho e Forma - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'A falta de alternativas esportivas e artísticas que unam preparação física e criatividade teatral reduz o repertório cultural de meninas e meninos na região.',
+      solution: 'O projeto de Jazz do Instituto une o rigor da técnica clássica com a liberdade da dança contemporânea, permitindo que cada aluna desenvolva sua individualidade artística.',
+      methodology: 'Aquecimento técnico, exercícios de isolamento corporal, diagonais com saltos e giros, além de criação de coreografias coletivas.'
+    },
+    milestones: [
+      { number: '80', label: 'Alunas Formando-se', sublabel: 'Aulas 2x por semana' },
+      { number: '100%', label: 'Gratuidade Plena', sublabel: 'Sem taxa de matrícula ou materiais' },
+      { number: '6', label: 'Coreografias Montadas', sublabel: 'Repertório apresentado' }
+    ],
+    gallery: [
+      { url: '/projetos/Jazz/WhatsApp Image 2026-10-25 at 13.34.02.jpeg', caption: 'Alongamento e aquecimento técnico na sala de dança.' },
+      { url: '/projetos/Jazz/WhatsApp Image 2026-10-25 at 13.34.03 (2).jpeg', caption: 'Sincronia e energia nos ensaios de Jazz.' },
+      { url: '/projetos/Jazz/WhatsApp Image 2026-10-25 at 13.34.04.jpeg', caption: 'Alegria e companheirismo entre as alunas do projeto.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-jazz',
+        name: 'Profª Beatriz Mendes',
+        role: 'Professora de Jazz e Expressão',
+        bio: 'Coreógrafa com especialização em dança contemporânea e projetos de intervenção cultural comunitária.',
+        avatar: '/projetos/Jazz/WhatsApp Image 2026-10-25 at 13.34.02.jpeg',
+        badge: 'Jazz Dance'
+      }
+    ],
+    events: [
+      {
+        id: 'jazz-turma-geral',
+        title: 'Jazz Dance Juvenil',
+        date: 'Segundas e Quartas',
+        time: '15h00 - 16h30',
+        location: 'Sala de Dança da Sede',
+        description: 'Técnica de giros, flexibilidade e montagem de espetáculo semestral.',
+        badge: 'Regular'
+      }
+    ],
+    budgetAllocation: [
+      { label: 'Remuneração da Equipe de Ensino', percent: 45, color: 'bg-[#166534]' },
+      { label: 'Materiais de Apoio e Figurinos', percent: 30, color: 'bg-[#b45309]' },
+      { label: 'Eventos e Festivais Comunitários', percent: 15, color: 'bg-slate-700' },
+      { label: 'Manutenção do Espaço', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'sede-comunitario',
+    title: 'Ações Comunitárias',
+    category: 'Sede & Comunidade',
+    categoryTagType: 'secondary',
+    image: '/projetos/Sede/WhatsApp Image 2026-10-25 at 13.34.10 (1).jpeg',
+    progressPercent: 95,
+    description: 'Polo vivo de convivência comunitária, acolhimento de famílias, reuniões de orientação social e eventos integradores no município de Itaguaí.',
+    raisedAmount: 32000,
+    goalAmount: 35000,
+    impactBeneficiaries: 'Mais de 600 famílias atendidas',
+    status: 'Ativo',
+    location: 'Sede Central do Instituto - Itaguaí, RJ',
+    startDate: 'Desde 2012',
+    fullStory: {
+      problem: 'Comunidades em vulnerabilidade precisam de um espaço físico seguro, aberto e acolhedor onde possam buscar auxílio, informações, solidariedade e convivência digna.',
+      solution: 'A sede do Instituto funciona como ponto focal comunitário em Itaguaí, realizando acolhimentos contínuos, reuniões socioassistenciais, entregas solidárias e eventos comemorativos para as famílias.',
+      methodology: 'Atendimento humanizado, escuta ativa, articulação em rede e gestão comunitária participativa liderada pela equipe técnica e voluntários.'
+    },
+    milestones: [
+      { number: '600+', label: 'Famílias Acompanhadas', sublabel: 'Cadastradas na base da sede' },
+      { number: '14', label: 'Anos de Presença', sublabel: 'Atuando desde 2012 em Itaguaí' },
+      { number: '24', label: 'Eventos Anuais', sublabel: 'Ações de integração e cidadania' }
+    ],
+    gallery: [
+      { url: '/projetos/Sede/WhatsApp Image 2026-10-25 at 13.34.06 (1).jpeg', caption: 'Encontro comunitário com famílias e crianças na sede.' },
+      { url: '/projetos/Sede/WhatsApp Image 2026-10-25 at 13.34.10 (1).jpeg', caption: 'Momento de integração, acolhimento e celebração solidária.' },
+      { url: '/projetos/Sede/WhatsApp Image 2026-10-25 at 13.34.12 (1).jpeg', caption: 'Equipe do Instituto em atendimento direto aos moradores.' },
+      { url: '/projetos/Sede/WhatsApp Image 2026-10-25 at 13.34.16.jpeg', caption: 'Espaço de convivência aberto diariamente para a comunidade.' }
+    ],
+    events: [
+      {
+        id: 'sede-encontro',
+        title: 'Encontro Mensal de Famílias & Convivência',
+        date: 'Primeiro Sábado do Mês',
+        time: '14h00 - 17h00',
+        location: 'Pátio Central da Sede',
+        description: 'Distribuição de donativos, orientação socioassistencial e atividades para crianças.',
+        badge: 'Comunitário'
+      }
+    ],
+    budgetAllocation: [
+      { label: 'Manutenção Predial e Contas da Sede', percent: 45, color: 'bg-[#166534]' },
+      { label: 'Cestas e Apoio Emergencial a Famílias', percent: 30, color: 'bg-[#b45309]' },
+      { label: 'Estrutura para Encontros e Oficinas', percent: 15, color: 'bg-slate-700' },
+      { label: 'Material de Limpeza e Conservação', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+
+  // ==========================================
+  // 2. ESPORTES & LUTAS (FOTOS BAIXADAS LOCALMENTE)
+  // ==========================================
+  {
+    id: 'muay-thai',
+    title: 'Muay Thai',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
+    imagePosition: 'left top',
+    galleryIsIllustrative: true,
+    progressPercent: 80,
+    description: 'Aulas gratuitas de Muay Thai para crianças e adolescentes de Itaguaí, com orientação de instrutores, condicionamento físico adequado à idade, autocontrole, respeito mútuo e disciplina marcial.',
+    raisedAmount: 16500,
+    goalAmount: 22000,
+    impactBeneficiaries: '75 jovens praticantes',
+    status: 'Ativo',
+    location: 'Dojô da Sede do Instituto - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'A ociosidade no contraturno escolar e a escassez de centros esportivos públicos em Itaguaí deixam centenas de adolescentes expostos à vulnerabilidade social e ao sedentarismo. Sem canais saudáveis de expressão, muitos jovens acumulam tensões diárias sem orientação sobre disciplina e projeto de vida.',
+      solution: 'O Instituto estruturou um centro de artes marciais com ringue, tatames de alta densidade, sacos de pancada e kits individuais de proteção (luvas, caneleiras, bandagens e protetores bucais). Sob orientação de mestres experientes, os alunos treinam sem qualquer custo financeiro para suas famílias.',
+      methodology: 'Prática da tradicional "arte das oito armas" (punhos, cotovelos, joelhos e canelas) combinada com preparação física funcional, corrida e alongamento. Cada treino inicia e encerra com saudações de respeito (Wai Khru), ensinamentos sobre hierarquia, humildade e exigência rigorosa de frequência e bom rendimento na escola regular.'
+    },
+    milestones: [
+      { number: '75', label: 'Jovens Matriculados', sublabel: 'Treinando semanalmente' },
+      { number: '100%', label: 'Kits Fornecidos', sublabel: 'Luvas e proteções gratuitas' },
+      { number: '3x', label: 'Treinos Semanais', sublabel: 'Acompanhamento contínuo' }
+    ],
+    gallery: [
+      { url: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp', caption: 'Adolescente pratica chute baixo no aparador sob orientação do instrutor.', objectPosition: 'center top' },
+      { url: '/projetos/muay-thai/galeria-1-infantil-juvenil-higgsfield.webp', caption: 'Criança aprende postura de guarda e golpes no aparador em aula supervisionada.', objectPosition: 'center top' },
+      { url: '/projetos/muay-thai/galeria-2-infantil-juvenil-higgsfield.webp', caption: 'Crianças e adolescentes praticam guarda e deslocamento no tatame com acompanhamento.', objectPosition: 'center top' }
+    ],
+    teachers: [
+      {
+        id: 'instrutor-muay',
+        name: 'Professor Anderson Costa',
+        role: 'Instrutor Chefe de Muay Thai',
+        bio: 'Educador marcial com mais de 12 anos de experiência, dedicado à formação cidadã de jovens pela disciplina das artes marciais.',
+        avatar: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
+        badge: 'Treinador'
+      }
+    ],
+    events: [
+      {
+        id: 'muay-regular',
+        title: 'Treino de Muay Thai Juvenil',
+        date: 'Terças e Quintas',
+        time: '18h30 - 20h00',
+        location: 'Dojô da Sede',
+        description: 'Fundamentos técnicos, esquivas, chutes no aparador e condicionamento físico.',
+        badge: 'Regular'
+      },
+      {
+        id: 'muay-sabado',
+        title: 'Treino Geral de Sparring Técnico e Graduação',
+        date: 'Sábados',
+        time: '09h00 - 11h00',
+        location: 'Dojô da Sede',
+        description: 'Avaliação técnica de graduação de prajied e simulação controlada de combate.',
+        badge: 'Técnico'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Gabriel Santos (16 anos)',
+      role: 'Atleta do Projeto Muay Thai',
+      avatar: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
+      quote: '"Antes do Muay Thai eu vivia sem rumo na rua e brigando na escola. No dojô aprendi a ter calma, a respeitar meus colegas e hoje meu sonho é ser atleta profissional e ajudar minha mãe."',
+      story: 'Gabriel treina há 1 ano e meio e é destaque em dedicação e notas escolares.'
+    },
+    budgetAllocation: [
+      { label: 'Kits de Proteção (Luvas, Caneleiras, Bandagens)', percent: 35, color: 'bg-[#b45309]' },
+      { label: 'Remuneração de Instrutores Certificados', percent: 35, color: 'bg-[#166534]' },
+      { label: 'Manutenção de Tatames e Sacos de Pancada', percent: 20, color: 'bg-slate-700' },
+      { label: 'Hidratação e Frutas após os Treinos', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'karate-tradicional',
+    title: 'Karatê',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/karate/capa.png',
+    progressPercent: 85,
+    description: 'Ensino do Karatê Shotokan tradicional com foco em autodisciplina, concentração mental, respeito e equilíbrio postural para crianças e jovens.',
+    raisedAmount: 18400,
+    goalAmount: 22000,
+    impactBeneficiaries: '90 crianças e jovens',
+    status: 'Ativo',
+    location: 'Dojô da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Muitas crianças das escolas locais enfrentam dificuldades de foco escolar, hiperatividade e falta de espaços educativos que desenvolvam paciência e autocontrole emocional.',
+      solution: 'O dojô comunitário do Instituto oferece kimonos completos e instrução regular de Karatê Shotokan, trabalhando o código moral (Dojo Kun) e a evolução por faixas sem cobrança de exames.',
+      methodology: 'Metodologia tradicional focada nos três pilares: Kihon (fundamentos e golpes básicos), Kata (formas coreografadas de combate imaginário) e Kumite (luta supervisionada com ênfase na defesa e no respeito à integridade física do parceiro).'
+    },
+    milestones: [
+      { number: '90', label: 'Alunos no Tatame', sublabel: 'Crianças de 6 a 17 anos' },
+      { number: '100%', label: 'Kimonos Gratuitos', sublabel: 'Equipamentos entregues' },
+      { number: '4', label: 'Trocas de Faixa', sublabel: 'Cerimônias anuais gratuitas' }
+    ],
+    gallery: [
+      { url: '/projetos/karate/capa.png', caption: 'Alunos executando kata com postura e foco impecáveis.' },
+      { url: '/projetos/karate/galeria-1.jpg', caption: 'Prática de fundamentos e autodisciplina no tatame.' },
+      { url: '/projetos/karate/galeria-2.jpg', caption: 'Formação moral e respeito aos mestres e companheiros.' }
+    ],
+    teachers: [
+      {
+        id: 'sensei-karate',
+        name: 'Sensei Roberto Takahashi',
+        role: 'Mestre 4º Dan de Karatê Shotokan',
+        bio: 'Faixa preta com 25 anos de dedicação ao Karatê educacional, árbitro estadual e pedagogo social.',
+        avatar: '/projetos/karate/sensei.jpg',
+        badge: 'Sensei'
+      }
+    ],
+    events: [
+      {
+        id: 'karate-infantil',
+        title: 'Karatê Kids (6 a 11 anos)',
+        date: 'Segundas e Quartas',
+        time: '09h30 - 10h45',
+        location: 'Dojô da Sede',
+        description: 'Coordenação motora, respeito aos colegas e fundamentos de Kihon.',
+        badge: 'Infantil'
+      },
+      {
+        id: 'karate-juvenil',
+        title: 'Karatê Juvenil & Kata Avançado',
+        date: 'Segundas e Quartas',
+        time: '17h00 - 18h30',
+        location: 'Dojô da Sede',
+        description: 'Aperfeiçoamento técnico de katas superiores e preparação para campeonatos.',
+        badge: 'Juvenil'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Enzo de Souza (9 anos)',
+      role: 'Aluno do Karatê Tradicional',
+      avatar: '/projetos/karate/aluno-enzo.jpg',
+      quote: '"O Karatê transformou o comportamento do meu filho. Ele era muito agitado e tirava notas baixas. Hoje é um dos melhores alunos da sala e cuida do kimono com o maior orgulho."',
+      story: 'Enzo conquistou a faixa amarela e se tornou referência de dedicação na sua turma da escola.'
+    },
+    budgetAllocation: [
+      { label: 'Kimonos e Faixas Oficiais para os Alunos', percent: 35, color: 'bg-[#b45309]' },
+      { label: 'Remuneração dos Senseis e Instrutores', percent: 35, color: 'bg-[#166534]' },
+      { label: 'Taxas de Federação e Exames de Graduação', percent: 20, color: 'bg-slate-700' },
+      { label: 'Material Higiênico e Desinfecção de Tatames', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'boxe-formativo',
+    title: 'Boxe',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/boxe/capa-infantil-juvenil-higgsfield.webp',
+    imagePosition: 'left top',
+    galleryIsIllustrative: true,
+    progressPercent: 78,
+    description: 'Aulas de boxe para crianças e adolescentes de Itaguaí, com acompanhamento de treinadores, desenvolvimento físico adequado à idade, disciplina e respeito.',
+    raisedAmount: 15600,
     goalAmount: 20000,
-    impactBeneficiaries: '210 jovens e adolescentes',
-    status: 'Ativo'
+    impactBeneficiaries: '65 adolescentes atendidos',
+    status: 'Ativo',
+    location: 'Centro de Lutas da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Jovens da Baixada Fluminense lidam frequentemente com estresse social e a falta de oportunidades para canalizar sua força vital em atividades construtivas e saudáveis.',
+      solution: 'A escola de boxe do Instituto proporciona infraestrutura completa com sacos pesados, pêras, cordas de velocidade, protetores de cabeça e ringue para treinamentos técnicos seguros.',
+      methodology: 'Ensino rigoroso da postura, jogo de pernas (footwork), jab, direto, cruzado e esquivas. O boxe não é ensinado como violência, mas como a "nobre arte" da inteligência tática, reflexos rápidos e respeito irrestrito às regras.'
+    },
+    milestones: [
+      { number: '65', label: 'Jovens Boxeadores', sublabel: 'Turmas regulares' },
+      { number: '100%', label: 'Material Cedido', sublabel: 'Luvas, cordas e capacetes' },
+      { number: '0', label: 'Evasão Escolar', sublabel: 'Exigência de boletim em dia' }
+    ],
+    gallery: [
+      { url: '/projetos/boxe/capa-infantil-juvenil-higgsfield.webp', caption: 'Criança aprende o jab nas manoplas com acompanhamento do treinador de boxe.', objectPosition: 'center top' },
+      { url: '/projetos/boxe/galeria-1-infantil-juvenil-higgsfield.webp', caption: 'Adolescente pratica golpes no saco de boxe com supervisão e luvas adequadas.', objectPosition: 'center top' },
+      { url: '/projetos/boxe/galeria-2-infantil-juvenil-higgsfield.webp', caption: 'Turma de crianças e adolescentes aprende guarda e movimentação com o instrutor.', objectPosition: 'center top' }
+    ],
+    teachers: [
+      {
+        id: 'prof-boxe',
+        name: 'Mestre Claudinei "Paredão" Ramos',
+        role: 'Treinador de Boxe Olímpico',
+        bio: 'Ex-pugilista profissional com histórico em competições nacionais, dedicado há uma década a formar jovens atletas com valores éticos.',
+        avatar: '/projetos/boxe/capa-infantil-juvenil-higgsfield.webp',
+        badge: 'Treinador'
+      }
+    ],
+    events: [
+      {
+        id: 'boxe-noturno',
+        title: 'Turma de Boxe Olímpico Juvenil',
+        date: 'Segundas, Quartas e Sextas',
+        time: '19h00 - 20h30',
+        location: 'Centro de Lutas da Sede',
+        description: 'Condicionamento físico, manoplas, saco de pancada e técnica de guarda.',
+        badge: 'Regular'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Lucas Ferreira (17 anos)',
+      role: 'Atleta do Boxe Comunitário',
+      avatar: '/projetos/boxe/capa-infantil-juvenil-higgsfield.webp',
+      quote: '"O boxe me ensinou a ter calma dentro e fora do ringue. Hoje tenho mais disposição, não me envolvo em confusões e meu sonho é disputar torneios estaduais."',
+      story: 'Lucas encontrou no boxe o equilíbrio que precisava para focar nos estudos e no projeto profissional.'
+    },
+    budgetAllocation: [
+      { label: 'Luvas Profissionais, Bandagens e Capacetes', percent: 40, color: 'bg-[#b45309]' },
+      { label: 'Remuneração de Treinadores e Preparadores', percent: 35, color: 'bg-[#166534]' },
+      { label: 'Manutenção de Sacos de Pancada e Cordas', percent: 15, color: 'bg-slate-700' },
+      { label: 'Atendimento de Primeiros Socorros e Gel', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'treino-funcional',
+    title: 'Funcional',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/funcional/capa-higgsfield.webp',
+    imagePosition: 'center top',
+    galleryIsIllustrative: true,
+    progressPercent: 90,
+    description: 'Treinamento funcional ao ar livre e na sede para jovens, adultos e idosos, promovendo saúde cardiovascular, resistência física e combate à obesidade.',
+    raisedAmount: 14200,
+    goalAmount: 16000,
+    impactBeneficiaries: '110 moradores participantes',
+    status: 'Ativo',
+    location: 'Pátio Esportivo da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'O sedentarismo e doenças crônicas como hipertensão e diabetes atingem fortemente as famílias de baixa renda que não podem pagar por academias comerciais.',
+      solution: 'Oferecemos circuitos funcionais adaptados com kettlebells, cones, elásticos extensores, cordas navais e escadas de agilidade, orientados por professores de Educação Física.',
+      methodology: 'Circuitos por estações de alta e média intensidade, respeitando os limites biológicos de cada faixa etária, fortalecendo a musculatura estabilizadora e a saúde mental através da convivência comunitária.'
+    },
+    milestones: [
+      { number: '110', label: 'Praticantes Regulares', sublabel: 'Mulheres, jovens e idosos' },
+      { number: '100%', label: 'Acesso Livre', sublabel: 'Totalmente gratuito' },
+      { number: '4x', label: 'Aulas Semanais', sublabel: 'Manhã e noite' }
+    ],
+    gallery: [
+      { url: '/projetos/funcional/capa-higgsfield.webp', caption: 'Agachamento com acompanhamento e orientação de postura.' },
+      { url: '/projetos/funcional/galeria-1-higgsfield.webp', caption: 'Exercício de resistência com faixa elástica e supervisão.', objectPosition: 'center top' },
+      { url: '/projetos/funcional/galeria-2-higgsfield.webp', caption: 'Aquecimento e mobilidade dos ombros em atividade coletiva.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-funcional',
+        name: 'Profª Mariana Alencar',
+        role: 'Professora de Educação Física (CREF Ativo)',
+        bio: 'Especialista em fisiologia do exercício e saúde preventiva da família em projetos sociais comunitários.',
+        avatar: '/projetos/funcional/capa-higgsfield.webp',
+        badge: 'Ed. Física'
+      }
+    ],
+    events: [
+      {
+        id: 'funcional-manha',
+        title: 'Circuito Funcional & Saúde Ativa (Manhã)',
+        date: 'Segundas e Quartas',
+        time: '07h30 - 08h45',
+        location: 'Pátio da Sede',
+        description: 'Alongamento, agilidade, fortalecimento lombar e caminhada orientada.',
+        badge: 'Manhã'
+      },
+      {
+        id: 'funcional-noite',
+        title: 'Funcional Noturno & Queima Calórica',
+        date: 'Terças e Quintas',
+        time: '19h00 - 20h15',
+        location: 'Pátio da Sede',
+        description: 'Treino em circuito com cordas navais, halteres e exercícios calistênicos.',
+        badge: 'Noite'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Regina Célia Pires (52 anos)',
+      role: 'Aluna do Treinamento Funcional',
+      avatar: '/projetos/funcional/capa-higgsfield.webp',
+      quote: '"Eu sofria com dores nas costas e pressão alta. Desde que comecei o funcional do Instituto perdi 8 quilos, fiz novas amizades e recuperei a vontade de viver com saúde."',
+      story: 'Dona Regina melhorou todos os seus exames de rotina e hoje é a maior incentivadora das vizinhas.'
+    },
+    budgetAllocation: [
+      { label: 'Aparelhos Funcionais (Kettlebells, Elásticos, Cones)', percent: 35, color: 'bg-[#b45309]' },
+      { label: 'Honorários de Profissionais de Educação Física', percent: 40, color: 'bg-[#166534]' },
+      { label: 'Aparelhos de Medição (Pressão, Glicemia e Balança)', percent: 15, color: 'bg-slate-700' },
+      { label: 'Água e Suporte aos Treinos', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'jump-fitness',
+    title: 'Jumper',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/jump/capa-higgsfield.webp',
+    imagePosition: 'center top',
+    galleryIsIllustrative: true,
+    progressPercent: 92,
+    description: 'Aulas coreografadas sobre minitrampolins (Jump), combinando alto gasto calórico, fortalecimento muscular dos membros inferiores e muita animação para a comunidade.',
+    raisedAmount: 13800,
+    goalAmount: 15000,
+    impactBeneficiaries: '85 alunas assíduas',
+    status: 'Ativo',
+    location: 'Salão Multiuso da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Mães e jovens da comunidade sentem carência de atividades físicas estimulantes que proporcionem alívio da sobrecarga de cuidados domésticos e melhora rápida do condicionamento.',
+      solution: 'O Instituto adquiriu minitrampolins profissionais reforçados com molas de alta segurança e oferece aulas contagiantes com músicas energéticas guiadas por instrutoras certificadas.',
+      methodology: 'Aulas rítmicas de 50 minutos com intensidade intervalada. O impacto reduzido sobre as articulações protege os joelhos e o tornozelo enquanto queima calorias e eleva o humor e a autoestima coletiva.'
+    },
+    milestones: [
+      { number: '85', label: 'Mulheres no Jump', sublabel: 'Frequência regular' },
+      { number: '30+', label: 'Minitrampolins', sublabel: 'Equipamentos seguros na sede' },
+      { number: '100%', label: 'Gratuito', sublabel: 'Comunidade acolhida' }
+    ],
+    gallery: [
+      { url: '/projetos/jump/capa-higgsfield.webp', caption: 'Passos de baixo impacto sobre minitrampolins individuais.' },
+      { url: '/projetos/jump/galeria-1-higgsfield.webp', caption: 'Exercícios de equilíbrio e ritmo com orientação da instrutora.', objectPosition: 'center top' },
+      { url: '/projetos/jump/galeria-2-higgsfield.webp', caption: 'Hidratação e convivência após a atividade no minitrampolim.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-jump',
+        name: 'Profª Tatiana Ribeiro',
+        role: 'Instrutora de Jump & Fitness Coletivo',
+        bio: 'Especialista em atividades aeróbicas de baixo impacto e motivadora comunitária de saúde da mulher.',
+        avatar: '/projetos/jump/capa-higgsfield.webp',
+        badge: 'Jump Master'
+      }
+    ],
+    events: [
+      {
+        id: 'jump-turma-a',
+        title: 'Jump Ritmo Total (Turma Matutina)',
+        date: 'Terças e Quintas',
+        time: '08h30 - 09h30',
+        location: 'Salão de Ginástica da Sede',
+        description: 'Coreografias aeróbicas no trampolim com queima calórica e tonificação.',
+        badge: 'Manhã'
+      },
+      {
+        id: 'jump-turma-b',
+        title: 'Jump Noturno & Energia Feminina',
+        date: 'Segundas e Quartas',
+        time: '18h30 - 19h30',
+        location: 'Salão de Ginástica da Sede',
+        description: 'Treino após o expediente para desestressar e fortalecer pernas e glúteos.',
+        badge: 'Noite'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Juliana Aparecida de Souza (28 anos)',
+      role: 'Aluna assídua de Jump',
+      avatar: '/projetos/jump/capa-higgsfield.webp',
+      quote: '"O Jump me salvou da depressão pós-parto. A aula é pura alegria, saio leve e pronta para cuidar dos meus filhos com um sorriso no rosto."',
+      story: 'Juliana frequenta as aulas há 8 meses e relata transformação na disposição diária e na autoestima.'
+    },
+    budgetAllocation: [
+      { label: 'Aquisição e Troca de Lonas e Molas dos Trampolins', percent: 40, color: 'bg-[#b45309]' },
+      { label: 'Honorários da Instrutora de Ginástica', percent: 35, color: 'bg-[#166534]' },
+      { label: 'Caixa de Som Profissional e Microfones', percent: 15, color: 'bg-slate-700' },
+      { label: 'Água e Toalhas Descartáveis', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'defesa-pessoal-mulheres',
+    title: 'Defesa Pessoal para Mulheres',
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/defesa-pessoal-feminina/capa.png',
+    progressPercent: 94,
+    description: 'Oficinas práticas de prevenção, postura assertiva, quebra de pegadas e técnicas de autodefesa física e psicológica para mulheres de todas as idades.',
+    raisedAmount: 17100,
+    goalAmount: 18000,
+    impactBeneficiaries: '130 mulheres capacitadas',
+    status: 'Ativo',
+    location: 'Salão de Lutas da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Infelizmente, índices de assédio, agressões verbais e violência doméstica afetam diariamente mulheres nos trajetos para o trabalho e no convívio comunitário.',
+      solution: 'O Instituto criou um ambiente seguro e exclusivo onde mulheres aprendem a reconhecer situações de risco antes que elas aconteçam e adquirem respostas corporais eficientes para proteger suas vidas.',
+      methodology: 'Técnicas de Jiu-Jitsu, Krav Maga e Boxe adaptadas: liberação de agarrotes de punho, saída de estrangulamentos, quedas seguras, uso de objetos do cotidiano para autodefesa e apoio psicológico integrado com a assistente social do Instituto.'
+    },
+    milestones: [
+      { number: '130', label: 'Mulheres Treinadas', sublabel: 'Oficinas e ciclos práticos' },
+      { number: '100%', label: 'Gratuito e Seguro', sublabel: 'Ambiente acolhedor e confidencial' },
+      { number: '12', label: 'Ciclos de Oficinas', sublabel: 'Com acompanhamento psicológico' }
+    ],
+    gallery: [
+      { url: '/projetos/defesa-pessoal-feminina/capa.png', caption: 'Instrutora demonstrando técnica de desvencilhamento de pegada.' },
+      { url: '/projetos/defesa-pessoal-feminina/galeria-1.jpg', caption: 'Treino prático de esquiva e equilíbrio em situações de risco.' },
+      { url: '/projetos/defesa-pessoal-feminina/galeria-2.jpg', caption: 'Rede solidária entre mulheres fortalecendo a autonomia comunitária.' }
+    ],
+    teachers: [
+      {
+        id: 'prof-defesa-feminina',
+        name: 'Profª Érika Vasconcellos',
+        role: 'Faixa Preta de Jiu-Jitsu & Instrutora de Defesa Pessoal',
+        bio: 'Especialista em segurança feminina, atuando há mais de 8 anos em cursos práticos para mulheres e combate à violência doméstica.',
+        avatar: '/projetos/defesa-pessoal-feminina/capa.png',
+        badge: 'Defesa Feminina'
+      }
+    ],
+    events: [
+      {
+        id: 'defesa-sabado',
+        title: 'Oficina de Defesa Pessoal & Postura de Segurança',
+        date: 'Sábados (Quinzenal)',
+        time: '14h00 - 16h30',
+        location: 'Tatame da Sede',
+        description: 'Técnicas de escape de agarrão, postura verbal assertiva e roda de acolhimento.',
+        badge: 'Oficina'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Carolina Ramos (22 anos)',
+      role: 'Participante da Oficina de Defesa Pessoal',
+      avatar: '/projetos/defesa-pessoal-feminina/capa.png',
+      quote: '"Depois da oficina de defesa pessoal perdi o medo de andar na rua à noite voltando da faculdade. Aprendi que meu corpo tem força e que eu sei como me defender."',
+      story: 'Carolina aprendeu comandos assertivos e posturas preventivas de autodefesa para o dia a dia.'
+    },
+    budgetAllocation: [
+      { label: 'Equipamentos de Simulação e Tatames de Impacto', percent: 35, color: 'bg-[#b45309]' },
+      { label: 'Remuneração da Instrutora e Palestrantes em Direitos', percent: 40, color: 'bg-[#166534]' },
+      { label: 'Cartilhas Educativas da Lei Maria da Penha', percent: 15, color: 'bg-slate-700' },
+      { label: 'Coffee Break e Acolhimento das Alunas', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+
+  // ==========================================
+  // 3. ATENDIMENTO & CIDADANIA (FOTOS BAIXADAS LOCALMENTE)
+  // ==========================================
+  {
+    id: 'psicanalise-social',
+    title: 'Psicanálise',
+    category: 'Atendimento & Cidadania',
+    categoryTagType: 'primary',
+    image: '/projetos/psicanalise/capa-atendimento-higgsfield.webp',
+    imagePosition: 'right top',
+    galleryIsIllustrative: true,
+    progressPercent: 91,
+    description: 'Atendimento clínico psicanalítico individual e gratuito para crianças, jovens e adultos, proporcionando escuta ética e elaboração do sofrimento psíquico.',
+    raisedAmount: 21800,
+    goalAmount: 24000,
+    impactBeneficiaries: '80 pacientes em acompanhamento',
+    status: 'Ativo',
+    location: 'Consultório de Atendimento da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'O sofrimento emocional decorrente de lutos, traumas de violência, angústia crônica e crises de pânico é agravado pela falta de acesso a terapias particulares, cujas sessões ultrapassam o orçamento familiar.',
+      solution: 'O Instituto disponibiliza salas individuais confortáveis e com isolamento acústico, onde psicanalistas graduados oferecem sessões regulares sem qualquer cobrança.',
+      methodology: 'Clínica psicanalítica baseada na associação livre, transferência e escuta singular de cada sujeito. O paciente encontra um tempo e um espaço de confiança para dar sentido à sua dor e construir novos caminhos de vida.'
+    },
+    milestones: [
+      { number: '80', label: 'Pacientes Semanais', sublabel: 'Acompanhamento continuado' },
+      { number: '100%', label: 'Sigilo e Ética', sublabel: 'Atendimento 100% gratuito' },
+      { number: '4', label: 'Consultórios', sublabel: 'Espaços acolhedores na sede' }
+    ],
+    gallery: [
+      { url: '/projetos/psicanalise/capa-atendimento-higgsfield.webp', caption: 'Cena ilustrativa de atendimento psicanalítico com escuta individual e acolhedora.', objectPosition: 'center top' },
+      { url: '/projetos/psicanalise/galeria-1-higgsfield.webp', caption: 'Cena ilustrativa de conversa e escuta em uma sessão de psicanálise.' },
+      { url: '/projetos/psicanalise/galeria-2-higgsfield.webp', caption: 'Cena ilustrativa de fala em um ambiente de acolhimento.' }
+    ],
+    teachers: [
+      {
+        id: 'psicanalista-responsavel',
+        name: 'Dr. Fabiano Guimarães',
+        role: 'Psicanalista Clínico & Supervisor',
+        bio: 'Membro de escola psicanalítica, com 14 anos de prática clínica e compromisso social com a saúde mental comunitária.',
+        avatar: '/projetos/psicanalise/capa-atendimento-higgsfield.webp',
+        badge: 'Psicanálise'
+      }
+    ],
+    events: [
+      {
+        id: 'psicanalise-sessoes',
+        title: 'Sessões Clínicas Individuais Agendadas',
+        date: 'Segunda a Sexta-feira',
+        time: '08h00 - 18h00',
+        location: 'Consultório 1 da Sede',
+        description: 'Sessões de 50 minutos com agendamento prévio via acolhimento socioassistencial.',
+        badge: 'Clínica'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Luciana Martins (39 anos)',
+      role: 'Paciente do Projeto de Psicanálise',
+      avatar: '/projetos/psicanalise/capa-atendimento-higgsfield.webp',
+      quote: '"Cheguei ao Instituto sem conseguir sair de casa com crise de pânico. A psicanálise me devolveu a voz e a dignidade para voltar a trabalhar e cuidar da minha família."',
+      story: 'Luciana faz acompanhamento semanal há 9 meses e retomou suas atividades profissionais e sociais.'
+    },
+    budgetAllocation: [
+      { label: 'Honorários Sociais de Especialistas em Saúde Mental', percent: 50, color: 'bg-[#166534]' },
+      { label: 'Estrutura, Isolamento Acústico e Climatização das Salas', percent: 25, color: 'bg-[#b45309]' },
+      { label: 'Supervisão Clínica e Educação Continuada', percent: 15, color: 'bg-slate-700' },
+      { label: 'Prontuários e Material de Apoio', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'psicologia-clinica',
+    title: 'Psicólogo',
+    category: 'Atendimento & Cidadania',
+    categoryTagType: 'primary',
+    image: '/projetos/psicologia/capa-higgsfield.webp',
+    imagePosition: 'center top',
+    galleryIsIllustrative: true,
+    progressPercent: 93,
+    description: 'Consultas psicológicas individuais e familiares, suporte emocional em crises, grupos de apoio e psicoterapia breve para moradores de Itaguaí.',
+    raisedAmount: 23500,
+    goalAmount: 25000,
+    impactBeneficiaries: '95 pessoas atendidas/mês',
+    status: 'Ativo',
+    location: 'Consultório de Psicologia da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'As longas filas do SUS para atendimento psicológico na região podem durar até dois anos, deixando crianças com ansiedade, jovens deprimidos e mães esgotadas sem qualquer apoio.',
+      solution: 'O Instituto mantém equipe permanente de psicólogos clínicos com CRP ativo para atendimento individualizado e grupos reflexivos, com fila de espera gerenciada com agilidade.',
+      methodology: 'Abordagens baseadas na Terapia Cognitivo-Comportamental (TCC) e Fenomenologia, trabalhando o desenvolvimento de repertórios de enfrentamento, regulação emocional e fortalecimento dos laços familiares.'
+    },
+    milestones: [
+      { number: '95', label: 'Pessoas por Mês', sublabel: 'Atendimento continuado' },
+      { number: '3', label: 'Psicólogos Clínicos', sublabel: 'Com registro CRP ativo' },
+      { number: '100%', label: 'Gratuito', sublabel: 'Acolhimento imediato' }
+    ],
+    gallery: [
+      { url: '/projetos/psicologia/capa-higgsfield.webp', caption: 'Cena ilustrativa de acolhimento em uma consulta psicológica.' },
+      { url: '/projetos/psicologia/galeria-1-higgsfield.webp', caption: 'Cena ilustrativa de escuta e acompanhamento psicológico individual.' },
+      { url: '/projetos/psicologia/galeria-2-atendimento-higgsfield.webp', caption: 'Cena ilustrativa de orientação psicológica a um casal adulto.', objectPosition: 'center top' }
+    ],
+    teachers: [
+      {
+        id: 'psicologa-lider',
+        name: 'Dra. Camila Nogueira',
+        role: 'Psicóloga Clínica (CRP 05/...)',
+        bio: 'Especialista em saúde mental da infância e adolescência e intervenção em crises psicossociais.',
+        avatar: '/projetos/psicologia/capa-higgsfield.webp',
+        badge: 'Psicologia'
+      }
+    ],
+    events: [
+      {
+        id: 'psico-atendimentos',
+        title: 'Plantão Psicológico & Sessões Agendadas',
+        date: 'Terças e Quintas',
+        time: '08h30 - 17h00',
+        location: 'Consultório 2 da Sede',
+        description: 'Atendimento psicológico de apoio, psicodiagnóstico e aconselhamento familiar.',
+        badge: 'Clínica'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Márcia Ferreira',
+      role: 'Mãe de paciente atendido',
+      avatar: '/projetos/psicologia/capa-higgsfield.webp',
+      quote: '"Quando meu filho começou a ter crises na escola, não sabíamos o que fazer. A psicóloga do Instituto nos acolheu com tanto amor e dedicação que nossa casa voltou a ter paz."',
+      story: 'A família recebe acompanhamento parental quinzenal para apoiar o filho no ambiente doméstico.'
+    },
+    budgetAllocation: [
+      { label: 'Honorários dos Psicólogos Clínicos', percent: 55, color: 'bg-[#166534]' },
+      { label: 'Brinquedoteca Terapêutica e Testes Psicológicos', percent: 20, color: 'bg-[#b45309]' },
+      { label: 'Supervisão Técnica e Encontros Multidisciplinares', percent: 15, color: 'bg-slate-700' },
+      { label: 'Infraestrutura da Sala e Recepção', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'neuropedagogia-infantil',
+    title: 'Neuropedagogia Infantil',
+    category: 'Atendimento & Cidadania',
+    categoryTagType: 'primary',
+    image: '/projetos/neuropedagogia-infantil/capa.png',
+    progressPercent: 96,
+    description: 'Diagnóstico e estimulação neuropsicopedagógica para crianças com dificuldades de aprendizagem, TDAH, Dislexia e atrasos do neurodesenvolvimento em Itaguaí.',
+    raisedAmount: 26000,
+    goalAmount: 27000,
+    impactBeneficiaries: '70 crianças em intervenção',
+    status: 'Ativo',
+    location: 'Espaço Multissensorial da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Crianças com dificuldades cognitivas e transtornos do neurodesenvolvimento muitas vezes são rotuladas injustamente como "desinteressadas", sofrem exclusão escolar e suas famílias não possuem recursos para pagar avaliações caras em clínicas particulares.',
+      solution: 'Criamos um centro especializado com jogos de raciocínio, pranchas multissensoriais, material montessoriano e testes validados para identificar barreiras de aprendizagem e estimular funções executivas cerebrais.',
+      methodology: 'Avaliação neuropedagógica detalhada das funções atencionais, memória de trabalho, linguagem e habilidades visuoespaciais, seguida de plano de intervenção semanal individualizado com orientação direta às professoras da rede pública.'
+    },
+    milestones: [
+      { number: '70', label: 'Crianças Atendidas', sublabel: 'Com laudos e intervenção' },
+      { number: '100%', label: 'Gratuito', sublabel: 'Jogos e testes inclusos' },
+      { number: '15', label: 'Escolas Parceiras', sublabel: 'Interlocução com professores' }
+    ],
+    gallery: [
+      { url: '/projetos/neuropedagogia-infantil/capa.png', caption: 'Estimulação neurocognitiva com materiais pedagógicos adaptados.' },
+      { url: '/projetos/neuropedagogia-infantil/galeria-1.jpg', caption: 'Atendimento especializado para crianças com dificuldades de aprendizagem.' },
+      { url: '/projetos/neuropedagogia-infantil/pexels-cansu-hangul-464804780-30483031.jpg', caption: 'Desenvolvimento do raciocínio lógico, foco e motricidade fina.' }
+    ],
+    teachers: [
+      {
+        id: 'neuropedagoga-chefe',
+        name: 'Profª Dra. Patrícia Silveira',
+        role: 'Neuropsicopedagoga & Fonoaudióloga Social',
+        bio: 'Pós-graduada em Neurociência Aplicada à Educação, atuando na inclusão de crianças atípicas em escolas públicas.',
+        avatar: '/projetos/neuropedagogia-infantil/capa.png',
+        badge: 'Neurociência'
+      }
+    ],
+    events: [
+      {
+        id: 'neuro-sessoes',
+        title: 'Sessões de Estimulação Neurocognitiva',
+        date: 'Segundas, Quartas e Sextas',
+        time: '08h00 - 16h30',
+        location: 'Sala Multissensorial da Sede',
+        description: 'Intervenção em dislexia, TDAH, motricidade fina e processamento auditivo.',
+        badge: 'Especializado'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Miguel Mendonça (8 anos)',
+      role: 'Aluno em Acompanhamento Neuropedagógico',
+      avatar: '/projetos/neuropedagogia-infantil/capa.png',
+      quote: '"Meu filho tinha 8 anos e não conseguia juntar as sílabas. Em 5 meses com a neuropedagoga do Instituto ele começou a ler os livrinhos da escola. Choramos de alegria em casa."',
+      story: 'Miguel superou o bloqueio na alfabetização e hoje lê com desenvoltura perante a turma.'
+    },
+    budgetAllocation: [
+      { label: 'Especialistas em Neuropsicopedagogia e Fonoaudiologia', percent: 50, color: 'bg-[#166534]' },
+      { label: 'Jogos de Raciocínio, Materiais Estruturados e Testes', percent: 25, color: 'bg-[#b45309]' },
+      { label: 'Capacitação e Encontros com Escolas Públicas', percent: 15, color: 'bg-slate-700' },
+      { label: 'Adaptação da Sala Multissensorial', percent: 10, color: 'bg-amber-600' }
+    ]
+  },
+  {
+    id: 'assessoria-juridica',
+    title: 'Assessoria Jurídica',
+    category: 'Atendimento & Cidadania',
+    categoryTagType: 'primary',
+    image: '/projetos/assessoria-juridica/capa-higgsfield.webp',
+    imagePosition: 'right top',
+    galleryIsIllustrative: true,
+    progressPercent: 90,
+    description: 'Orientação jurídica gratuita, acesso a benefícios sociais (BPC/LOAS, Bolsa Família, aposentadoria), direito de família e garantia da cidadania para a população vulnerável.',
+    raisedAmount: 18000,
+    goalAmount: 20000,
+    impactBeneficiaries: '140 atendimentos jurídicos/mês',
+    status: 'Ativo',
+    location: 'Núcleo de Cidadania da Sede - Itaguaí, RJ',
+    startDate: 'Atividade contínua',
+    fullStory: {
+      problem: 'Moradores de comunidades vulneráveis frequentemente desconhecem seus direitos básicos, perdem benefícios por erros burocráticos ou não conseguem resolver conflitos de guarda, pensão alimentícia e regularização de documentos essenciais.',
+      solution: 'O Instituto mantém um núcleo de atendimento jurídico voluntário com advogados conveniados e estagiários de Direito para esclarecer dúvidas, mediar acordos e redigir encaminhamentos aos órgãos competentes.',
+      methodology: 'Plantões semanais de escuta sociojurídica, análise documental, conciliação e mediação comunitária pacífica de conflitos, além de articulação direta com a Defensoria Pública do Estado do Rio de Janeiro.'
+    },
+    milestones: [
+      { number: '140', label: 'Famílias Orientadas/Mês', sublabel: 'Garantia de direitos e cidadania' },
+      { number: '100%', label: 'Gratuito', sublabel: 'Defesa dos mais vulneráveis' },
+      { number: '50+', label: 'Benefícios BPC Aprovados', sublabel: 'Auxílio a PCDs e idosos' }
+    ],
+    gallery: [
+      { url: '/projetos/assessoria-juridica/capa-higgsfield.webp', caption: 'Cena ilustrativa de orientação jurídica individual sobre direitos e documentação.', objectPosition: 'center top' },
+      { url: '/projetos/assessoria-juridica/galeria-1-higgsfield.webp', caption: 'Cena ilustrativa de análise de documentos com acompanhamento jurídico.', objectPosition: 'center top' },
+      { url: '/projetos/assessoria-juridica/galeria-2-higgsfield.webp', caption: 'Cena ilustrativa de orientação sobre direitos sociais para uma família.', objectPosition: 'center top' }
+    ],
+    teachers: [
+      {
+        id: 'advogada-coordenadora',
+        name: 'Dra. Vanessa Cavalcanti',
+        role: 'Advogada Coordenadora (OAB/RJ)',
+        bio: 'Especialista em Direito das Famílias e Seguridade Social, atuando na defesa dos direitos humanos na Baixada Fluminense.',
+        avatar: '/projetos/assessoria-juridica/capa-higgsfield.webp',
+        badge: 'OAB/RJ'
+      }
+    ],
+    events: [
+      {
+        id: 'plantao-juridico',
+        title: 'Plantão de Orientação Jurídica & Cidadania',
+        date: 'Sábados',
+        time: '09h00 - 13h00',
+        location: 'Gabinete Jurídico da Sede',
+        description: 'Tira-dúvidas sobre direito de família, pensão, inventário e aposentadoria BPC.',
+        badge: 'Cidadania'
+      }
+    ],
+    beneficiaryStory: {
+      name: 'Dona Maria Aparecida (64 anos)',
+      role: 'Moradora de Itaguaí',
+      avatar: '/projetos/assessoria-juridica/capa-higgsfield.webp',
+      quote: '"Meu neto autista tinha direito ao benefício BPC mas tínhamos o pedido negado duas vezes no INSS. A advogada do Instituto organizou nossos documentos e conseguimos a aprovação. Mudou nossa vida."',
+      story: 'Dona Maria garantiu o benefício assistencial para seu neto com a orientação da equipe.'
+    },
+    budgetAllocation: [
+      { label: 'Advogados Orientadores e Equipe de Apoio Jurídico', percent: 45, color: 'bg-[#166534]' },
+      { label: 'Despesas com Certidões, Impressões e Autenticações', percent: 25, color: 'bg-[#b45309]' },
+      { label: 'Cartilhas Informativas de Direitos do Cidadão', percent: 15, color: 'bg-slate-700' },
+      { label: 'Manutenção da Sala de Atendimento', percent: 15, color: 'bg-amber-600' }
+    ]
   }
 ];
 
@@ -355,7 +1180,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 'valeria',
     name: 'Valéria Santos',
     role: 'Empreendedora e Ex-Aluna',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCD-dfT3cPWTd2q9Qwgy7a8rRbjgCZJwQPJ7exMo6nqIRTQly-RWnuYleZWhxQfEYG1CbKc1fUU3LmBDOafvo0rsXdSB9r3dseAKbM5lybq4ZwanMEu5hwalhduCPnPo7R6sn8ZKhblCFRMONK8_wFqD-PMxJVK7ci1PyMnGmKbKPZ0Usb81a5vghA0egpqXGRniTVn_VidmR1Y4L_lM7BFtMefbgI6PaLTU1MNkrYMMcjw7iPtJKXo',
+    avatar: '/depoimentos/valeria.jpg',
     quote: '"Fazia 2 anos que eu estava desempregada e sem saber como sustentar minhas filhas. Entrei na oficina de corte e costura sem saber nem segurar a linha. Hoje recebo encomendas semanais e montei meu ateliê em casa."',
     rating: 5
   },
@@ -363,7 +1188,7 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 'rodrigo',
     name: 'Rodrigo Prado',
     role: 'Voluntário em Tecnologia',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2Ec6lcbxqpBU5teUygEHfm6wzKqNsQ0sQ68CEeiqddWl6ozVFqJR9MtBniVA5jsKHDk3P4LiAW6vpX9Gjarh3NooxUb-zHWVTpPglY6XvhyEsT7dFdfieIHchYnyjtztVf4JGgGSL7MzZex3uGa8K_uq1uGCOkLyEXQtM76QPao1pfc7iI5AqXyK4h3V-vDqz-C_brOYmj9M12PXqeBS6FzDkr-MP2zZRTTo0nxqY6mC7aaJ9ZQh2',
+    avatar: '/depoimentos/rodrigo.jpg',
     quote: '"Como voluntário de programação aos sábados, vi adolescentes que nunca tiveram computador criarem suas primeiras páginas web. A empolgação nos olhos deles transforma quem ensina tanto quanto quem aprende."',
     rating: 5
   },
@@ -371,35 +1196,8 @@ export const TESTIMONIALS: Testimonial[] = [
     id: 'camila',
     name: 'Camila Alencar',
     role: 'Diretora de Sustentabilidade',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCqyZtWTtvOmYsINrP5plKFEmow7d4skAWG8hHBGLHUhjSo_-NxetTbtdHdSFgTI9tqQ1qJmaPnIKT9v7C8mLFTSE6ZI2Q847mv-MMsHm9QJVXSLoHk1V-IlSf77oPMLH8sGCKk1VlvNYNBx392XQaf9lUdrwpRRPM0JbBDSnZmKS9k7mVsYTx7dhKOz6RUSVd4XXGh2JYH0Pcw3XwGeMeBXOoPFBOzSB4dfg887WXfstUARY_SOM1z',
+    avatar: '/depoimentos/camila.jpg',
     quote: '"Nossa empresa audita rigorosamente as entidades que apoia. O Instituto Caminho e Forma impressiona pela clareza contábil, pontualidade nos relatórios e engajamento genuíno com os moradores de cada território."',
     rating: 5
-  }
-];
-
-export const TEACHERS = [
-  {
-    id: 'mariana',
-    name: 'Mariana Vasconcelos',
-    role: 'Engenheira de Software & Mentora Tech',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAfxo17uGY82t_eixOoXMbjTqRXzLAW75GguK2Adnt3WJ5rncmyuGPEwoA9PpszmgX6rHz0T68uWnRLaD9Rq9WvcsqW9O2dMIb9KvWtrs3E15NcaXI6sZmXHDFe37jer1VfqSWlopczmqyOrZTPNVkvZ4gWEuD-kM2i6MU5D_qI1D9o4fu-ar5-C4I2Xi7hBBC_9gXsbv_4H8Rf7yLYi8ky2OQdOBEE8H0o7x9UsMdcI6W8OFv1Cs-z',
-    quote: '"Ver um jovem periférico subindo seu primeiro site no ar e conquistando seu primeiro estágio é o que me move todos os fins de semana."',
-    badge: 'Voluntária há 3 anos'
-  },
-  {
-    id: 'carlos',
-    name: 'Chef Carlos Eduardo',
-    role: 'Mestre Padeiro & Consultor',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD79eVPQnZ0RN9wJ2bAvoUK21patCdTwCr94RJLjZreQnIyNfsU6MdrZMbLOEtMhbshO0zVqb68AWGyUFdX3da6v64EB7Fe2hGw_jA8xiCcUfAPYi_CcC84osjlHPSTL4FRPheESZ9b4wrSNyLJaVAM14uuGkUddmTQCnoa4VPoFwznqpaDdSvrONmX1Y2kDtDOpepXoTuXPpRfNzBlcUjuDcFZI25VO6LHoU_n8K70NDB2ApniKKi5',
-    quote: '"Ensinar o ofício do trigo é devolver autonomia. Nossos alunos saem da sala vendendo para os vizinhos e abrindo seus próprios pontos."',
-    badge: 'Voluntário há 5 anos'
-  },
-  {
-    id: 'beatriz',
-    name: 'Beatriz Mendonça',
-    role: 'Estilista & Especialista em Upcycling',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGFv853EaAOr4Mi9GxtdAwKw2eO7TtNBSrNrf2u2yfhtzKN--JFPH20ibr1dwAmCF1FXkcFg374_sMX79oXGXd5U5a9xIj6VtGQc-w1R0cHj0qyj_vv_0dIa-2pnHCXOpFBJGQlCbZ-6p7lcj9E0CY4M3D2nGiApgS1361Uebfs_9EO8zSET8Kk4XAgozAG-Z3ylWWWDv4Hnq4d1ORe_bP4kBwqJh2OWhpbCVuSnAHQ5snKp93E7xC',
-    quote: '"A costura é ferramenta de libertação feminina e geração de renda imediata com baixo investimento inicial e alta criatividade."',
-    badge: 'Voluntária há 2 anos'
   }
 ];

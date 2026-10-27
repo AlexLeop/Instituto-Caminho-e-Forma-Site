@@ -6,5 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+*.pem
+*.key
+.vercel/
 .agents/
 site-de-10k/
+scratch/

@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.git
+.agents
+.codex
+scratch
+site-de-10k
+tests
+node_modules
