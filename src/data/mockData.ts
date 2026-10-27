@@ -494,6 +494,26 @@ export const PROJECTS: Project[] = [
       solution: 'O projeto reúne crianças e adolescentes em atividades de futebol. As fotos do acervo registram a participação das turmas, os exercícios com bola e os encontros da equipe.',
       methodology: 'A proposta valoriza o trabalho em equipe, o respeito às regras e aos colegas e a convivência pelo esporte. Para informações sobre horários, vagas e participação, entre em contato com o Instituto.'
     },
+    teachers: [
+      {
+        id: 'futebol-leonardo-da-silva',
+        name: 'Leonardo da Silva',
+        role: 'Professor de Futebol',
+        bio: ''
+      },
+      {
+        id: 'futebol-marcelo-santos-da-silva',
+        name: 'Marcelo Santos da Silva',
+        role: 'Professor de Futebol',
+        bio: ''
+      },
+      {
+        id: 'futebol-eduardo-felipe-da-silva-ferreira',
+        name: 'Eduardo Felipe da Silva Ferreira',
+        role: 'Professor de Futebol',
+        bio: ''
+      }
+    ],
     gallery: [
       { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.24.jpeg', caption: 'Equipe reunida no campo com os participantes do projeto.' },
       { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.22 (1).jpeg', caption: 'Turma de futebol reunida com os adultos que acompanham a atividade.' },
