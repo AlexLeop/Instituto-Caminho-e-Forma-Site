@@ -96,10 +96,10 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
                 {project.category}
               </span>
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/85 text-[#14532d] font-sans text-xs font-bold border border-[#166534]/30 backdrop-blur-md shadow-2xs">
+              {project.showAuditBadge !== false && <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/85 text-[#14532d] font-sans text-xs font-bold border border-[#166534]/30 backdrop-blur-md shadow-2xs">
                 <span className="material-symbols-outlined text-[15px] text-[#166534]">verified</span>
                 Auditoria BDO • 100% Auditado
-              </span>
+              </span>}
             </div>
           </div>
 

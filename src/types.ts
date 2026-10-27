@@ -85,6 +85,7 @@ export interface Project {
   categoryTagType: 'primary' | 'secondary' | 'tertiary';
   image: string;
   progressPercent: number;
+  showAuditBadge?: boolean;
   imagePosition?: string;
   description: string;
   raisedAmount: number;

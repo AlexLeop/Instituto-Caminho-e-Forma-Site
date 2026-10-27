@@ -474,6 +474,47 @@ export const PROJECTS: Project[] = [
   // 2. ESPORTES & LUTAS (FOTOS BAIXADAS LOCALMENTE)
   // ==========================================
   {
+    id: 'futebol',
+    title: 'Futebol',
+    showAuditBadge: false,
+    category: 'Esportes & Lutas',
+    categoryTagType: 'secondary',
+    image: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.24.jpeg',
+    imagePosition: 'center 40%',
+    galleryIsIllustrative: false,
+    progressPercent: 0,
+    description: 'Futebol para crianças e adolescentes, com atividades em equipe que valorizam a convivência, o respeito e o desenvolvimento pelo esporte.',
+    raisedAmount: 0,
+    goalAmount: 32000,
+    impactBeneficiaries: 'Crianças e adolescentes',
+    status: 'Ativo',
+    location: 'Consulte o Instituto para confirmar o local das atividades.',
+    fullStory: {
+      problem: 'O acesso a espaços de esporte e convivência é importante para o desenvolvimento de crianças e adolescentes e para o fortalecimento dos vínculos na comunidade.',
+      solution: 'O projeto reúne crianças e adolescentes em atividades de futebol. As fotos do acervo registram a participação das turmas, os exercícios com bola e os encontros da equipe.',
+      methodology: 'A proposta valoriza o trabalho em equipe, o respeito às regras e aos colegas e a convivência pelo esporte. Para informações sobre horários, vagas e participação, entre em contato com o Instituto.'
+    },
+    gallery: [
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.24.jpeg', caption: 'Equipe reunida no campo com os participantes do projeto.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.22 (1).jpeg', caption: 'Turma de futebol reunida com os adultos que acompanham a atividade.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.20 (1).jpeg', caption: 'Participantes organizados para os exercícios com bola no campo.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.23.jpeg', caption: 'Orientações ao grupo durante uma atividade de futebol.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.18.jpeg', caption: 'Registro da turma com a faixa da equipe na quadra de areia.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.19.jpeg', caption: 'Participantes reunidos para uma foto de grupo na quadra de areia.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.22.jpeg', caption: 'Crianças e adolescentes com o uniforme amarelo da equipe.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.20.jpeg', caption: 'Preparação dos participantes com bolas e materiais de treino.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.21.jpeg', caption: 'Organização das atividades no campo com cones e bolas.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.21 (1).jpeg', caption: 'Exercício com bola e cones durante a atividade esportiva.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.14.jpeg', caption: 'Momento de convivência entre os participantes junto ao campo.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.15.jpeg', caption: 'Participantes reunidos em um encontro da turma de futebol.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.15 (1).jpeg', caption: 'Registro de integração do grupo no espaço das atividades.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.16.jpeg', caption: 'Turma reunida com crianças e adultos em um momento de convivência.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.16 (1).jpeg', caption: 'Encontro entre participantes e pessoas que acompanham o projeto.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.16 (2).jpeg', caption: 'Confraternização do grupo em uma mesa compartilhada.' },
+      { url: '/projetos/Futebool/WhatsApp Image 2026-10-27 at 11.59.17.jpeg', caption: 'Mais um registro dos participantes reunidos no campo.' }
+    ]
+  },
+  {
     id: 'muay-thai',
     title: 'Muay Thai',
     category: 'Esportes & Lutas',
