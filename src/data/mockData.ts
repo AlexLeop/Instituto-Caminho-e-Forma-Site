@@ -38,12 +38,6 @@ export const HERO_SLIDES: HeroSlide[] = [
     url: '/hero/WhatsApp Image 2026-10-25 at 13.34.04.jpeg',
     alt: 'Práticas corporais e momentos de integração na sede do Instituto',
     contextTag: 'Convivência Comunitária'
-  },
-  {
-    id: 'hero-sede-solidaria',
-    url: '/hero/WhatsApp Image 2026-10-25 at 13.34.10 (1).jpeg',
-    alt: 'Solidariedade, acolhimento socioassistencial e apoio às famílias de Itaguaí',
-    contextTag: 'Solidariedade & Acolhimento'
   }
 ];
 
