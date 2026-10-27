@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavPage } from '../types';
+import { SUPPORTER_PORTAL_ENABLED } from '../config/features';
 import { InstituteLogo } from './InstituteLogo';
 import { motion, AnimatePresence } from 'motion/react';
 import { WhatsAppIcon, InstagramIcon } from './SocialIcons';
@@ -99,9 +100,10 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </nav>
 
-          {/* Right Action: Botão Portal do Apoiador ao lado do Apoie o Instituto */}
+          {/* Ações de apoio ao Instituto */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Botão Portal do Apoiador (exibido ao lado do botão Apoie o Instituto) */}
+            {SUPPORTER_PORTAL_ENABLED && (
             <button 
               type="button"
               onClick={() => handleNavClick('portal-do-apoiador')}
@@ -115,6 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="material-symbols-outlined text-[16px] sm:text-[18px]">account_circle</span>
               <span>Portal do Apoiador</span>
             </button>
+            )}
 
             {/* Botão Principal: Apoie o Instituto */}
             <motion.button 
@@ -170,6 +173,7 @@ export const Header: React.FC<HeaderProps> = ({
               })}
 
               {/* Portal do Apoiador destacado no menu mobile */}
+              {SUPPORTER_PORTAL_ENABLED && (
               <button
                 onClick={() => handleNavClick('portal-do-apoiador')}
                 className={`text-left px-4 py-2.5 rounded-lg font-sans text-sm font-semibold transition-colors flex items-center gap-2 ${
@@ -181,6 +185,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="material-symbols-outlined text-[18px] text-[#b45309]">account_circle</span>
                 <span>Portal do Apoiador</span>
               </button>
+              )}
 
               <button
                 onClick={() => {

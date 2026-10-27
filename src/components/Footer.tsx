@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavPage } from '../types';
+import { SUPPORTER_PORTAL_ENABLED } from '../config/features';
 import { InstituteLogo } from './InstituteLogo';
 import { SealGraphic } from './RealSeals';
 import { WhatsAppIcon, InstagramIcon } from './SocialIcons';
@@ -83,6 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
                 Parcerias Corporativas ESG
               </button>
             </li>
+            {SUPPORTER_PORTAL_ENABLED && (
             <li>
               <button 
                 onClick={() => { onNavigate('portal-do-apoiador'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
@@ -92,6 +94,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
                 <span>Portal do Apoiador</span>
               </button>
             </li>
+            )}
             <li>
               <button 
                 onClick={() => { onNavigate('transparencia'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}

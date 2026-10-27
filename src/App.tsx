@@ -20,6 +20,7 @@ import { TransparencyView } from './components/TransparencyView';
 import { SupporterPortalView } from './components/SupporterPortalView';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { PROJECTS } from './data/mockData';
+import { SUPPORTER_PORTAL_ENABLED } from './config/features';
 
 const pathToPage = (pathname: string): NavPage => {
   if (typeof window !== 'undefined') {
@@ -40,7 +41,7 @@ const pathToPage = (pathname: string): NavPage => {
     'feira-virtual',
     'seja-parceiro',
     'transparencia',
-    'portal-do-apoiador'
+    ...(SUPPORTER_PORTAL_ENABLED ? ['portal-do-apoiador' as const] : [])
   ];
   return validPages.includes(segment as NavPage) ? (segment as NavPage) : 'inicio';
 };
@@ -146,6 +147,7 @@ export default function App() {
 
   // Handle page navigation
   const handleNavigate = (page: NavPage) => {
+    if (page === 'portal-do-apoiador' && !SUPPORTER_PORTAL_ENABLED) page = 'inicio';
     if (page === 'contato') {
       if (currentPage !== 'inicio') {
         setCurrentPage('inicio');
@@ -260,7 +262,7 @@ export default function App() {
               />
             )}
 
-            {currentPage === 'portal-do-apoiador' && (
+            {SUPPORTER_PORTAL_ENABLED && currentPage === 'portal-do-apoiador' && (
               <SupporterPortalView
                 onOpenDonation={() => handleOpenDonation()}
                 onNavigateHome={() => handleNavigate('inicio')}
