@@ -275,7 +275,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm text-slate-900"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm text-slate-900"
           >
             <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
               <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
@@ -306,6 +306,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </span>
               <p className="font-sans text-[11px] sm:text-xs text-slate-500">Polos de atendimento em Itaguaí e região</p>
             </div>
+
+            <button
+              type="button"
+              onClick={onOpenTransparency}
+              title="Acessar Portal da Transparência"
+              className="group flex flex-col items-start gap-0.5 rounded-r-lg border-l-2 border-[#166534] pl-3.5 text-left transition-colors hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#166534]"
+            >
+              <span className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight group-hover:text-[#166534]">
+                100<span className="text-base sm:text-lg font-sans font-semibold text-[#166534] ml-1">%</span>
+              </span>
+              <span className="flex items-center gap-1 font-sans text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#166534]">
+                Auditoria Aberta
+                <span className="material-symbols-outlined text-[15px] text-[#166534]" aria-hidden="true">open_in_new</span>
+              </span>
+              <span className="font-sans text-[11px] sm:text-xs text-slate-500">Balanços e notas fiscais auditados pelos fiscais do instituto</span>
+            </button>
           </motion.div>
         </div>
       </motion.section>
