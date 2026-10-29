@@ -275,31 +275,21 @@ export const HomeView: React.FC<HomeViewProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm text-slate-900"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5 p-4 sm:p-6 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm text-slate-900"
           >
             <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
               <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
-                +15<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1 font-semibold">mil</span>
+                350
               </div>
               <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">
-                Pessoas Atendidas
+                Famílias Atendidas
               </span>
               <p className="font-sans text-[11px] sm:text-xs text-slate-500">Nutrição, acolhimento e formação contínua</p>
             </div>
 
             <div className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5">
               <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
-                8<span className="text-base sm:text-lg text-[#166534] font-sans ml-1 font-semibold">núcleos</span>
-              </div>
-              <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">
-                Núcleos Comunitários
-              </span>
-              <p className="font-sans text-[11px] sm:text-xs text-slate-500">Polos de atendimento em Itaguaí e região</p>
-            </div>
-
-            <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
-                120<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1 font-semibold">ton</span>
+                400<span className="text-base sm:text-lg text-[#166534] font-sans ml-1 font-semibold">kg</span>
               </div>
               <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">
                 Alimentos Distribuídos
@@ -307,19 +297,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <p className="font-sans text-[11px] sm:text-xs text-slate-500">Segurança alimentar e combate à fome</p>
             </div>
 
-            <div
-              onClick={onOpenTransparency}
-              className="flex flex-col gap-0.5 border-l-2 border-[#166534] pl-3.5 cursor-pointer group hover:bg-slate-50 -ml-1 py-1 px-1 rounded-r-lg transition-colors"
-              title="Acessar Portal da Transparência"
-            >
-              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight group-hover:text-[#166534] transition-colors flex items-baseline gap-1">
-                100<span className="text-base sm:text-lg font-sans font-semibold text-[#166534]">%</span>
+            <div className="flex flex-col gap-0.5 border-l-2 border-[#b45309] pl-3.5">
+              <div className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+                3<span className="text-base sm:text-lg text-[#b45309] font-sans ml-1 font-semibold">núcleos</span>
               </div>
-              <span className="font-sans text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-1 group-hover:text-[#166534] transition-colors">
-                <span>Auditoria Aberta</span>
-                <span className="material-symbols-outlined text-[15px] text-[#166534]">open_in_new</span>
+              <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">
+                Núcleos Comunitários
               </span>
-              <p className="font-sans text-[11px] sm:text-xs text-slate-500">Balanços e notas fiscais auditados por BDO</p>
+              <p className="font-sans text-[11px] sm:text-xs text-slate-500">Polos de atendimento em Itaguaí e região</p>
             </div>
           </motion.div>
         </div>
