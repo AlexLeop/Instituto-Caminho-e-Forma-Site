@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { INSTITUTIONAL_CERTIFICATIONS_LABEL, isInstitutionalSealEnabled } from '../config/features';
 import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 import { TRANSPARENCY_DOCUMENTS, type TransparencyDocument } from '../data/transparencyDocuments';
 
@@ -61,7 +62,7 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
             <p className="mt-1">Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}.</p>
           </div>
           {/* Key Indicators */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+          <div className={`grid grid-cols-2 ${isInstitutionalSealEnabled('selo-doar-a-plus') ? 'sm:grid-cols-4' : 'sm:grid-cols-3'} gap-2.5 text-center`}>
             <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
               <span className="font-serif text-2xl font-bold text-[#166534] block">100%</span>
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Auditoria Externa</span>
@@ -74,10 +75,10 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
               <span className="font-serif text-2xl font-bold text-slate-600 block">0%</span>
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Administrativo</span>
             </div>
-            <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
+            {isInstitutionalSealEnabled('selo-doar-a-plus') && (<div className="bg-slate-50 border border-slate-200 p-3.5 rounded-2xl">
               <span className="font-serif text-2xl font-bold text-[#166534] block">Selo A+</span>
               <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Instituto Doar</span>
-            </div>
+            </div>)}
           </div>
 
           {/* Legal Registrations */}
@@ -90,14 +91,14 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
               <span className="font-bold text-slate-900">CNPJ:</span>
               <span>18.360.956/0001-60</span>
             </div>
-            <div className="flex justify-between">
+            {INSTITUTIONAL_CERTIFICATIONS_LABEL && (<div className="flex justify-between">
               <span className="font-bold text-slate-900">Qualificação:</span>
-              <span>OSCIP (Ministério da Justiça) e Certificação CEBAS</span>
-            </div>
-            <div className="flex justify-between">
+              <span>{INSTITUTIONAL_CERTIFICATIONS_LABEL}</span>
+            </div>)}
+            {isInstitutionalSealEnabled('cmdca-sp') && (<div className="flex justify-between">
               <span className="font-bold text-slate-900">Registro Municipal CMDCA / FIA:</span>
               <span>Processo nº 4892/2016 - Itaguaí / RJ</span>
-            </div>
+            </div>)}
           </div>
 
           {/* Downloadable Documents */}

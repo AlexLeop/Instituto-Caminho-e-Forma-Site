@@ -2,7 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 import { TRANSPARENCY_DOCUMENTS as DOCUMENTS_DATA, type TransparencyDocument as DocItem } from '../data/transparencyDocuments';
-import { OFFICIAL_SEALS, RealSealCard, SealVerificationModal, OfficialSeal } from './RealSeals';
+import { VISIBLE_OFFICIAL_SEALS, RealSealCard, SealVerificationModal, OfficialSeal } from './RealSeals';
+import { INSTITUTIONAL_CERTIFICATIONS_LABEL, isInstitutionalSealEnabled } from '../config/features';
 
 interface TransparencyViewProps {
   onOpenDonation: (projectName?: string) => void;
@@ -153,7 +154,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 </div>
               </motion.div>
 
-              <motion.div 
+              {INSTITUTIONAL_CERTIFICATIONS_LABEL && (<motion.div
                 whileHover={{ y: -4, scale: 1.01 }}
                 className="bg-white p-5 rounded-2xl shadow-xs border border-slate-200 flex items-center gap-4 hover:shadow-md transition-all"
               >
@@ -161,10 +162,10 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   <span className="material-symbols-outlined text-[28px]">account_balance</span>
                 </div>
                 <div className="min-w-0">
-                  <span className="block font-serif text-base text-slate-900 font-bold">Certificação OSCIP &amp; CEBAS</span>
+                  <span className="block font-serif text-base text-slate-900 font-bold">Certificações: {INSTITUTIONAL_CERTIFICATIONS_LABEL}</span>
                   <span className="block font-sans text-xs text-slate-500">Conformidade integral ao Ministério da Justiça</span>
                 </div>
-              </motion.div>
+              </motion.div>)}
             </motion.div>
           </div>
 
@@ -234,7 +235,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </div>
               <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">Zero</div>
               <p className="font-body-sm text-xs sm:text-sm text-[#534434] mt-2 leading-relaxed">
-                Pendências jurídicas, trabalhistas ou fiscais. CNDs e CEBAS vigentes.
+                Pendências jurídicas, trabalhistas ou fiscais.{isInstitutionalSealEnabled('cebas-social') && ' CNDs e CEBAS vigentes.'}
               </p>
             </motion.div>
           </div>
@@ -887,7 +888,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
       </section>
 
       {/* Selos de Conformidade e Reconhecimento - Selos Reais Auditados */}
-      <section className="w-full py-16 sm:py-24 bg-white border-b border-[#e6e8ea]">
+      {VISIBLE_OFFICIAL_SEALS.length > 0 && (<section className="w-full py-16 sm:py-24 bg-white border-b border-[#e6e8ea]">
         <div className="max-w-[1400px] w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -908,7 +909,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
-            {OFFICIAL_SEALS.map((seal: OfficialSeal, idx: number) => (
+            {VISIBLE_OFFICIAL_SEALS.map((seal: OfficialSeal, idx: number) => (
               <RealSealCard 
                 key={seal.id} 
                 seal={seal} 
@@ -929,7 +930,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
             <span>Todas as chancelas possuem conformidade documental ativa e estão disponíveis para consulta no Diário Oficial e nos portais das entidades certificadoras.</span>
           </motion.div>
         </div>
-      </section>
+      </section>)}
 
       {/* CTA Final: Visita e Auditoria Presencial Aberta */}
       <section className="w-full py-16 sm:py-20 bg-[#e6e8ea]">
@@ -1211,10 +1212,10 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
       )}
 
       {/* Official Seal Verification Modal */}
-      <SealVerificationModal
+      {VISIBLE_OFFICIAL_SEALS.length > 0 && <SealVerificationModal
         seal={selectedSeal}
         onClose={() => setSelectedSeal(null)}
-      />
+      />}
     </div>
   );
 };

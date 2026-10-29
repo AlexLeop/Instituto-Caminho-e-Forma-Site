@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { NavPage } from '../types';
-import { SUPPORTER_PORTAL_ENABLED } from '../config/features';
+import { SUPPORTER_PORTAL_ENABLED, INSTITUTIONAL_CERTIFICATIONS_LABEL } from '../config/features';
 import { InstituteLogo } from './InstituteLogo';
-import { SealGraphic } from './RealSeals';
+import { SealGraphic, VISIBLE_OFFICIAL_SEALS } from './RealSeals';
 import { WhatsAppIcon, InstagramIcon } from './SocialIcons';
 
 interface FooterProps {
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
 
   return (
     <footer className="w-full bg-white text-slate-900 border-t border-slate-200">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+      <div className={`max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 ${VISIBLE_OFFICIAL_SEALS.length ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-8 lg:gap-12`}>
         {/* Col 1: About */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
@@ -115,45 +115,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
           </ul>
         </div>
 
-        {/* Col 3: Compromisso & Selos */}
-        <div className="flex flex-col gap-4">
-          <h3 className="font-serif text-lg text-slate-900 font-bold">Auditoria &amp; Selos</h3>
-          <p className="font-sans text-sm text-slate-600 leading-relaxed">
-            Auditado periodicamente por consultorias independentes e alinhado aos ODS da ONU.
-          </p>
+        {/* Institutional seals remain available for gradual publication. */}
+        {VISIBLE_OFFICIAL_SEALS.length > 0 && <div className="flex flex-col gap-4">
+          <h3 className="font-serif text-lg text-slate-900 font-bold">Selos Institucionais</h3>
           <div className="flex flex-col gap-2.5">
-            <button 
-              onClick={onOpenTransparency}
-              className="flex items-center gap-3 bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl text-left border border-slate-200 shadow-2xs transition-all cursor-pointer group"
-            >
-              <SealGraphic type="doar" size={32} className="shrink-0 group-hover:scale-105 transition-transform" />
-              <div className="flex flex-col leading-tight">
-                <span className="font-sans text-xs text-slate-900 font-bold">Selo Doar A+</span>
-                <span className="text-[11px] text-slate-500">Padrão Máximo de Gestão &amp; Transparência</span>
-              </div>
-            </button>
-            <button 
-              onClick={onOpenTransparency}
-              className="flex items-center gap-3 bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl text-left border border-slate-200 shadow-2xs transition-all cursor-pointer group"
-            >
-              <SealGraphic type="melhores-ongs" size={32} className="shrink-0 group-hover:scale-105 transition-transform" />
-              <div className="flex flex-col leading-tight">
-                <span className="font-sans text-xs text-slate-900 font-bold">Melhores ONGs 2026</span>
-                <span className="text-[11px] text-slate-500">Top 100 Organizações Sociais do Brasil</span>
-              </div>
-            </button>
-            <button 
-              onClick={onOpenTransparency}
-              className="flex items-center gap-3 bg-slate-50 hover:bg-slate-100 p-2.5 rounded-xl text-left border border-slate-200 shadow-2xs transition-all cursor-pointer group"
-            >
-              <SealGraphic type="pacto-global" size={32} className="shrink-0 group-hover:scale-105 transition-transform" />
-              <div className="flex flex-col leading-tight">
-                <span className="font-sans text-xs text-slate-900 font-bold">Pacto Global ONU</span>
-                <span className="text-[11px] text-slate-500">Rede Brasil • Compromisso ODS 2030</span>
-              </div>
-            </button>
+            {VISIBLE_OFFICIAL_SEALS.map(seal => <button key={seal.id} onClick={onOpenTransparency} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-left shadow-xs transition-all hover:bg-slate-100">
+              <SealGraphic type={seal.sealType} size={32} className="shrink-0" />
+              <span className="font-sans text-xs font-bold text-slate-900">{seal.shortName}</span>
+            </button>)}
           </div>
-        </div>
+        </div>}
 
         {/* Col 4: Newsletter */}
         <div className="flex flex-col gap-4">
@@ -243,9 +214,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
               <span className="text-slate-400 hidden md:inline">•</span>
               <span><strong className="text-slate-900">Sede:</strong> Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Brisamar – Itaguaí / RJ – CEP: 23.823-390</span>
             </div>
-            <div className="shrink-0 text-[11px] text-slate-500">
-              Utilidade Pública &amp; Certificação Social
-            </div>
+            {INSTITUTIONAL_CERTIFICATIONS_LABEL && (<div className="shrink-0 text-[11px] text-slate-500">
+              Certificações: {INSTITUTIONAL_CERTIFICATIONS_LABEL}
+            </div>)}
           </div>
 
           {/* Copyright & Termos */}

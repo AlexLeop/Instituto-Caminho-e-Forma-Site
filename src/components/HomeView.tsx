@@ -11,6 +11,7 @@ import {
 } from '../data/mockData';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { PartnerLogosCarousel } from './PartnerLogosCarousel';
+import { INSTITUTIONAL_CERTIFICATIONS_LABEL } from '../config/features';
 import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 
 interface HomeViewProps {
@@ -1054,13 +1055,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   </div>
                 </div>
 
-                <div className="p-4 bg-white rounded-xl flex items-center gap-3.5 border border-slate-200 shadow-2xs">
+                {INSTITUTIONAL_CERTIFICATIONS_LABEL && (<div className="p-4 bg-white rounded-xl flex items-center gap-3.5 border border-slate-200 shadow-2xs">
                   <span className="material-symbols-outlined text-[28px] text-[#166534]">verified_user</span>
                   <div className="flex flex-col">
-                    <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">Certificação OSCIP e CEBAS</span>
+                    <span className="font-sans text-xs sm:text-sm font-bold text-slate-900">Certificações: {INSTITUTIONAL_CERTIFICATIONS_LABEL}</span>
                     <span className="font-sans text-xs text-slate-500">Entidade com reconhecimento público e prestação de contas homologada.</span>
                   </div>
-                </div>
+                </div>)}
               </div>
             </motion.div>
           </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { isInstitutionalSealEnabled } from '../config/features';
 import { motion, AnimatePresence } from 'motion/react';
 
 export interface OfficialSeal {
@@ -121,6 +122,8 @@ export const OFFICIAL_SEALS: OfficialSeal[] = [
     sealType: 'cmdca'
   }
 ];
+
+export const VISIBLE_OFFICIAL_SEALS = OFFICIAL_SEALS.filter(seal => isInstitutionalSealEnabled(seal.id));
 
 // High-fidelity vector seals rendering authentic accreditation badges
 export const SealGraphic: React.FC<{ type: OfficialSeal['sealType']; size?: number; className?: string }> = ({
