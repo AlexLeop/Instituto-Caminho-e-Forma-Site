@@ -1,5 +1,5 @@
-// Keep the portal implementation available for a future launch.
-export const SUPPORTER_PORTAL_ENABLED = false;
+// Donor access requires email, document suffix and a one-time code sent by Supabase Auth.
+export const SUPPORTER_PORTAL_ENABLED = true;
 
 // Enable each institutional seal only after the Institute provides its confirmation.
 export const ENABLED_INSTITUTIONAL_SEAL_IDS: readonly string[] = [];

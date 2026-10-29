@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { DONATION_DESTINATIONS } from '../../shared/donationDestinations';
 import { donationRecordsCsv, summarizeDonations, type DonationRecord, type DonationReportPage } from '../../shared/donationReports';
 import { formatDonationAmount as money } from '../data/donations';
+import { FundReallocationsPanel } from './FundReallocationsPanel';
 
 const field = 'min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-700';
 const button = 'min-h-11 rounded-lg bg-emerald-800 px-5 py-2 text-sm font-semibold text-white hover:bg-emerald-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-800 disabled:opacity-50';
@@ -146,6 +147,7 @@ export function DonationReportsView() {
           {manual.length === 0 && <p className="mt-4 text-sm text-slate-600">Nenhum registro externo para este destino.</p>}
         </section>
         <p className="mt-4 text-xs leading-relaxed text-slate-600">{!result.isStale && `${result.ignored} cobrança(s) da conta sem a referência do checkout foram desconsideradas. `}O relatório não inclui transferências feitas diretamente à chave Pix. Os comprovantes bancários devem acompanhar a prestação de contas.</p>
+        <FundReallocationsPanel accessKey={access.current} start={result.start} end={result.end} />
       </section>}
     </main>
   </div>;

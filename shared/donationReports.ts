@@ -53,7 +53,7 @@ export function summarizeDonations(records: DonationRecord[]): DonationSummary {
     totalCents, byDestination, updatedAt: new Date().toISOString()};
 }
 
-const csvCell = (value: string | number | null) => {
+export const csvCell = (value: string | number | null) => {
   let text = String(value ?? '');
   if (/^[\s\uFEFF]*[=+\-@]/u.test(text) || /^[\t\r\n]/.test(text)) text = `'${text}`;
   return `"${text.replaceAll('"', '""')}"`;

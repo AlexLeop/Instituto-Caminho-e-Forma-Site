@@ -3,6 +3,8 @@ import type { CoraInvoice } from '../cora/client.ts';
 import { CheckoutError, normalizeEnvironmentValue } from '../cora/config.ts';
 import type { DonationRecord, DonationReportPage, DonationSummary } from '../../shared/donationReports.ts';
 import { donationRecord, donationSnapshot } from './report.ts';
+import { findDonationDestination } from '../../shared/donationDestinations.ts';
+import type { FundMovement, FundReport, ReallocationInput } from '../../shared/fundMovements.ts';
 
 interface LedgerConfig {url: string; secret: string; environment: 'production' | 'stage'}
 type LedgerRow = ReturnType<typeof ledgerRow>;
@@ -36,9 +38,41 @@ export class DonationLedger {
       const response = await this.request(`${this.config.url}/rest/v1/${path}`, {
         ...init, signal: AbortSignal.timeout(8000), headers: {apikey: this.config.secret, 'Content-Type': 'application/json', ...init.headers},
       });
-      if (!response.ok) throw new Error();
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        const known: Record<string, [number, string, string]> = {
+          INSUFFICIENT_ALLOCATION: [409, 'insufficient_allocation', 'O saldo destinado ao projeto de origem é insuficiente. Atualize a consulta antes de registrar.'],
+          REALLOCATION_CONFLICT: [409, 'reallocation_conflict', 'Esta referência já foi usada para outra realocação. Atualize os dados e tente novamente.'],
+          ALREADY_REVERSED: [409, 'already_reversed', 'Esta realocação já foi estornada.'],
+          INVALID_REVERSAL: [400, 'invalid_reversal', 'Confira a referência e os dados do estorno.'],
+          SUPPORTER_RATE_LIMIT: [429, 'supporter_rate_limit', 'Muitas tentativas. Aguarde 15 minutos antes de tentar novamente.'],
+          INVALID_SUPPORTER_CHALLENGE: [401, 'invalid_supporter_challenge', 'O acesso expirou ou o código é inválido. Solicite um novo código.'],
+          INVALID_SUPPORTER_SESSION: [401, 'invalid_supporter_session', 'Sua sessão expirou. Entre novamente.'],
+        };
+        const error = known[body?.message];
+        if (error) throw new CheckoutError(...error);
+        throw new Error();
+      }
       return response;
-    } catch {throw new CheckoutError(503, 'donation_storage_unavailable', 'Não foi possível acessar os registros de doações. Tente novamente.');}
+    } catch (error) {if (error instanceof CheckoutError) throw error; throw new CheckoutError(503, 'donation_storage_unavailable', 'Não foi possível acessar os registros de doações. Tente novamente.');}
+  }
+
+  async rpc<T>(name: string, body: unknown): Promise<T> {
+    return (await this.call(`rpc/${name}`, {method: 'POST', body: JSON.stringify(body)})).json();
+  }
+
+  get environment() {return this.config.environment;}
+
+  async fundReport(start: string, end: string, page: number): Promise<FundReport> {
+    return this.rpc('donation_fund_report', {p_environment: this.config.environment, p_start: start, p_end: end, p_page: page});
+  }
+
+  async reallocate(input: ReallocationInput): Promise<FundMovement> {
+    return this.rpc('record_donation_reallocation', {
+      p_environment: this.config.environment, p_id: input.id, p_source_id: input.sourceId, p_source_title: findDonationDestination(input.sourceId)!.title,
+      p_destination_id: input.destinationId, p_destination_title: findDonationDestination(input.destinationId)!.title,
+      p_amount_cents: input.amountCents, p_responsible: input.responsible, p_reason: input.reason, p_reversal_of: input.reversalOf ?? null,
+    });
   }
 
   private async save(rows: LedgerRow[]) {

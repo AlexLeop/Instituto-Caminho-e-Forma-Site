@@ -16,6 +16,8 @@ Comandos úteis: `npm test`, `npm run cora:check`, `npm run vercel:env` e `npm r
 
 O painel privado `/gestao/doacoes` consulta os recebimentos da Cora por período e destino, preserva a descrição original, identifica os testes excluídos e exporta CSV. O Supabase mantém os registros e o histórico com acesso restrito ao servidor. Os totais públicos são atualizados automaticamente apenas com pagamentos confirmados e conciliados. A escolha do destino tem busca e ordenação alfabética. Consulte [PRESTACAO-DE-CONTAS.md](./PRESTACAO-DE-CONTAS.md) para acesso, conciliação, configuração do banco e registros externos ao checkout.
 
+O painel administrativo também registra realocações internas e estornos sem alterar as doações originais. A [área do apoiador](./PORTAL-DO-APOIADOR.md) utiliza e-mail, final do CPF e código por e-mail; depende de SMTP e templates de OTP configurados no Supabase.
+
 This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/f3d31be9-6f2a-4ead-a1ce-45bf3a58c858

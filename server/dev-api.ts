@@ -2,6 +2,7 @@ import type { Plugin } from 'vite';
 import dotenv from 'dotenv';
 import handler from '../api/checkout.ts';
 import donationsHandler from '../api/donations.ts';
+import supporterHandler from '../api/supporter.ts';
 
 export function coraDevApi(): Plugin {
   return {name: 'cora-local-api', apply: 'serve', configureServer(server) {
@@ -10,6 +11,7 @@ export function coraDevApi(): Plugin {
     server.middlewares.use((request, response, next) => {
       if (request.url?.split('?')[0] === '/api/checkout') { void handler(request, response); return; }
       if (request.url?.split('?')[0] === '/api/donations') { void donationsHandler(request, response); return; }
+      if (request.url?.split('?')[0] === '/api/supporter') { void supporterHandler(request, response); return; }
       if (request.url?.startsWith('/api/')) {response.statusCode = 404; response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify({error: {message: 'Rota não encontrada.'}})); return;}
       next();
     });

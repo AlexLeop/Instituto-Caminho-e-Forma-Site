@@ -5,6 +5,7 @@ import { CheckoutError, readCoraConfig } from '../server/cora/config.ts';
 import { readDonationReportPage, readDonationSummary, validateReportRange, type ReportBank } from '../server/donations/report.ts';
 import { checkOrigin, readJson } from './checkout.ts';
 import { getDonationLedger } from '../server/donations/ledger.ts';
+import { validateReallocation } from '../server/donations/reallocations.ts';
 
 let cachedBank: {fingerprint: string; bank: CoraClient} | undefined;
 function bank() {
@@ -59,10 +60,25 @@ export function createDonationsHandler(getBank: () => ReportBank = bank, env: No
       // Authenticate before parsing the body or accessing any banking data.
       authorizeDonationReport(request.headers.authorization, env.DONATIONS_REPORT_ACCESS_HASH);
       const body = await readJson(request);
+      if (body?.action === 'reallocate') {
+        const input = validateReallocation(body.movement);
+        const ledger = getLedger();
+        if (!ledger) throw new CheckoutError(503, 'database_required', 'O banco de dados precisa estar configurado para registrar realocações.');
+        const movement = await ledger.reallocate(input);
+        response.statusCode = 201;
+        response.end(JSON.stringify({movement}));
+        return;
+      }
       const {start, end} = validateReportRange(body?.start, body?.end);
       const page = body?.page ?? 1;
       if (!Number.isSafeInteger(page) || page < 1 || page > 100) throw new CheckoutError(400, 'invalid_page', 'Página inválida. Reduza o período da consulta.');
       const ledger = getLedger();
+      if (body?.action === 'funds') {
+        if (!ledger) throw new CheckoutError(503, 'database_required', 'O banco de dados precisa estar configurado para consultar realocações.');
+        response.statusCode = 200;
+        response.end(JSON.stringify({funds: await ledger.fundReport(start, end, page)}));
+        return;
+      }
       let report;
       try {report = await readDonationReportPage(getBank(), start, end, page, ledger);}
       catch (error) {if (!ledger) throw error; report = await ledger.report(start, end, page);}

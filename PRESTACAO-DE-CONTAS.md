@@ -35,6 +35,24 @@ O servidor valida a chave antes de consultar dados bancários. O relatório aute
 
 A chave de acesso inicial foi entregue em arquivo local privado, dentro de `scratch/prestacao-de-contas/`, diretório ignorado pelo Git e pelos envios à Vercel. Guarde-a em um gerenciador de senhas. Para revogar acesso, gere uma nova chave, substitua seu hash na Vercel e publique novamente.
 
+Essa chave também autoriza o registro de realocações internas e estornos no painel administrativo. Ela não movimenta dinheiro na Cora. Deve ser compartilhada somente com os responsáveis pela administração financeira.
+
+## Realocações internas
+
+Depois de consultar o relatório, a seção **Realocações de recursos** mostra o recebido originalmente, as entradas e saídas por realocação e o valor destinado a cada projeto após essas mudanças. Os saldos são acumulados; o filtro de período limita a lista de movimentações.
+
+Para registrar, escolha origem e destino, informe o valor, o responsável e o motivo. Confira o resumo e confirme o registro. A data é preenchida no servidor. A operação é atômica, verifica o saldo de origem e usa uma referência única para impedir duplicação em uma repetição da mesma requisição. O responsável é o nome informado pelo administrador que possui a chave; o painel não identifica individualmente quem compartilha essa chave.
+
+Exemplo: uma doação de R$ 1.000 ao boxe continua registrada como recebimento do boxe. Ao realocar R$ 800 para o ballet, os valores destinados passam a R$ 200 no boxe e R$ 800 no ballet. O total recebido pelo Instituto permanece R$ 1.000. Os indicadores públicos de arrecadação e o extrato do apoiador preservam a destinação da contribuição; a movimentação posterior aparece no painel administrativo.
+
+As realocações não alteram a descrição original nem a conciliação das cobranças. Não representam pagamento ou transferência bancária automática, e os valores destinados não são o saldo da conta bancária. Despesas e pagamentos efetivos precisam ser comprovados pelos documentos financeiros correspondentes.
+
+Para corrigir uma realocação, utilize **Estornar registro**, informe o motivo e confirme. O estorno cria um lançamento contrário, vinculado ao original. Não apaga o histórico e exige saldo no projeto de retorno. Se os recursos já foram realocados novamente, é necessário reorganizar as movimentações antes de estornar. Cada registro pode ter apenas um estorno.
+
+O botão **Baixar realocações CSV** exporta o histórico completo encontrado no período, incluindo estornos, responsável, motivo e referências. O CSV das doações permanece separado para não confundir realocações com novas receitas.
+
+A tabela `donation_fund_movements` permite apenas leitura e inserção pelo servidor; não permite atualização ou exclusão pela API. As funções de saldo e registro também são privadas. O acesso do apoiador é separado e documentado em `PORTAL-DO-APOIADOR.md`.
+
 ## Banco Supabase
 
 O servidor utiliza **SUPABASE_URL** e **SUPABASE_SECRET_KEY**. A chave secreta nunca é importada pelo frontend. Não são necessárias senha PostgreSQL ou chaves de assinatura JWT no código publicado. A integração também funciona sem Supabase configurado, consultando a Cora; se uma configuração parcial for fornecida, ela deve ser corrigida.
@@ -52,7 +70,7 @@ npm run donations:database -- --apply
 npm run donations:sync
 ```
 
-O primeiro comando usa `POSTGRES_URL_NON_POOLING` somente no computador, valida o projeto de destino e a conexão TLS com o certificado oficial. A migração está em `supabase/migrations/20261029224832_donation_ledger.sql`. Não precisa ser executada durante o deploy. Sem `--apply`, o comando apenas confere as proteções. O segundo comando consulta a Cora e salva os registros de forma idempotente, sem emitir cobranças.
+O primeiro comando usa `POSTGRES_URL_NON_POOLING` somente no computador, valida o projeto de destino e a conexão TLS com o certificado oficial. As migrações estão em `supabase/migrations/20261029224832_donation_ledger.sql` e `supabase/migrations/20261029233335_fund_reallocations_supporter_access.sql`. Não precisam ser executadas durante o deploy. Sem `--apply`, o comando apenas confere as proteções. O segundo comando consulta a Cora e salva os registros de forma idempotente, sem emitir cobranças.
 
 ## Exportar localmente
 
