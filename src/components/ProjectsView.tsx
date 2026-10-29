@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Project } from '../types';
-import { PROJECTS } from '../data/mockData';
+import { useFundedProjects } from '../hooks/useDonationTotals';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ProjectsViewProps {
@@ -14,6 +14,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
   onOpenTransparency,
   onSelectProject
 }) => {
+  const PROJECTS = useFundedProjects();
   const [filter, setFilter] = useState<string>('all');
 
   const categories = [
@@ -34,7 +35,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
       if (filter === 'sede') return cat.includes('sede') || cat.includes('comunidade');
       return true;
     });
-  }, [filter]);
+  }, [filter, PROJECTS]);
 
   return (
     <div className="flex flex-col w-full overflow-hidden">

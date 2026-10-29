@@ -223,6 +223,7 @@ export default function App() {
               <CoursesView
                 onEnrollCourse={(c) => setSelectedCourseForEnroll(c)}
                 onOpenVolunteer={handleOpenVolunteer}
+                onOpenDonation={handleOpenDonation}
               />
             )}
 

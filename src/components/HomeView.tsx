@@ -12,7 +12,8 @@ import {
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { PartnerLogosCarousel } from './PartnerLogosCarousel';
 import { INSTITUTIONAL_CERTIFICATIONS_LABEL } from '../config/features';
-import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { formatDonationAmount } from '../data/donations';
+import { DonationSyncStatus, useDonationTotals, useFundedProjects } from '../hooks/useDonationTotals';
 
 interface HomeViewProps {
   onNavigate: (page: NavPage) => void;
@@ -29,6 +30,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onSelectProduct,
   onSelectProject
 }) => {
+  const DONATION_TOTALS = useDonationTotals();
+  const PROJECTS = useFundedProjects();
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
@@ -658,6 +661,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div>
               <p className="text-sm font-bold text-emerald-950">Total de doações recebidas: {formatDonationAmount(DONATION_TOTALS.totalCents)}</p>
               <p className="mt-1 text-sm text-emerald-900">Fundo geral: {formatDonationAmount(DONATION_TOTALS.generalFundCents)} • Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}</p>
+              <DonationSyncStatus />
               <p className="mt-1 text-sm text-emerald-900">As doações são contabilizadas separadamente conforme sua destinação.</p>
             </div>
             <button type="button" onClick={() => onNavigate('transparencia')} className="min-h-11 shrink-0 self-start rounded-xl border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-emerald-100">Acompanhar doações</button>

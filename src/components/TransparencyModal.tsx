@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { INSTITUTIONAL_CERTIFICATIONS_LABEL, isInstitutionalSealEnabled } from '../config/features';
-import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { formatDonationAmount } from '../data/donations';
+import { useDonationTotals } from '../hooks/useDonationTotals';
 import { TRANSPARENCY_DOCUMENTS, type TransparencyDocument } from '../data/transparencyDocuments';
 
 interface TransparencyModalProps {
@@ -9,6 +10,7 @@ interface TransparencyModalProps {
 }
 
 export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, onClose }) => {
+  const DONATION_TOTALS = useDonationTotals();
   const [downloadSuccess, setDownloadSuccess] = useState<string | null>(null);
 
   if (!isOpen) return null;

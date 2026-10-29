@@ -8,9 +8,18 @@ export interface CoraInvoice {
   status: string;
   total_amount: number;
   total_paid: number;
+  created_at?: string;
+  occurrence_date?: string;
+  customer?: {name?: string; email?: string; document?: {identity?: string}};
+  services?: {name?: string; description?: string; amount?: number}[];
+  payments?: {id?: string; status?: string; created_at?: string; finalized_at?: string; total_paid?: number; method?: string}[];
   payment_terms?: {due_date?: string};
   pix?: {emv?: string};
   payment_options?: {bank_slip?: {url?: string; digitable?: string; barcode?: string}};
+}
+export interface CoraInvoicePage {
+  totalItems: number;
+  items: {id: string; status: string; paid_at?: string; payment_form?: string}[];
 }
 export interface TransportRequest { method: 'GET' | 'POST'; path: string; headers: Record<string, string>; body?: string }
 export interface TransportResponse { status: number; body: any }
@@ -60,12 +69,15 @@ export class CoraClient {
     try { return await this.tokenPromise; } finally { this.tokenPromise = undefined; }
   }
 
-  private async authorized(request: TransportRequest): Promise<CoraInvoice> {
+  private async authorized<T = CoraInvoice>(request: TransportRequest, validate: (body: any) => boolean = body => typeof body?.id === 'string'): Promise<T> {
     for (let attempt = 0; attempt < 2; attempt++) {
       const token = await this.accessToken();
       const result = await this.transport({...request, headers: {...request.headers, Authorization: `Bearer ${token}`}});
       if (result.status === 401 && attempt === 0) { this.token = undefined; continue; }
-      if (result.status >= 200 && result.status < 300 && typeof result.body?.id === 'string') return result.body;
+      if (result.status >= 200 && result.status < 300) {
+        if (validate(result.body)) return result.body;
+        throw new CheckoutError(502, 'invalid_bank_response', 'O banco retornou dados incompletos. Tente consultar novamente.');
+      }
       if (result.status === 404) throw new CheckoutError(404, 'payment_not_found', 'A cobrança não foi encontrada.');
       if (result.status === 400 || result.status === 422) throw new CheckoutError(422, 'payment_rejected', 'O banco não aceitou os dados da cobrança. Confira nome, e-mail e CPF/CNPJ.');
       if (result.status === 409) throw new CheckoutError(409, 'payment_conflict', 'A cobrança já está sendo processada. Aguarde e tente novamente com os mesmos dados.');
@@ -83,5 +95,10 @@ export class CoraClient {
   }
   getInvoice(id: string): Promise<CoraInvoice> {
     return this.authorized({method: 'GET', path: `/v2/invoices/${encodeURIComponent(id)}`, headers: {}});
+  }
+  listPaidInvoices(start: string, end: string, page: number, perPage = 20): Promise<CoraInvoicePage> {
+    const query = new URLSearchParams({state: 'PAID', start, end, page: String(page), perPage: String(perPage)});
+    return this.authorized<CoraInvoicePage>({method: 'GET', path: `/v2/invoices/?${query}`, headers: {}}, body =>
+      Number.isSafeInteger(body?.totalItems) && body.totalItems >= 0 && Array.isArray(body.items) && body.items.length <= perPage && body.items.every((item: any) => typeof item?.id === 'string' && /^[A-Za-z0-9_-]{8,100}$/.test(item.id)));
   }
 }

@@ -61,7 +61,7 @@ test('payload uses documented Pix forms, integer amounts and optional address om
   assert.deepEqual(payload.payment_forms, ['PIX']);
   assert.equal(payload.customer.document.type, 'CPF');
   assert.equal(payload.services[0].amount, 5000);
-  assert.equal(payload.services[0].description, 'Apoio: Muay Thai');
+  assert.equal(payload.services[0].description, 'Destino [muay-thai]: Muay Thai');
   assert.equal(payload.payment_terms.due_date, '2026-10-29');
   assert.equal('address' in payload.customer, false);
   assert.deepEqual(payload.notification.channels[0].rules, ['NOTIFY_WHEN_PAID']);

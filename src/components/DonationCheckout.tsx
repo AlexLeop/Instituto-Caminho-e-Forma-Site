@@ -1,5 +1,5 @@
 import React, { useId, useState } from 'react';
-import { PROJECTS } from '../data/mockData';
+import { DONATION_DESTINATIONS, findDonationDestination } from '../../shared/donationDestinations';
 import { parseAmount, validDocument } from '../../shared/checkout';
 import type { PaymentMethod } from '../../shared/checkout';
 import { useDonationCheckout } from '../hooks/useDonationCheckout';
@@ -10,8 +10,8 @@ const fieldClass = 'min-h-11 w-full rounded-xl border border-slate-300 bg-white 
 const secondaryClass = 'min-h-11 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 disabled:opacity-60';
 
 export function DonationCheckout({projectId, initialProject, allowProjectSelection = false}: Props) {
-  const selected = PROJECTS.find(p => p.id === initialProject || p.title === initialProject)?.id;
-  const [destination, setDestination] = useState(projectId || selected || 'geral');
+  const selected = findDonationDestination(initialProject)?.id;
+  const [destination, setDestination] = useState(projectId || selected || '');
   const [amount, setAmount] = useState('50');
   const [method, setMethod] = useState<PaymentMethod>('pix');
   const [name, setName] = useState('');
@@ -31,6 +31,7 @@ export function DonationCheckout({projectId, initialProject, allowProjectSelecti
   }
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault(); setValidation(null);
+    if (!findDonationDestination(destination)) {setValidation('Escolha o destino da sua doação.'); return;}
     if (!Number.isSafeInteger(amountCents) || amountCents < 500 || amountCents > 5000000) {setValidation('Informe um valor entre R$ 5,00 e R$ 50.000,00.'); return;}
     if (!validDocument(document)) {setValidation('Informe um CPF ou CNPJ válido.'); return;}
     await create({amountCents, method, frequency: 'single', projectId: destination, customer: {name: name.trim().replace(/\s+/g, ' '), email: email.trim(), document: document.replace(/[.\-/\s]/g, '')}});
@@ -90,11 +91,13 @@ export function DonationCheckout({projectId, initialProject, allowProjectSelecti
       </div>
       {allowProjectSelection && <div>
         <label htmlFor={label('project')} className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Destinar para</label>
-        <select id={label('project')} value={destination} onChange={e => setDestination(e.target.value)} className={fieldClass}>
-          <option value="geral">Fundo Geral de Acolhimento Comunitário</option>
-          {PROJECTS.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
+        <select id={label('project')} required value={destination} onChange={e => setDestination(e.target.value)} className={fieldClass}>
+          <option value="" disabled>Escolha o destino da doação</option>
+          {DONATION_DESTINATIONS.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
         </select>
+        <p className="mt-1 text-xs text-slate-600">O destino escolhido será registrado na cobrança para a prestação de contas.</p>
       </div>}
+      {!allowProjectSelection && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-950">Destino da doação: <strong>{findDonationDestination(destination)?.title}</strong></p>}
       <div>
         <label htmlFor={label('name')} className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Nome completo</label>
         <input id={label('name')} autoComplete="name" required minLength={3} maxLength={60} value={name} onChange={e => setName(e.target.value)} className={fieldClass} />

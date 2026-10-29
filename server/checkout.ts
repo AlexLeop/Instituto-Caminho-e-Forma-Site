@@ -1,12 +1,12 @@
 import { createHmac, timingSafeEqual } from 'node:crypto';
 import QRCode from 'qrcode';
-import { PROJECTS } from '../src/data/mockData.ts';
+import { DONATION_DESTINATIONS, donationDescription } from '../shared/donationDestinations.ts';
 import { validDocument } from '../shared/checkout.ts';
 import type { CheckoutInput, CheckoutPayment, PaymentStatus, PaymentMethod } from '../shared/checkout.ts';
 import { CheckoutError } from './cora/config.ts';
 import type { CoraInvoice } from './cora/client.ts';
 
-const projects = new Map([['geral', 'Fundo Geral de Acolhimento Comunitário'], ...PROJECTS.map(p => [p.id, p.title] as [string, string])]);
+const projects = new Map(DONATION_DESTINATIONS.map(p => [p.id, p.title]));
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const invoiceId = /^[A-Za-z0-9_-]{8,100}$/;
 const statuses = new Set(['DRAFT', 'OPEN', 'IN_PAYMENT', 'PAID', 'LATE', 'CANCELLED']);
@@ -40,7 +40,7 @@ export function invoicePayload(input: CheckoutInput) {
   return {
     code: `icf-${input.idempotencyKey}`,
     customer: {name: input.customer.name, email: input.customer.email, document: {identity: input.customer.document, type: input.customer.document.length === 11 ? 'CPF' : 'CNPJ'}},
-    services: [{name: 'Doação ao Instituto Caminho e Forma', description: `Apoio: ${projects.get(input.projectId)}`.slice(0, 100), amount: input.amountCents}],
+    services: [{name: `Doação - ${projects.get(input.projectId)}`, description: donationDescription(input.projectId), amount: input.amountCents}],
     payment_terms: {due_date: dueDate},
     payment_forms: input.method === 'pix' ? ['PIX'] : ['BANK_SLIP', 'PIX'],
     notification: {name: input.customer.name, channels: [{channel: 'EMAIL', contact: input.customer.email, rules: ['NOTIFY_WHEN_PAID']}]},

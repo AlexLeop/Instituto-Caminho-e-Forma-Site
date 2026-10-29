@@ -69,7 +69,8 @@ Os testes usam banco simulado, sem acessar a conta Cora. Cobrem validação, cen
 
 - A conta Cora precisa ter uma chave Pix cadastrada para disponibilizar o QR Code. Se a Cora ainda não retornar o código, a cobrança permanece pendente e o checkout permite consultar novamente.
 - A própria Cora armazena a fatura. Não há banco de dados de doadores, mural de apoiadores, assinatura mensal, emissão fiscal ou envio de recibo fiscal nesta integração. Foi configurada a notificação de pagamento por e-mail da Cora, que não equivale a um recibo fiscal do Instituto.
-- A confirmação ocorre por consulta autenticada à Cora enquanto o checkout está aberto ou quando o usuário retorna à mesma aba. Não há webhook, automação administrativa nem atualização dos totais estáticos dos projetos. Para conciliação administrativa, consulte as cobranças na Cora; integrações futuras podem persistir os eventos em uma base própria.
+- A confirmação do doador ocorre por consulta autenticada enquanto o checkout está aberto. Para prestação de contas, `/gestao/doacoes` consulta as cobranças pagas diretamente na Cora, independentemente de o doador manter a página aberta. Não há webhook nem banco de dados próprio; a Cora é a fonte persistente das cobranças.
+- Os totais públicos são atualizados por `/api/donations` a partir dos pagamentos confirmados, conciliados por destino. O navegador e o servidor usam atualização/cache de aproximadamente um minuto cada. Em falha bancária, o site identifica a última conciliação disponível; não apresenta zero como se não houvesse recebimentos.
 - A tentativa de emissão é válida por 24 horas e o acesso à consulta pelo site por sete dias. A expiração desse acesso não cancela a fatura na Cora. Nunca conclua que uma cobrança foi cancelada apenas porque a página expirou.
 - Fazer outra doação não cancela a anterior. O checkout informa isso antes de oferecer uma nova cobrança.
 - Proteção de leitura usa tokens assinados; eles não devem ser colocados em URLs ou logs. Não há limite distribuído contra automação de emissão nesta versão. Para tráfego público, configure limites no Vercel Firewall para `POST /api/checkout`, considerando que as consultas também usam essa rota.
@@ -82,5 +83,6 @@ Os testes usam banco simulado, sem acessar a conta Cora. Cobrem validação, cen
 - [Emissão de QR Code Pix v2](https://developers.cora.com.br/reference/qr-code-pix-v2)
 - [Emissão de boleto registrado v2](https://developers.cora.com.br/reference/emiss%C3%A3o-de-boleto-registrado-v2)
 - [Consulta de detalhes do boleto](https://developers.cora.com.br/reference/consultar-detalhes-de-um-boleto-v2)
+- [Consulta de cobranças pagas, período e paginação](https://developers.cora.com.br/reference/consultar-boletos-v2)
 - [Vite na Vercel](https://vercel.com/docs/frameworks/frontend/vite)
 - [Variáveis de ambiente na Vercel](https://vercel.com/docs/environment-variables/managing-environment-variables)

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { formatDonationAmount } from '../data/donations';
+import { DonationSyncStatus, useDonationTotals } from '../hooks/useDonationTotals';
 import { TRANSPARENCY_DOCUMENTS as DOCUMENTS_DATA, type TransparencyDocument as DocItem } from '../data/transparencyDocuments';
 import { VISIBLE_OFFICIAL_SEALS, RealSealCard, SealVerificationModal, OfficialSeal } from './RealSeals';
 import { INSTITUTIONAL_CERTIFICATIONS_LABEL, isInstitutionalSealEnabled } from '../config/features';
@@ -10,6 +11,7 @@ interface TransparencyViewProps {
 }
 
 export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonation: _onOpenDonation }) => {
+  const DONATION_TOTALS = useDonationTotals();
   const [selectedYear, setSelectedYear] = useState<string>('2026');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [downloadSuccessToast, setDownloadSuccessToast] = useState<string | null>(null);
@@ -220,6 +222,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <p className="font-body-sm text-xs sm:text-sm text-[#534434] mt-2 leading-relaxed">
                 Fundo geral: {formatDonationAmount(DONATION_TOTALS.generalFundCents)}. Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}.
               </p>
+              <DonationSyncStatus />
             </motion.div>
 
             <motion.div 
@@ -288,6 +291,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                     { label: 'Fundo geral do Instituto', amount: DONATION_TOTALS.generalFundCents },
                     { label: 'Cursos EAD', amount: DONATION_TOTALS.eadCoursesCents },
                     { label: 'Projetos específicos', amount: DONATION_TOTALS.projectsCents },
+                    { label: 'A conciliar — destino não identificado', amount: DONATION_TOTALS.unassignedCents },
                   ].map(item => {
                     const percent = DONATION_TOTALS.totalCents > 0 ? Math.round(item.amount / DONATION_TOTALS.totalCents * 100) : 0;
                     return <div key={item.label}>

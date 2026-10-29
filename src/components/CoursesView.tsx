@@ -1,15 +1,18 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Course } from '../types';
 import { COURSES, TEACHERS } from '../data/mockData';
-import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { formatDonationAmount } from '../data/donations';
+import { DonationSyncStatus, useDonationTotals } from '../hooks/useDonationTotals';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
 interface CoursesViewProps {
   onEnrollCourse: (course: Course) => void;
   onOpenVolunteer: (type: 'teach' | 'sponsor') => void;
+  onOpenDonation: (destination: string) => void;
 }
 
-export const CoursesView: React.FC<CoursesViewProps> = ({ onEnrollCourse, onOpenVolunteer }) => {
+export const CoursesView: React.FC<CoursesViewProps> = ({ onEnrollCourse, onOpenVolunteer, onOpenDonation }) => {
+  const DONATION_TOTALS = useDonationTotals();
   const [selectedCat, setSelectedCat] = useState<'all' | 'tech' | 'crafts' | 'business'>('all');
   const [selectedMode, setSelectedMode] = useState<'all' | 'presencial' | 'semipresencial'>('all');
 
@@ -56,6 +59,8 @@ export const CoursesView: React.FC<CoursesViewProps> = ({ onEnrollCourse, onOpen
             <div className="mb-8 w-full rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-left text-emerald-950">
               <p className="text-sm font-bold">Apoio aos cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)} recebidos</p>
               <p className="mt-1 text-sm">Doação destinada aos cursos de educação a distância do Instituto, contabilizada separadamente do fundo geral.</p>
+              <DonationSyncStatus />
+              <button type="button" onClick={() => onOpenDonation('cursos-ead')} className="mt-3 min-h-11 rounded-lg bg-emerald-800 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-900">Apoiar os cursos EAD</button>
             </div>
 
             {/* Highlights Badges */}

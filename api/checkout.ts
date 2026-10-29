@@ -12,7 +12,7 @@ function service() {
   return cached.service;
 }
 
-async function readJson(request: ApiRequest): Promise<any> {
+export async function readJson(request: ApiRequest): Promise<any> {
   if (Number(request.headers['content-length'] || 0) > 8192) throw new CheckoutError(413, 'body_too_large', 'Os dados enviados excedem o limite permitido.');
   if (!(request.headers['content-type'] || '').toLowerCase().startsWith('application/json')) throw new CheckoutError(415, 'invalid_content_type', 'Envie os dados em formato JSON.');
   if (request.body !== undefined) {
@@ -31,7 +31,7 @@ async function readJson(request: ApiRequest): Promise<any> {
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
 
-function checkOrigin(request: ApiRequest) {
+export function checkOrigin(request: ApiRequest) {
   if (request.headers['sec-fetch-site'] === 'cross-site') throw new CheckoutError(403, 'invalid_origin', 'Acesse o checkout pelo site do Instituto.');
   const origin = request.headers.origin;
   if (!origin) return;

@@ -12,6 +12,10 @@ Consulte [CORA-CHECKOUT.md](./CORA-CHECKOUT.md) para configurar as cinco variáv
 
 Comandos úteis: `npm test`, `npm run cora:check`, `npm run vercel:env` e `npm run dev`.
 
+## Prestação de contas
+
+O painel privado `/gestao/doacoes` consulta os recebimentos da Cora por período e destino, preserva a descrição original, identifica os testes excluídos e exporta CSV. Os totais públicos são atualizados automaticamente apenas com pagamentos confirmados e conciliados. Consulte [PRESTACAO-DE-CONTAS.md](./PRESTACAO-DE-CONTAS.md) para acesso, conciliação e registros externos ao checkout.
+
 This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/f3d31be9-6f2a-4ead-a1ce-45bf3a58c858
