@@ -4,7 +4,14 @@ export const DONATION_DESTINATIONS = [
   {id: 'geral', title: 'Fundo Geral de Acolhimento Comunitário'},
   {id: 'cursos-ead', title: 'Cursos EAD'},
   ...PROJECTS.map(({id, title}) => ({id, title})),
-];
+].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR', {sensitivity: 'base'}));
+
+const normalizeSearch = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR').trim();
+
+export function filterDonationDestinations(query: string) {
+  const words = normalizeSearch(query).split(/\s+/).filter(Boolean);
+  return DONATION_DESTINATIONS.filter(destination => words.every(word => normalizeSearch(destination.title).includes(word)));
+}
 
 export function findDonationDestination(value?: string) {
   return DONATION_DESTINATIONS.find(destination => destination.id === value || destination.title === value);

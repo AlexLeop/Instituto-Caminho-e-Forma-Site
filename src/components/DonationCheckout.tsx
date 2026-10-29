@@ -1,5 +1,6 @@
 import React, { useId, useState } from 'react';
-import { DONATION_DESTINATIONS, findDonationDestination } from '../../shared/donationDestinations';
+import { findDonationDestination } from '../../shared/donationDestinations';
+import { DonationDestinationPicker } from './DonationDestinationPicker';
 import { parseAmount, validDocument } from '../../shared/checkout';
 import type { PaymentMethod } from '../../shared/checkout';
 import { useDonationCheckout } from '../hooks/useDonationCheckout';
@@ -91,10 +92,7 @@ export function DonationCheckout({projectId, initialProject, allowProjectSelecti
       </div>
       {allowProjectSelection && <div>
         <label htmlFor={label('project')} className="mb-1 block text-xs font-bold uppercase tracking-wider text-slate-700">Destinar para</label>
-        <select id={label('project')} required value={destination} onChange={e => setDestination(e.target.value)} className={fieldClass}>
-          <option value="" disabled>Escolha o destino da doação</option>
-          {DONATION_DESTINATIONS.map(project => <option key={project.id} value={project.id}>{project.title}</option>)}
-        </select>
+        <DonationDestinationPicker id={label('project')} value={destination} onChange={setDestination} disabled={busy} />
         <p className="mt-1 text-xs text-slate-600">O destino escolhido será registrado na cobrança para a prestação de contas.</p>
       </div>}
       {!allowProjectSelection && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-950">Destino da doação: <strong>{findDonationDestination(destination)?.title}</strong></p>}

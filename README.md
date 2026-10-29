@@ -14,7 +14,7 @@ Comandos úteis: `npm test`, `npm run cora:check`, `npm run vercel:env` e `npm r
 
 ## Prestação de contas
 
-O painel privado `/gestao/doacoes` consulta os recebimentos da Cora por período e destino, preserva a descrição original, identifica os testes excluídos e exporta CSV. Os totais públicos são atualizados automaticamente apenas com pagamentos confirmados e conciliados. Consulte [PRESTACAO-DE-CONTAS.md](./PRESTACAO-DE-CONTAS.md) para acesso, conciliação e registros externos ao checkout.
+O painel privado `/gestao/doacoes` consulta os recebimentos da Cora por período e destino, preserva a descrição original, identifica os testes excluídos e exporta CSV. O Supabase mantém os registros e o histórico com acesso restrito ao servidor. Os totais públicos são atualizados automaticamente apenas com pagamentos confirmados e conciliados. A escolha do destino tem busca e ordenação alfabética. Consulte [PRESTACAO-DE-CONTAS.md](./PRESTACAO-DE-CONTAS.md) para acesso, conciliação, configuração do banco e registros externos ao checkout.
 
 This contains everything you need to run your app locally.
 

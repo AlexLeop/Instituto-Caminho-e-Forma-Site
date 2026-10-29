@@ -73,10 +73,14 @@ function httpsUrl(value: unknown): string | null {
   try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password ? url.href : null; } catch { return null; }
 }
 
-export function createCheckoutService(bank: Bank, secret: string, environment: string, now = () => Date.now()) {
+export function createCheckoutService(bank: Bank, secret: string, environment: string, now = () => Date.now(), observeInvoice?: (invoice: CoraInvoice, projectId: string) => Promise<void>) {
   async function present(invoice: CoraInvoice, claims: Claims, token: string): Promise<CheckoutPayment> {
     if (invoice.id !== claims.id || invoice.code !== claims.code || invoice.total_amount !== claims.amount || !statuses.has(invoice.status) || !Number.isSafeInteger(invoice.total_paid) || invoice.total_paid < 0) throw new CheckoutError(502, 'invalid_bank_response', 'Não foi possível validar a cobrança com o banco. Tente consultar novamente.');
     const paid = invoice.status === 'PAID' && invoice.total_paid >= claims.amount;
+    if (observeInvoice) {
+      try {await observeInvoice(invoice, claims.projectId);}
+      catch {console.error('donation_observation_failed', {code: 'storage_unavailable'});}
+    }
     const pixCode = typeof invoice.pix?.emv === 'string' && invoice.pix.emv.length <= 4096 ? invoice.pix.emv : null;
     return {
       id: invoice.id, status: (invoice.status === 'PAID' && !paid ? 'IN_PAYMENT' : invoice.status) as PaymentStatus,

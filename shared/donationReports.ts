@@ -17,6 +17,7 @@ export interface DonationRecord {
 }
 
 export interface DonationSummary {
+  isStale?: boolean;
   generalFundCents: number;
   eadCoursesCents: number;
   projectsCents: number;
@@ -27,6 +28,7 @@ export interface DonationSummary {
 }
 
 export interface DonationReportPage {
+  isStale?: boolean;
   records: DonationRecord[];
   manualRecords: DonationRecord[];
   nextPage: number | null;

@@ -11,7 +11,7 @@ import type { CoraInvoice } from '../server/cora/client.ts';
 const now = Date.parse('2026-10-27T02:30:00Z');
 const secret = 'local-test-only-checkout-secret-32-characters';
 const input = () => ({amountCents: 5000, method: 'pix', frequency: 'single', projectId: 'muay-thai', customer: {name: 'Pessoa de Teste', email: 'teste@example.com', document: '529.982.247-25'}, idempotencyKey: randomUUID(), issuedAt: new Date(now).toISOString()});
-function setup() {
+function setup(observer?: (invoice: CoraInvoice, projectId: string) => Promise<void>) {
   const invoices = new Map<string, CoraInvoice>();
   const keys: string[] = [];
   let reads = 0;
@@ -24,8 +24,21 @@ function setup() {
     },
     async getInvoice(id: string) { reads++; return [...invoices.values()].find(i => i.id === id)!; },
   };
-  return {service: createCheckoutService(bank, secret, 'stage', () => now), invoices, keys, reads: () => reads};
+  return {service: createCheckoutService(bank, secret, 'stage', () => now, observer), invoices, keys, reads: () => reads};
 }
+
+test('checkout observes invoice creation and payment status without interrupting a bank-issued charge on storage failure', async () => {
+  const observations: string[] = [];
+  const state = setup(async (invoice, projectId) => {observations.push(`${invoice.status}:${projectId}`); if (invoice.status === 'OPEN') throw new Error('simulated storage outage');});
+  const request = input();
+  const payment = await state.service.create(request);
+  assert.equal(payment.paid, false);
+  const invoice = state.invoices.get(request.idempotencyKey)!;
+  invoice.status = 'PAID'; invoice.total_paid = request.amountCents;
+  assert.equal((await state.service.status(payment.checkoutToken)).paid, true);
+  assert.deepEqual(observations, ['OPEN:muay-thai', 'PAID:muay-thai']);
+  assert.equal(state.keys.length, 1);
+});
 
 test('amount parsing preserves centavos and rejects ambiguous or unsafe values', () => {
   assert.equal(parseAmount('5,01'), 501);

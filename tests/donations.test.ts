@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
 import type { AddressInfo } from 'node:net';
-import { DONATION_DESTINATIONS, destinationFromDescription, donationDescription } from '../shared/donationDestinations.ts';
+import { DONATION_DESTINATIONS, destinationFromDescription, donationDescription, filterDonationDestinations } from '../shared/donationDestinations.ts';
 import { donationRecordsCsv, summarizeDonations } from '../shared/donationReports.ts';
 import { donationRecord, readDonationReportPage, readDonationSummary, validateReportRange, type ReportBank } from '../server/donations/report.ts';
 import { MANUAL_DONATIONS } from '../server/donations/reconciliation.ts';
@@ -11,6 +11,7 @@ import { authorizeDonationReport, createDonationsHandler } from '../api/donation
 import { CoraClient, type CoraInvoice, type TransportRequest } from '../server/cora/client.ts';
 import type { CoraConfig } from '../server/cora/config.ts';
 import { invoicePayload, validateCheckout } from '../server/checkout.ts';
+import { DonationLedger, getDonationLedger, ledgerRow } from '../server/donations/ledger.ts';
 
 const code = 'icf-81076d02-ad03-4d3b-b504-bfe9f4011de7';
 const paidInvoice = (changes: Partial<CoraInvoice> = {}): CoraInvoice => ({
@@ -32,6 +33,54 @@ test('every destination, including EAD, survives the bank description length lim
   }
   assert.equal(destinationFromDescription('Apoio: Muay Thai')?.id, 'muay-thai');
   assert.equal(destinationFromDescription('Apoio: Projeto inexistente'), undefined);
+});
+
+test('destination search is alphabetical in Portuguese, accent-insensitive and supports multiple words', () => {
+  const sorted = [...DONATION_DESTINATIONS].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR', {sensitivity: 'base'}));
+  assert.deepEqual(DONATION_DESTINATIONS, sorted);
+  assert.equal(filterDonationDestinations('ead')[0].id, 'cursos-ead');
+  assert.ok(filterDonationDestinations('psi').length >= 2);
+  assert.equal(filterDonationDestinations('mulheres defesa')[0].id, 'defesa-pessoal-mulheres');
+  assert.deepEqual(filterDonationDestinations('açoes'), filterDonationDestinations('ações'));
+  assert.deepEqual(filterDonationDestinations('destino inexistente'), []);
+});
+
+test('only the identified R$30 test is excluded; a real R$30 donation is included', () => {
+  const testPayment = donationRecord(paidInvoice({id: 'inv_Z7ulab2OQ4ClFR7OTcCBkA', total_amount: 3000, total_paid: 3000}))!;
+  const realPayment = donationRecord(paidInvoice({id: 'inv_realThirtyReais', total_amount: 3000, total_paid: 3000}))!;
+  assert.equal(testPayment.included, false);
+  assert.equal(realPayment.included, true);
+  assert.equal(summarizeDonations([testPayment, realPayment]).totalCents, 3000);
+});
+
+test('Supabase receives server-only idempotent records with test exclusion and no full donor document', async () => {
+  const calls: {url: string; options: RequestInit}[] = [];
+  const ledger = new DonationLedger({url: 'https://test.supabase.co', secret: 'sb_secret_test', environment: 'production'}, async (url, options) => {
+    calls.push({url: String(url), options: options!}); return new Response(null, {status: 204});
+  });
+  await ledger.savePaidRecords([donationRecord(paidInvoice({id: 'inv_Z7ulab2OQ4ClFR7OTcCBkA', total_amount: 3000, total_paid: 3000}))!, ...MANUAL_DONATIONS]);
+  assert.match(calls[0].url, /on_conflict=environment,id/);
+  const rows = JSON.parse(calls[0].options.body as string);
+  assert.equal(rows[0].included, false);
+  assert.equal(rows[1].source, 'externo');
+  assert.equal(JSON.stringify(rows).includes('52998224725'), false);
+  await ledger.observeCheckout(paidInvoice({status: 'OPEN', total_paid: 0}), 'geral');
+  assert.equal(JSON.parse(calls[1].options.body as string)[0].payment_status, 'OPEN');
+  assert.equal(JSON.parse(calls[1].options.body as string)[0].paid_cents, 0);
+});
+
+test('database errors do not expose secrets; production external receipts are not copied to Stage', async () => {
+  const bodies: string[] = [];
+  const ledger = new DonationLedger({url: 'https://test.supabase.co', secret: 'sb_secret_private', environment: 'stage'}, async (_url, options) => {
+    bodies.push(String(options?.body)); return new Response('sb_secret_private 52998224725', {status: 500});
+  });
+  await ledger.savePaidRecords(MANUAL_DONATIONS);
+  assert.equal(bodies.length, 0);
+  await assert.rejects(() => ledger.savePaidRecords([donationRecord(paidInvoice())!]), error => {
+    assert.equal(String(error).includes('sb_secret_private'), false); assert.equal(String(error).includes('52998224725'), false); return true;
+  });
+  assert.equal(getDonationLedger({}), undefined);
+  assert.throws(() => getDonationLedger({SUPABASE_URL: 'https://test.supabase.co', SUPABASE_SECRET_KEY: 'sb_publishable_public', CORA_ENVIRONMENT: 'production'}), {status: 503});
 });
 
 test('EAD is accepted by checkout and recorded distinctly from general fund', () => {
@@ -105,6 +154,31 @@ test('private report requires its own long key; missing configuration fails clos
   assert.doesNotThrow(() => authorizeDonationReport(`Bearer ${key}`, hash));
   for (const header of [undefined, 'Bearer fake', `Bearer ${'a'.repeat(43)}`]) assert.throws(() => authorizeDonationReport(header, hash), {status: 401});
   assert.throws(() => authorizeDonationReport(`Bearer ${key}`, undefined), {status: 503});
+});
+
+test('bank outage uses the saved ledger with an explicit stale flag and preserves authentication', async () => {
+  const key = 'test-only-report-secret-32-characters-long';
+  const records = [donationRecord(paidInvoice())!, donationRecord(paidInvoice({id: 'inv_Z7ulab2OQ4ClFR7OTcCBkA', total_amount: 3000, total_paid: 3000}))!];
+  let ledgerReads = 0;
+  const ledger = {
+    async summary() {ledgerReads++; return summarizeDonations([...records, ...MANUAL_DONATIONS]);},
+    async report() {ledgerReads++; return {records, manualRecords: MANUAL_DONATIONS, nextPage: null, ignoredBankInvoices: 0, generatedAt: '2026-10-29T00:00:00Z', isStale: true};},
+  } as unknown as DonationLedger;
+  const server = createServer(createDonationsHandler(() => {throw Error('simulated bank outage');}, {DONATIONS_REPORT_ACCESS_HASH: createHash('sha256').update(key).digest('hex')}, () => ledger));
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve));
+  const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+  const body = JSON.stringify({start: '2026-01-01', end: '2026-10-29'});
+  try {
+    assert.equal((await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'}, body})).status, 401);
+    assert.equal(ledgerReads, 0);
+    const response = await fetch(url);
+    const data = await response.json();
+    assert.equal(data.summary.isStale, true); assert.equal(data.summary.totalCents, 26600);
+    assert.equal(JSON.stringify(data).includes('private@example.com'), false);
+    const reportResponse = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: `Bearer ${key}`}, body});
+    const {report} = await reportResponse.json();
+    assert.equal(report.isStale, true); assert.equal(report.records[1].included, false);
+  } finally {await new Promise<void>(resolve => server.close(() => resolve()));}
 });
 
 test('Cora list sends PAID, payment-date range and page; rejects malformed upstream pagination', async () => {

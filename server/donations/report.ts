@@ -20,12 +20,11 @@ export function validateReportRange(start: unknown, end: unknown) {
   throw new CheckoutError(400, 'invalid_period', 'Escolha um período válido de até um ano.');
 }
 
-export function donationRecord(invoice: CoraInvoice, paidAt?: string): DonationRecord | null {
+export function donationSnapshot(invoice: CoraInvoice, paidAt?: string, checkoutDestinationId?: string): DonationRecord | null {
   if (!siteCode.test(invoice.code ?? '')) return null;
-  if (invoice.status !== 'PAID' || !Number.isSafeInteger(invoice.total_amount) || invoice.total_amount < 500 || !Number.isSafeInteger(invoice.total_paid) || invoice.total_paid < invoice.total_amount) throw invalidBank();
   const descriptions = invoice.services?.map(service => service.description ?? '') ?? [];
   const candidates = descriptions.map(destinationFromDescription).filter(Boolean);
-  const originalDestination = new Set(candidates.map(destination => destination!.id)).size === 1 ? candidates[0] : undefined;
+  const originalDestination = new Set(candidates.map(destination => destination!.id)).size === 1 ? candidates[0] : descriptions.length === 0 ? findDonationDestination(checkoutDestinationId) : undefined;
   const correction = DONATION_RECONCILIATION[invoice.id];
   const destination = correction?.destinationId ? findDonationDestination(correction.destinationId) : originalDestination;
   const document = invoice.customer?.document?.identity ?? '';
@@ -41,7 +40,15 @@ export function donationRecord(invoice: CoraInvoice, paidAt?: string): DonationR
   };
 }
 
-export async function readDonationReportPage(bank: ReportBank, start: string, end: string, page: number): Promise<DonationReportPage> {
+export function donationRecord(invoice: CoraInvoice, paidAt?: string): DonationRecord | null {
+  if (!siteCode.test(invoice.code ?? '')) return null;
+  if (invoice.status !== 'PAID' || !Number.isSafeInteger(invoice.total_amount) || invoice.total_amount < 500 || !Number.isSafeInteger(invoice.total_paid) || invoice.total_paid < invoice.total_amount) throw invalidBank();
+  return donationSnapshot(invoice, paidAt);
+}
+
+export interface DonationRecordSink {savePaidRecords(records: DonationRecord[]): Promise<void>}
+
+export async function readDonationReportPage(bank: ReportBank, start: string, end: string, page: number, ledger?: DonationRecordSink): Promise<DonationReportPage> {
   const list = await bank.listPaidInvoices(start, end, page, 20);
   const results: (DonationRecord | null)[] = [];
   for (let offset = 0; offset < list.items.length; offset += 5) {
@@ -52,15 +59,17 @@ export async function readDonationReportPage(bank: ReportBank, start: string, en
     })));
   }
   if (list.items.length === 0 && (page - 1) * 20 < list.totalItems) throw invalidBank();
-  return {records: results.filter((record): record is DonationRecord => record !== null), manualRecords: MANUAL_DONATIONS,
+  const records = results.filter((record): record is DonationRecord => record !== null);
+  if (ledger) await ledger.savePaidRecords([...records, ...MANUAL_DONATIONS]);
+  return {records, manualRecords: MANUAL_DONATIONS,
     nextPage: page * 20 < list.totalItems ? page + 1 : null, ignoredBankInvoices: results.filter(record => record === null).length, generatedAt: new Date().toISOString()};
 }
 
-export async function readDonationSummary(bank: ReportBank, end: string) {
+export async function readDonationSummary(bank: ReportBank, end: string, ledger?: DonationRecordSink) {
   const records = [...MANUAL_DONATIONS];
   let page = 1;
   do {
-    const result = await readDonationReportPage(bank, '2026-01-01', end, page);
+    const result = await readDonationReportPage(bank, '2026-01-01', end, page, ledger);
     records.push(...result.records);
     if (result.nextPage === null) return summarizeDonations(records);
     page = result.nextPage;

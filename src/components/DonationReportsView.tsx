@@ -13,7 +13,7 @@ export function DonationReportsView() {
   const [start, setStart] = useState(`${today().slice(0, 4)}-01-01`);
   const [end, setEnd] = useState(today());
   const [destination, setDestination] = useState('todos');
-  const [result, setResult] = useState<{records: DonationRecord[]; manual: DonationRecord[]; start: string; end: string; updatedAt: string; ignored: number} | null>(null);
+  const [result, setResult] = useState<{records: DonationRecord[]; manual: DonationRecord[]; start: string; end: string; updatedAt: string; ignored: number; isStale: boolean} | null>(null);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
   const access = useRef('');
@@ -39,7 +39,7 @@ export function DonationReportsView() {
     setError(''); setResult(null); setBusy(true);
     const controller = new AbortController(); request.current = controller;
     const records = new Map<string, DonationRecord>();
-    let manual: DonationRecord[] = [], ignored = 0, updatedAt = '';
+    let manual: DonationRecord[] = [], ignored = 0, updatedAt = '', isStale = false;
     try {
       let page: number | null = 1;
       while (page !== null) {
@@ -52,6 +52,7 @@ export function DonationReportsView() {
         const data = await response.json();
         if (!response.ok || !data.report) {if (response.status === 401) {access.current = ''; setPassword('');} throw new Error(data.error?.message || 'Não foi possível obter o relatório completo.');}
         const report: DonationReportPage = data.report;
+        isStale ||= report.isStale ?? false;
         report.records.forEach(record => records.set(record.id, record));
         manual = report.manualRecords; ignored += report.ignoredBankInvoices; updatedAt = report.generatedAt;
         page = report.nextPage;
@@ -59,7 +60,7 @@ export function DonationReportsView() {
       }
       if (controller.signal.aborted) throw new DOMException('Consulta interrompida', 'AbortError');
       access.current = key; setPassword('');
-      setResult({records: [...records.values()], manual, start, end, ignored, updatedAt});
+      setResult({records: [...records.values()], manual, start, end, ignored, updatedAt, isStale});
     } catch (failure) {setError(failure instanceof Error && failure.name !== 'AbortError' ? failure.message : 'Consulta interrompida. Tente novamente; nenhum total parcial foi apresentado.');}
     finally {request.current = null; setBusy(false);}
   }
@@ -101,6 +102,7 @@ export function DonationReportsView() {
       {error && <p role="alert" className="mt-5 rounded-lg bg-red-50 p-4 text-sm text-red-900">{error}</p>}
       {busy && <p role="status" className="mt-6 text-sm text-slate-700">Buscando todas as páginas e conferindo cada cobrança. Aguarde para visualizar os totais completos.</p>}
       {result && <section className="mt-8" aria-label="Resultado da conciliação">
+        {result.isStale && <p role="status" className="mb-5 rounded-lg bg-amber-50 p-4 text-sm text-amber-950">A consulta à Cora está temporariamente indisponível. Este relatório usa os registros salvos no banco de dados; pagamentos recentes podem ainda não aparecer.</p>}
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="w-full text-sm font-semibold sm:w-80">
             <label htmlFor="report-destination">Destino</label>
@@ -143,7 +145,7 @@ export function DonationReportsView() {
           {manual.map(record => <div key={record.id} className="mt-4 border-t border-slate-200 pt-4"><p className="text-sm font-semibold">{record.destinationTitle}: {money(record.paidCents)}</p><p className="mt-2 text-xs leading-relaxed text-slate-600">{record.reconciliationNote}</p></div>)}
           {manual.length === 0 && <p className="mt-4 text-sm text-slate-600">Nenhum registro externo para este destino.</p>}
         </section>
-        <p className="mt-4 text-xs leading-relaxed text-slate-600">{result.ignored} cobrança(s) da conta sem a referência do checkout foram desconsideradas. O relatório não inclui transferências feitas diretamente à chave Pix. Os comprovantes bancários devem acompanhar a prestação de contas.</p>
+        <p className="mt-4 text-xs leading-relaxed text-slate-600">{!result.isStale && `${result.ignored} cobrança(s) da conta sem a referência do checkout foram desconsideradas. `}O relatório não inclui transferências feitas diretamente à chave Pix. Os comprovantes bancários devem acompanhar a prestação de contas.</p>
       </section>}
     </main>
   </div>;

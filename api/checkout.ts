@@ -2,13 +2,15 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { createCheckoutService } from '../server/checkout.ts';
 import { CoraClient } from '../server/cora/client.ts';
 import { CheckoutError, readCoraConfig } from '../server/cora/config.ts';
+import { getDonationLedger } from '../server/donations/ledger.ts';
 
 interface ApiRequest extends IncomingMessage {body?: unknown}
 type Service = ReturnType<typeof createCheckoutService>;
 let cached: {fingerprint: string; service: Service} | undefined;
 function service() {
   const config = readCoraConfig();
-  if (!cached || cached.fingerprint !== config.fingerprint) cached = {fingerprint: config.fingerprint, service: createCheckoutService(new CoraClient(config), config.signingSecret, config.environment)};
+  if (!cached || cached.fingerprint !== config.fingerprint) cached = {fingerprint: config.fingerprint, service: createCheckoutService(new CoraClient(config), config.signingSecret, config.environment,
+    () => Date.now(), async (invoice, projectId) => {await getDonationLedger()?.observeCheckout(invoice, projectId);})};
   return cached.service;
 }
 

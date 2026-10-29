@@ -12,6 +12,8 @@
     "test": "node --import tsx --test tests/*.test.ts",
     "cora:check": "tsx scripts/check-cora.ts",
     "donations:report": "tsx scripts/export-donations.ts",
+    "donations:database": "tsx scripts/donation-database.ts",
+    "donations:sync": "tsx scripts/sync-donations.ts",
     "vercel:env": "tsx scripts/prepare-vercel-env.ts"
   },
   "dependencies": {
@@ -38,6 +40,7 @@
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.28.0",
+    "postgres": "4.0.0",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.21.0",
     "typescript": "^7.0.2"

@@ -4,6 +4,7 @@ import { CoraClient } from '../server/cora/client.ts';
 import { CheckoutError, readCoraConfig } from '../server/cora/config.ts';
 import { readDonationReportPage, readDonationSummary, validateReportRange, type ReportBank } from '../server/donations/report.ts';
 import { checkOrigin, readJson } from './checkout.ts';
+import { getDonationLedger } from '../server/donations/ledger.ts';
 
 let cachedBank: {fingerprint: string; bank: CoraClient} | undefined;
 function bank() {
@@ -19,7 +20,7 @@ export function authorizeDonationReport(authorization: string | undefined, expec
   if (password.length < 32 || password.length > 512 || !timingSafeEqual(supplied, Buffer.from(expectedHash, 'hex'))) throw new CheckoutError(401, 'report_unauthorized', 'Chave de acesso inválida.');
 }
 
-export function createDonationsHandler(getBank: () => ReportBank = bank, env: NodeJS.ProcessEnv = process.env) {
+export function createDonationsHandler(getBank: () => ReportBank = bank, env: NodeJS.ProcessEnv = process.env, getLedger = () => getDonationLedger(env)) {
   let summaryCache: {bank: ReportBank; expires: number; data: Awaited<ReturnType<typeof readDonationSummary>>} | undefined;
   let pendingSummary: {bank: ReportBank; promise: ReturnType<typeof readDonationSummary>} | undefined;
   return async (request: IncomingMessage & {body?: unknown}, response: ServerResponse) => {
@@ -34,7 +35,11 @@ export function createDonationsHandler(getBank: () => ReportBank = bank, env: No
         if (!summaryCache || summaryCache.bank !== currentBank || summaryCache.expires < Date.now()) {
           if (!pendingSummary || pendingSummary.bank !== currentBank) {
             const end = new Intl.DateTimeFormat('en-CA', {timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
-            pendingSummary = {bank: currentBank, promise: readDonationSummary(currentBank, end)};
+            const ledger = getLedger();
+            pendingSummary = {bank: currentBank, promise: (async () => {
+              const summary = await readDonationSummary(currentBank, end, ledger);
+              return ledger ? await ledger.summary() : summary;
+            })()};
           }
           try {summaryCache = {bank: currentBank, expires: Date.now() + 60000, data: await pendingSummary.promise};}
           finally {pendingSummary = undefined;}
@@ -57,10 +62,19 @@ export function createDonationsHandler(getBank: () => ReportBank = bank, env: No
       const {start, end} = validateReportRange(body?.start, body?.end);
       const page = body?.page ?? 1;
       if (!Number.isSafeInteger(page) || page < 1 || page > 100) throw new CheckoutError(400, 'invalid_page', 'Página inválida. Reduza o período da consulta.');
-      const report = await readDonationReportPage(getBank(), start, end, page);
+      const ledger = getLedger();
+      let report;
+      try {report = await readDonationReportPage(getBank(), start, end, page, ledger);}
+      catch (error) {if (!ledger) throw error; report = await ledger.report(start, end, page);}
       response.statusCode = 200;
       response.end(JSON.stringify({report}));
     } catch (error) {
+      if (request.method === 'GET') {
+        try {
+          const saved = await getLedger()?.summary();
+          if (saved) {response.statusCode = 200; response.end(JSON.stringify({summary: {...saved, isStale: true}})); return;}
+        } catch { /* No trusted database snapshot: return an error, never a fabricated zero. */ }
+      }
       const safe = error instanceof CheckoutError ? error : new CheckoutError(500, 'report_error', 'Não foi possível consultar os recebimentos. Tente novamente.');
       response.statusCode = safe.status;
       // Logs contain no donor data, submitted password or upstream body.

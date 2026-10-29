@@ -12,7 +12,7 @@ Recebimentos externos sem data aparecem em seção própria e em linhas separada
 
 ## Destino preservado no banco
 
-O checkout geral exige seleção explícita de destino, inclusive fundo geral e cursos EAD. As páginas dos projetos já selecionam o próprio projeto; o botão de apoio ao EAD seleciona `cursos-ead`. A descrição enviada à Cora começa por `Destino [identificador]: título`. O identificador permanece mesmo quando o banco limita o texto a 100 caracteres. Cobranças antigas com `Apoio: título` também são reconhecidas.
+O checkout geral exige seleção explícita de destino, inclusive fundo geral e cursos EAD. O campo permite digitar para filtrar por palavras, com ou sem acentos, e apresenta as opções em ordem alfabética em português. Digitar sem selecionar uma opção não define o destino. As páginas dos projetos já selecionam o próprio projeto; o botão de apoio ao EAD seleciona `cursos-ead`. A descrição enviada à Cora começa por `Destino [identificador]: título`. O identificador permanece mesmo quando o banco limita o texto a 100 caracteres. Cobranças antigas com `Apoio: título` também são reconhecidas.
 
 O destino consta na cobrança persistida pela Cora. A emissão não conta como doação: só entram cobranças `PAID` com recebimento integral validado. Fechar o navegador não impede a consulta administrativa nem o cômputo do recebimento.
 
@@ -34,6 +34,25 @@ A variável **DONATIONS_REPORT_ACCESS_HASH** deve conter o SHA-256 de uma chave 
 O servidor valida a chave antes de consultar dados bancários. O relatório autenticado não é armazenado em cache. O navegador guarda a chave apenas em memória e encerra o acesso após 20 minutos sem atividade. O endpoint público retorna apenas valores agregados, sem dados de doadores ou referências de cobranças.
 
 A chave de acesso inicial foi entregue em arquivo local privado, dentro de `scratch/prestacao-de-contas/`, diretório ignorado pelo Git e pelos envios à Vercel. Guarde-a em um gerenciador de senhas. Para revogar acesso, gere uma nova chave, substitua seu hash na Vercel e publique novamente.
+
+## Banco Supabase
+
+O servidor utiliza **SUPABASE_URL** e **SUPABASE_SECRET_KEY**. A chave secreta nunca é importada pelo frontend. Não são necessárias senha PostgreSQL ou chaves de assinatura JWT no código publicado. A integração também funciona sem Supabase configurado, consultando a Cora; se uma configuração parcial for fornecida, ela deve ser corrigida.
+
+A tabela `public.donation_ledger` preserva referência, estado da cobrança, valor, destino, descrição original e conciliação. A chave composta `(environment, id)` evita duplicação e separa Stage de produção. A tabela `public.donation_ledger_events` mantém os estados anteriores quando há alterações; observações repetidas sem mudanças não criam novos eventos. As duas tabelas têm RLS habilitado e nenhuma permissão de leitura para `anon` ou `authenticated`. O servidor possui acesso restrito; os eventos não podem ser atualizados ou apagados pelo papel da API.
+
+A função privada `donation_public_totals` soma exclusivamente registros incluídos, com estado `PAID` e valor recebido integral. O pagamento de teste permanece com `included = false`, visível apenas na prestação de contas. Somente os valores agregados são enviados pelo endpoint público do site. Nenhum documento completo, código Pix, token de checkout ou credencial é gravado nessas tabelas.
+
+Em caso de indisponibilidade da Cora, o painel pode consultar os registros já salvos e exibe um aviso de que pagamentos recentes podem ainda não aparecer. A gravação de uma cobrança não a torna uma doação: registros pendentes não entram na arrecadação.
+
+Para preparar a estrutura e importar as cobranças conciliadas usando as credenciais locais:
+
+```sh
+npm run donations:database -- --apply
+npm run donations:sync
+```
+
+O primeiro comando usa `POSTGRES_URL_NON_POOLING` somente no computador, valida o projeto de destino e a conexão TLS com o certificado oficial. A migração está em `supabase/migrations/20261029224832_donation_ledger.sql`. Não precisa ser executada durante o deploy. Sem `--apply`, o comando apenas confere as proteções. O segundo comando consulta a Cora e salva os registros de forma idempotente, sem emitir cobranças.
 
 ## Exportar localmente
 

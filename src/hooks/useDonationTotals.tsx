@@ -18,7 +18,7 @@ export function DonationTotalsProvider({children}: {children: ReactNode}) {
         const response = await fetch('/api/donations', {signal: controller.signal});
         const {summary} = await response.json();
         if (!response.ok || !Number.isSafeInteger(summary?.totalCents) || !summary?.byDestination || !summary.updatedAt) throw new Error();
-        if (active) setState({summary, status: 'current'});
+        if (active) setState({summary, status: summary.isStale ? 'fallback' : 'current'});
       } catch { if (active) setState(previous => ({...previous, status: 'fallback'})); }
       finally {clearTimeout(deadline); controller = undefined;}
     }
@@ -45,6 +45,6 @@ export function DonationSyncStatus() {
   const {summary, status} = useContext(TotalsContext);
   const date = new Date(summary.updatedAt).toLocaleString('pt-BR', {timeZone: 'America/Sao_Paulo'});
   return <p className="mt-2 text-xs leading-relaxed text-slate-600" role="status">
-    {status === 'loading' ? 'Consultando os recebimentos confirmados…' : status === 'current' ? `Recebimentos conferidos em ${date}. Pagamentos de teste excluídos.` : `Última conciliação disponível: ${date}. A atualização bancária está temporariamente indisponível.`}
+    {status === 'loading' ? 'Consultando os recebimentos confirmados…' : status === 'current' ? `Recebimentos conferidos em ${date}.` : `Última conciliação disponível: ${date}. A atualização bancária está temporariamente indisponível.`}
   </p>;
 }
