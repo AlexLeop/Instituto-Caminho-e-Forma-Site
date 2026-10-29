@@ -1287,7 +1287,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       <span className="block text-xs sm:text-sm font-semibold text-slate-900">Endereço Oficial</span>
                       <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
                         Rua Otilia Borges, Lote 25, Quadra 25<br />
-                        Bairro Leandro – Itaguaí / RJ<br />
+                        Bairro Brisamar – Itaguaí / RJ<br />
                         CEP: 23.823-390
                       </p>
                     </div>
@@ -1315,7 +1315,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       <span className="block text-xs sm:text-sm font-semibold text-slate-900">Canais Oficiais</span>
                       <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
                         WhatsApp: <a href="https://wa.me/5521987428647" target="_blank" rel="noopener noreferrer" className="hover:text-[#059669] font-medium transition-colors">(21) 98742-8647</a><br />
-                        E-mail: <a href="mailto:contato@institutocaminhoeforma.org.br" className="hover:text-[#b45309] font-medium transition-colors">contato@institutocaminhoeforma.org.br</a>
+                        E-mail: <a href="mailto:institutocaminhoeforma@gmail.com" className="hover:text-[#b45309] font-medium transition-colors">institutocaminhoeforma@gmail.com</a>
                       </p>
                     </div>
                   </div>
@@ -1327,7 +1327,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="w-full h-44 sm:h-48 rounded-xl overflow-hidden border border-slate-200 relative bg-slate-100 shadow-2xs">
                   <iframe
                     title="Mapa da Sede do Instituto Caminho e Forma"
-                    src="https://maps.google.com/maps?q=Rua%20Otilia%20Borges%2C%20Leandro%2C%20Itagua%C3%AD%20-%20RJ&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    src="https://maps.google.com/maps?q=Rua%20Otilia%20Borges%2C%20Brisamar%2C%20Itagua%C3%AD%20-%20RJ&t=&z=15&ie=UTF8&iwloc=&output=embed"
                     className="w-full h-full border-0"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -1335,7 +1335,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </div>
 
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Otilia+Borges+Lote+25+Quadra+25+Bairro+Leandro+Itaguai+RJ"
+                  href="https://www.google.com/maps/dir/?api=1&destination=Rua+Otilia+Borges+Lote+25+Quadra+25+Bairro+Brisamar+Itaguai+RJ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full mt-2.5 py-2.5 px-4 rounded-lg bg-amber-50 hover:bg-amber-100 text-[#b45309] font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer group"
@@ -1420,7 +1420,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </span>
               </summary>
               <p className="font-sans text-sm sm:text-base text-slate-600 pt-3 leading-relaxed border-t border-slate-100 mt-3">
-                Sim! Recebemos alimentos não-perecíveis, itens de higiene e insumos para oficinas de segunda a sexta, das 8h às 17h, em nossa sede oficial na Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Leandro, Itaguaí / RJ.
+                Sim! Recebemos alimentos não-perecíveis, itens de higiene e insumos para oficinas de segunda a sexta, das 8h às 17h, em nossa sede oficial na Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Brisamar, Itaguaí / RJ.
               </p>
             </details>
 

@@ -1182,10 +1182,10 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-slate-900 font-sans text-xs sm:text-sm font-semibold px-5 py-3 rounded-xl border border-slate-200 transition-colors cursor-pointer shadow-2xs"
-              href="mailto:institutocaminhoeformaoficial@gmail.com"
+              href="mailto:institutocaminhoeforma@gmail.com"
             >
               <span className="material-symbols-outlined text-[18px]">mail</span>
-              <span>institutocaminhoeformaoficial@gmail.com</span>
+              <span>institutocaminhoeforma@gmail.com</span>
             </motion.a>
             <motion.a
               whileHover={{ scale: 1.02 }}

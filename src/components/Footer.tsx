@@ -212,9 +212,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
               <InstagramIcon className="w-5 h-5 text-pink-600" />
             </a>
             <a 
-              href="mailto:institutocaminhoeformaoficial@gmail.com" 
+              href="mailto:institutocaminhoeforma@gmail.com"
               aria-label="Enviar E-mail" 
-              title="institutocaminhoeformaoficial@gmail.com"
+              title="institutocaminhoeforma@gmail.com"
               className="w-10 h-10 rounded-full bg-slate-100 hover:bg-amber-50 flex items-center justify-center text-slate-700 hover:text-[#b45309] transition-all cursor-pointer border border-slate-200 hover:border-amber-200"
             >
               <span className="material-symbols-outlined text-[18px]">mail</span>
@@ -241,7 +241,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
               <span className="text-slate-400 hidden sm:inline">•</span>
               <span><strong className="text-slate-900">CNPJ:</strong> 18.360.956/0001-60</span>
               <span className="text-slate-400 hidden md:inline">•</span>
-              <span><strong className="text-slate-900">Sede:</strong> Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Leandro – Itaguaí / RJ – CEP: 23.823-390</span>
+              <span><strong className="text-slate-900">Sede:</strong> Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Brisamar – Itaguaí / RJ – CEP: 23.823-390</span>
             </div>
             <div className="shrink-0 text-[11px] text-slate-500">
               Utilidade Pública &amp; Certificação Social

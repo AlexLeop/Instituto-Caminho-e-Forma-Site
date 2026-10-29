@@ -995,7 +995,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-[#f59e0b] text-[20px]">mark_email_read</span>
-                    <span className="font-semibold text-white">institutocaminhoeformaoficial@gmail.com</span>
+                    <span className="font-semibold text-white">institutocaminhoeforma@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-[#f59e0b] text-[20px]">lock</span>
@@ -1084,7 +1084,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <div className="flex flex-wrap items-center gap-6 mt-6 text-[#191c1e] font-label-md text-xs sm:text-sm font-semibold">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#006c49] text-[20px]">location_on</span>
-                  <span>Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Leandro – Itaguaí / RJ</span>
+                  <span>Rua Otilia Borges, S/nº Lote 25, Quadra 25 – Bairro Brisamar – Itaguaí / RJ</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[#006c49] text-[20px]">schedule</span>
