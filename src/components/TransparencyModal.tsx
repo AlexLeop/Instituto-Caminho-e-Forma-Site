@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { TRANSPARENCY_DOCUMENTS, type TransparencyDocument } from '../data/transparencyDocuments';
 
 interface TransparencyModalProps {
   isOpen: boolean;
@@ -11,8 +12,15 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
 
   if (!isOpen) return null;
 
-  const handleDownload = (docName: string) => {
-    setDownloadSuccess(docName);
+  const handleDownload = (doc: TransparencyDocument) => {
+    if (!doc.downloadUrl) return;
+    const link = document.createElement('a');
+    link.href = doc.downloadUrl;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setDownloadSuccess(doc.title);
     setTimeout(() => setDownloadSuccess(null), 3000);
   };
 
@@ -42,7 +50,7 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
         {downloadSuccess && (
           <div className="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center gap-2 text-xs font-bold text-[#166534]">
             <span className="material-symbols-outlined text-[18px]">download_done</span>
-            <span>Download iniciado: {downloadSuccess} (demonstrativo certificado)</span>
+            <span>Download iniciado: {downloadSuccess}</span>
           </div>
         )}
 
@@ -96,26 +104,23 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5 flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[18px] text-[#b45309]">description</span>
-              <span>Relatórios Anuais e Pareceres dos Auditores</span>
+              <span>Documentos Institucionais</span>
             </h4>
             <div className="space-y-2">
-              {[
-                { title: 'Demonstrações Contábeis & Balancete Patrimonial 2026 (Auditado por BDO)', size: '3.6 MB', date: 'Mar/2026' },
-                { title: 'Relatório de Impacto Social & Indicadores ODS 2026', size: '5.8 MB', date: 'Fev/2026' },
-                { title: 'Parecer do Conselho Fiscal e Aprovação de Contas 2026', size: '1.4 MB', date: 'Jan/2026' },
-                { title: 'Estatuto Social Consolidado & Atas de Eleição da Diretoria (2026-2029)', size: '920 KB', date: 'Vigente 2026' },
-              ].map((doc, idx) => (
+              {TRANSPARENCY_DOCUMENTS.map((doc, idx) => (
                 <div key={idx} className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between hover:bg-slate-100 transition-colors">
                   <div className="flex items-center gap-2.5 min-w-0 pr-2">
                     <span className="material-symbols-outlined text-red-700 text-[22px] shrink-0">picture_as_pdf</span>
                     <div className="min-w-0">
                       <p className="font-serif text-xs font-bold text-slate-900 truncate">{doc.title}</p>
-                      <span className="text-[11px] text-slate-500">{doc.size} • {doc.date}</span>
+                      <span className="text-[11px] text-slate-500">{doc.fileSize} • {doc.publishedDate}</span>
                     </div>
                   </div>
                   <button
-                    onClick={() => handleDownload(doc.title)}
-                    className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-[#166534] hover:bg-emerald-50 transition-colors flex items-center gap-1 shrink-0 cursor-pointer shadow-2xs"
+                    onClick={() => handleDownload(doc)}
+                    disabled={!doc.downloadUrl}
+                    title={doc.downloadUrl ? 'Baixar documento' : 'Arquivo em preparação'}
+                    className="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-[#166534] hover:bg-emerald-50 transition-colors flex items-center gap-1 shrink-0 cursor-pointer shadow-2xs disabled:cursor-not-allowed disabled:opacity-50"
                   >
                     <span className="material-symbols-outlined text-[16px]">download</span>
                     <span>Baixar</span>

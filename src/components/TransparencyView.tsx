@@ -1,158 +1,12 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
+import { TRANSPARENCY_DOCUMENTS as DOCUMENTS_DATA, type TransparencyDocument as DocItem } from '../data/transparencyDocuments';
 import { OFFICIAL_SEALS, RealSealCard, SealVerificationModal, OfficialSeal } from './RealSeals';
 
 interface TransparencyViewProps {
   onOpenDonation: (projectName?: string) => void;
 }
-
-interface DocItem {
-  id: string;
-  title: string;
-  category: string;
-  categoryLabel: string;
-  description: string;
-  publishedDate: string;
-  fileSize: string;
-  year: string;
-  icon: string;
-  iconBg: string;
-  iconColor: string;
-}
-
-const DOCUMENTS_DATA: DocItem[] = [
-  {
-    id: 'bdo-2026',
-    title: 'Parecer de Auditoria Independente BDO - Exercício 2026',
-    category: 'auditoria',
-    categoryLabel: 'Auditoria Externa',
-    description: 'Opinião sem ressalvas sobre as demonstrações financeiras e cumprimento de diretrizes estatutárias no exercício corrente de 2026.',
-    publishedDate: '15/03/2026',
-    fileSize: 'PDF • 3.5 MB',
-    year: '2026',
-    icon: 'description',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-[#006c49]'
-  },
-  {
-    id: 'relatorio-2026',
-    title: 'Relatório de Atividades e Plano de Impacto Social 2026',
-    category: 'relatorio',
-    categoryLabel: 'Impacto Vigente',
-    description: 'Metas operacionais, prestação bimestral de contas e impacto dos mais de 9.400 cidadãos e famílias atendidos em 2026.',
-    publishedDate: '02/02/2026',
-    fileSize: 'PDF • 16.2 MB',
-    year: '2026',
-    icon: 'auto_stories',
-    iconBg: 'bg-amber-50',
-    iconColor: 'text-[#b45309]'
-  },
-  {
-    id: 'balanco-2026',
-    title: 'Demonstrações Contábeis e Balancete Patrimonial 2026',
-    category: 'balanco',
-    categoryLabel: 'Contabilidade',
-    description: 'DRE consolidada, notas explicativas e conciliação bancária integral do exercício 2026.',
-    publishedDate: '10/01/2026',
-    fileSize: 'PDF • 2.4 MB',
-    year: '2026',
-    icon: 'calculate',
-    iconBg: 'bg-slate-100',
-    iconColor: 'text-slate-700'
-  },
-  {
-    id: 'estatuto-2026',
-    title: 'Estatuto Social Atualizado e Ata de Eleição do Conselho (2026-2029)',
-    category: 'institucional',
-    categoryLabel: 'Estatuto e Atas',
-    description: 'Ata de posse da diretoria executiva e consolidação do estatuto no Cartório de Títulos e Documentos com vigência até 2029.',
-    publishedDate: 'Vigência: 2026-2029',
-    fileSize: 'PDF • 2.1 MB',
-    year: '2026',
-    icon: 'gavel',
-    iconBg: 'bg-stone-100',
-    iconColor: 'text-[#191c1e]'
-  },
-  {
-    id: 'cnds-2026',
-    title: 'Pacote Unificado de CNDs, FGTS, Trabalhista e CEBAS 2026',
-    category: 'certidoes',
-    categoryLabel: 'Certidões Fiscais',
-    description: 'Certidões negativas da Receita Federal, CNDT e certificados de isenção previdenciária em dia para o exercício fiscal 2026.',
-    publishedDate: 'Emitido em: 18/04/2026',
-    fileSize: 'PDF • 1.1 MB',
-    year: '2026',
-    icon: 'verified',
-    iconBg: 'bg-emerald-100',
-    iconColor: 'text-[#00714d]'
-  },
-  {
-    id: 'bdo-2025',
-    title: 'Parecer de Auditoria Independente BDO - Exercício 2025',
-    category: 'auditoria',
-    categoryLabel: 'Auditoria Externa',
-    description: 'Conclusão favorável e aprovação integral pelo Conselho Fiscal e Assembleia Geral Ordinária do exercício 2025.',
-    publishedDate: '20/03/2025',
-    fileSize: 'PDF • 3.8 MB',
-    year: '2025',
-    icon: 'description',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-[#006c49]'
-  },
-  {
-    id: 'relatorio-2025',
-    title: 'Relatório Anual Consolidado de Atividades e Impacto 2025',
-    category: 'relatorio',
-    categoryLabel: 'Impacto Anual',
-    description: 'Consolidação das contas de 2025 com parecer positivo unânime dos conselheiros fiscais.',
-    publishedDate: '15/02/2025',
-    fileSize: 'PDF • 13.5 MB',
-    year: '2025',
-    icon: 'auto_stories',
-    iconBg: 'bg-amber-50',
-    iconColor: 'text-[#b45309]'
-  },
-  {
-    id: 'balanco-2025',
-    title: 'Demonstrações Financeiras e Balanço Patrimonial Anual 2025',
-    category: 'balanco',
-    categoryLabel: 'Contabilidade',
-    description: 'Balanço aprovado por unanimidade na Assembleia Ordinária de Prestação de Contas de 2025.',
-    publishedDate: '10/01/2025',
-    fileSize: 'PDF • 2.2 MB',
-    year: '2025',
-    icon: 'calculate',
-    iconBg: 'bg-slate-100',
-    iconColor: 'text-slate-700'
-  },
-  {
-    id: 'pwc-2024',
-    title: 'Auditoria Externa PwC - Exercício Fiscal 2024',
-    category: 'auditoria',
-    categoryLabel: 'Auditoria Externa',
-    description: 'Relatório de asseguração contábil sem ressalvas sobre os projetos de segurança alimentar e capacitação profissional.',
-    publishedDate: '18/03/2024',
-    fileSize: 'PDF • 3.4 MB',
-    year: '2024',
-    icon: 'description',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-[#006c49]'
-  },
-  {
-    id: 'relatorio-2024',
-    title: 'Relatório Anual de Atividades e Prestação de Contas 2024',
-    category: 'relatorio',
-    categoryLabel: 'Impacto Anual',
-    description: 'Métricas e prestação de contas dos 8.200 cidadãos assistidos ao longo de 2024.',
-    publishedDate: '02/02/2024',
-    fileSize: 'PDF • 12.1 MB',
-    year: '2024',
-    icon: 'auto_stories',
-    iconBg: 'bg-amber-50',
-    iconColor: 'text-[#b45309]'
-  }
-];
 
 export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonation: _onOpenDonation }) => {
   const [selectedYear, setSelectedYear] = useState<string>('2026');
@@ -183,7 +37,14 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
 
   const handleDownload = (doc: DocItem, e?: React.MouseEvent) => {
     if (e) e.preventDefault();
-    setDownloadSuccessToast(`Download iniciado: ${doc.title} (${doc.fileSize})`);
+    if (!doc.downloadUrl) return;
+    const link = document.createElement('a');
+    link.href = doc.downloadUrl;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setDownloadSuccessToast('Download iniciado: ' + doc.title);
     setTimeout(() => {
       setDownloadSuccessToast(null);
     }, 4000);
@@ -560,14 +421,14 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
           >
             <div>
               <span className="font-label-sm text-xs text-[#855300] font-bold uppercase tracking-widest block mb-1">
-                Documentação Oficial Auditada
+                Documentação Institucional
               </span>
               <h2 className="font-headline-lg text-2xl sm:text-4xl text-[#191c1e] font-extrabold">
                 Central de Downloads e Balanços
               </h2>
             </div>
             <p className="font-body-sm text-sm sm:text-base text-[#534434] max-w-md leading-relaxed">
-              Acesse livremente os pareceres completos dos auditores, relatórios anuais de atividades e demonstrações fiscais em formato PDF pesquisável.
+              Consulte o estatuto social e a ata de eleição do conselho. O arquivo para download será disponibilizado em breve.
             </p>
           </motion.div>
 
@@ -581,7 +442,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
           >
             {/* Years Pill Selector */}
             <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-              {['2026', '2025', '2024', 'all'].map((y) => (
+              {['2026', 'all'].map((y) => (
                 <button
                   key={y}
                   onClick={() => setSelectedYear(y)}
@@ -673,6 +534,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => setQuickViewDoc(doc)}
+                        aria-label="Visualizar documento"
                         className="p-2 rounded-xl hover:bg-[#f2f4f6] text-[#534434] hover:text-[#191c1e] transition-colors cursor-pointer"
                         title="Visualização Rápida"
                       >
@@ -680,7 +542,10 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                       </button>
                       <button
                         onClick={(e) => handleDownload(doc, e)}
-                        className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#006c49] text-white hover:bg-[#00714d] transition-colors font-label-sm text-xs font-bold shadow-xs cursor-pointer"
+                        aria-label="Baixar documento"
+                        disabled={!doc.downloadUrl}
+                        title={doc.downloadUrl ? 'Baixar documento' : 'Arquivo em preparação'}
+                        className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#006c49] text-white hover:bg-[#00714d] transition-colors font-label-sm text-xs font-bold shadow-xs cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
                       >
                         <span className="material-symbols-outlined text-[16px]">download</span>
                         <span>Baixar</span>
@@ -1144,9 +1009,8 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
 
             <div className="bg-[#f2f4f6] p-4 rounded-2xl mb-6 text-xs text-[#534434] space-y-1">
               <p><strong>Exercício de Referência:</strong> Ano Fiscal {quickViewDoc.year}</p>
-              <p><strong>Data de Publicação Oficial:</strong> {quickViewDoc.publishedDate}</p>
-              <p><strong>Certificado Digital:</strong> Hash SHA-256 ICP-Brasil Válido</p>
-              <p><strong>Formato:</strong> {quickViewDoc.fileSize}</p>
+              <p><strong>Vigência:</strong> {quickViewDoc.publishedDate}</p>
+              <p><strong>Arquivo:</strong> {quickViewDoc.fileSize}</p>
             </div>
 
             <div className="flex items-center gap-3">
@@ -1155,7 +1019,10 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                   handleDownload(quickViewDoc);
                   setQuickViewDoc(null);
                 }}
-                className="flex-1 py-3.5 bg-[#006c49] hover:bg-[#00714d] text-white font-label-md text-sm font-bold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
+                disabled={!quickViewDoc.downloadUrl}
+                aria-label="Baixar documento em PDF"
+                title={quickViewDoc.downloadUrl ? 'Baixar documento' : 'Arquivo em preparação'}
+                className="disabled:cursor-not-allowed disabled:opacity-50 flex-1 py-3.5 bg-[#006c49] hover:bg-[#00714d] text-white font-label-md text-sm font-bold rounded-xl transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
                 <span className="material-symbols-outlined text-[18px]">download</span>
                 <span>Baixar Documento em PDF</span>

@@ -676,7 +676,7 @@ export const SupporterPortalView: React.FC<SupporterPortalViewProps> = ({
               <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <span className="font-sans text-xs text-[#166534] font-medium flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-[16px]">school</span>
-                  <span>Bolsa financiada: <strong>Beatriz M. (Turma Leandro)</strong></span>
+                  <span>Bolsa financiada: <strong>Beatriz M. (Turma Brisamar)</strong></span>
                 </span>
                 <motion.button
                   whileHover={{ scale: 1.02 }}
