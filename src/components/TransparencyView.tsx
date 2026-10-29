@@ -428,7 +428,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </h2>
             </div>
             <p className="font-body-sm text-sm sm:text-base text-[#534434] max-w-md leading-relaxed">
-              Consulte o estatuto social e a ata de eleição do conselho. O arquivo para download será disponibilizado em breve.
+              Consulte e baixe o estatuto social e a ata de eleição do conselho do Instituto Caminho e Forma.
             </p>
           </motion.div>
 
@@ -1008,8 +1008,8 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
             </p>
 
             <div className="bg-[#f2f4f6] p-4 rounded-2xl mb-6 text-xs text-[#534434] space-y-1">
-              <p><strong>Exercício de Referência:</strong> Ano Fiscal {quickViewDoc.year}</p>
-              <p><strong>Vigência:</strong> {quickViewDoc.publishedDate}</p>
+              <p><strong>Ano de publicação no site:</strong> {quickViewDoc.year}</p>
+              <p><strong>Publicado no site em:</strong> {quickViewDoc.publishedDate}</p>
               <p><strong>Arquivo:</strong> {quickViewDoc.fileSize}</p>
             </div>
 
