@@ -356,7 +356,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </div>
               <div className="font-headline-xl text-3xl sm:text-4xl text-[#191c1e] font-extrabold tracking-tight">{formatDonationAmount(DONATION_TOTALS.totalCents)}</div>
               <p className="font-body-sm text-xs sm:text-sm text-[#534434] mt-2 leading-relaxed">
-                Recebidos no fundo geral do Instituto: {formatDonationAmount(DONATION_TOTALS.generalFundCents)}.
+                Fundo geral: {formatDonationAmount(DONATION_TOTALS.generalFundCents)}. Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}.
               </p>
             </motion.div>
 
@@ -399,7 +399,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               </h2>
             </div>
             <p className="font-body-sm text-sm sm:text-base text-[#534434] max-w-md leading-relaxed">
-              As doações ao fundo geral apoiam o Instituto e são contabilizadas separadamente das doações destinadas a projetos específicos.
+              As doações são contabilizadas separadamente para o fundo geral, os cursos EAD e os projetos específicos, respeitando a destinação informada.
             </p>
           </motion.div>
 
@@ -424,6 +424,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
                 <div className="flex flex-col gap-5 mt-6">
                   {[
                     { label: 'Fundo geral do Instituto', amount: DONATION_TOTALS.generalFundCents },
+                    { label: 'Cursos EAD', amount: DONATION_TOTALS.eadCoursesCents },
                     { label: 'Projetos específicos', amount: DONATION_TOTALS.projectsCents },
                   ].map(item => {
                     const percent = DONATION_TOTALS.totalCents > 0 ? Math.round(item.amount / DONATION_TOTALS.totalCents * 100) : 0;
@@ -443,7 +444,7 @@ export const TransparencyView: React.FC<TransparencyViewProps> = ({ onOpenDonati
               <div className="mt-8 pt-4 bg-white p-4 rounded-xl border border-[#e0e3e5] flex items-center gap-3 text-[#534434]">
                 <span className="material-symbols-outlined text-[#006c49] text-[22px]">info</span>
                 <p className="font-body-sm text-xs sm:text-sm">
-                  O valor recebido foi destinado ao fundo geral do Instituto.
+                  Os valores do fundo geral, dos cursos EAD e dos projetos são contabilizados separadamente.
                 </p>
               </div>
             </motion.div>

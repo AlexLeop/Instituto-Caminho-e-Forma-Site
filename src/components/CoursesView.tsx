@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef } from 'react';
 import { Course } from '../types';
 import { COURSES, TEACHERS } from '../data/mockData';
+import { DONATION_TOTALS, formatDonationAmount } from '../data/donations';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
 interface CoursesViewProps {
@@ -51,6 +52,11 @@ export const CoursesView: React.FC<CoursesViewProps> = ({ onEnrollCourse, onOpen
             >
               Oficinas práticas de qualificação e empreendedorismo com certificação. O investimento social acessível é 100% revertido para manter os projetos socioassistenciais do Instituto.
             </motion.p>
+
+            <div className="mb-8 w-full rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-left text-emerald-950">
+              <p className="text-sm font-bold">Apoio aos cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)} recebidos</p>
+              <p className="mt-1 text-sm">Doação destinada aos cursos de educação a distância do Instituto, contabilizada separadamente do fundo geral.</p>
+            </div>
 
             {/* Highlights Badges */}
             <motion.div 

@@ -50,6 +50,7 @@ export const TransparencyModal: React.FC<TransparencyModalProps> = ({ isOpen, on
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-950">
             <p>Total de doações recebidas: <strong>{formatDonationAmount(DONATION_TOTALS.totalCents)}</strong></p>
             <p className="mt-1">Fundo geral do Instituto: {formatDonationAmount(DONATION_TOTALS.generalFundCents)}.</p>
+            <p className="mt-1">Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}.</p>
           </div>
           {/* Key Indicators */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">

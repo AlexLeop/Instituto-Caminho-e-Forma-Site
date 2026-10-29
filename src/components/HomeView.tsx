@@ -654,8 +654,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
           <div className="mb-8 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-bold text-emerald-950">Fundo geral do Instituto: {formatDonationAmount(DONATION_TOTALS.generalFundCents)} recebidos</p>
-              <p className="mt-1 text-sm text-emerald-900">Doações ao fundo geral são contabilizadas separadamente dos projetos.</p>
+              <p className="text-sm font-bold text-emerald-950">Total de doações recebidas: {formatDonationAmount(DONATION_TOTALS.totalCents)}</p>
+              <p className="mt-1 text-sm text-emerald-900">Fundo geral: {formatDonationAmount(DONATION_TOTALS.generalFundCents)} • Cursos EAD: {formatDonationAmount(DONATION_TOTALS.eadCoursesCents)}</p>
+              <p className="mt-1 text-sm text-emerald-900">As doações são contabilizadas separadamente conforme sua destinação.</p>
             </div>
             <button type="button" onClick={() => onNavigate('transparencia')} className="min-h-11 shrink-0 self-start rounded-xl border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-emerald-100">Acompanhar doações</button>
           </div>
