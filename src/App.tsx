@@ -21,14 +21,15 @@ import { SupporterPortalView } from './components/SupporterPortalView';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { PROJECTS } from './data/mockData';
 import { SUPPORTER_PORTAL_ENABLED } from './config/features';
+import { updatePageMetadata, projectPath } from './seo';
 
-const pathToPage = (pathname: string): NavPage => {
-  if (typeof window !== 'undefined') {
-    const searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.get('id')) {
-      return 'detalhes-projeto';
-    }
-  }
+const projectIdFromUrl = (url: string) => {
+  const parsed = new URL(url, 'https://institutocaminhoeforma.org.br');
+  return parsed.pathname.match(/^\/projetos\/([^/]+)\/?$/)?.[1] ?? parsed.searchParams.get('id');
+};
+const pathToPage = (url: string): NavPage => {
+  if (projectIdFromUrl(url)) return 'detalhes-projeto';
+  const pathname = new URL(url, 'https://institutocaminhoeforma.org.br').pathname;
   const segment = pathname.replace(/^\/+/, '').split('/')[0].split('?')[0].split('#')[0];
   if (segment === 'detalhes-projeto' || segment === 'projeto') {
     return 'detalhes-projeto';
@@ -46,17 +47,14 @@ const pathToPage = (pathname: string): NavPage => {
   return validPages.includes(segment as NavPage) ? (segment as NavPage) : 'inicio';
 };
 
-export default function App() {
+export default function App({initialUrl = '/'}: {initialUrl?: string}) {
+  const routeUrl = typeof window !== 'undefined' ? window.location.href : initialUrl;
   const [currentPage, setCurrentPage] = useState<NavPage>(() => {
-    if (typeof window !== 'undefined') {
-      return pathToPage(window.location.pathname);
-    }
-    return 'inicio';
+    return pathToPage(routeUrl);
   });
   const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
-    if (typeof window !== 'undefined') {
-      const searchParams = new URLSearchParams(window.location.search);
-      const id = searchParams.get('id');
+    {
+      const id = projectIdFromUrl(routeUrl);
       if (id) {
         const found = PROJECTS.find((p) => p.id === id);
         if (found) return found;
@@ -71,6 +69,10 @@ export default function App() {
   const [producerModalOpen, setProducerModalOpen] = useState(false);
   const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
   const [volunteerType, setVolunteerType] = useState<'teach' | 'sponsor'>('teach');
+
+  useEffect(() => {
+    updatePageMetadata(currentPage === 'detalhes-projeto' && selectedProject ? projectPath(selectedProject.id) : currentPage === 'inicio' ? '/' : `/${currentPage}`);
+  }, [currentPage, selectedProject]);
 
   // Inicialização do Smooth Scrolling (Lenis) para sensação ultra-suave e fluida
   useEffect(() => {
@@ -121,10 +123,9 @@ export default function App() {
   // Sincroniza histórico do navegador com as páginas do site
   useEffect(() => {
     const handlePopState = () => {
-      const page = pathToPage(window.location.pathname);
+      const page = pathToPage(window.location.href);
       setCurrentPage(page);
-      const searchParams = new URLSearchParams(window.location.search);
-      const id = searchParams.get('id');
+      const id = projectIdFromUrl(window.location.href);
       if (id) {
         const found = PROJECTS.find((p) => p.id === id);
         if (found) setSelectedProject(found);
@@ -137,7 +138,7 @@ export default function App() {
   const handleSelectProject = (project: Project) => {
     setSelectedProject(project);
     setCurrentPage('detalhes-projeto');
-    window.history.pushState({}, '', `/projetos?id=${project.id}`);
+    window.history.pushState({}, '', projectPath(project.id));
     if ((window as any).__lenis) {
       (window as any).__lenis.scrollTo(0, { immediate: true });
     } else {

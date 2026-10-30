@@ -41,7 +41,8 @@ export class DonationLedger {
       if (!response.ok) {
         const body = await response.json().catch(() => null);
         const known: Record<string, [number, string, string]> = {
-          INSUFFICIENT_ALLOCATION: [409, 'insufficient_allocation', 'O saldo destinado ao projeto de origem é insuficiente. Atualize a consulta antes de registrar.'],
+          INSUFFICIENT_ALLOCATION: [409, 'insufficient_allocation', 'O saldo disponível da origem no período é insuficiente. Atualize os saldos; recursos já realocados não podem ser utilizados novamente.'],
+          INVALID_REPORT_PERIOD: [400, 'invalid_report_period', 'Confira o período de apuração dos recursos.'],
           REALLOCATION_CONFLICT: [409, 'reallocation_conflict', 'Esta referência já foi usada para outra realocação. Atualize os dados e tente novamente.'],
           ALREADY_REVERSED: [409, 'already_reversed', 'Esta realocação já foi estornada.'],
           INVALID_REVERSAL: [400, 'invalid_reversal', 'Confira a referência e os dados do estorno.'],
@@ -68,10 +69,11 @@ export class DonationLedger {
   }
 
   async reallocate(input: ReallocationInput): Promise<FundMovement> {
-    return this.rpc('record_donation_reallocation', {
+    return this.rpc('record_donation_reallocation_in_period', {
       p_environment: this.config.environment, p_id: input.id, p_source_id: input.sourceId, p_source_title: findDonationDestination(input.sourceId)!.title,
       p_destination_id: input.destinationId, p_destination_title: findDonationDestination(input.destinationId)!.title,
       p_amount_cents: input.amountCents, p_responsible: input.responsible, p_reason: input.reason, p_reversal_of: input.reversalOf ?? null,
+      p_start: input.start, p_end: input.end,
     });
   }
 

@@ -1,3 +1,4 @@
+import { NavigationLink } from './NavigationLink';
 import React, { useState, useRef, useEffect } from 'react';
 import { NavPage } from '../types';
 import {
@@ -358,14 +359,14 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="border-t border-slate-200 pt-8 flex items-center justify-center text-center">
             <p className="font-sans text-xs sm:text-sm text-slate-600">
               Sua empresa deseja apoiar as ações sociais do Instituto ou destinar incentivos fiscais?{' '}
-              <button
+              <NavigationLink href="/seja-parceiro"
                 type="button"
                 onClick={() => onNavigate('seja-parceiro')}
                 className="inline-flex items-center gap-1 text-[#b45309] hover:text-[#92400e] font-bold transition-colors cursor-pointer ml-1"
               >
                 <span>Seja um Parceiro Institucional</span>
                 <span className="text-base leading-none">→</span>
-              </button>
+              </NavigationLink>
             </p>
           </div>
         </div>
@@ -648,13 +649,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 Conheça os projetos e suas metas de arrecadação para apoiar ações de acolhimento infantil, segurança alimentar e capacitação profissional no território.
               </p>
             </div>
-            <button
+            <NavigationLink href="/projetos"
               onClick={() => onNavigate('projetos')}
               className="inline-flex items-center gap-2 font-sans text-sm font-bold text-[#b45309] hover:text-[#92400e] transition-colors self-start md:self-auto cursor-pointer"
             >
               <span>Ver todos os {PROJECTS.length} projetos</span>
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-            </button>
+            </NavigationLink>
           </div>
 
           <div className="mb-8 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 sm:flex-row sm:items-center sm:justify-between">
@@ -664,7 +665,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <DonationSyncStatus />
               <p className="mt-1 text-sm text-emerald-900">As doações são contabilizadas separadamente conforme sua destinação.</p>
             </div>
-            <button type="button" onClick={() => onNavigate('transparencia')} className="min-h-11 shrink-0 self-start rounded-xl border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-emerald-100">Acompanhar doações</button>
+            <NavigationLink href="/transparencia" type="button" onClick={() => onNavigate('transparencia')} className="min-h-11 shrink-0 self-start rounded-xl border border-emerald-300 px-4 py-2 text-sm font-semibold text-emerald-950 hover:bg-emerald-100">Acompanhar doações</NavigationLink>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -748,13 +749,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                       >
                         Apoiar este Projeto
                       </motion.button>
-                      <button
+                      <NavigationLink href={`/projetos/${proj.id}`}
                         onClick={() => onSelectProject ? onSelectProject(proj) : onNavigate('projetos')}
                         className="p-3 rounded-xl bg-slate-100 hover:bg-[#b45309] hover:text-white text-slate-800 transition-colors cursor-pointer"
                         title="Ver detalhes completos do projeto"
                       >
                         <span className="material-symbols-outlined text-[20px]">visibility</span>
-                      </button>
+                      </NavigationLink>
                     </div>
                   </div>
                 </motion.div>

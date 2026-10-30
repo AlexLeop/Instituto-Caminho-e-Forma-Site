@@ -10,10 +10,12 @@
     "api/donations.ts": { "maxDuration": 60 },
     "api/supporter.ts": { "maxDuration": 60 }
   },
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/((?!api/).*)",
-      "destination": "/"
+      "source": "/:alias(projetos|projeto|detalhes-projeto)",
+      "has": [{"type": "query", "key": "id", "value": "(?<projectId>[a-z0-9-]+)"}],
+      "destination": "/projetos/:projectId",
+      "permanent": true
     }
   ],
   "headers": [

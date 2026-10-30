@@ -25,7 +25,14 @@ export function FundReallocationsPanel({accessKey, start, end}: {accessKey: stri
   const attempt = useRef<{fingerprint: string; id: string} | null>(null);
   const controller = useRef<AbortController | null>(null);
   const form = useRef<HTMLFormElement>(null);
+  const amountField = useRef<HTMLInputElement>(null);
   const id = useId();
+  const sourceBalance = report?.balances.find(balance => balance.destinationId === sourceId);
+  const availableCents = sourceBalance?.availableCents ?? 0;
+  const enteredCents = parseAmount(amount);
+  const exceedsBalance = !!sourceId && enteredCents > availableCents;
+  const amountError = exceedsBalance ? `O valor máximo disponível nesta origem e neste período é ${money(availableCents)}.` : '';
+  useEffect(() => {amountField.current?.setCustomValidity(amountError);}, [amountError, report]);
 
   async function api(body: unknown, signal?: AbortSignal) {
     const response = await fetch('/api/donations', {method: 'POST', headers: {'Content-Type': 'application/json', Authorization: `Bearer ${accessKey}`}, body: JSON.stringify(body), cache: 'no-store', signal});
@@ -63,10 +70,9 @@ export function FundReallocationsPanel({accessKey, start, end}: {accessKey: stri
     const amountCents = parseAmount(amount);
     if (!findDonationDestination(sourceId) || !findDonationDestination(destinationId) || sourceId === destinationId) {setError('Escolha projetos de origem e destino diferentes.'); return;}
     if (!Number.isSafeInteger(amountCents) || amountCents < 1) {setError('Informe um valor válido.'); return;}
-    const source = report?.balances.find(balance => balance.destinationId === sourceId);
-    if (amountCents > (source?.allocatedCents ?? 0)) {setError('O valor supera o saldo destinado ao projeto de origem.'); return;}
+    if (amountCents > availableCents) {setError('O valor supera o saldo disponível da origem no período selecionado.'); return;}
     if (responsible.trim().length < 3 || reason.trim().length < 10) {setError('Informe o responsável e explique o motivo com pelo menos 10 caracteres.'); return;}
-    const input = {sourceId, destinationId, amountCents, responsible: responsible.trim().replace(/\s+/g, ' '), reason: reason.trim(), ...(reversal ? {reversalOf: reversal.id} : {})};
+    const input = {start, end, sourceId, destinationId, amountCents, responsible: responsible.trim().replace(/\s+/g, ' '), reason: reason.trim(), ...(reversal ? {reversalOf: reversal.id} : {})};
     const fingerprint = JSON.stringify(input);
     if (!attempt.current || attempt.current.fingerprint !== fingerprint) attempt.current = {fingerprint, id: crypto.randomUUID()};
     setReview({...input, id: attempt.current.id});
@@ -104,9 +110,9 @@ export function FundReallocationsPanel({accessKey, start, end}: {accessKey: stri
     {busy && !report && <p role="status" className="mt-5 text-sm text-slate-700">Consultando saldos e histórico…</p>}
     {report && <>
       <div className="mt-6 flex flex-wrap items-center justify-between gap-4"><h3 className="text-lg font-bold">Saldos destinados aos projetos</h3><button type="button" onClick={() => setAllBalances(value => !value)} className={secondary}>{allBalances ? 'Mostrar apenas projetos com recursos' : 'Mostrar todos os projetos'}</button></div>
-      <p className="mt-2 text-xs leading-relaxed text-slate-600">Valores acumulados em todos os períodos, após as realocações. Estes valores representam destinações registradas, e não o saldo da conta bancária.</p>
+      <p className="mt-2 text-xs leading-relaxed text-slate-600">O saldo acumulado considera todos os recebimentos e realocações. A coluna “Disponível no período” limita o registro aos recursos recebidos no período selecionado que ainda pertencem ao projeto. Doações externas confirmadas sem data informada estão incluídas. Estes valores representam destinações registradas, e não o saldo da conta bancária.</p>
       <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200 bg-white" tabIndex={0} role="region" aria-label="Saldos por projeto">
-        <table className="w-full min-w-[620px] text-left text-sm"><thead className="bg-slate-100 text-slate-700"><tr>{['Projeto','Recebido originalmente','Entradas por realocação','Saídas por realocação','Após realocações'].map(title => <th key={title} scope="col" className="p-4 font-semibold">{title}</th>)}</tr></thead><tbody className="divide-y divide-slate-200">{balances.map(balance => <tr key={balance.id}><td className="p-4 font-semibold">{balance.title}</td><td className="p-4 tabular-nums">{money(balance.receivedCents ?? 0)}</td><td className="p-4 tabular-nums">{money(balance.incomingCents ?? 0)}</td><td className="p-4 tabular-nums">{money(balance.outgoingCents ?? 0)}</td><td className="p-4 font-bold tabular-nums text-emerald-900">{money(balance.allocatedCents ?? 0)}</td></tr>)}</tbody></table>
+        <table className="w-full min-w-[740px] text-left text-sm"><thead className="bg-slate-100 text-slate-700"><tr>{['Projeto','Recebido originalmente','Entradas por realocação','Saídas por realocação','Saldo acumulado','Disponível no período'].map(title => <th key={title} scope="col" className="p-4 font-semibold">{title}</th>)}</tr></thead><tbody className="divide-y divide-slate-200">{balances.map(balance => <tr key={balance.id}><td className="p-4 font-semibold">{balance.title}</td><td className="p-4 tabular-nums">{money(balance.receivedCents ?? 0)}</td><td className="p-4 tabular-nums">{money(balance.incomingCents ?? 0)}</td><td className="p-4 tabular-nums">{money(balance.outgoingCents ?? 0)}</td><td className="p-4 tabular-nums">{money(balance.allocatedCents ?? 0)}</td><td className="p-4 font-bold tabular-nums text-emerald-900">{money(balance.availableCents ?? 0)}</td></tr>)}</tbody></table>
       </div>
       <form ref={form} onSubmit={prepare} className="mt-8 rounded-xl border border-slate-200 bg-white p-5 sm:p-6" aria-busy={busy}>
         <h3 className="text-lg font-bold">{reversal ? 'Estornar uma realocação' : 'Registrar uma realocação'}</h3>
@@ -114,12 +120,12 @@ export function FundReallocationsPanel({accessKey, start, end}: {accessKey: stri
         <fieldset disabled={busy || !!review} className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
           <div><label htmlFor={`${id}-source`} className="mb-2 block text-sm font-semibold">Projeto de origem</label><DonationDestinationPicker id={`${id}-source`} value={sourceId} onChange={setSourceId} disabled={busy || !!review || !!reversal} /></div>
           <div><label htmlFor={`${id}-destination`} className="mb-2 block text-sm font-semibold">Projeto de destino</label><DonationDestinationPicker id={`${id}-destination`} value={destinationId} onChange={setDestinationId} disabled={busy || !!review || !!reversal} /></div>
-          <label className="text-sm font-semibold">Valor a realocar (R$)<input type="text" inputMode="decimal" required maxLength={10} readOnly={!!reversal} value={amount} onChange={event => setAmount(event.target.value)} className={field} /></label>
+          <div><label htmlFor={`${id}-amount`} className="text-sm font-semibold">Valor a realocar (R$)</label><input ref={amountField} id={`${id}-amount`} type="text" inputMode="decimal" required maxLength={13} readOnly={!!reversal} disabled={!sourceId} value={amount} onChange={event => setAmount(event.target.value)} aria-invalid={exceedsBalance} aria-describedby={`${id}-limit${exceedsBalance ? ` ${id}-amount-error` : ''}`} className={`${field} ${exceedsBalance ? 'border-red-600 focus:ring-red-700' : ''}`} /><p id={`${id}-limit`} className="mt-2 text-sm font-medium text-slate-700">{sourceId ? `Disponível para realocar no período: ${money(availableCents)}` : 'Selecione a origem para consultar o limite.'}</p>{amountError && <p id={`${id}-amount-error`} role="alert" className="mt-2 text-sm text-red-800">{amountError}</p>}</div>
           <label className="text-sm font-semibold">Responsável pelo registro<input type="text" required minLength={3} maxLength={120} value={responsible} onChange={event => setResponsible(event.target.value)} className={field} /></label>
           <label className="text-sm font-semibold md:col-span-2">Motivo e finalidade<textarea required minLength={10} maxLength={1000} rows={3} value={reason} onChange={event => setReason(event.target.value)} className={field} /></label>
         </fieldset>
         <p className="mt-4 text-xs leading-relaxed text-slate-600">A data de registro é preenchida automaticamente. Esta ação registra uma realocação interna; pagamentos e transferências bancárias são feitos separadamente.</p>
-        {!review && <div className="mt-5 flex flex-wrap gap-3"><button disabled={busy} className={button}>Conferir {reversal ? 'estorno' : 'realocação'}</button>{reversal && <button disabled={busy} type="button" onClick={() => {setReversal(null); setAmount(''); setReason('');}} className={secondary}>Cancelar estorno</button>}</div>}
+        {!review && <div className="mt-5 flex flex-wrap gap-3"><button disabled={busy || exceedsBalance || !sourceId || availableCents <= 0} className={button}>Conferir {reversal ? 'estorno' : 'realocação'}</button>{reversal && <button disabled={busy} type="button" onClick={() => {setReversal(null); setAmount(''); setReason('');}} className={secondary}>Cancelar estorno</button>}</div>}
         {review && <div className="mt-5 rounded-lg bg-emerald-50 p-4 text-sm text-emerald-950"><h4 className="font-bold">Confira antes de registrar</h4><p className="mt-3">{money(review.amountCents)} de <strong>{findDonationDestination(review.sourceId)?.title}</strong> para <strong>{findDonationDestination(review.destinationId)?.title}</strong>.</p><p className="mt-2">Responsável: {review.responsible}</p><p className="mt-2 whitespace-pre-wrap">Motivo: {review.reason}</p><div className="mt-4 flex flex-wrap gap-3"><button type="button" disabled={busy} onClick={() => void confirm()} className={button}>{busy ? 'Registrando…' : 'Confirmar registro'}</button><button type="button" disabled={busy} onClick={() => setReview(null)} className={secondary}>Voltar e corrigir</button></div></div>}
       </form>
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4"><div><h3 className="text-lg font-bold">Histórico de realocações e estornos</h3><p className="mt-2 text-xs text-slate-600">Período selecionado: {start.split('-').reverse().join('/')} a {end.split('-').reverse().join('/')}. Os registros não são apagados.</p></div><button disabled={busy || report.movements.length === 0} type="button" onClick={download} className={secondary}>Baixar realocações CSV</button></div>

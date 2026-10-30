@@ -1,3 +1,4 @@
+import { NavigationLink } from './NavigationLink';
 import React, { useState } from 'react';
 import { NavPage } from '../types';
 import { SUPPORTER_PORTAL_ENABLED, INSTITUTIONAL_CERTIFICATIONS_LABEL } from '../config/features';
@@ -45,72 +46,72 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
           <h3 className="font-serif text-lg text-slate-900 font-bold">Navegação Institucional</h3>
           <ul className="flex flex-col gap-2.5 font-sans text-sm text-slate-600">
             <li>
-              <button 
+              <NavigationLink href="/"
                 onClick={() => { onNavigate('inicio'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Início
-              </button>
+              </NavigationLink>
             </li>
             <li>
-              <button 
+              <NavigationLink href="/projetos"
                 onClick={() => { onNavigate('projetos'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Projetos Comunitários
-              </button>
+              </NavigationLink>
             </li>
             <li>
-              <button 
+              <NavigationLink href="/cursos-e-capacitacao"
                 onClick={() => { onNavigate('cursos-e-capacitacao'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Cursos &amp; Oficinas Práticas
-              </button>
+              </NavigationLink>
             </li>
             <li>
-              <button 
+              <NavigationLink href="/feira-virtual"
                 onClick={() => { onNavigate('feira-virtual'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Feira Solidária das Famílias
-              </button>
+              </NavigationLink>
             </li>
             <li>
-              <button 
+              <NavigationLink href="/seja-parceiro"
                 onClick={() => { onNavigate('seja-parceiro'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Parcerias Corporativas ESG
-              </button>
+              </NavigationLink>
             </li>
             {SUPPORTER_PORTAL_ENABLED && (
             <li>
-              <button 
+              <NavigationLink href="/portal-do-apoiador"
                 onClick={() => { onNavigate('portal-do-apoiador'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left flex items-center gap-1 font-bold cursor-pointer text-[#b45309]"
               >
                 <span className="material-symbols-outlined text-[15px] text-[#b45309]">workspace_premium</span>
                 <span>Portal do Apoiador</span>
-              </button>
+              </NavigationLink>
             </li>
             )}
             <li>
-              <button 
+              <NavigationLink href="/transparencia"
                 onClick={() => { onNavigate('transparencia'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#166534] transition-colors text-left flex items-center gap-1 font-bold cursor-pointer text-[#166534]"
               >
                 <span className="material-symbols-outlined text-[15px] text-[#166534]">verified_user</span>
                 <span>Portal da Transparência</span>
-              </button>
+              </NavigationLink>
             </li>
             <li>
-              <button 
+              <NavigationLink href="/#contato-secao"
                 onClick={() => { onNavigate('contato'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="hover:text-[#b45309] transition-colors text-left font-medium cursor-pointer"
               >
                 Fale Conosco
-              </button>
+              </NavigationLink>
             </li>
           </ul>
         </div>
@@ -119,10 +120,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
         {VISIBLE_OFFICIAL_SEALS.length > 0 && <div className="flex flex-col gap-4">
           <h3 className="font-serif text-lg text-slate-900 font-bold">Selos Institucionais</h3>
           <div className="flex flex-col gap-2.5">
-            {VISIBLE_OFFICIAL_SEALS.map(seal => <button key={seal.id} onClick={onOpenTransparency} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-left shadow-xs transition-all hover:bg-slate-100">
+            {VISIBLE_OFFICIAL_SEALS.map(seal => <NavigationLink href="/transparencia" key={seal.id} onClick={onOpenTransparency} className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-left shadow-xs transition-all hover:bg-slate-100">
               <SealGraphic type={seal.sealType} size={32} className="shrink-0" />
               <span className="font-sans text-xs font-bold text-slate-900">{seal.shortName}</span>
-            </button>)}
+            </NavigationLink>)}
           </div>
         </div>}
 
@@ -223,24 +224,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 pt-1">
             <div>© {new Date().getFullYear()} Instituto Caminho e Forma. Todos os direitos reservados.</div>
             <div className="flex items-center gap-6">
-              <button 
+              <NavigationLink href="/transparencia"
                 onClick={onOpenTransparency} 
                 className="hover:text-slate-900 transition-colors cursor-pointer"
               >
                 Política de Privacidade
-              </button>
-              <button 
+              </NavigationLink>
+              <NavigationLink href="/transparencia"
                 onClick={onOpenTransparency} 
                 className="hover:text-slate-900 transition-colors cursor-pointer"
               >
                 Termos de Uso
-              </button>
-              <button 
+              </NavigationLink>
+              <NavigationLink href="/transparencia"
                 onClick={onOpenTransparency} 
                 className="hover:text-slate-900 transition-colors cursor-pointer"
               >
                 Estatuto Social
-              </button>
+              </NavigationLink>
             </div>
           </div>
         </div>

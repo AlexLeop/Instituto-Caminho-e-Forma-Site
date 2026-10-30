@@ -1,3 +1,4 @@
+import { NavigationLink } from './NavigationLink';
 import React, { useState, useMemo } from 'react';
 import { Project } from '../types';
 import { useFundedProjects } from '../hooks/useDonationTotals';
@@ -187,13 +188,13 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
                         >
                           Apoiar este Projeto
                         </motion.button>
-                        <button
+                        <NavigationLink href={`/projetos/${proj.id}`}
                           onClick={() => onSelectProject(proj)}
                           className="p-3 rounded-xl bg-slate-100 hover:bg-[#b45309] hover:text-white text-slate-800 transition-colors cursor-pointer"
                           title="Ver página de detalhes completa"
                         >
                           <span className="material-symbols-outlined text-[20px]">visibility</span>
-                        </button>
+                        </NavigationLink>
                       </div>
                     </div>
                   </motion.article>

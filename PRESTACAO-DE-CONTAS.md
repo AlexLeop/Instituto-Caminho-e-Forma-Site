@@ -53,6 +53,16 @@ O botão **Baixar realocações CSV** exporta o histórico completo encontrado n
 
 A tabela `donation_fund_movements` permite apenas leitura e inserção pelo servidor; não permite atualização ou exclusão pela API. As funções de saldo e registro também são privadas. O acesso do apoiador é separado e documentado em `PORTAL-DO-APOIADOR.md`.
 
+### Limite da realocação no período
+
+O campo **Valor a realocar** informa o disponível da origem no período consultado, apresenta erro imediatamente acima do limite e desabilita a conferência. O servidor recalcula esse limite dentro da mesma transação do registro, com bloqueio para solicitações simultâneas; alterar o formulário ou usar um saldo desatualizado não permite excedê-lo.
+
+Os recursos são vinculados aos recebimentos originais por `donation_fund_movement_lines`, preservando a data da receita e os valores já realocados. Trocar ou sobrepor períodos não libera novamente recursos já utilizados. Entradas em outro projeto conservam a data da doação que as financiou. Doações externas confirmadas sem data informada permanecem incluídas e identificadas, sem inventar uma data. O pagamento de teste não compõe o saldo.
+
+O período usado no registro é preservado e exportado no CSV. Estornos precisam recompor os mesmos recursos do lançamento original: se já foram repassados a outro projeto, reorganize essas movimentações antes de estornar.
+
+A migração `20261030001834_period_fund_limits.sql` restringe a função antiga e habilita o registro com período validado. A verificação `node --import tsx scripts/verify-fund-limits.ts` usa exclusivamente fixtures Stage em uma transação revertida; exige Stage vazio e o certificado TLS oficial em `scratch/supabase/prod-ca-2021.crt`.
+
 ## Banco Supabase
 
 O servidor utiliza **SUPABASE_URL** e **SUPABASE_SECRET_KEY**. A chave secreta nunca é importada pelo frontend. Não são necessárias senha PostgreSQL ou chaves de assinatura JWT no código publicado. A integração também funciona sem Supabase configurado, consultando a Cora; se uma configuração parcial for fornecida, ela deve ser corrigida.

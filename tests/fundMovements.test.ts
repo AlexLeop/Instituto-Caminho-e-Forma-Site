@@ -8,7 +8,7 @@ import { DonationLedger } from '../server/donations/ledger.ts';
 import { fundMovementsCsv, type FundMovement } from '../shared/fundMovements.ts';
 import { createDonationsHandler } from '../api/donations.ts';
 
-const input = () => ({id: randomUUID(), sourceId: 'boxe-formativo', destinationId: 'ballet-infantil', amountCents: 80000, responsible: 'Responsável de Teste', reason: 'Aquisição de materiais para as aulas de ballet.'});
+const input = () => ({id: randomUUID(), start: '2026-01-01', end: '2026-10-29', sourceId: 'boxe-formativo', destinationId: 'ballet-infantil', amountCents: 80000, responsible: 'Responsável de Teste', reason: 'Aquisição de materiais para as aulas de ballet.'});
 
 test('reallocation requires integer cents, distinct existing projects, responsible and justification', () => {
   assert.equal(validateReallocation(input()).amountCents, 80000);
@@ -23,6 +23,13 @@ test('RPC uses canonical project titles and recognizes insufficient allocation w
   });
   await assert.rejects(() => ledger.reallocate(validateReallocation({...input(), sourceTitle: 'Nome falso'})), {status: 409, code: 'insufficient_allocation'});
   assert.equal(payload.p_source_title, 'Boxe'); assert.equal(payload.p_environment, 'production'); assert.equal(payload.p_reversal_of, null);
+  assert.equal(payload.p_start, '2026-01-01'); assert.equal(payload.p_end, '2026-10-29');
+});
+
+test('reallocation rejects missing, reversed, impossible, and excessively long reporting periods', () => {
+  for (const change of [{start: undefined}, {end: undefined}, {start: '2026-10-30'}, {start: '2026-02-30'}, {start: '2024-01-01'}]) {
+    assert.throws(() => validateReallocation({...input(), ...change}), {status: 400});
+  }
 });
 
 test('movement CSV preserves reversals and protects against spreadsheet formulas', () => {

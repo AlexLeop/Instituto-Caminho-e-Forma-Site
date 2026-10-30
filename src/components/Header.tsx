@@ -1,3 +1,4 @@
+import { NavigationLink } from './NavigationLink';
 import React, { useState, useEffect } from 'react';
 import { NavPage } from '../types';
 import { SUPPORTER_PORTAL_ENABLED } from '../config/features';
@@ -65,20 +66,20 @@ export const Header: React.FC<HeaderProps> = ({
       >
         <div className="h-14 sm:h-16 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand Logo */}
-          <button 
+          <NavigationLink href="/"
             onClick={() => handleNavClick('inicio')}
             className="flex items-center text-left group cursor-pointer focus:outline-none shrink-0"
             aria-label="Instituto Caminho e Forma - Início"
           >
             <InstituteLogo size="md" variant="horizontal" theme="dark" />
-          </button>
+          </NavigationLink>
 
           {/* Desktop Navigation Links - Nunca quebram linha */}
           <nav className="hidden xl:flex items-center flex-nowrap gap-0.5 lg:gap-1 p-0.5 shrink-0">
             {navItems.map((item) => {
               const isActive = currentPage === item.page || (item.page === 'projetos' && currentPage === 'detalhes-projeto');
               return (
-                <button
+                <NavigationLink href={item.page === 'inicio' ? '/' : item.page === 'contato' ? '/#contato-secao' : `/${item.page}`}
                   key={item.page}
                   onClick={() => handleNavClick(item.page)}
                   className={`relative px-2.5 py-2 font-sans text-xs lg:text-[13.5px] font-semibold transition-colors cursor-pointer whitespace-nowrap shrink-0 bg-transparent ${
@@ -95,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
+                </NavigationLink>
               );
             })}
           </nav>
@@ -104,7 +105,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Botão Portal do Apoiador (exibido ao lado do botão Apoie o Instituto) */}
             {SUPPORTER_PORTAL_ENABLED && (
-            <button 
+            <NavigationLink href="/portal-do-apoiador"
               type="button"
               onClick={() => handleNavClick('portal-do-apoiador')}
               className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl font-sans text-xs sm:text-[13px] font-semibold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
@@ -116,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <span className="material-symbols-outlined text-[16px] sm:text-[18px]">account_circle</span>
               <span>Portal do Apoiador</span>
-            </button>
+            </NavigationLink>
             )}
 
             {/* Botão Principal: Apoie o Instituto */}
@@ -158,7 +159,7 @@ export const Header: React.FC<HeaderProps> = ({
               {navItems.map((item) => {
                 const isActive = currentPage === item.page || (item.page === 'projetos' && currentPage === 'detalhes-projeto');
                 return (
-                  <button
+                  <NavigationLink href={item.page === 'inicio' ? '/' : item.page === 'contato' ? '/#contato-secao' : `/${item.page}`}
                     key={item.page}
                     onClick={() => handleNavClick(item.page)}
                     className={`text-left px-4 py-2.5 rounded-lg font-sans text-sm font-semibold transition-colors ${
@@ -168,13 +169,13 @@ export const Header: React.FC<HeaderProps> = ({
                     }`}
                   >
                     {item.label}
-                  </button>
+                  </NavigationLink>
                 );
               })}
 
               {/* Portal do Apoiador destacado no menu mobile */}
               {SUPPORTER_PORTAL_ENABLED && (
-              <button
+              <NavigationLink href="/portal-do-apoiador"
                 onClick={() => handleNavClick('portal-do-apoiador')}
                 className={`text-left px-4 py-2.5 rounded-lg font-sans text-sm font-semibold transition-colors flex items-center gap-2 ${
                   currentPage === 'portal-do-apoiador'
@@ -184,7 +185,7 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <span className="material-symbols-outlined text-[18px] text-[#b45309]">account_circle</span>
                 <span>Portal do Apoiador</span>
-              </button>
+              </NavigationLink>
               )}
 
               <button
