@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { supporterStatementCsv, type SupporterProfile, type SupporterDonation } from '../../shared/supporter';
+import { SUPPORTER_EMAIL_CODE_REQUIRED } from '../../shared/supporterAccess';
 import { formatDonationAmount as money } from '../data/donations';
 
 interface SupporterPortalViewProps {onOpenDonation: () => void; onNavigateHome: () => void; onOpenTransparency: () => void}
@@ -58,6 +59,14 @@ export function SupporterPortalView({onOpenDonation, onNavigateHome, onOpenTrans
     } catch (failure) {setError(failure instanceof Error ? failure.message : 'Não foi possível solicitar o código.');}
     finally {setBusy(false);}
   }
+  async function login(event: FormEvent) {
+    event.preventDefault(); setBusy(true); setError('');
+    try {
+      await api({action: 'login', email, documentSuffix: suffix});
+      setEmail(''); setSuffix(''); setAuthenticated(true); await refresh();
+    } catch (failure) {setError(failure instanceof Error ? failure.message : 'Confira os dados informados.');}
+    finally {setBusy(false);}
+  }
   async function verify(event: FormEvent) {
     event.preventDefault(); setBusy(true); setError('');
     try {await api({action: 'verify-code', code}); setCode(''); setAuthenticated(true); await refresh();}
@@ -96,12 +105,12 @@ export function SupporterPortalView({onOpenDonation, onNavigateHome, onOpenTrans
       </div>
       {error && <p role="alert" className="mt-6 rounded-xl bg-red-50 p-4 text-sm leading-relaxed text-red-900">{error}</p>}
       {!authenticated && <section className="mt-8 max-w-xl rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-8" aria-label="Acesso restrito do apoiador">
-        <h2 className="text-xl font-bold text-slate-900">{phase === 'identity' ? 'Acesse suas doações' : 'Confirme seu e-mail'}</h2>
-        {phase === 'identity' ? <form onSubmit={requestCode} className="mt-5 space-y-5" aria-busy={busy}>
-          <p className="text-sm leading-relaxed text-slate-600">Use os dados informados no checkout de uma doação confirmada. Enviaremos um código para esse e-mail.</p>
+        <h2 className="text-xl font-bold text-slate-900">{!SUPPORTER_EMAIL_CODE_REQUIRED || phase === 'identity' ? 'Acesse suas doações' : 'Confirme seu e-mail'}</h2>
+        {!SUPPORTER_EMAIL_CODE_REQUIRED || phase === 'identity' ? <form onSubmit={SUPPORTER_EMAIL_CODE_REQUIRED ? requestCode : login} className="mt-5 space-y-5" aria-busy={busy}>
+          <p className="text-sm leading-relaxed text-slate-600">Use o e-mail e os últimos quatro dígitos do CPF informados no checkout de uma doação confirmada.{SUPPORTER_EMAIL_CODE_REQUIRED && ' Enviaremos um código para esse e-mail.'}</p>
           <label className="block text-sm font-semibold text-slate-800">E-mail da doação<input type="email" autoComplete="email" required maxLength={254} disabled={busy} value={email} onChange={event => setEmail(event.target.value)} className={field} /></label>
           <label className="block text-sm font-semibold text-slate-800">Últimos 4 dígitos do CPF<input type="text" inputMode="numeric" autoComplete="off" required pattern="[0-9]{4}" maxLength={4} disabled={busy} value={suffix} onChange={event => setSuffix(event.target.value.replace(/\D/g, ''))} className={field} /></label>
-          <button disabled={busy} className={`${primary} w-full`}>{busy ? 'Aguarde…' : 'Receber código por e-mail'}</button>
+          <button disabled={busy} className={`${primary} w-full`}>{busy ? 'Aguarde…' : SUPPORTER_EMAIL_CODE_REQUIRED ? 'Receber código por e-mail' : 'Entrar na área do apoiador'}</button>
         </form> : <form onSubmit={verify} className="mt-5 space-y-5" aria-busy={busy}>
           <p className="text-sm leading-relaxed text-slate-600">{message} Confira também a caixa de spam. O acesso precisa ser concluído em até 10 minutos.</p>
           <label className="block text-sm font-semibold text-slate-800">Código recebido por e-mail<input type="text" inputMode="numeric" autoComplete="one-time-code" required pattern="[0-9]{6,10}" minLength={6} maxLength={10} disabled={busy} value={code} onChange={event => setCode(event.target.value.replace(/\D/g, ''))} className={`${field} font-mono text-xl tracking-widest`} /></label>

@@ -11,6 +11,7 @@ export interface SupporterDonation {
   method: string;
 }
 export interface SupporterProfile {
+  authenticationMethod: 'email_code' | 'email_document';
   name: string;
   email: string;
   documentSuffix: string;

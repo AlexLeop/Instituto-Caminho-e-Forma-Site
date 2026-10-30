@@ -27,6 +27,12 @@ export function createSupporterHandler(getService = getSupporterService, env: No
       }
       if (request.method !== 'POST') {response.setHeader('Allow', 'GET, POST'); throw new CheckoutError(405, 'method_not_allowed', 'Método não permitido.');}
       const body = await readJson(request);
+      if (body?.action === 'login') {
+        const ip = String(request.headers['x-vercel-forwarded-for'] ?? request.socket.remoteAddress ?? 'unknown').split(',')[0].trim();
+        const result = await getService().login(body, ip);
+        response.setHeader('Set-Cookie', [makeCookie(sessionName, result.token, 1800), makeCookie(challengeName, '', 0)]);
+        response.statusCode = 200; response.end(JSON.stringify({authenticated: true, expiresAt: result.expiresAt})); return;
+      }
       if (body?.action === 'request-code') {
         const ip = String(request.headers['x-vercel-forwarded-for'] ?? request.socket.remoteAddress ?? 'unknown').split(',')[0].trim();
         const result = await getService().requestCode(body, ip);

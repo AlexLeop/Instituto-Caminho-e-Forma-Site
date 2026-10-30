@@ -1,4 +1,4 @@
-// Donor access requires email, document suffix and a one-time code sent by Supabase Auth.
+// Donor access uses email and document suffix; the email-code policy is in shared/supporterAccess.ts.
 export const SUPPORTER_PORTAL_ENABLED = true;
 
 // Enable each institutional seal only after the Institute provides its confirmation.

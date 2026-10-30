@@ -1,10 +1,12 @@
 # Área do apoiador
 
-O acesso em `/portal-do-apoiador` usa o e-mail da doação, os últimos quatro dígitos do CPF e um código enviado por e-mail pelo Supabase Auth. A correspondência é conferida com uma doação Cora confirmada, incluída na arrecadação, já gravada no Supabase. O teste de R$ 30 não habilita acesso nem entra nos totais.
+O acesso em `/portal-do-apoiador` usa, temporariamente, **somente o e-mail da doação e os últimos quatro dígitos do CPF**, conforme solicitado pelo Instituto. Não solicita nem envia código por e-mail. A correspondência é conferida no servidor com uma doação Cora confirmada, incluída na arrecadação, já gravada no Supabase. O teste de R$ 30 não habilita acesso nem entra nos totais. Esse modo não comprova o controle do e-mail e oferece proteção menor que a confirmação por código.
 
 O painel mostra apenas os registros vinculados ao e-mail e ao final do documento que iniciaram a confirmação. Exibe contribuições confirmadas e cobranças pendentes desse mesmo apoiador, preservando o destino original e o valor conciliado. A exportação CSV contém somente o histórico dele. O arquivo é um extrato, não um recibo fiscal.
 
-## Concluir o envio de códigos
+## Reativar a confirmação por código futuramente
+
+A política compartilhada pelo servidor e pela interface está em `shared/supporterAccess.ts`: `SUPPORTER_EMAIL_CODE_REQUIRED = false`. Para reativar, conclua a configuração de e-mails abaixo, altere para `true` e publique o código. O servidor então recusa o login direto e as sessões criadas sem confirmação por e-mail, exigindo novo acesso com código. O código anterior de OTP e o template estão preservados.
 
 O fluxo depende de **SMTP personalizado no Supabase**. O SMTP padrão não serve para a operação com apoiadores: restringe destinatários à equipe do projeto e possui limites baixos.
 
@@ -19,10 +21,10 @@ A equipe do site não precisa receber senha de e-mail pelo chat. O SMTP e os tem
 ## Proteções
 
 - Até cinco solicitações por identidade e vinte por origem em quinze minutos; a identificação da origem é armazenada como HMAC, sem IP em texto aberto.
-- Até cinco tentativas de código por solicitação; validade de dez minutos e uso único.
-- O Supabase Auth comprova o controle do e-mail. O CPF parcial, isoladamente, não concede acesso.
+- O login direto exige a combinação de e-mail e final do CPF de uma doação confirmada. O desafio interno tem uso único; não cria usuário no Supabase Auth nem marca o e-mail como verificado. A tabela registra `authentication_method = email_document`, com `user_id` nulo nesse modo.
+- Quando o código for reativado: até cinco tentativas por solicitação, validade de dez minutos e uso único. Nesse modo, o Supabase Auth comprova o controle do e-mail.
 - Sessão da aplicação aleatória, sem dados pessoais no token, em cookie `HttpOnly`, `SameSite=Strict` e `Secure` na Vercel. Somente o hash da sessão é armazenado no banco.
-- Sessão válida por trinta minutos. A saída revoga o registro no banco e limpa o cookie. Excluir o usuário no Supabase Auth remove suas sessões da aplicação pela chave estrangeira.
+- Sessão válida por trinta minutos. A saída revoga o registro no banco e limpa o cookie. Nas sessões confirmadas por código, excluir o usuário no Supabase Auth também remove as sessões vinculadas pela chave estrangeira.
 - Nenhum código, sessão ou credencial é salvo no armazenamento público do navegador. Dados de outras pessoas não são retornados por seletores fornecidos pelo cliente.
 - Tabelas e funções de autenticação são restritas ao servidor, com RLS, sem acesso de `anon` e `authenticated`.
 
