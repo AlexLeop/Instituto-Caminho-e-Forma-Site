@@ -2,7 +2,6 @@ import { motion } from 'motion/react';
 import type { SupporterProfile, SupporterDonation } from '../../shared/supporter';
 import { formatDonationAmount as money } from '../data/donations';
 import { PROJECTS } from '../data/mockData';
-import { WhatsAppIcon } from './SocialIcons';
 const formatDate = (value: string | null | undefined) => value ? new Date(value.length === 10 ? value + 'T12:00:00-03:00' : value).toLocaleDateString('pt-BR', {timeZone: 'America/Sao_Paulo'}) : 'Não informada';
 interface Props {profile: SupporterProfile; busy: boolean; error: string; onOpenDonation: () => void; onNavigateHome: () => void; onLogout: () => void; onRefresh: () => void; onDownload: () => void; onDownloadRecord: (record: SupporterDonation) => void; onLoadMore: () => void}
 // Layout recovered from the original portal (4c4f0a6). All personal data comes from the authenticated profile.
@@ -33,7 +32,7 @@ export function SupporterDashboard({profile, busy, error, onOpenDonation, onNavi
               <span aria-hidden="true" className="material-symbols-outlined text-[14px]">chevron_right</span>
               <span className="text-slate-600">Portal do Apoiador</span>
               <span aria-hidden="true" className="material-symbols-outlined text-[14px]">chevron_right</span>
-              <span className="text-slate-900 font-bold">Painel Geral de Membro</span>
+              <span className="text-slate-900 font-bold">Meu Painel</span>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5">
@@ -303,92 +302,19 @@ export function SupporterDashboard({profile, busy, error, onOpenDonation, onNavi
         </div>
       </motion.section>
       {/* Section 4: Ambiente de Aprendizado e Cursos Solidários */}
-      <motion.section
+      {destinations.length > 0 && <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6 }}
         className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 w-full"
       >
-        <div className="mb-8">
-          <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">
-            Educação Compartilhada
-          </div>
-          <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
-            Ambiente de Aprendizado Solidário
-          </h2>
-          <p className="font-sans text-sm sm:text-base text-slate-600 mt-1.5 max-w-3xl leading-relaxed">
-            Acompanhe as informações de formação e os projetos ligados às suas contribuições.
-          </p>
-        </div>
-
-        <div className="mb-12"><div className="flex items-center gap-2 mb-4"><span className="material-symbols-outlined text-[#166534] text-[24px]" aria-hidden="true">play_circle</span><h3 className="font-serif text-xl text-slate-900 font-bold">Meus Cursos em Andamento</h3></div><div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs"><span className="material-symbols-outlined text-[#166534] text-[28px]" aria-hidden="true">school</span><h4 className="mt-3 font-serif text-lg text-slate-900 font-bold">Suas inscrições e formações</h4><p className="mt-2 font-sans text-sm text-slate-600 leading-relaxed">Quando houver inscrições e informações de progresso vinculadas ao seu cadastro, elas serão exibidas neste espaço.</p></div><div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs"><span className="material-symbols-outlined text-[#b45309] text-[28px]" aria-hidden="true">volunteer_activism</span><h4 className="mt-3 font-serif text-lg text-slate-900 font-bold">Seu apoio aos cursos EAD</h4><p className="mt-2 font-serif text-2xl text-[#166534] font-bold tabular-nums">{money(educationTotal)}</p><p className="mt-2 font-sans text-sm text-slate-600 leading-relaxed">Valor das suas doações confirmadas destinadas aos cursos EAD. Uma doação não corresponde a uma matrícula.</p></div></div></div>
+        {educationTotal > 0 && <div className="mb-12"><div className="mb-6"><div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">Educação Compartilhada</div><h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">Seu apoio à formação</h2></div><div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-2xs"><span className="material-symbols-outlined text-[#b45309] text-[28px]" aria-hidden="true">school</span><h3 className="mt-3 font-serif text-lg text-slate-900 font-bold">Seu apoio aos cursos EAD</h3><p className="mt-2 font-serif text-2xl text-[#166534] font-bold tabular-nums">{money(educationTotal)}</p><p className="mt-2 font-sans text-sm text-slate-600 leading-relaxed">Suas doações confirmadas destinadas aos cursos EAD.</p></div></div>}
         <div><div className="flex items-center gap-2 mb-6"><span className="material-symbols-outlined text-[#b45309] text-[24px]" aria-hidden="true">volunteer_activism</span><h3 className="font-serif text-xl text-slate-900 font-bold">Projetos que Você Apoia</h3></div><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">{destinations.map(destination => {
  const project = PROJECTS.find(item => item.id === destination.destinationId);
  return <motion.article key={destination.destinationId ?? 'nao-identificado'} whileHover={{y: -4}} className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xs flex flex-col"><div className="relative h-44 overflow-hidden bg-slate-50"><img src={project?.image ?? '/logo-emblema.svg'} alt={project ? project.title : 'Instituto Caminho e Forma'} className={project ? 'h-full w-full object-cover' : 'h-full w-full object-contain p-7'} /></div><div className="p-5 sm:p-6 flex flex-col flex-1 justify-between"><div><h4 className="font-serif text-lg text-slate-900 font-bold leading-snug">{destination.title}</h4><p className="mt-2 text-sm text-slate-600">Suas contribuições confirmadas para este destino.</p></div><div className="mt-6 pt-4 border-t border-slate-100"><div className="flex flex-wrap items-baseline justify-between gap-2"><span className="font-sans text-xs text-slate-500">Seu apoio:</span><span className="font-serif text-xl text-[#b45309] font-bold tabular-nums">{money(destination.paidCents)}</span></div>{project && <a href={'/projetos/' + project.id} className="mt-4 inline-flex min-h-11 items-center gap-1.5 font-sans text-sm font-semibold text-[#166534] hover:underline">Conhecer o projeto<span className="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span></a>}</div></div></motion.article>;
 })}</div></div>
-      </motion.section>
-      {/* Section 5: Agenda de Eventos Exclusivos para Apoiadores */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6 }}
-        className="w-full bg-slate-50 border-y border-slate-200 py-12 lg:py-16"
-      >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-            <div>
-              <div className="font-sans text-xs uppercase tracking-wider text-[#166534] font-bold">
-                Comunhão e Presença
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
-                Agenda de Encontros Exclusivos
-              </h2>
-              <p className="font-sans text-sm sm:text-base text-slate-600 mt-1.5 max-w-2xl leading-relaxed">
-                Espaços de diálogo, prestação de contas olho no olho e vivências afetivas no coração dos nossos polos em Itaguaí.
-              </p>
-            </div>
-            <span className="inline-flex items-center gap-1.5 font-sans text-xs text-slate-500 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-2xs">
-              <span aria-hidden="true" className="material-symbols-outlined text-[16px] text-[#b45309]">pin_drop</span>
-              <span>Sede Itaguaí / RJ &amp; Salas Virtuais</span>
-            </span>
-          </div>
-
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8"><span className="material-symbols-outlined text-[#166534] text-[28px]" aria-hidden="true">event_available</span><p className="mt-3 font-sans text-sm text-slate-600 leading-relaxed">Os encontros e convites vinculados ao seu cadastro serão exibidos aqui quando estiverem disponíveis.</p></div>
-        </div>
-      </motion.section>
-      {/* Section 6: Clube de Benefícios & Vantagens Exclusivas */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-50px' }}
-        transition={{ duration: 0.6 }}
-        className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full"
-      >
-        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-12 border border-slate-200 shadow-sm">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-            <div>
-              <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold">
-                Reconhecimento &amp; Reciprocidade
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl text-slate-900 font-bold tracking-tight mt-1">
-                Seu Clube de Benefícios Solidários
-              </h2>
-            </div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-50 font-sans text-xs text-slate-600 border border-slate-200">
-              <span aria-hidden="true" className="material-symbols-outlined text-[#166534] text-[18px]">stars</span>
-              <span>Status: <strong>Consulte seus benefícios</strong></span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">{[
- {icon: 'local_mall', title: 'Benefícios na Feira', text: 'Cupons e benefícios vinculados ao seu cadastro serão apresentados neste espaço.'},
- {icon: 'mail', title: 'Cartas e Relatórios', text: 'Seus documentos e comunicações individuais serão exibidos aqui quando disponibilizados.'},
- {icon: 'notifications_active', title: 'Oficinas e Atividades', text: 'Informações de inscrições e acessos vinculados ao seu cadastro aparecerão aqui.'},
-].map(item => <div key={item.title} className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between"><div className="flex flex-col gap-3"><div className="w-12 h-12 rounded-xl bg-[#b45309]/15 text-[#b45309] flex items-center justify-center"><span className="material-symbols-outlined text-[28px]" aria-hidden="true">{item.icon}</span></div><h4 className="font-serif text-lg text-slate-900 font-bold">{item.title}</h4><p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">{item.text}</p></div><p className="mt-5 pt-3 border-t border-slate-200 font-sans text-xs text-slate-500">Ainda não disponível no seu portal</p></div>)}<div className="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between"><div className="flex flex-col gap-3"><div className="w-12 h-12 rounded-xl bg-[#25D366]/15 text-[#166534] flex items-center justify-center"><WhatsAppIcon className="w-7 h-7 text-[#166534]" /></div><h4 className="font-serif text-lg text-slate-900 font-bold">Atendimento ao Apoiador</h4><p className="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">Converse com a equipe sobre seu acesso, suas contribuições ou seus comprovantes.</p></div><div className="mt-5 pt-3 border-t border-slate-200 font-sans text-xs"><a href="https://wa.me/5521987428647" target="_blank" rel="noopener noreferrer" className="text-[#166534] hover:underline font-bold inline-flex min-h-11 items-center gap-1">Falar com a Coordenação<span className="material-symbols-outlined text-[14px]" aria-hidden="true">open_in_new</span></a></div></div></div>
-        </div>
-      </motion.section>
+      </motion.section>}
       {/* Section 7: FAQ Rápido & Suporte do Apoiador */}
       <motion.section
         initial={{ opacity: 0, y: 30 }}

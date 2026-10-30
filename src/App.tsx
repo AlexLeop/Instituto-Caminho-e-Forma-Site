@@ -277,6 +277,7 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
 
       {/* Persistent Footer */}
       <Footer
+        hideSupporterPortal={currentPage === 'portal-do-apoiador'}
         onNavigate={handleNavigate}
         onOpenTransparency={() => handleNavigate('transparencia')}
       />

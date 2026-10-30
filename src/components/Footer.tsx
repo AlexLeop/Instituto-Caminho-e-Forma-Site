@@ -9,9 +9,10 @@ import { WhatsAppIcon, InstagramIcon } from './SocialIcons';
 interface FooterProps {
   onNavigate: (page: NavPage) => void;
   onOpenTransparency: () => void;
+  hideSupporterPortal?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency, hideSupporterPortal = false }) => {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -85,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency }
                 Parcerias Corporativas ESG
               </NavigationLink>
             </li>
-            {SUPPORTER_PORTAL_ENABLED && (
+            {SUPPORTER_PORTAL_ENABLED && !hideSupporterPortal && (
             <li>
               <NavigationLink href="/portal-do-apoiador"
                 onClick={() => { onNavigate('portal-do-apoiador'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
