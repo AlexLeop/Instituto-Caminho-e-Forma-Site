@@ -68,7 +68,7 @@ export function DonationReportsView() {
 
   const filtered = result?.records.filter(record => destination === 'todos' || (record.destinationId ?? 'nao-identificado') === destination) ?? [];
   const manual = result?.manual.filter(record => destination === 'todos' || record.destinationId === destination) ?? [];
-  const summary = summarizeDonations(filtered);
+  const summary = summarizeDonations([...filtered, ...manual]);
   const excluded = filtered.filter(record => !record.included).reduce((sum, record) => sum + record.paidCents, 0);
   const breakdown = Object.entries(summary.byDestination);
   function download() {
@@ -86,7 +86,7 @@ export function DonationReportsView() {
     </header>
     <main className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-12">
       <h1 className="text-2xl font-bold sm:text-3xl">Prestação de contas das doações</h1>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">Consulta privada dos recebimentos confirmados na Cora. O destino conciliado, a descrição original da cobrança e os pagamentos de teste ficam identificados separadamente.</p>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-600">Consulta privada das doações confirmadas pelo Instituto e pela Cora. O destino conciliado, a descrição original da cobrança e os pagamentos de teste ficam identificados separadamente.</p>
       <form onSubmit={load} className="mt-8 flex flex-wrap items-end gap-4 rounded-xl border border-slate-200 bg-white p-5" aria-busy={busy}>
         {!access.current && <label className="min-w-0 flex-[2_1_220px] text-sm font-semibold">Chave de acesso
           <input type="password" autoComplete="current-password" required minLength={32} maxLength={512} disabled={busy} value={password} onChange={event => setPassword(event.target.value)} className={`${field} mt-2`} />
@@ -115,12 +115,13 @@ export function DonationReportsView() {
           </div>
           <button onClick={download} type="button" className={button}>Baixar planilha CSV</button>
         </div>
-        <h2 className="mt-8 text-lg font-bold">Doações do site no período</h2>
-        <p className="mt-2 text-sm text-slate-600">{displayDate(result.start)} a {displayDate(result.end)} · Consulta em {new Date(result.updatedAt).toLocaleString('pt-BR')}</p>
+        <h2 className="mt-8 text-lg font-bold">Resumo das doações</h2>
+        <p className="mt-2 text-sm text-slate-600">Pagamentos consultados: {displayDate(result.start)} a {displayDate(result.end)} · Consulta em {new Date(result.updatedAt).toLocaleString('pt-BR')}</p>
+        {manual.some(record => record.included && !record.paidOn) && <p className="mt-2 text-xs leading-relaxed text-slate-600">O resumo também inclui as doações externas confirmadas cuja data ainda não foi informada, identificadas no detalhamento abaixo.</p>}
         <div className="mt-4 overflow-hidden rounded-xl border border-slate-200 bg-white">
           <dl className="divide-y divide-slate-200">
             {breakdown.map(([id, amount]) => <div key={id} className="flex justify-between gap-4 p-4 text-sm"><dt>{DONATION_DESTINATIONS.find(item => item.id === id)?.title ?? 'Destino não identificado'}</dt><dd className="shrink-0 font-semibold tabular-nums">{money(amount)}</dd></div>)}
-            <div className="flex justify-between gap-4 bg-emerald-50 p-4 font-bold text-emerald-950"><dt>Total de doações do site</dt><dd className="tabular-nums">{money(summary.totalCents)}</dd></div>
+            <div className="flex justify-between gap-4 bg-emerald-50 p-4 font-bold text-emerald-950"><dt>Total de doações</dt><dd className="tabular-nums">{money(summary.totalCents)}</dd></div>
             <div className="flex justify-between gap-4 p-4 text-sm text-slate-600"><dt>Testes excluídos da arrecadação</dt><dd className="tabular-nums">{money(excluded)}</dd></div>
           </dl>
         </div>
@@ -142,11 +143,11 @@ export function DonationReportsView() {
         </div>
         <section className="mt-8 rounded-xl border border-slate-200 bg-white p-5" aria-label="Recebimentos fora do checkout">
           <h2 className="text-lg font-bold">Recebimentos fora do checkout</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">Registros confirmados pelo Instituto, com data ainda não informada. Entram no total geral do site e na planilha em linhas separadas; não entram no total por período acima.</p>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600">Doações externas confirmadas pelo Instituto. Os valores abaixo já estão incluídos no resumo acima e na planilha, cada doação contabilizada uma única vez. A data permanece como não informada quando ainda não foi fornecida.</p>
           {manual.map(record => <div key={record.id} className="mt-4 border-t border-slate-200 pt-4"><p className="text-sm font-semibold">{record.destinationTitle}: {money(record.paidCents)}</p><p className="mt-2 text-xs leading-relaxed text-slate-600">{record.reconciliationNote}</p></div>)}
           {manual.length === 0 && <p className="mt-4 text-sm text-slate-600">Nenhum registro externo para este destino.</p>}
         </section>
-        <p className="mt-4 text-xs leading-relaxed text-slate-600">{!result.isStale && `${result.ignored} cobrança(s) da conta sem a referência do checkout foram desconsideradas. `}O relatório não inclui transferências feitas diretamente à chave Pix. Os comprovantes bancários devem acompanhar a prestação de contas.</p>
+        <p className="mt-4 text-xs leading-relaxed text-slate-600">{!result.isStale && `${result.ignored} cobrança(s) da conta sem a referência do checkout foram desconsideradas. `}Transferências feitas diretamente à chave Pix precisam de registro manual para constar no relatório. Os comprovantes bancários devem acompanhar a prestação de contas.</p>
         <FundReallocationsPanel accessKey={access.current} start={result.start} end={result.end} />
       </section>}
     </main>

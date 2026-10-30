@@ -8,7 +8,7 @@ O relatório contém referência Cora, emissão, pagamento, nome e e-mail do doa
 
 O painel só mostra o total após concluir todas as páginas da consulta. Períodos podem ter até 366 dias; o limite por consulta é 2.000 cobranças bancárias. Reduza o período ao atingir esse limite. Cobranças da conta sem referência do checkout não entram como doações do site. Destinos não identificáveis ficam separados para conciliação, sem atribuição automática ao fundo geral.
 
-Recebimentos externos sem data aparecem em seção própria e em linhas separadas do CSV. São considerados no acumulado geral, mas não no subtotal de pagamentos do período. Para prestação de contas por exercício, é necessário completar a data e reunir os comprovantes desses registros.
+Recebimentos externos aparecem em seção própria e em linhas separadas do CSV, e são somados no **Resumo das doações** do topo junto com os pagamentos Cora, respeitando o destino selecionado e sem duplicação. Registros sem data também entram no resumo, com aviso explícito de que a data ainda não foi informada; não é atribuída uma data fictícia para enquadrá-los no período consultado. Para prestação de contas por exercício, é necessário completar a data e reunir os comprovantes desses registros.
 
 ## Destino preservado no banco
 
