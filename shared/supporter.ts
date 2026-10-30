@@ -18,8 +18,17 @@ export interface SupporterProfile {
   expiresAt: string;
   totalCents: number;
   donationCount: number;
+  firstPaidOn: string | null;
+  lastPaidOn: string | null;
+  destinations: SupporterDestination[];
   donations: SupporterDonation[];
   nextPage: number | null;
+}
+export interface SupporterDestination {
+  destinationId: string | null;
+  title: string;
+  paidCents: number;
+  donationCount: number;
 }
 export function supporterStatementCsv(records: SupporterDonation[]) {
   const money = (cents: number) => (cents / 100).toFixed(2).replace('.', ',');

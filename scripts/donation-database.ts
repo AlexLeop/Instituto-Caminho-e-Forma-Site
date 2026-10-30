@@ -17,7 +17,7 @@ try {
   if (new X509Certificate(ca).fingerprint256 !== '80:70:25:AD:50:D4:ED:21:9D:2C:9C:7D:29:9C:00:4F:82:4E:B0:0C:F7:F6:5A:FE:F6:07:D0:7B:72:E6:CA:FA') throw new Error('O certificado oficial do banco mudou; confira antes de continuar.');
   sql = postgres(databaseUrl, {max: 1, prepare: false, connect_timeout: 10, idle_timeout: 5, ssl: {rejectUnauthorized: true, ca}});
   if (process.argv.includes('--apply')) {
-    for (const migration of ['20261029224832_donation_ledger.sql', '20261029233335_fund_reallocations_supporter_access.sql', '20261030001834_period_fund_limits.sql', '20261030020724_supporter_identity_access.sql']) {
+    for (const migration of ['20261029224832_donation_ledger.sql', '20261029233335_fund_reallocations_supporter_access.sql', '20261030001834_period_fund_limits.sql', '20261030020724_supporter_identity_access.sql', '20261030023024_supporter_personal_summary.sql']) {
       const schema = await readFile(new URL(`../supabase/migrations/${migration}`, import.meta.url), 'utf8');
       await sql.unsafe(schema);
     }

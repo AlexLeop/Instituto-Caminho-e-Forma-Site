@@ -138,3 +138,36 @@ test('HTTP keeps sessions HttpOnly/Secure, rejects cross-origin, and never retur
     assert.equal(signedOut.status, 200); assert.ok(signedOut.headers.getSetCookie().every(cookie => cookie.includes('Max-Age=0')));
   } finally {await new Promise<void>(resolve => server.close(() => resolve()));}
 });
+
+test('supporter identity is selected only by the session cookie; query parameters cannot select another donor', async () => {
+  const tokenA = 'A'.repeat(43), tokenB = 'B'.repeat(43);
+  const profiles = new Map([
+    [hashSupporterSession(tokenA), {authenticationMethod: 'email_document', name: 'Apoiadora A', email: 'a@example.com', documentSuffix: '1111', totalCents: 70000, destinations: [{title: 'Cursos EAD', paidCents: 55000}, {title: 'Boxe', paidCents: 15000}], donations: [{id: 'own-A'}]}],
+    [hashSupporterSession(tokenB), {authenticationMethod: 'email_document', name: 'Apoiador B', email: 'b@example.com', documentSuffix: '2222', totalCents: 10000, destinations: [{title: 'Futebol', paidCents: 10000}], donations: [{id: 'own-B'}]}],
+  ]);
+  const calls: any[] = [];
+  const ledger = {environment: 'production' as const, async rpc<T>(name: string, body: any): Promise<T> {
+    calls.push(body);
+    if (name === 'end_supporter_session') {profiles.delete(body.p_session_hash); return null as T;}
+    const profile = profiles.get(body.p_session_hash);
+    if (!profile) throw new CheckoutError(401, 'invalid_supporter_session', 'Sessão inválida.');
+    return profile as T;
+  }};
+  const auth: SupporterAuth = {async sendCode() {throw Error('must not send');}, async verifyCode() {throw Error('must not verify');}};
+  const service = createSupporterService(ledger, auth, 'test-only-signing-secret-32-characters-long', false);
+  const server = createServer(createSupporterHandler(() => service, {VERCEL: '1'}));
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve)); const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
+  try {
+    assert.equal((await fetch(url + '?email=a@example.com&documentSuffix=1111')).status, 401);
+    for (const [token, expected, excluded] of [[tokenA, 'Apoiadora A', 'own-B'], [tokenB, 'Apoiador B', 'own-A']]) {
+      const response = await fetch(url + '?email=other@example.com&documentSuffix=9999&donorId=other', {headers: {Cookie: `icf_supporter_session=${token}`}});
+      assert.equal(response.status, 200); assert.match(response.headers.get('cache-control')!, /no-store/);
+      const text = await response.text(); assert.equal(JSON.parse(text).profile.name, expected); assert.ok(!text.includes(excluded));
+      assert.deepEqual(Object.keys(calls.at(-1)).sort(), ['p_environment', 'p_page', 'p_session_hash']);
+      assert.equal(calls.at(-1).p_session_hash, hashSupporterSession(token));
+    }
+    await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json', Cookie: `icf_supporter_session=${tokenA}`}, body: JSON.stringify({action: 'logout'})});
+    assert.equal((await fetch(url, {headers: {Cookie: `icf_supporter_session=${tokenA}`}})).status, 401);
+    assert.equal((await fetch(url, {headers: {Cookie: `icf_supporter_session=${tokenB}`}})).status, 200);
+  } finally {await new Promise<void>(resolve => server.close(() => resolve()));}
+});

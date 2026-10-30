@@ -4,6 +4,14 @@ O acesso em `/portal-do-apoiador` usa, temporariamente, **somente o e-mail da do
 
 O painel mostra apenas os registros vinculados ao e-mail e ao final do documento que iniciaram a confirmação. Exibe contribuições confirmadas e cobranças pendentes desse mesmo apoiador, preservando o destino original e o valor conciliado. A exportação CSV contém somente o histórico dele. O arquivo é um extrato, não um recibo fiscal.
 
+## Layout e informações pessoais
+
+O painel recupera a estrutura visual anterior à integração: cabeçalho de boas-vindas, quatro indicadores, tabela de lançamentos com painel lateral de destinos, formação, agenda, benefícios e atendimento. O layout de referência está no histórico do arquivo, antes de `f3e37d4`; sua apresentação foi ligada aos dados autenticados em `SupporterDashboard.tsx`.
+
+Nome, iniciais, total, quantidade de contribuições, primeira/última doação, destinos e extratos vêm exclusivamente da sessão. Os agregados são calculados sobre todo o histórico desse apoiador, sem depender da página carregada. O portal não usa a arrecadação geral para compor seus indicadores pessoais. Nome/foto de exemplo, níveis, cursos, famílias beneficiadas, descontos ou certificados não são atribuídos sem registros reais; os espaços correspondentes apresentam informações de indisponibilidade. Os selos institucionais continuam ocultos.
+
+O servidor identifica o apoiador pelo cookie opaco, e não por e-mail, CPF ou identificador fornecido na URL de consulta. A troca de conta e a saída sincronizam a limpeza dos dados entre abas. Retomar uma aba revalida a sessão; respostas de consultas anteriores são descartadas e a paginação/exportação confere a identidade antes de combinar registros.
+
 ## Reativar a confirmação por código futuramente
 
 A política compartilhada pelo servidor e pela interface está em `shared/supporterAccess.ts`: `SUPPORTER_EMAIL_CODE_REQUIRED = false`. Para reativar, conclua a configuração de e-mails abaixo, altere para `true` e publique o código. O servidor então recusa o login direto e as sessões criadas sem confirmação por e-mail, exigindo novo acesso com código. O código anterior de OTP e o template estão preservados.
