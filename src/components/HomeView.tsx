@@ -854,7 +854,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 Feira solidária das famílias
               </h2>
               <p className="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-                Produtos artesanais, pães e biojoias criados por alunos de nossas oficinas. <strong className="text-slate-900 font-semibold">100% do valor da sua compra é destinado diretamente à família artesã</strong>.
+                {MARKET_PRODUCTS.length > 0 ? <>Produtos artesanais, pães e biojoias criados por alunos de nossas oficinas. <strong className="text-slate-900 font-semibold">100% do valor da sua compra é destinado diretamente à família artesã</strong>.</> : 'Em breve, este espaço reunirá produtos reais das famílias e produtores da comunidade.'}
               </p>
             </div>
             <motion.button
@@ -869,6 +869,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {MARKET_PRODUCTS.length === 0 && <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center md:col-span-3">
+              <span className="material-symbols-outlined text-[36px] text-[#b45309]" aria-hidden="true">storefront</span>
+              <h3 className="mt-3 font-serif text-xl font-bold text-slate-900">Produtos em breve</h3>
+              <p className="mt-2 font-sans text-sm leading-relaxed text-slate-600">Os produtos reais serão adicionados gradualmente à nossa feira solidária.</p>
+            </div>}
             {MARKET_PRODUCTS.slice(0, 3).map((item, idx) => (
               <motion.div
                 key={item.id}

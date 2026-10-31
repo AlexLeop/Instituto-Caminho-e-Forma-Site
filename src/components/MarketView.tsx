@@ -237,12 +237,12 @@ export const MarketView: React.FC<MarketViewProps> = ({ onSelectProduct, onOpenP
           {/* Products Grid */}
           {filteredProducts.length === 0 ? (
             <div className="text-center py-16 bg-white rounded-3xl p-8 border border-slate-200">
-              <span className="material-symbols-outlined text-[48px] text-slate-400 mb-2">search_off</span>
-              <h3 className="font-serif text-xl text-slate-900 font-bold">Nenhum produto encontrado</h3>
+              <span className="material-symbols-outlined text-[48px] text-slate-400 mb-2" aria-hidden="true">{MARKET_PRODUCTS.length === 0 ? 'storefront' : 'search_off'}</span>
+              <h3 className="font-serif text-xl text-slate-900 font-bold">{MARKET_PRODUCTS.length === 0 ? 'Produtos em breve' : 'Nenhum produto encontrado'}</h3>
               <p className="font-sans text-sm text-slate-600 mt-1">
-                Tente ajustar os termos de busca ou selecione outra categoria.
+                {MARKET_PRODUCTS.length === 0 ? 'Os produtos reais serão adicionados gradualmente à nossa feira solidária.' : 'Tente ajustar os termos de busca ou selecione outra categoria.'}
               </p>
-              <button
+              {MARKET_PRODUCTS.length > 0 && <button
                 onClick={() => {
                   setSelectedCategory('all');
                   setSearchQuery('');
@@ -250,7 +250,7 @@ export const MarketView: React.FC<MarketViewProps> = ({ onSelectProduct, onOpenP
                 className="mt-4 px-6 py-2.5 rounded-xl bg-[#b45309] text-white font-sans text-sm font-bold cursor-pointer hover:bg-[#92400e] transition-colors"
               >
                 Ver todos os produtos
-              </button>
+              </button>}
             </div>
           ) : (
             <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">

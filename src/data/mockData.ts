@@ -171,56 +171,8 @@ export const TEACHERS = [
   }
 ];
 
-export const MARKET_PRODUCTS: MarketProduct[] = [
-  {
-    id: 'cesta-agroecologica',
-    title: 'Cesta Agroecológica da Horta Comunitária',
-    category: 'hortifruti',
-    categoryTag: 'Hortifruti & Cestas',
-    categoryTagType: 'secondary',
-    badge: 'Colheita Semanal',
-    image: '/feira/cesta-agroecologica.jpg',
-    producer: 'Coletivo Terra Viva',
-    producerRole: 'Agricultores Familiares',
-    producerIcon: 'eco',
-    price: 45.0,
-    priceFormatted: 'R$ 45,00',
-    description: 'Frutas, verduras frescas e legumes cultivados sem agrotóxicos pelas famílias moradoras do entorno do projeto Terra Viva.',
-    repassePercent: 100
-  },
-  {
-    id: 'ecobag-bordada',
-    title: 'Bolsa Ecobag Bordada à Mão',
-    category: 'moda',
-    categoryTag: 'Moda & Acessórios',
-    categoryTagType: 'primary',
-    badge: 'Feito à Mão',
-    image: '/feira/ecobag-bordada.jpg',
-    producer: 'Dona Cleusa (Costura Criativa)',
-    producerRole: 'Costureira do Núcleo Leste',
-    producerIcon: 'person',
-    price: 38.0,
-    priceFormatted: 'R$ 38,00',
-    description: 'Feita com tecido 100% algodão cru sustentável pelas alunas da oficina de costura. Cada peça traz pontos únicos de bordado livre.',
-    repassePercent: 100
-  },
-  {
-    id: 'geleias-artesanais',
-    title: 'Kit de Geléias da Estação (Amora & Pimenta)',
-    category: 'alimentos',
-    categoryTag: 'Alimentos Artesanais',
-    categoryTagType: 'secondary',
-    badge: 'Sem Conservantes',
-    image: '/feira/geleias-artesanais.jpg',
-    producer: 'Cozinha Comunitária Sabor da Terra',
-    producerRole: 'Alunas de Confeitaria',
-    producerIcon: 'soup_kitchen',
-    price: 32.0,
-    priceFormatted: 'R$ 32,00',
-    description: 'Receita artesanal sem aditivos químicos. Frutas de época preparadas com carinho na cozinha escola do instituto.',
-    repassePercent: 100
-  }
-];
+// Add only real, confirmed products as they become available.
+export const MARKET_PRODUCTS: MarketProduct[] = [];
 
 export const PROJECTS: Project[] = [
   // ==========================================
