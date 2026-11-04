@@ -1,0 +1,434 @@
+[
+  {
+    "id": "cgd:179",
+    "kind": "course",
+    "title": "Administração V5",
+    "category": "Administrativos",
+    "hours": 12,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 179
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/administracao-v5",
+    "description": "Todos os profissionais necessitam de uma visão ampla do funcionamento de sua empresa, seja qual for a área dela em que irá trabalhar. Essa visão garante ao profissional um entendimento melhor do seu trabalho dentro da organização.",
+    "imageUrl": "/cursos/ead/cgd-179.jpg"
+  },
+  {
+    "id": "cgd:248",
+    "kind": "course",
+    "title": "Administração V6",
+    "category": "Administrativos",
+    "hours": 14,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 248
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/administracao-v6",
+    "description": "Todos os profissionais necessitam de uma visão ampla do funcionamento de sua empresa, seja qual for a área dela em que irá trabalhar. Essa visão garante ao profissional um entendimento melhor do seu trabalho dentro da organização.",
+    "imageUrl": "/cursos/ead/cgd-248.png"
+  },
+  {
+    "id": "cgd:180",
+    "kind": "course",
+    "title": "Atendimento ao Cliente V5",
+    "category": "Administrativos",
+    "hours": 8,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 180
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/atendimento-ao-cliente-v5",
+    "description": "Atendimento ao cliente é a prestação de serviço aos clientes antes, durante e depois da compra. A percepção de sucesso de tais interações depende dos funcionários \"que podem ajustar-se à personalidade do consumidor\".",
+    "imageUrl": "/cursos/ead/cgd-180.jpg"
+  },
+  {
+    "id": "cgd:168",
+    "kind": "course",
+    "title": "Auxiliar Jurídico V1",
+    "category": "Administrativos",
+    "hours": 10,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 168
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/auxiliar-juridico-v1",
+    "description": "O Auxiliar Jurídico é o profissional responsável por prestar serviços de suporte e apoio técnico-administrativo a escritórios de advocacia.",
+    "imageUrl": "/cursos/ead/cgd-168.jpg"
+  },
+  {
+    "id": "cgd:239",
+    "kind": "course",
+    "title": "Canva V2",
+    "category": "Design gráfico",
+    "hours": 16,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 239
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/canva-v2",
+    "description": "Canva é uma plataforma de design gráfico que permite aos usuários criarem gráficos de mídia social, apresentações, pôsteres e outros conteúdos visuais.",
+    "imageUrl": "/cursos/ead/cgd-239.jpg"
+  },
+  {
+    "id": "combo:adm",
+    "kind": "combo",
+    "title": "Combo ADM",
+    "category": "Administrativos",
+    "hours": null,
+    "priceCents": 6000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/combo-adm",
+    "description": "Escolha cursos desta categoria e confira na plataforma o desconto no segundo curso.",
+    "imageUrl": null
+  },
+  {
+    "id": "combo:code",
+    "kind": "combo",
+    "title": "Combo Code",
+    "category": "Programação",
+    "hours": null,
+    "priceCents": 6000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/combo-code",
+    "description": "Escolha cursos desta categoria e confira na plataforma o desconto no segundo curso.",
+    "imageUrl": null
+  },
+  {
+    "id": "combo:design",
+    "kind": "combo",
+    "title": "Combo Design",
+    "category": "Design gráfico",
+    "hours": null,
+    "priceCents": 6000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/combo-design",
+    "description": "Escolha cursos desta categoria e confira na plataforma o desconto no segundo curso.",
+    "imageUrl": null
+  },
+  {
+    "id": "combo:livre",
+    "kind": "combo",
+    "title": "Combo Livre",
+    "category": "Cursos Livres",
+    "hours": null,
+    "priceCents": 6000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/combo-livre",
+    "description": "Escolha cursos desta categoria e confira na plataforma o desconto no segundo curso.",
+    "imageUrl": null
+  },
+  {
+    "id": "combo:tec",
+    "kind": "combo",
+    "title": "Combo Tec",
+    "category": "Informática básica",
+    "hours": null,
+    "priceCents": 6000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/combo-tec",
+    "description": "Escolha cursos desta categoria e confira na plataforma o desconto no segundo curso.",
+    "imageUrl": null
+  },
+  {
+    "id": "cgd:182",
+    "kind": "course",
+    "title": "Contabilidade V5",
+    "category": "Administrativos",
+    "hours": 8,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 182
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/contabilidade-v5",
+    "description": "A Contabilidade registra todas as informações de transações da empresa e suas consolidações, dando condições para que se transformem em informações estratégicas para gerentes, diretores, presidentes, acionistas e demais interessados no desempenho da empresa.",
+    "imageUrl": "/cursos/ead/cgd-182.jpg"
+  },
+  {
+    "id": "cgd:246",
+    "kind": "course",
+    "title": "CorelDRAW 2025",
+    "category": "Design gráfico",
+    "hours": 24,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 246
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/coreldraw-2025",
+    "description": "O CorelDRAW é um software de design gráfico vetorial amplamente utilizado para criação de logotipos, ilustrações, layouts e materiais publicitários. É muito popular entre designers gráficos por sua versatilidade, precisão e integração com outros programas da suíte Corel, sendo ideal tanto para projetos impressos quanto digitais.",
+    "imageUrl": "/cursos/ead/cgd-246.jpg"
+  },
+  {
+    "id": "cgd:171",
+    "kind": "course",
+    "title": "Departamento Pessoal V5",
+    "category": "Administrativos",
+    "hours": 10,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 171
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/departamento-pessoal-v5",
+    "description": "O profissional de Departamento Pessoal é responsável pelas rotinas e processos administrativos envolvidos na administração do quadro de funcionários, garantindo o cumprimento da Legislação Trabalhista e Previdenciária na relação entre empresa e empregados.",
+    "imageUrl": "/cursos/ead/cgd-171.jpg"
+  },
+  {
+    "id": "cgd:217",
+    "kind": "course",
+    "title": "Excel 365 - Básico V1",
+    "category": "Informática básica",
+    "hours": 24,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 217
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/excel-365-basico-v1",
+    "description": "O Excel é um programa de elaboração de planilhas, devido a sua flexibilidade é utilizado em várias aplicações como planilhas administrativas, comerciais, controle de estoques, entre outras, disponibilizando dados que servem para tomadas de decisões.",
+    "imageUrl": "/cursos/ead/cgd-217.jpg"
+  },
+  {
+    "id": "cgd:190",
+    "kind": "course",
+    "title": "Google Workspace V1",
+    "category": "Informática básica",
+    "hours": 13,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 190
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/google-workspace-v1",
+    "description": "O Google oferece uma série de ferramentas gratuitas que podem ser utilizadas como alternativa ao Office da Microsoft.",
+    "imageUrl": "/cursos/ead/cgd-190.jpg"
+  },
+  {
+    "id": "cgd:203",
+    "kind": "course",
+    "title": "Illustrator 2022",
+    "category": "Design gráfico",
+    "hours": 24,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 203
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/illustrator-2022",
+    "description": "Concorrente direto do CorelDRAW, o Adobe Illustrator é um editor de imagens vetoriais desenvolvido e comercializado pela Adobe. Sendo parte do pacote Creative Cloud possui uma integração incrível com os outros aplicativos disponíveis no pacote.",
+    "imageUrl": "/cursos/ead/cgd-203.jpg"
+  },
+  {
+    "id": "cgd:229",
+    "kind": "course",
+    "title": "InDesign 2023",
+    "category": "Design gráfico",
+    "hours": 20,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 229
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/indesign-2023",
+    "description": "O programa Adobe InDesign fornece controle preciso sobre a tipografia e ferramentas de criação incorporadas para desenvolver, visualizar e processar documentos para impressão.",
+    "imageUrl": "/cursos/ead/cgd-229.jpg"
+  },
+  {
+    "id": "cgd:191",
+    "kind": "course",
+    "title": "Inteligência Emocional V5",
+    "category": "Cursos Livres",
+    "hours": 6,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 191
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/inteligencia-emocional-v5",
+    "description": "Inteligência emocional é um conceito em Psicologia que descreve a capacidade de reconhecer e avaliar os seus próprios sentimentos e os dos outros, assim como a capacidade de lidar com eles.",
+    "imageUrl": "/cursos/ead/cgd-191.png"
+  },
+  {
+    "id": "store:introducao-inteligencia-artificial-v5",
+    "kind": "course",
+    "title": "Introdução à Inteligência Artificial V5",
+    "category": "Programação",
+    "hours": 6,
+    "priceCents": 4000,
+    "catalogRef": null,
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/introducao-a-inteligencia-artificial-v5",
+    "description": "Inteligência artificial é a inteligência similar à humana exibida por mecanismos ou software, além de também ser um campo de estudo acadêmico.",
+    "imageUrl": "/cursos/ead/introducao-inteligencia-artificial-v5.jpg"
+  },
+  {
+    "id": "cgd:237",
+    "kind": "course",
+    "title": "JavaScript - Básico V1",
+    "category": "Programação",
+    "hours": 20,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 237
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/javascript-basico-v1",
+    "description": "JavaScript é uma linguagem de programação de scripts em alto nível, ele permite a criação de páginas da web interativas e, juntamente com HTML e CSS, formam o trio das principais tecnologias da World Wide Web.",
+    "imageUrl": "/cursos/ead/cgd-237.jpg"
+  },
+  {
+    "id": "cgd:172",
+    "kind": "course",
+    "title": "Logística V5",
+    "category": "Cursos Livres",
+    "hours": 10,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 172
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/logistica-v5",
+    "description": "A logística é a área da administração responsável por prover recursos, equipamentos e informações para a execução de todas as atividades de uma empresa.",
+    "imageUrl": "/cursos/ead/cgd-172.jpg"
+  },
+  {
+    "id": "cgd:243",
+    "kind": "course",
+    "title": "Marketing Digital para Iniciantes V6",
+    "category": "Cursos Livres",
+    "hours": 10,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 243
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/marketing-digital-para-iniciantes-v6",
+    "description": "Marketing digital é uma estratégia de promoção que utiliza canais online para divulgar produtos e marcas. Através de redes sociais, sites e plataformas de busca, permite segmentar públicos, mensurar resultados e criar campanhas interativas. Combina técnicas como SEO, marketing de conteúdo e análise de dados para comunicação eficiente no ambiente digital.",
+    "imageUrl": "/cursos/ead/cgd-243.png"
+  },
+  {
+    "id": "cgd:196",
+    "kind": "course",
+    "title": "Marketing Pessoal V5",
+    "category": "Cursos Livres",
+    "hours": 12,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 196
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/marketing-pessoal-v5",
+    "description": "O Marketing Pessoal traz ao praticante de suas características várias formas de se destacar como pessoa, visando melhorar seu autoconhecimento e desenvolvimento da sua apresentação para outras pessoas.",
+    "imageUrl": "/cursos/ead/cgd-196.jpg"
+  },
+  {
+    "id": "cgd:197",
+    "kind": "course",
+    "title": "Operador de Caixa V4",
+    "category": "Cursos Livres",
+    "hours": 6,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 197
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/operador-de-caixa-v4",
+    "description": "O operador de caixa é o profissional responsável por registrar as mercadorias em um ponto de venda e por receber o cliente, é uma das profissões mais importantes no ramo do varejo, pois se relaciona diretamente com o cliente.",
+    "imageUrl": "/cursos/ead/cgd-197.jpg"
+  },
+  {
+    "id": "cgd:198",
+    "kind": "course",
+    "title": "Oratória V5",
+    "category": "Cursos Livres",
+    "hours": 20,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 198
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/oratoria-v5",
+    "description": "Oratória é a arte de falar em público de forma estruturada e deliberada, com a intenção de informar, influenciar, ou entreter os ouvintes.",
+    "imageUrl": "/cursos/ead/cgd-198.jpg"
+  },
+  {
+    "id": "cgd:244",
+    "kind": "course",
+    "title": "Photoshop 2024",
+    "category": "Design gráfico",
+    "hours": 30,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 244
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/photoshop-2024",
+    "description": "O Photoshop destina-se a tratamento de imagens (fotos), por isso, é muito útil no mercado das artes finais e no desenvolvimento de sites para Internet, pois em sites, são colocadas várias fotos e imagens e as mesmas devem ser tratadas para que sua definição fique a contento.",
+    "imageUrl": "/cursos/ead/cgd-244.jpg"
+  },
+  {
+    "id": "cgd:238",
+    "kind": "course",
+    "title": "PHP - Básico V2",
+    "category": "Programação",
+    "hours": 22,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 238
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/php-basico-v2",
+    "description": "A linguagem PHP é uma linguagem de programação de domínio específico, ou seja, seu escopo se estende a um campo de atuação que é o desenvolvimento web. Seu propósito principal é de implementar soluções web velozes, simples e eficientes.",
+    "imageUrl": "/cursos/ead/cgd-238.jpg"
+  },
+  {
+    "id": "cgd:240",
+    "kind": "course",
+    "title": "PowerPoint 365 V2",
+    "category": "Informática básica",
+    "hours": 24,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 240
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/powerpoint-365-v2",
+    "description": "O PowerPoint 365 é um software do Office 365, desenvolvido pela Microsoft para criação de apresentações visuais, oferecendo funcionalidades como slides com texto, imagens, gráficos e vídeos, formatação flexível, animações, transições e a colaboração em tempo real através do compartilhamento de informações.",
+    "imageUrl": "/cursos/ead/cgd-240.jpg"
+  },
+  {
+    "id": "cgd:242",
+    "kind": "course",
+    "title": "Windows 11 2024",
+    "category": "Informática básica",
+    "hours": 22,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 242
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/windows-11-2024",
+    "description": "O Windows 11, a versão mais recente do sistema operacional da Microsoft, traz novidades empolgantes e ferramentas inteligentes. A interface renovada e intuitiva, com ícones centralizados e Explorador de Arquivos modernizado, proporciona uma experiência mais agradável.",
+    "imageUrl": "/cursos/ead/cgd-242.jpg"
+  },
+  {
+    "id": "cgd:223",
+    "kind": "course",
+    "title": "Word 365 V1",
+    "category": "Informática básica",
+    "hours": 24,
+    "priceCents": 4000,
+    "catalogRef": {
+      "type": "cgd",
+      "courseId": 223
+    },
+    "detailsUrl": "https://icfead.cursoo.com.br/curso/word-365-v1",
+    "description": "O Word é um programa de processamento de texto, projetado para ajudá-lo a criar documentos com mais eficiência e com qualidade profissional, incluindo ferramentas avançadas de edição e revisão de textos.",
+    "imageUrl": "/cursos/ead/cgd-223.jpg"
+  }
+]

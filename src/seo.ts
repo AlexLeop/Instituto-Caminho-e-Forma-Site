@@ -5,7 +5,7 @@ export const projectPath = (id: string) => `/projetos/${encodeURIComponent(id)}`
 const pages: Record<string, [string, string]> = {
   '/': ['Instituto Caminho e Forma | Projetos sociais em Itaguaí', 'Conheça o Instituto Caminho e Forma, em Brisamar, Itaguaí: apoio às famílias, esporte, educação, acolhimento comunitário e transparência nas doações.'],
   '/projetos': ['Projetos sociais', 'Conheça os projetos de esporte, cultura, saúde e acolhimento do Instituto Caminho e Forma em Itaguaí. Veja horários e informações para participar.'],
-  '/cursos-e-capacitacao': ['Cursos e capacitação', 'Conheça os cursos e oportunidades de formação e capacitação do Instituto Caminho e Forma.'],
+  '/cursos-e-capacitacao': ['Cursos EAD e capacitação', 'Conheça os cursos EAD pagos do Instituto Caminho e Forma. Consulte carga horária, valores e combos promocionais e veja os detalhes na nossa plataforma de ensino.'],
   '/feira-virtual': ['Feira solidária', 'Conheça a feira solidária e os produtos das famílias e produtores da comunidade do Instituto Caminho e Forma.'],
   '/seja-parceiro': ['Seja parceiro', 'Apoie os projetos sociais do Instituto Caminho e Forma em Itaguaí. Conheça as possibilidades de parceria e participação.'],
   '/transparencia': ['Portal da Transparência', 'Acompanhe as doações e consulte o estatuto social e os documentos disponíveis do Instituto Caminho e Forma.'],

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
-import { NavPage, Course, MarketProduct, Project } from './types';
+import { NavPage, MarketProduct, Project } from './types';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/HomeView';
@@ -12,7 +12,6 @@ import { ProjectsView } from './components/ProjectsView';
 import { ProjectDetailView } from './components/ProjectDetailView';
 import { PartnersView } from './components/PartnersView';
 import { DonationModal } from './components/DonationModal';
-import { CourseEnrollModal } from './components/CourseEnrollModal';
 import { PurchaseModal } from './components/PurchaseModal';
 import { ProducerModal } from './components/ProducerModal';
 import { VolunteerModal } from './components/VolunteerModal';
@@ -64,7 +63,6 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
   });
   const [donationModalOpen, setDonationModalOpen] = useState(false);
   const [selectedProjectForDonation, setSelectedProjectForDonation] = useState<string | undefined>(undefined);
-  const [selectedCourseForEnroll, setSelectedCourseForEnroll] = useState<Course | null>(null);
   const [selectedProductForPurchase, setSelectedProductForPurchase] = useState<MarketProduct | null>(null);
   const [producerModalOpen, setProducerModalOpen] = useState(false);
   const [volunteerModalOpen, setVolunteerModalOpen] = useState(false);
@@ -106,7 +104,6 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
   useEffect(() => {
     const isAnyModalOpen = Boolean(
       donationModalOpen ||
-      selectedCourseForEnroll ||
       selectedProductForPurchase ||
       producerModalOpen ||
       volunteerModalOpen
@@ -118,7 +115,7 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
         (window as any).__lenis.start();
       }
     }
-  }, [donationModalOpen, selectedCourseForEnroll, selectedProductForPurchase, producerModalOpen, volunteerModalOpen]);
+  }, [donationModalOpen, selectedProductForPurchase, producerModalOpen, volunteerModalOpen]);
 
   // Sincroniza histórico do navegador com as páginas do site
   useEffect(() => {
@@ -222,7 +219,6 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
 
             {currentPage === 'cursos-e-capacitacao' && (
               <CoursesView
-                onEnrollCourse={(c) => setSelectedCourseForEnroll(c)}
                 onOpenVolunteer={handleOpenVolunteer}
                 onOpenDonation={handleOpenDonation}
               />
@@ -290,11 +286,6 @@ export default function App({initialUrl = '/'}: {initialUrl?: string}) {
           setSelectedProjectForDonation(undefined);
         }}
         initialProject={selectedProjectForDonation}
-      />
-
-      <CourseEnrollModal
-        course={selectedCourseForEnroll}
-        onClose={() => setSelectedCourseForEnroll(null)}
       />
 
       <PurchaseModal

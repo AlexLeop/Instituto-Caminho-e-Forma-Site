@@ -8,7 +8,8 @@
   "functions": {
     "api/checkout.ts": { "maxDuration": 60 },
     "api/donations.ts": { "maxDuration": 60 },
-    "api/supporter.ts": { "maxDuration": 60 }
+    "api/supporter.ts": { "maxDuration": 60 },
+    "api/courses.ts": { "maxDuration": 30 }
   },
   "redirects": [
     {
