@@ -1013,34 +1013,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <div className="p-4 bg-white rounded-xl flex items-center justify-between border border-slate-200 shadow-2xs">
                     <div>
                       <span className="font-sans text-sm font-bold text-slate-900 block">
-                        Contribuição Mensal Recorrente
+                        Doação avulsa via Pix ou boleto
                       </span>
                       <span className="font-sans text-xs text-slate-500">
-                        Apoio contínuo para manter refeições e professores
-                      </span>
-                    </div>
-                    <button
-                      onClick={() => onOpenDonation()}
-                      className="bg-[#b45309] hover:bg-[#92400e] text-white px-4 py-2 rounded-lg font-sans text-xs font-bold transition-colors cursor-pointer shrink-0"
-                    >
-                      Assinar
-                    </button>
-                  </div>
-
-                  <div className="p-4 bg-white rounded-xl flex items-center justify-between border border-slate-200 shadow-2xs">
-                    <div>
-                      <span className="font-sans text-sm font-bold text-slate-900 block">
-                        Doação Única via Chave PIX
-                      </span>
-                      <span className="font-sans text-xs text-slate-500">
-                        Aporte pontual com recibo fiscal imediato
+                        Escolha o valor e o destino da sua contribuição
                       </span>
                     </div>
                     <button
                       onClick={() => onOpenDonation()}
                       className="bg-[#166534] hover:bg-[#14532d] text-white px-4 py-2 rounded-lg font-sans text-xs font-bold transition-colors cursor-pointer shrink-0"
                     >
-                      PIX Agora
+                      Fazer doação
                     </button>
                   </div>
 
