@@ -31,8 +31,8 @@ try {
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${PUBLIC_PATHS.map(route => `  <url><loc>${SITE_URL}${route}</loc></url>`).join('\n')}\n</urlset>\n`);
 await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
-// The emblem is taller than it is wide: square its canvas without stretching it.
-const emblem = (await readFile('public/logo-emblema.svg', 'utf8')).replace('viewBox="0 0 1159 1241"', 'viewBox="-41 0 1241 1241"');
+// The supplied emblem has a square canvas; preserve its original proportions.
+const emblem = await readFile('public/logo-emblema.svg', 'utf8');
 await writeFile('dist/favicon.svg', emblem);
 const icons: Buffer[] = [];
 for (const size of [16, 32, 48, 96, 180, 192, 512]) {
@@ -46,5 +46,5 @@ const header = Buffer.alloc(6 + icons.length * 16); header.writeUInt16LE(1, 2); 
 let offset = header.length;
 icons.forEach((png, index) => {const at = 6 + index * 16; const size = [16,32,48][index]; header[at] = size; header[at+1] = size; header.writeUInt16LE(1, at+4); header.writeUInt16LE(32, at+6); header.writeUInt32LE(png.length, at+8); header.writeUInt32LE(offset, at+12); offset += png.length;});
 await writeFile('dist/favicon.ico', Buffer.concat([header, ...icons]));
-await writeFile('dist/site.webmanifest', JSON.stringify({name: 'Instituto Caminho e Forma', short_name: 'Caminho e Forma', lang: 'pt-BR', start_url: '/', display: 'browser', background_color: '#ffffff', theme_color: '#166534', icons: [192,512].map(size => ({src: `/icon-${size}.png`, sizes: `${size}x${size}`, type: 'image/png'}))}));
+await writeFile('dist/site.webmanifest', JSON.stringify({name: 'Instituto Caminho e Forma', short_name: 'Caminho e Forma', lang: 'pt-BR', start_url: '/', display: 'browser', background_color: '#ffffff', theme_color: '#166534', icons: [192,512].map(size => ({src: `/icon-${size}.png?v=2`, sizes: `${size}x${size}`, type: 'image/png'}))}));
 console.log(`SEO: ${PUBLIC_PATHS.length} páginas renderizadas, sitemap, robots e ícones gerados.`);

@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency, 
         {/* Col 1: About */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <InstituteLogo size="md" variant="horizontal" />
+            <InstituteLogo size="lg" variant="horizontal" />
           </div>
           <p className="font-sans text-sm text-slate-600 leading-relaxed">
             Ação continuada pelo desenvolvimento integral de famílias vulneráveis, combinando acolhimento alimentar, formação profissional e autonomia comunitária.
