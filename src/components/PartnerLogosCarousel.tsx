@@ -1,5 +1,5 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Facebook, Instagram, type LucideIcon } from 'lucide-react';
 import { InstituteLogo } from './InstituteLogo';
 
 interface Partner {
@@ -14,7 +14,7 @@ interface Partner {
     phone: string;
     email: string;
     address?: { street: string; postalCode: string };
-    links: { label: string; href: string }[];
+    links: { label: string; href: string; icon?: LucideIcon }[];
   };
 }
 
@@ -31,8 +31,8 @@ const PARTNERS: Partner[] = [
       phone: '(21) 9 7032-6011',
       email: 'juliobessaribeiro@gmail.com',
       links: [
-        { label: 'Instagram', href: 'https://www.instagram.com/juliobessacorretorimoveis?utm_source=qr&rpxt=MXB3eWZyaDlkYzVoMA==' },
-        { label: 'Facebook', href: 'https://www.facebook.com/share/1ABjASEz76' },
+        { label: 'Instagram', href: 'https://www.instagram.com/juliobessacorretorimoveis?utm_source=qr&rpxt=MXB3eWZyaDlkYzVoMA==', icon: Instagram },
+        { label: 'Facebook', href: 'https://www.facebook.com/share/1ABjASEz76', icon: Facebook },
       ],
     },
   },
@@ -145,7 +145,13 @@ export const PartnerLogosCarousel: React.FC = () => {
             <div className="mb-6 flex items-center justify-center gap-3 sm:gap-5">
               <InstituteLogo size="sm" />
               <ArrowRight aria-hidden="true" className="size-5 shrink-0 text-[#166534]" />
-              <img src={activePartner.image} alt={activePartner.name} width={activePartner.width} height={activePartner.height} className="h-auto max-h-16 w-24 object-contain sm:w-32" />
+              <img
+                src={activePartner.image}
+                alt={activePartner.name}
+                width={activePartner.width}
+                height={activePartner.height}
+                className={`h-auto min-w-0 object-contain ${activePartner.id === 'jm' ? 'max-h-[76px] w-28 sm:w-36' : 'max-h-16 w-24 sm:w-32'}`}
+              />
             </div>
             <h2 id={titleId} className="text-balance text-center font-serif text-xl font-bold sm:text-2xl">
               {redirect.title}
@@ -181,8 +187,9 @@ export const PartnerLogosCarousel: React.FC = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="flex min-h-11 items-center justify-center rounded-xl bg-[#b45309] px-3 text-sm font-bold text-white hover:bg-[#92400e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b45309]"
+                  className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#b45309] px-3 text-sm font-bold text-white hover:bg-[#92400e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b45309]"
                 >
+                  {link.icon && <link.icon aria-hidden="true" className="size-4 shrink-0" />}
                   {link.label}
                 </a>
               ))}
