@@ -75,7 +75,7 @@ const PARTNERS: Partner[] = [
       title: 'Você vai acessar o Instagram da R1 Solares',
       description: 'Ao continuar, você será redirecionado para o Instagram da empresa parceira.',
       phone: '(21) 9 9269-5311',
-      email: '',
+      email: 'contato.r1solares@gmail.com',
       links: [
         { label: 'Instagram', href: 'https://www.instagram.com/r1.solares?utm_source=qr&srtk=MTk3cmg0dnRtajd0dQ==', icon: Instagram },
       ],
@@ -108,15 +108,18 @@ export const PartnerLogosCarousel: React.FC = () => {
             width: max-content;
             animation: partnerMarqueeScroll 34s linear infinite;
           }
+          .partner-marquee-group {
+            flex-wrap: nowrap;
+          }
           .partner-marquee:hover .partner-marquee-track {
             animation-play-state: paused;
           }
-          .partner-marquee:has(button:focus-visible) .partner-marquee-track { animation: none; width: 100%; }
-          .partner-marquee:has(button:focus-visible) .partner-marquee-group { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; }
+          .partner-marquee:has(button:focus-visible) { overflow-x: auto; }
+          .partner-marquee:has(button:focus-visible) .partner-marquee-track { animation: none; }
           .partner-marquee:has(button:focus-visible) .partner-marquee-group[aria-hidden="true"] { display: none; }
           @media (prefers-reduced-motion: reduce) {
-            .partner-marquee-track { animation: none; width: 100%; }
-            .partner-marquee-group { width: 100%; flex-wrap: wrap; justify-content: center; padding-right: 0; }
+            .partner-marquee { overflow-x: auto; }
+            .partner-marquee-track { animation: none; }
             .partner-marquee-group[aria-hidden="true"] { display: none; }
           }
         `}</style>
@@ -135,6 +138,11 @@ export const PartnerLogosCarousel: React.FC = () => {
                     aria-haspopup="dialog"
                     aria-label={`Abrir opções de acesso de ${partner.name}`}
                     title={partner.name}
+                    onFocus={event => {
+                      if (event.currentTarget.matches(':focus-visible')) {
+                        event.currentTarget.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+                      }
+                    }}
                     onClick={() => setActivePartner(partner)}
                     className={`${partnerSlot} cursor-pointer rounded-xl focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#b45309]`}
                   >
