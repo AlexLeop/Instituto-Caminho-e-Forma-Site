@@ -65,6 +65,22 @@ const PARTNERS: Partner[] = [
       links: [{ label: 'Confirmar', href: 'https://jirehgarageoficial.netlify.app/' }],
     },
   },
+  {
+    id: 'r1-solares',
+    name: 'R1 Solares',
+    image: '/parcerias/r1-solares.png',
+    width: 1181,
+    height: 1332,
+    redirect: {
+      title: 'Você vai acessar o Instagram da R1 Solares',
+      description: 'Ao continuar, você será redirecionado para o Instagram da empresa parceira.',
+      phone: '(21) 9 9269-5311',
+      email: '',
+      links: [
+        { label: 'Instagram', href: 'https://www.instagram.com/r1.solares?utm_source=qr&srtk=MTk3cmg0dnRtajd0dQ==', icon: Instagram },
+      ],
+    },
+  },
 ];
 
 const partnerSlot = 'flex h-32 w-56 shrink-0 items-center justify-center sm:h-36 sm:w-64';
