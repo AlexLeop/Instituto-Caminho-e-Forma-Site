@@ -114,13 +114,10 @@ export const PartnerLogosCarousel: React.FC = () => {
           .partner-marquee:hover .partner-marquee-track {
             animation-play-state: paused;
           }
-          .partner-marquee:has(button:focus-visible) { overflow-x: auto; }
           .partner-marquee:has(button:focus-visible) .partner-marquee-track { animation: none; }
           .partner-marquee:has(button:focus-visible) .partner-marquee-group[aria-hidden="true"] { display: none; }
           @media (prefers-reduced-motion: reduce) {
-            .partner-marquee { overflow-x: auto; }
-            .partner-marquee-track { animation: none; }
-            .partner-marquee-group[aria-hidden="true"] { display: none; }
+            .partner-marquee-track { animation-duration: 90s; }
           }
         `}</style>
         <div className="partner-marquee-track">
