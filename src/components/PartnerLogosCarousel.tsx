@@ -85,8 +85,8 @@ const PARTNERS: Partner[] = [
     id: 'suelar-moveis',
     name: 'Suelar Móveis',
     image: '/parcerias/suelar-moveis.png',
-    width: 828,
-    height: 286,
+    width: 2135,
+    height: 736,
     redirect: {
       title: 'Você vai acessar o Instagram da Suelar Móveis',
       description: 'Ao continuar, você será redirecionado para o Instagram da empresa parceira.',
@@ -141,7 +141,7 @@ export const PartnerLogosCarousel: React.FC = () => {
             <div key={group} aria-hidden={group > 0 ? true : undefined} className="partner-marquee-group flex shrink-0 items-center gap-10 pr-10 sm:gap-16 sm:pr-16">
               {PARTNERS.map(partner => {
                 const logo = (
-                  <img src={partner.image} alt={group === 0 && !partner.redirect ? partner.name : ''} width={partner.width} height={partner.height} loading="lazy" decoding="async" className={`max-h-full max-w-full object-contain ${partner.id === 'suelar-moveis' ? 'mix-blend-multiply' : ''}`} />
+                  <img src={partner.image} alt={group === 0 && !partner.redirect ? partner.name : ''} width={partner.width} height={partner.height} loading="lazy" decoding="async" className="max-h-full max-w-full object-contain" />
                 );
                 return partner.redirect ? (
                   <button
