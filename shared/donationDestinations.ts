@@ -14,7 +14,8 @@ export function filterDonationDestinations(query: string) {
 }
 
 export function findDonationDestination(value?: string) {
-  return DONATION_DESTINATIONS.find(destination => destination.id === value || destination.title === value);
+  const destinationKey = value === 'Muay Thai' ? 'muay-thai' : value;
+  return DONATION_DESTINATIONS.find(destination => destination.id === destinationKey || destination.title === destinationKey);
 }
 
 // Keep the stable identifier first: the bank limits descriptions to 100 characters.

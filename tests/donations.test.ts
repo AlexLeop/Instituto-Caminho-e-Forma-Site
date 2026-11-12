@@ -39,6 +39,7 @@ test('destination search is alphabetical in Portuguese, accent-insensitive and s
   const sorted = [...DONATION_DESTINATIONS].sort((a, b) => a.title.localeCompare(b.title, 'pt-BR', {sensitivity: 'base'}));
   assert.deepEqual(DONATION_DESTINATIONS, sorted);
   assert.equal(filterDonationDestinations('ead')[0].id, 'cursos-ead');
+  assert.equal(filterDonationDestinations('kick boxing')[0].id, 'muay-thai');
   assert.ok(filterDonationDestinations('psi').length >= 2);
   assert.equal(filterDonationDestinations('mulheres defesa')[0].id, 'defesa-pessoal-mulheres');
   assert.deepEqual(filterDonationDestinations('açoes'), filterDonationDestinations('ações'));

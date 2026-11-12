@@ -128,6 +128,22 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
           {/* ======================================================== */}
           <main className="lg:col-span-8 flex flex-col">
 
+            {project.disciplines && project.disciplines.length > 0 && (
+              <section className="mb-12 border-b border-slate-200 pb-10">
+                <h2 className="mb-6 font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+                  Modalidades do projeto
+                </h2>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {project.disciplines.map(discipline => (
+                    <div key={discipline.name} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                      <h3 className="mb-2 font-serif text-lg font-bold text-slate-900">{discipline.name}</h3>
+                      <p className="text-sm leading-relaxed text-slate-700">{discipline.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* SEÇÃO 1: SOBRE A INICIATIVA & DIAGNÓSTICO (Texto corrido editorial, sem cards excessivos) */}
             <section className="mb-12 pb-10 border-b border-slate-200">
               <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold mb-1">
@@ -405,11 +421,13 @@ export const ProjectDetailView: React.FC<ProjectDetailViewProps> = ({
             {project.beneficiaryStory && (
               <section className="mb-12 pb-10 border-b border-slate-200">
                 <div className="p-6 sm:p-8 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <img
-                    src={project.beneficiaryStory.avatar}
-                    alt={project.beneficiaryStory.name}
-                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 border-2 border-white shadow-sm ring-1 ring-slate-200"
-                  />
+                  {project.beneficiaryStory.avatar && (
+                    <img
+                      src={project.beneficiaryStory.avatar}
+                      alt={project.beneficiaryStory.name}
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover shrink-0 border-2 border-white shadow-sm ring-1 ring-slate-200"
+                    />
+                  )}
                   <div>
                     <div className="font-sans text-xs uppercase tracking-wider text-[#b45309] font-bold mb-1">
                       História Real de Transformação

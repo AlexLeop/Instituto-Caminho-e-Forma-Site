@@ -101,6 +101,7 @@ export interface Project {
     solution: string;
     methodology: string;
   };
+  disciplines?: { name: string; description: string }[];
   gallery?: ProjectPhoto[];
   galleryIsIllustrative?: boolean;
   events?: ProjectEvent[];
@@ -108,7 +109,7 @@ export interface Project {
   beneficiaryStory?: {
     name: string;
     role?: string;
-    avatar: string;
+    avatar?: string;
     quote: string;
     story: string;
   };

@@ -11,9 +11,9 @@ interface Partner {
   redirect?: {
     title: string;
     description: string;
-    phone: string;
+    phone?: string;
     email: string;
-    address?: { street: string; postalCode: string };
+    address?: { street: string; postalCode?: string };
     links: { label: string; href: string; icon?: LucideIcon }[];
   };
 }
@@ -81,6 +81,22 @@ const PARTNERS: Partner[] = [
       ],
     },
   },
+  {
+    id: 'suelar-moveis',
+    name: 'Suelar Móveis',
+    image: '/parcerias/suelar-moveis.png',
+    width: 828,
+    height: 286,
+    redirect: {
+      title: 'Você vai acessar o Instagram da Suelar Móveis',
+      description: 'Ao continuar, você será redirecionado para o Instagram da empresa parceira.',
+      email: 'itamobile.vendas1@gmail.com',
+      address: { street: 'Av. Pref. Isoldackson Cruz de Brito, 1116, Vila Margarida, Itaguaí - RJ' },
+      links: [
+        { label: 'Instagram', href: 'https://www.instagram.com/suelarmoveis?srtk=MW1ndm9zNTQzdzlkcA==', icon: Instagram },
+      ],
+    },
+  },
 ];
 
 const partnerSlot = 'flex h-32 w-56 shrink-0 items-center justify-center sm:h-36 sm:w-64';
@@ -125,7 +141,7 @@ export const PartnerLogosCarousel: React.FC = () => {
             <div key={group} aria-hidden={group > 0 ? true : undefined} className="partner-marquee-group flex shrink-0 items-center gap-10 pr-10 sm:gap-16 sm:pr-16">
               {PARTNERS.map(partner => {
                 const logo = (
-                  <img src={partner.image} alt={group === 0 && !partner.redirect ? partner.name : ''} width={partner.width} height={partner.height} loading="lazy" decoding="async" className="max-h-full max-w-full object-contain" />
+                  <img src={partner.image} alt={group === 0 && !partner.redirect ? partner.name : ''} width={partner.width} height={partner.height} loading="lazy" decoding="async" className={`max-h-full max-w-full object-contain ${partner.id === 'suelar-moveis' ? 'mix-blend-multiply' : ''}`} />
                 );
                 return partner.redirect ? (
                   <button
@@ -181,10 +197,12 @@ export const PartnerLogosCarousel: React.FC = () => {
               {redirect.description}
             </p>
             <dl className="my-6 grid gap-3 rounded-xl bg-slate-50 px-4 py-4 text-sm">
-              <div>
-                <dt className="font-semibold">Contato</dt>
-                <dd className="mt-0.5 min-h-5 text-slate-700">{redirect.phone}</dd>
-              </div>
+              {redirect.phone && (
+                <div>
+                  <dt className="font-semibold">Contato</dt>
+                  <dd className="mt-0.5 min-h-5 text-slate-700">{redirect.phone}</dd>
+                </div>
+              )}
               <div>
                 <dt className="font-semibold">E-mail</dt>
                 <dd className="mt-0.5 min-h-5 break-all text-slate-700">{redirect.email}</dd>
@@ -192,7 +210,10 @@ export const PartnerLogosCarousel: React.FC = () => {
               {redirect.address && (
                 <div>
                   <dt className="font-semibold">Endereço</dt>
-                  <dd className="mt-0.5 text-slate-700">{redirect.address.street}<br />CEP {redirect.address.postalCode}</dd>
+                  <dd className="mt-0.5 text-slate-700">
+                    {redirect.address.street}
+                    {redirect.address.postalCode && <><br />CEP {redirect.address.postalCode}</>}
+                  </dd>
                 </div>
               )}
             </dl>

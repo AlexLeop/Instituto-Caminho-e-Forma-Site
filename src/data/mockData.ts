@@ -488,14 +488,18 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'muay-thai',
-    title: 'Muay Thai',
+    title: 'Muay Thai e Kick Boxing',
     category: 'Esportes & Lutas',
     categoryTagType: 'secondary',
-    image: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
-    imagePosition: 'left top',
-    galleryIsIllustrative: true,
+    image: '/projetos/muay-thai/turma-na-quadra.webp',
+    imagePosition: 'center 36%',
+    galleryIsIllustrative: false,
     progressPercent: 0,
-    description: 'Aulas gratuitas de Muay Thai para crianças e adolescentes de Itaguaí, com orientação de instrutores, condicionamento físico adequado à idade, autocontrole, respeito mútuo e disciplina marcial.',
+    description: 'Muay Thai e Kick Boxing são duas modalidades oferecidas pelo Instituto em Itaguaí, sob orientação da professora Jeniffer Muniz.',
+    disciplines: [
+      { name: 'Muay Thai', description: 'Arte marcial tailandesa. O Instituto oferece aulas gratuitas para crianças e adolescentes, com exercícios adequados à idade e foco em disciplina e respeito.' },
+      { name: 'Kick Boxing', description: 'Modalidade esportiva que combina socos e chutes. As aulas trabalham os fundamentos da luta, a coordenação e o condicionamento físico.' },
+    ],
     raisedAmount: 0,
     goalAmount: 22000,
     impactBeneficiaries: '75 jovens praticantes',
@@ -504,27 +508,32 @@ export const PROJECTS: Project[] = [
     startDate: 'Atividade contínua',
     fullStory: {
       problem: 'A ociosidade no contraturno escolar e a escassez de centros esportivos públicos em Itaguaí deixam centenas de adolescentes expostos à vulnerabilidade social e ao sedentarismo. Sem canais saudáveis de expressão, muitos jovens acumulam tensões diárias sem orientação sobre disciplina e projeto de vida.',
-      solution: 'O Instituto estruturou um centro de artes marciais com ringue, tatames de alta densidade, sacos de pancada e kits individuais de proteção (luvas, caneleiras, bandagens e protetores bucais). Sob orientação de mestres experientes, os alunos treinam sem qualquer custo financeiro para suas famílias.',
-      methodology: 'Prática da tradicional "arte das oito armas" (punhos, cotovelos, joelhos e canelas) combinada com preparação física funcional, corrida e alongamento. Cada treino inicia e encerra com saudações de respeito (Wai Khru), ensinamentos sobre hierarquia, humildade e exigência rigorosa de frequência e bom rendimento na escola regular.'
+      solution: 'O Instituto estruturou um centro de artes marciais com ringue, tatames de alta densidade, sacos de pancada e kits individuais de proteção (luvas, caneleiras, bandagens e protetores bucais). As aulas de Muay Thai para crianças e adolescentes são gratuitas.',
+      methodology: 'Cada modalidade segue seus próprios fundamentos. A professora orienta a prática e o condicionamento físico de acordo com a atividade, com atenção à disciplina e ao respeito entre os participantes.'
     },
     milestones: [
-      { number: '75', label: 'Jovens Matriculados', sublabel: 'Treinando semanalmente' },
-      { number: '100%', label: 'Kits Fornecidos', sublabel: 'Luvas e proteções gratuitas' },
-      { number: '3x', label: 'Treinos Semanais', sublabel: 'Acompanhamento contínuo' }
+      { number: '75', label: 'Jovens no Muay Thai', sublabel: 'Treinando semanalmente' },
+      { number: '100%', label: 'Kits de Muay Thai Fornecidos', sublabel: 'Luvas e proteções gratuitas' },
+      { number: '3x', label: 'Treinos Semanais de Muay Thai', sublabel: 'Acompanhamento contínuo' }
     ],
     gallery: [
-      { url: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp', caption: 'Adolescente pratica chute baixo no aparador sob orientação do instrutor.', objectPosition: 'center top' },
-      { url: '/projetos/muay-thai/galeria-1-infantil-juvenil-higgsfield.webp', caption: 'Criança aprende postura de guarda e golpes no aparador em aula supervisionada.', objectPosition: 'center top' },
-      { url: '/projetos/muay-thai/galeria-2-infantil-juvenil-higgsfield.webp', caption: 'Crianças e adolescentes praticam guarda e deslocamento no tatame com acompanhamento.', objectPosition: 'center top' }
+      { url: '/projetos/muay-thai/turma-na-quadra.webp', caption: 'Turma reunida na quadra.', objectPosition: 'center 56%' },
+      { url: '/projetos/muay-thai/registro-de-aula.webp', caption: 'Registro da turma em aula de Muay Thai.', objectPosition: 'center 30%' },
+      { url: '/projetos/muay-thai/participantes-no-evento.webp', caption: 'Participantes em evento esportivo.', objectPosition: 'center 46%' },
+      { url: '/projetos/muay-thai/registro-com-trofeu.webp', caption: 'Registro de participante com troféu no evento.', objectPosition: 'center 43%' },
+      { url: '/projetos/muay-thai/grupo-na-quadra.webp', caption: 'Participantes reunidos em atividade na quadra.', objectPosition: 'center 52%' },
+      { url: '/projetos/muay-thai/grupo-no-tatame.webp', caption: 'Registro coletivo no tatame.', objectPosition: 'center 57%' },
+      { url: '/projetos/muay-thai/premiacao-no-ringue.webp', caption: 'Registro de premiação no ringue. Foto: Focus Viana.', objectPosition: 'center 48%' },
+      { url: '/projetos/muay-thai/registro-de-premiacao.webp', caption: 'Registro de premiação em evento esportivo.', objectPosition: 'center 45%' },
     ],
     teachers: [
       {
-        id: 'instrutor-muay',
-        name: 'Professor Anderson Costa',
-        role: 'Instrutor Chefe de Muay Thai',
-        bio: 'Educador marcial com mais de 12 anos de experiência, dedicado à formação cidadã de jovens pela disciplina das artes marciais.',
-        avatar: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
-        badge: 'Treinador'
+        id: 'jeniffer-muniz',
+        name: 'Jeniffer Muniz',
+        avatar: '/projetos/muay-thai/jeniffer-muniz.webp',
+        role: 'Professora de Muay Thai e Kick Boxing',
+        bio: 'Tem 33 anos. É professora de Karatê Shobu-Ryu, faixa-preta 2º Dan, e de Kick Boxing, faixa marrom pela equipe IGAM.',
+        badge: 'Professora'
       }
     ],
     events: [
@@ -539,7 +548,7 @@ export const PROJECTS: Project[] = [
       },
       {
         id: 'muay-sabado',
-        title: 'Treino Geral de Sparring Técnico e Graduação',
+        title: 'Treino Geral de Muay Thai e Graduação',
         date: 'Sábados',
         time: '09h00 - 11h00',
         location: 'Dojô da Sede',
@@ -550,7 +559,6 @@ export const PROJECTS: Project[] = [
     beneficiaryStory: {
       name: 'Gabriel Santos (16 anos)',
       role: 'Atleta do Projeto Muay Thai',
-      avatar: '/projetos/muay-thai/capa-infantil-juvenil-higgsfield.webp',
       quote: '"Antes do Muay Thai eu vivia sem rumo na rua e brigando na escola. No dojô aprendi a ter calma, a respeitar meus colegas e hoje meu sonho é ser atleta profissional e ajudar minha mãe."',
       story: 'Gabriel treina há 1 ano e meio e é destaque em dedicação e notas escolares.'
     },
@@ -994,28 +1002,17 @@ export const PROJECTS: Project[] = [
     startDate: 'Atividade contínua',
     fullStory: {
       problem: 'As longas filas do SUS para atendimento psicológico na região podem durar até dois anos, deixando crianças com ansiedade, jovens deprimidos e mães esgotadas sem qualquer apoio.',
-      solution: 'O Instituto mantém equipe permanente de psicólogos clínicos com CRP ativo para atendimento individualizado e grupos reflexivos, com fila de espera gerenciada com agilidade.',
+      solution: 'O projeto reúne atendimento individual, orientação familiar e grupos de apoio para moradores de Itaguaí.',
       methodology: 'Abordagens baseadas na Terapia Cognitivo-Comportamental (TCC) e Fenomenologia, trabalhando o desenvolvimento de repertórios de enfrentamento, regulação emocional e fortalecimento dos laços familiares.'
     },
     milestones: [
       { number: '95', label: 'Pessoas por Mês', sublabel: 'Atendimento continuado' },
-      { number: '3', label: 'Psicólogos Clínicos', sublabel: 'Com registro CRP ativo' },
       { number: '100%', label: 'Gratuito', sublabel: 'Acolhimento imediato' }
     ],
     gallery: [
       { url: '/projetos/psicologia/capa-higgsfield.webp', caption: 'Cena ilustrativa de acolhimento em uma consulta psicológica.' },
       { url: '/projetos/psicologia/galeria-1-higgsfield.webp', caption: 'Cena ilustrativa de escuta e acompanhamento psicológico individual.' },
       { url: '/projetos/psicologia/galeria-2-atendimento-higgsfield.webp', caption: 'Cena ilustrativa de orientação psicológica a um casal adulto.', objectPosition: 'center top' }
-    ],
-    teachers: [
-      {
-        id: 'psicologa-lider',
-        name: 'Dra. Camila Nogueira',
-        role: 'Psicóloga Clínica (CRP 05/...)',
-        bio: 'Especialista em saúde mental da infância e adolescência e intervenção em crises psicossociais.',
-        avatar: '/projetos/psicologia/capa-higgsfield.webp',
-        badge: 'Psicologia'
-      }
     ],
     events: [
       {
