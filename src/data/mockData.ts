@@ -495,7 +495,7 @@ export const PROJECTS: Project[] = [
     imagePosition: 'center 36%',
     galleryIsIllustrative: false,
     progressPercent: 0,
-    description: 'Muay Thai e Kick Boxing são duas modalidades oferecidas pelo Instituto em Itaguaí, sob orientação da professora Jeniffer Muniz.',
+    description: 'Em Itaguaí, Emerson Gerê ministra as aulas de Muay Thai e Jeniffer Muniz ministra as de Kick Boxing.',
     disciplines: [
       { name: 'Muay Thai', description: 'Arte marcial tailandesa. O Instituto oferece aulas gratuitas para crianças e adolescentes, com exercícios adequados à idade e foco em disciplina e respeito.' },
       { name: 'Kick Boxing', description: 'Modalidade esportiva que combina socos e chutes. As aulas trabalham os fundamentos da luta, a coordenação e o condicionamento físico.' },
@@ -509,7 +509,7 @@ export const PROJECTS: Project[] = [
     fullStory: {
       problem: 'A ociosidade no contraturno escolar e a escassez de centros esportivos públicos em Itaguaí deixam centenas de adolescentes expostos à vulnerabilidade social e ao sedentarismo. Sem canais saudáveis de expressão, muitos jovens acumulam tensões diárias sem orientação sobre disciplina e projeto de vida.',
       solution: 'O Instituto estruturou um centro de artes marciais com ringue, tatames de alta densidade, sacos de pancada e kits individuais de proteção (luvas, caneleiras, bandagens e protetores bucais). As aulas de Muay Thai para crianças e adolescentes são gratuitas.',
-      methodology: 'Cada modalidade segue seus próprios fundamentos. A professora orienta a prática e o condicionamento físico de acordo com a atividade, com atenção à disciplina e ao respeito entre os participantes.'
+      methodology: 'Cada modalidade segue seus próprios fundamentos. Emerson Gerê orienta o Muay Thai e Jeniffer Muniz orienta o Kick Boxing, com atenção à disciplina e ao respeito entre os participantes.'
     },
     milestones: [
       { number: '75', label: 'Jovens no Muay Thai', sublabel: 'Treinando semanalmente' },
@@ -525,13 +525,21 @@ export const PROJECTS: Project[] = [
       { url: '/projetos/muay-thai/grupo-no-tatame.webp', caption: 'Registro coletivo no tatame.', objectPosition: 'center 57%' },
       { url: '/projetos/muay-thai/premiacao-no-ringue.webp', caption: 'Registro de premiação no ringue. Foto: Focus Viana.', objectPosition: 'center 48%' },
       { url: '/projetos/muay-thai/registro-de-premiacao.webp', caption: 'Registro de premiação em evento esportivo.', objectPosition: 'center 45%' },
+      { url: '/projetos/muay-thai/registro-artes-marciais.webp', caption: 'Grupo reunido com uniformes de artes marciais.', objectPosition: 'center 68%' },
     ],
     teachers: [
+      {
+        id: 'emerson-gere',
+        name: 'Emerson Gerê',
+        role: 'Mestre e professor de Muay Thai',
+        bio: 'Tem 54 anos e é graduado com Kruang preto e branco em Muay Thai.',
+        badge: 'Professor'
+      },
       {
         id: 'jeniffer-muniz',
         name: 'Jeniffer Muniz',
         avatar: '/projetos/muay-thai/jeniffer-muniz.webp',
-        role: 'Professora de Muay Thai e Kick Boxing',
+        role: 'Professora de Karatê Shobu-Ryu e Kick Boxing',
         bio: 'Tem 33 anos. É professora de Karatê Shobu-Ryu, faixa-preta 2º Dan, e de Kick Boxing, faixa marrom pela equipe IGAM.',
         badge: 'Professora'
       }
