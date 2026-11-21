@@ -12,6 +12,7 @@ import {
 } from '../data/mockData';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { PartnerLogosCarousel } from './PartnerLogosCarousel';
+import { InstagramIcon } from './SocialIcons';
 import { INSTITUTIONAL_CERTIFICATIONS_LABEL } from '../config/features';
 import { formatDonationAmount } from '../data/donations';
 import { DonationSyncStatus, useDonationTotals, useFundedProjects } from '../hooks/useDonationTotals';
@@ -33,6 +34,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 }) => {
   const DONATION_TOTALS = useDonationTotals();
   const PROJECTS = useFundedProjects();
+  const featuredProjects = [...PROJECTS].sort((a, b) => b.raisedAmount - a.raisedAmount).slice(0, 3);
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
@@ -199,7 +201,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-sans text-base sm:text-lg text-[#292524] max-w-[620px] leading-relaxed font-medium text-pretty drop-shadow-[0_1px_2px_rgba(251,249,245,0.95)]"
             >
-              No Instituto Caminho e Forma, atuamos diariamente ao lado de mais de 450 famílias com segurança alimentar, capacitação profissional emancipatória e fortalecimento comunitário permanente.
+              No Instituto Caminho e Forma, atuamos ao lado de 350 famílias com segurança alimentar, capacitação profissional e fortalecimento comunitário.
             </motion.p>
 
             {/* CTAs Diretos, Elegantes e Responsivos */}
@@ -669,7 +671,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROJECTS.slice(0, 3).map((proj, idx) => {
+            {featuredProjects.map((proj, idx) => {
               const categoryBadge = proj.categoryTagType === 'secondary'
                 ? 'bg-[#166534] text-white'
                 : proj.categoryTagType === 'primary'
@@ -702,9 +704,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     <div className={`absolute top-3 left-3 ${categoryBadge} font-sans text-xs px-3 py-1 rounded-md font-bold shadow-xs`}>
                       {proj.category}
                     </div>
-                    <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md font-sans text-xs font-bold text-slate-900 shadow-xs border border-slate-200">
-                      {proj.progressPercent}% da meta de arrecadação
-                    </div>
+                    {proj.raisedAmount > 0 && <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-md font-sans text-xs font-bold text-slate-900 shadow-xs border border-slate-200">
+                      {proj.progressPercent > 0 ? `${proj.progressPercent}% da meta de arrecadação` : 'Contribuições recebidas'}
+                    </div>}
                   </div>
 
                   <div className="p-6 flex flex-col flex-1 justify-between gap-5">
@@ -721,15 +723,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                      {proj.raisedAmount > 0 ? <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${proj.progressPercent}%` }}
+                          whileInView={{ width: `${proj.goalAmount > 0 ? Math.min(100, proj.raisedAmount / proj.goalAmount * 100) : 0}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, ease: 'easeOut' }}
                           className={`${barColor} h-full rounded-full`}
                         />
-                      </div>
+                      </div> : <p className="font-sans text-sm font-semibold text-[#166534]">Seja o primeiro a apoiar este projeto.</p>}
                       <div className="flex justify-between items-center font-sans text-xs sm:text-sm">
                         <span className="text-slate-900 font-bold">
                           R$ {proj.raisedAmount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} arrecadados
@@ -857,7 +859,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 {MARKET_PRODUCTS.length > 0 ? <>Produtos artesanais, pães e biojoias criados por alunos de nossas oficinas. <strong className="text-slate-900 font-semibold">100% do valor da sua compra é destinado diretamente à família artesã</strong>.</> : 'Em breve, este espaço reunirá produtos reais das famílias e produtores da comunidade.'}
               </p>
             </div>
-            <motion.button
+            {MARKET_PRODUCTS.length > 0 && <motion.button
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => onNavigate('feira-virtual')}
@@ -865,14 +867,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
             >
               <span className="material-symbols-outlined text-[18px] text-[#b45309]">storefront</span>
               <span>Acessar Vitrine Completa</span>
-            </motion.button>
+            </motion.button>}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {MARKET_PRODUCTS.length === 0 && <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center md:col-span-3">
-              <span className="material-symbols-outlined text-[36px] text-[#b45309]" aria-hidden="true">storefront</span>
-              <h3 className="mt-3 font-serif text-xl font-bold text-slate-900">Produtos em breve</h3>
-              <p className="mt-2 font-sans text-sm leading-relaxed text-slate-600">Os produtos reais serão adicionados gradualmente à nossa feira solidária.</p>
+            {MARKET_PRODUCTS.length === 0 && <div className="flex flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 md:col-span-3 md:flex-row md:items-center md:justify-between">
+              <div className="max-w-2xl">
+                <h3 className="font-serif text-xl font-bold text-slate-900">Você produz em Itaguaí ou região?</h3>
+                <p className="mt-2 font-sans text-sm leading-relaxed text-slate-600">Apresente seus produtos à equipe do Instituto e converse sobre como participar da Feira Solidária.</p>
+              </div>
+              <a
+                href={`https://wa.me/5521987428647?text=${encodeURIComponent('Olá! Sou produtor(a) de Itaguaí ou região e gostaria de apresentar meus produtos para participar da Feira Solidária do Instituto.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-xl bg-[#b45309] px-6 py-3 font-sans text-sm font-bold text-white transition-colors hover:bg-[#92400e] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b45309]"
+              >
+                Quero participar da feira
+                <span className="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_outward</span>
+              </a>
             </div>}
             {MARKET_PRODUCTS.slice(0, 3).map((item, idx) => (
               <motion.div
@@ -1327,6 +1339,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
                         WhatsApp: <a href="https://wa.me/5521987428647" target="_blank" rel="noopener noreferrer" className="hover:text-[#059669] font-medium transition-colors">(21) 98742-8647</a><br />
                         E-mail: <a href="mailto:institutocaminhoeforma@gmail.com" className="hover:text-[#b45309] font-medium transition-colors">institutocaminhoeforma@gmail.com</a>
                       </p>
+                      <a
+                        href="https://www.instagram.com/institutocaminhoeforma/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-[#166534] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#166534]"
+                      >
+                        <InstagramIcon className="h-5 w-5 shrink-0" />
+                        <span className="break-all">@institutocaminhoeforma</span>
+                      </a>
                     </div>
                   </div>
                 </div>

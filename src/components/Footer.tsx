@@ -163,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency, 
               </span>
             )}
           </div>
-          <div className="flex items-center gap-2.5 mt-2">
+          <div className="flex flex-wrap items-center gap-2.5 mt-2">
             <a 
               href="https://wa.me/5521987428647?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20Instituto%20Caminho%20e%20Forma" 
               target="_blank"
@@ -180,9 +180,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenTransparency, 
               rel="noopener noreferrer"
               aria-label="Instagram: @institutocaminhoeforma" 
               title="Instagram: @institutocaminhoeforma"
-              className="w-10 h-10 rounded-full bg-slate-100 hover:bg-pink-50 flex items-center justify-center text-slate-700 hover:text-pink-600 transition-all cursor-pointer border border-slate-200 hover:border-pink-200"
+              className="min-h-11 rounded-full bg-slate-100 hover:bg-pink-50 inline-flex items-center justify-center gap-2 px-3 text-sm font-semibold text-slate-700 hover:text-pink-600 transition-all cursor-pointer border border-slate-200 hover:border-pink-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pink-600"
             >
               <InstagramIcon className="w-5 h-5 text-pink-600" />
+              <span>Instagram</span>
             </a>
             <a 
               href="mailto:institutocaminhoeforma@gmail.com"
